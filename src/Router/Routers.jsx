@@ -2,8 +2,13 @@ import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 
 import HomePage from "../Pages/HomePage";
-import AdminDashboardPage from "../Pages/DashboardPages/AdminDashboardPage";
 import Main from "../Layout/Main";
+import DashboardPage from "../Pages/DashboardPages/DashboardPage";
+import AdminDashboardPage from "../Pages/DashboardPages/Admin/AdminDashboardPage";
+import StudentDashboardPage from "../Pages/DashboardPages/Student/StudentDashboardPage";
+import AdminDashboardLayout from "../Layout/AdminDashboardLayout";
+import StudentDashboardLayout from "../Layout/StudentDashboardLayout";
+import BatchListPage from "../Pages/DashboardPages/Admin/BatchListPage";
 
 const Routers = createBrowserRouter([
     {
@@ -16,7 +21,7 @@ const Routers = createBrowserRouter([
             },
             {
                 path: "/dashboard",
-                element: <AdminDashboardPage></AdminDashboardPage>,
+                element: <DashboardPage />,
             },
             // {
             //     path: "/register",
@@ -26,6 +31,46 @@ const Routers = createBrowserRouter([
             //     path: "/login",
             //     element: <LoginPage></LoginPage>,
             // },
+            {
+                path: "/dashboard/admin",
+                element: (
+                    <AdminDashboardLayout></AdminDashboardLayout>
+
+                    // <ProtectedRoutes>
+                    //     <DashboardLayout></DashboardLayout>
+                    // </ProtectedRoutes>
+                ),
+                children: [
+                    {
+                        path: "/dashboard/admin",
+                        element: <AdminDashboardPage></AdminDashboardPage>,
+                    },
+                    {
+                        path: "/dashboard/admin/batch-list",
+                        element: <BatchListPage></BatchListPage>,
+                    },
+                ],
+            },
+            {
+                path: "/dashboard/student",
+                element: (
+                    <StudentDashboardLayout></StudentDashboardLayout>
+
+                    // <ProtectedRoutes>
+                    //     <DashboardLayout></DashboardLayout>
+                    // </ProtectedRoutes>
+                ),
+                children: [
+                    {
+                        path: "/dashboard/student",
+                        element: <StudentDashboardPage></StudentDashboardPage>,
+                    },
+                    // {
+                    //     path: "/dashboard/blog-list",
+                    //     element: <BlogListPage></BlogListPage>,
+                    // },
+                ],
+            },
             // {
             //     path: "*",
             //     element: <NotFoundPage />,
