@@ -20,11 +20,11 @@ const AdminDashboardLayout = () => {
                     type="checkbox"
                     className="drawer-toggle"
                 />
-                <div className="drawer-content  px-6 py-10">
+                <div className="drawer-content px-6 py-4">
                     <Outlet />
                     {/* toggler */}
                 </div>
-                <div className="drawer-side">
+                <div className="drawer-side h-full min-h-[75vh]">
                     <label
                         htmlFor="Dashboard_Drawer"
                         className="drawer-overlay"
