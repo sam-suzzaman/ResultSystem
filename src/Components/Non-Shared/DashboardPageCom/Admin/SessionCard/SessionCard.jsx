@@ -3,7 +3,7 @@ import { FaUserGraduate } from "react-icons/fa";
 import { BiArrowToRight } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
-const SessionCard = () => {
+const SessionCard = ({ session, student }) => {
     return (
         <div class="session-card">
             <div class="session-card-inner">
@@ -12,7 +12,7 @@ const SessionCard = () => {
                         <FaUserGraduate />
                     </span>
                     <h3 className="text-white font-semibold text-lg capitalize mt-2">
-                        session: 2017-18
+                        session: {session}
                     </h3>
                 </div>
                 <div class="session-card-back px-2">
@@ -20,9 +20,9 @@ const SessionCard = () => {
                         <FaUserGraduate />
                     </span>
                     <h4 className="capitalize font-medium text-xs mt-1">
-                        session: 2017-18
+                        session: {session}
                     </h4>
-                    <h4 className="font-medium text-xs">31 Students</h4>
+                    <h4 className="font-medium text-xs">{student} Students</h4>
                     <div className="session-card-divider"></div>
                     <Link
                         to="/dashboard/admin/batch-list/batch"

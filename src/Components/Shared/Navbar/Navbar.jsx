@@ -25,7 +25,7 @@ const Navbar = () => {
                         to="/"
                         className="font-bold hidden md:block text-xl uppercase"
                     >
-                        Jatiya Kabi Kazi Nazrul Islam University
+                        Dept. of Electrical and Electronic Engineering
                     </Link>
                 </div>
                 <div className="navbar-end">
@@ -53,7 +53,7 @@ const Navbar = () => {
                         >
                             <li>
                                 <NavLink
-                                    to="/dashboard/admin"
+                                    to="/dashboard/admin/"
                                     className="capitalize rounded-sm"
                                 >
                                     <span className="text-lg">
@@ -61,14 +61,6 @@ const Navbar = () => {
                                     </span>
                                     dashboard
                                 </NavLink>
-                            </li>
-                            <li>
-                                <a className="capitalize rounded-sm">
-                                    <span className="text-lg">
-                                        <AiOutlineSetting />
-                                    </span>
-                                    Settings
-                                </a>
                             </li>
                             <li>
                                 <button className="flex items-center text-red-600 hover:text-red-700 hover:font-medium rounded-sm">

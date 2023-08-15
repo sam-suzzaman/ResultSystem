@@ -1,12 +1,18 @@
 import { NavLink, Outlet } from "react-router-dom";
 
 // Icons
-import { AiOutlineUsergroupAdd } from "react-icons/ai";
+import { AiFillHome, AiOutlineUsergroupAdd } from "react-icons/ai";
 
 const AdminDashboardLayout = () => {
     const menu_items = [
         {
             id: 1,
+            title: "Home",
+            path: "/dashboard/admin/",
+            icon: <AiFillHome />,
+        },
+        {
+            id: 2,
             title: "Batch list",
             path: "/dashboard/admin/batch-list",
             icon: <AiOutlineUsergroupAdd />,
@@ -24,7 +30,7 @@ const AdminDashboardLayout = () => {
                     <Outlet />
                     {/* toggler */}
                 </div>
-                <div className="drawer-side h-full min-h-[75vh]">
+                <div className="drawer-side h-full min-h-[75vh] top-[69px] min-[1024px]:top-0">
                     <label
                         htmlFor="Dashboard_Drawer"
                         className="drawer-overlay"
@@ -35,11 +41,11 @@ const AdminDashboardLayout = () => {
                             return (
                                 <li
                                     key={item.id}
-                                    className="border-b border-slate-300"
+                                    className="border-b border-slate-300 mb-2 "
                                 >
                                     <NavLink
                                         to={item.path}
-                                        className="capitalize font-semibold"
+                                        className="capitalize font-semibold rounded-sm"
                                     >
                                         <span className="text-xl">
                                             {item.icon}
