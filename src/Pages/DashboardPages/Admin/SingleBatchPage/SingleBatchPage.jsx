@@ -38,7 +38,7 @@ const SingleBatchPage = () => {
                 <SemesterCard title="fifth semester" />
                 <SemesterCard title="sixth semester" />
                 <SemesterCard title="seventh semester" />
-                <SemesterCard title="eighth semester" />
+                <SemesterCard title="eight semester" />
             </div>
         </div>
     );
