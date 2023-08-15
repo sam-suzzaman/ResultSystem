@@ -24,7 +24,7 @@ const AdminDashboardLayout = () => {
                     <Outlet />
                     {/* toggler */}
                 </div>
-                <div className="drawer-side h-full min-h-[75vh] fixed top-0">
+                <div className="drawer-side h-full min-h-[75vh]">
                     <label
                         htmlFor="Dashboard_Drawer"
                         className="drawer-overlay"
