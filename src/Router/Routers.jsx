@@ -1,7 +1,7 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 
-import HomePage from "../Pages/HomePage";
+import HomePage from "../Pages/HomePage/HomePage";
 import Main from "../Layout/Main";
 import DashboardPage from "../Pages/DashboardPages/DashboardPage";
 import AdminDashboardPage from "../Pages/DashboardPages/Admin/AdminDashboardPage";
