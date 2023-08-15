@@ -10,6 +10,7 @@ import AdminDashboardLayout from "../Layout/AdminDashboardLayout";
 import StudentDashboardLayout from "../Layout/StudentDashboardLayout";
 import BatchListPage from "../Pages/DashboardPages/Admin/BatchListPage/BatchListPage";
 import SingleBatchPage from "../Pages/DashboardPages/Admin/SingleBatchPage/SingleBatchPage";
+import SemesterPage from "../Pages/DashboardPages/Admin/SemesterPage/SemesterPage";
 
 const Routers = createBrowserRouter([
     {
@@ -53,6 +54,10 @@ const Routers = createBrowserRouter([
                     {
                         path: "/dashboard/admin/batch-list/batch",
                         element: <SingleBatchPage></SingleBatchPage>,
+                    },
+                    {
+                        path: "/dashboard/admin/batch-list/batch/semester-details",
+                        element: <SemesterPage></SemesterPage>,
                     },
                 ],
             },
