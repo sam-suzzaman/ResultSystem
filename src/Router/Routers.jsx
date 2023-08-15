@@ -61,26 +61,26 @@ const Routers = createBrowserRouter([
                     },
                 ],
             },
-            {
-                path: "/dashboard/student",
-                element: (
-                    <StudentDashboardLayout></StudentDashboardLayout>
+            // {
+            //     path: "/dashboard/student",
+            //     element: (
+            //         <StudentDashboardLayout></StudentDashboardLayout>
 
-                    // <ProtectedRoutes>
-                    //     <DashboardLayout></DashboardLayout>
-                    // </ProtectedRoutes>
-                ),
-                children: [
-                    {
-                        path: "/dashboard/student",
-                        element: <StudentDashboardPage></StudentDashboardPage>,
-                    },
-                    // {
-                    //     path: "/dashboard/blog-list",
-                    //     element: <BlogListPage></BlogListPage>,
-                    // },
-                ],
-            },
+            //         // <ProtectedRoutes>
+            //         //     <DashboardLayout></DashboardLayout>
+            //         // </ProtectedRoutes>
+            //     ),
+            //     children: [
+            //         {
+            //             path: "/dashboard/student",
+            //             element: <StudentDashboardPage></StudentDashboardPage>,
+            //         },
+            //         // {
+            //         //     path: "/dashboard/blog-list",
+            //         //     element: <BlogListPage></BlogListPage>,
+            //         // },
+            //     ],
+            // },
             // {
             //     path: "*",
             //     element: <NotFoundPage />,

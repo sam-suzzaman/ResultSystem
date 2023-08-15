@@ -5,10 +5,6 @@ main {
     background: linear-gradient(to top, #1b1d1d, rgba(255, 255, 255, 0.75));
 }
 
-body {
-    overflow: hidden;
-}
-
 .crane__list,
 .skyscrappers__list,
 .tree__container {

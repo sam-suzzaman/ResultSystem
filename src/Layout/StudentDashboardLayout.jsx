@@ -25,7 +25,7 @@ const StudentDashboardLayout = () => {
         },
     ];
     return (
-        <div>
+        <div className="">
             <div className="drawer lg:drawer-open">
                 <input
                     id="Dashboard_Drawer"
