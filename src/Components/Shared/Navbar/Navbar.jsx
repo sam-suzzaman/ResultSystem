@@ -7,8 +7,8 @@ import { AiOutlineSetting } from "react-icons/ai";
 
 const Navbar = () => {
     return (
-        <nav className="shadow-md">
-            <div className="navbar bg-base-100 w-full max-w-7xl mx-auto justify-between">
+        <nav className="shadow-md bg-base-100 sticky top-0 z-10">
+            <div className="navbar w-full max-w-7xl mx-auto justify-between">
                 <div className="navbar-start">
                     <div className="w-12">
                         <Link to="/">
@@ -35,7 +35,7 @@ const Navbar = () => {
                                 <img
                                     src={avatarPhoto}
                                     alt="avatar_photo"
-                                    className="w-10"
+                                    className="w-10 rounded-full"
                                 />
                                 <div className="">
                                     <h3 className="text-xs font-medium capitalize mb-0 text-slate-700">
