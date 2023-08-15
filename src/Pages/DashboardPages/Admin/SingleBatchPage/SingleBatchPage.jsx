@@ -4,6 +4,9 @@ import Breadcrumb from "../../../../Components/Shared/Breadcrumb/Breadcrumb";
 import SectionTitle from "../../../../Components/Non-Shared/DashboardPageCom/Admin/SectionTitle/SectionTitle";
 import { AiOutlinePlus } from "react-icons/ai";
 import AddStudentModal from "../../../../Components/Non-Shared/DashboardPageCom/Admin/AddStudentModal/AddStudentModal";
+import SemesterCard from "../../../../Components/Non-Shared/DashboardPageCom/Admin/SemesterCard/SemesterCard";
+
+import "./singleBatchPage.css";
 
 const SingleBatchPage = () => {
     const { pathname } = useLocation();
@@ -26,6 +29,16 @@ const SingleBatchPage = () => {
                     <span className="text-xs">add student</span>
                 </label>
                 <AddStudentModal />
+            </div>
+            <div className="semester-card-container mt-8 mb-8">
+                <SemesterCard title="first semester" />
+                <SemesterCard title="second semester" />
+                <SemesterCard title="third semester" />
+                <SemesterCard title="fourth semester" />
+                <SemesterCard title="fifth semester" />
+                <SemesterCard title="sixth semester" />
+                <SemesterCard title="seventh semester" />
+                <SemesterCard title="eighth semester" />
             </div>
         </div>
     );

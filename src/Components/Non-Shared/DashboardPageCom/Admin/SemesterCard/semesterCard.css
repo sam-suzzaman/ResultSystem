@@ -1,0 +1,75 @@
+.semister-card {
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.semister-card .top,
+.semister-card .middle,
+.semister-card .bottom {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    width: 250px;
+    min-height: 200px;
+    transition: transform 300ms linear-out;
+}
+.semister-card .top {
+    z-index: 3;
+    transform: scale(1);
+    transition: transform 300ms cubic-bezier(0.22, 0.61, 0.36, 1);
+    /* background-color: #222; */
+    text-transform: capitalize;
+    font-weight: 500;
+    box-shadow: 0px 1px 3px rgba(25, 25, 25, 0.3);
+}
+.semister-card .middle {
+    position: absolute;
+    background: #aaa;
+    top: 0px;
+    z-index: 2;
+    transform: rotate(0deg);
+    transition: transform 250ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+.semister-card .bottom {
+    position: absolute;
+    background: #ccc;
+    top: 0px;
+    z-index: 1;
+    transform: rotate(0deg);
+    transition: transform 250ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.semister-card .caption {
+    overflow: hidden;
+    background: #ffffff;
+    padding: 15px 10px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+}
+.semister-card .caption .title {
+    color: #222;
+    margin: 0px 0px 10px 0px;
+    font-size: 20px;
+}
+
+/*hovering*/
+.semister-card:hover .top {
+    transform: scale(1.05);
+}
+.semister-card:hover .middle {
+    transform: rotate(-7deg);
+    box-shadow: 1px 1px 2px rgba(74, 74, 74, 0.35);
+}
+.semister-card:hover .bottom {
+    transform: rotate(7deg);
+    box-shadow: 1px 1px 2px rgba(113, 113, 113, 0.35);
+}
+
+.semister-card:hover .button {
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border: 0px;
+}

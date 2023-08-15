@@ -1,0 +1,17 @@
+.semester-card-container {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    justify-content: center;
+    grid-column-gap: 40px;
+    grid-row-gap: 40px;
+}
+
+.semester-card-container .semister-card:nth-child(odd) .top {
+    background-color: #b9314f;
+}
+.semester-card-container .semister-card:nth-child(even) .top {
+    background-color: #0a81d1;
+}
+.semester-card-container .semister-card:nth-child(3n + 1) .top {
+    background-color: #8f3985;
+}
