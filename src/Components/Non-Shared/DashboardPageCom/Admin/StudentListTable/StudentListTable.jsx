@@ -36,6 +36,7 @@ const StudentListTable = () => {
                         <th>#</th>
                         <th>Name</th>
                         <th>ID</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,8 +44,13 @@ const StudentListTable = () => {
                         return (
                             <tr key={student._id}>
                                 <th>{student._id}</th>
-                                <td>{student.name}</td>
+                                <td className="capitalize">{student.name}</td>
                                 <td>{student.roll}</td>
+                                <td>
+                                    <button className="btn btn-xs bg-[#e46b6b] text-white hover:bg-[#f77b7b] text-xs">
+                                        delete
+                                    </button>
+                                </td>
                             </tr>
                         );
                     })}
