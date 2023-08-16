@@ -12,6 +12,7 @@ import BatchListPage from "../Pages/DashboardPages/Admin/BatchListPage/BatchList
 import SingleBatchPage from "../Pages/DashboardPages/Admin/SingleBatchPage/SingleBatchPage";
 import SemesterPage from "../Pages/DashboardPages/Admin/SemesterPage/SemesterPage";
 import AddMarkPage from "../Pages/DashboardPages/Admin/AddMarkPage/AddMarkPage";
+import LoginPage from "../Pages/AuthenticationPages/LoginPage/LoginPage";
 
 const Routers = createBrowserRouter([
     {
@@ -21,6 +22,10 @@ const Routers = createBrowserRouter([
             {
                 path: "/",
                 element: <HomePage></HomePage>,
+            },
+            {
+                path: "/login",
+                element: <LoginPage></LoginPage>,
             },
             {
                 path: "/dashboard",
