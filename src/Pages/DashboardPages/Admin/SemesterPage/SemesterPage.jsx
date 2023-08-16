@@ -19,14 +19,14 @@ const SemesterPage = () => {
                 </div>
                 <CourseListTable />
             </div>
-            <div className="mt-12 mb-12">
+            {/* <div className="mt-12 mb-12">
                 <div className="">
                     <h3 className="text-center font-bold capitalize text-xl mb-3">
                         all student's list
                     </h3>
                 </div>
                 <StudentListTable />
-            </div>
+            </div> */}
         </div>
     );
 };

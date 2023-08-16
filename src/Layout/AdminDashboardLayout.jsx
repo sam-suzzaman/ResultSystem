@@ -13,7 +13,7 @@ const AdminDashboardLayout = () => {
         },
         {
             id: 2,
-            title: "Batch list",
+            title: "sessions",
             path: "/dashboard/admin/batch-list",
             icon: <AiOutlineUsergroupAdd />,
         },

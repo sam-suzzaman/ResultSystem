@@ -15,7 +15,7 @@ const BatchListPage = () => {
             </div>
             <section className="mt-4">
                 <div className="">
-                    <SectionTitle title="Batch Records" />
+                    <SectionTitle title="Session Records" />
                 </div>
                 <div className="session-card-container mt-8">
                     <SessionCard session="2022-23" student="35" />

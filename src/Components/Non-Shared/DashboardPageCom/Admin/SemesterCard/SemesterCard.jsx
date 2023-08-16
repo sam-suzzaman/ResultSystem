@@ -17,9 +17,6 @@ const SemesterCard = ({ title }) => {
                         <button className="badge capitalize text-xs font-normal bg-[#2b9859] hover:bg-[#33b76a] text-white rounded-sm">
                             add course
                         </button>
-                        <button className="badge capitalize text-xs font-normal bg-[#2b9859] hover:bg-[#33b76a] text-white rounded-sm">
-                            add marks
-                        </button>
                     </div>
                 </div>
             </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const CourseListTable = () => {
     const courses = [
@@ -54,13 +55,14 @@ const CourseListTable = () => {
     return (
         <div className="overflow-x-auto flex justify-center">
             <table className="table table-zebra  w-full max-w-[75%]">
-                {/* head */}
                 <thead>
-                    <tr>
+                    <tr className="text-left">
                         <th>#</th>
                         <th>Course Code</th>
                         <th>Course Title</th>
                         <th>Credits</th>
+                        <th>Actions</th>
+                        <th>Others</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -71,6 +73,22 @@ const CourseListTable = () => {
                                 <td>{course.courseCode}</td>
                                 <td>{course.courseTitle}</td>
                                 <td>{course.credits}</td>
+                                <td>
+                                    <button className="badge capitalize text-xs font-normal btn-warning  text-white rounded-sm mr-3">
+                                        update
+                                    </button>
+                                    <button className="badge capitalize text-xs font-normal bg-[#e96f6d] hover:bg-[#fa8b89] text-white rounded-sm">
+                                        delete
+                                    </button>
+                                </td>
+                                <td>
+                                    <Link
+                                        to="/dashboard/admin/batch-list/batch/semester-details/add-mark"
+                                        className="badge capitalize text-xs font-normal bg-[#2b9859] hover:bg-[#33b76a] text-white rounded-sm"
+                                    >
+                                        add marks
+                                    </Link>
+                                </td>
                             </tr>
                         );
                     })}
