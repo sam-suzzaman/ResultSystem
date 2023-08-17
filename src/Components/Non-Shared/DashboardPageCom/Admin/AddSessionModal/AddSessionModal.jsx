@@ -87,10 +87,10 @@ const AddSessionModal = () => {
             />
             <div className="modal">
                 <div className="modal-box max-w-[500px] w-full rounded-sm">
-                    <div className="modal-action">
+                    <div className="modal-action mt-0">
                         <label
                             htmlFor="add_session_modal"
-                            className="btn btn-xs text-white btn-error text-base font-medium rounded-full capitalize"
+                            className="btn btn-xs text-white btn-error text-sm font-bold rounded-full capitalize"
                         >
                             <AiOutlineClose />
                         </label>

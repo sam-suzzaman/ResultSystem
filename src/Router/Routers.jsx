@@ -10,9 +10,10 @@ import AdminDashboardLayout from "../Layout/AdminDashboardLayout";
 import StudentDashboardLayout from "../Layout/StudentDashboardLayout";
 import BatchListPage from "../Pages/DashboardPages/Admin/BatchListPage/BatchListPage";
 import SingleBatchPage from "../Pages/DashboardPages/Admin/SingleBatchPage/SingleBatchPage";
-import SemesterPage from "../Pages/DashboardPages/Admin/SemesterPage/SemesterPage";
 import AddMarkPage from "../Pages/DashboardPages/Admin/AddMarkPage/AddMarkPage";
 import LoginPage from "../Pages/AuthenticationPages/LoginPage/LoginPage";
+import CourseListPage from "../Pages/DashboardPages/Admin/CourseListPage/CourseListPage";
+import StudentListPage from "../Pages/DashboardPages/Admin/StudentListPage/StudentListPage";
 
 const Routers = createBrowserRouter([
     {
@@ -62,8 +63,12 @@ const Routers = createBrowserRouter([
                         element: <SingleBatchPage></SingleBatchPage>,
                     },
                     {
-                        path: "/dashboard/admin/batch-list/batch/semester-details",
-                        element: <SemesterPage></SemesterPage>,
+                        path: "/dashboard/admin/batch-list/batch/student-list",
+                        element: <StudentListPage></StudentListPage>,
+                    },
+                    {
+                        path: "/dashboard/admin/batch-list/batch/course",
+                        element: <CourseListPage></CourseListPage>,
                     },
                     {
                         path: "/dashboard/admin/batch-list/batch/semester-details/add-mark",

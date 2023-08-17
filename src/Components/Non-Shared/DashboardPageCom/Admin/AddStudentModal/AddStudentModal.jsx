@@ -19,11 +19,11 @@ const AddStudentModal = () => {
                 className="modal-toggle"
             />
             <div className="modal">
-                <div className="modal-box max-w-[700px] w-full">
-                    <div className="modal-action">
+                <div className="modal-box max-w-[500px] w-full rounded-sm">
+                    <div className="modal-action mt-0">
                         <label
                             htmlFor="add_student_modal"
-                            className="btn btn-xs text-white btn-error text-base font-medium rounded-full capitalize"
+                            className="btn btn-xs text-white text-sm btn-error font-bold rounded-full capitalize"
                         >
                             <AiOutlineClose />
                         </label>

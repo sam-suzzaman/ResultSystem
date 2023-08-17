@@ -19,7 +19,7 @@ const LoginPage = () => {
                     <span className="capitalize"> back to home</span>
                 </Link>
             </div>
-            <form action="" class="login-form shadow-lg">
+            <form action="" class="login-form">
                 <p class="heading">Login</p>
                 <div class="inputContainer">
                     <svg

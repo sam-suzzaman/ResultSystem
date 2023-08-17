@@ -27,7 +27,7 @@ const Navbar = () => {
                     </Link>
                 </div>
                 <div className="navbar-end">
-                    {/* <ProfileMenu /> */}
+                    <ProfileMenu />
                     <Link
                         to="/login"
                         className="btn btn-sm rounded-sm bg-[#ff9645] hover:bg-[#fa9455] text-xs font-medium text-white"
