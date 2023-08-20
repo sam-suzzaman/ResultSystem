@@ -2,7 +2,7 @@ import React from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import "./AddMark.css";
 
-const AddMarkPage = () => {
+const AddMarkPageTwo = () => {
     const times = [
         1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
     ];
@@ -38,7 +38,7 @@ const AddMarkPage = () => {
         console.log(data);
     };
     return (
-        <div className="mb-6">
+        <div>
             <div className=" mt-2 ">
                 <h2 className="text-center font-bold text-lg uppercase">
                     Add Marks
@@ -173,4 +173,4 @@ const AddMarkPage = () => {
     );
 };
 
-export default AddMarkPage;
+export default AddMarkPageTwo;

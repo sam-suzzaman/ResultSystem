@@ -14,6 +14,7 @@ import AddMarkPage from "../Pages/DashboardPages/Admin/AddMarkPage/AddMarkPage";
 import LoginPage from "../Pages/AuthenticationPages/LoginPage/LoginPage";
 import CourseListPage from "../Pages/DashboardPages/Admin/CourseListPage/CourseListPage";
 import StudentListPage from "../Pages/DashboardPages/Admin/StudentListPage/StudentListPage";
+import AddMarkPageTwo from "../Pages/DashboardPages/Admin/AddMarkPage/AddMarkPageTwo";
 
 const Routers = createBrowserRouter([
     {

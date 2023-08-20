@@ -76,6 +76,7 @@ const AddSessionModal = () => {
         watch,
         formState: { errors },
     } = useForm();
+    console.log(sessionOptions);
 
     const onSubmit = (data) => console.log(data);
     return (
