@@ -6,9 +6,28 @@ import SessionCard from "../../../../Components/Non-Shared/DashboardPageCom/Admi
 import "./BatchListPage.css";
 import { AiOutlinePlus } from "react-icons/ai";
 import AddSessionModal from "../../../../Components/Non-Shared/DashboardPageCom/Admin/AddSessionModal/AddSessionModal";
+import { getAllHandler } from "../../../../utils/fetchHandlers";
+import { useQuery } from "react-query";
+import LoadingCom from "../../../../Components/Shared/LoadingCom/LoadingCom";
 
 const BatchListPage = () => {
     const { pathname } = useLocation(); // required for Breadcumbs
+    const {
+        isLoading,
+        isError,
+        data: sessions,
+        error,
+    } = useQuery("sessionList", () =>
+        getAllHandler("https://student-management-delta.vercel.app/session")
+    );
+
+    if (isLoading) {
+        <LoadingCom />;
+    }
+
+    if (isError) {
+        <h2 className="font-bold text-lg">{error?.message}</h2>;
+    }
 
     return (
         <>
@@ -32,12 +51,14 @@ const BatchListPage = () => {
                     <AddSessionModal />
                 </div>
                 <div className="session-card-container mt-6">
-                    <SessionCard session="2022-23" student="35" />
-                    <SessionCard session="2021-22" student="37" />
-                    <SessionCard session="2020-21" student="32" />
-                    <SessionCard session="2019-20" student="35" />
-                    <SessionCard session="2018-19" student="33" />
-                    <SessionCard session="2017-18" student="31" />
+                    {sessions?.sessions?.map((session) => {
+                        return (
+                            <SessionCard
+                                sessionData={session}
+                                key={session._id}
+                            />
+                        );
+                    })}
                 </div>
             </section>
         </>

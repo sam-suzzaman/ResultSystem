@@ -76,7 +76,7 @@ const AddSessionModal = () => {
         watch,
         formState: { errors },
     } = useForm();
-    console.log(sessionOptions);
+    // console.log(sessionOptions);
 
     const onSubmit = (data) => console.log(data);
     return (
@@ -126,7 +126,7 @@ const AddSessionModal = () => {
                                 </span>
                             </label>
                             <select className="select w-full select-bordered">
-                                <option disabled selected>
+                                <option disabled value="false">
                                     Select A Session
                                 </option>
                                 {sessionOptions.map((session) => {

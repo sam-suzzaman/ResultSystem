@@ -2,6 +2,7 @@ import { Outlet, useLocation } from "react-router-dom";
 
 import Navbar from "../Components/Shared/Navbar/Navbar";
 import Footer from "../Components/Shared/Footer/Footer";
+import ToastComponent from "../Components/Shared/ToastComponent/ToastComponent";
 
 const Main = () => {
     const location = useLocation();
@@ -13,6 +14,7 @@ const Main = () => {
             {shouldShowNavbarAndFooter && <Navbar />}
             <Outlet />
             {shouldShowNavbarAndFooter && <Footer />}
+            <ToastComponent />
         </div>
     );
 };
