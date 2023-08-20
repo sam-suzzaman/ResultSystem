@@ -1,8 +1,12 @@
 import React from "react";
-// import "./LoadingCom.css";
+import "./LoadingCom.css";
 
 const LoadingCom = () => {
-    return <div class="spinner"></div>;
+    return (
+        <div className="loading-container">
+            <div class="spinner"></div>
+        </div>
+    );
 };
 
 export default LoadingCom;

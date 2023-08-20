@@ -24,11 +24,11 @@ const BatchListPage = () => {
     );
 
     if (isLoading) {
-        <LoadingCom />;
+        return <LoadingCom />;
     }
 
     if (isError) {
-        <h2 className="font-bold text-lg">{error?.message}</h2>;
+        return <h2 className="font-bold text-lg">{error?.message}</h2>;
     }
 
     return (
