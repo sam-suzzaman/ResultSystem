@@ -1,4 +1,5 @@
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ToastComponent = () => {
     return (
@@ -9,7 +10,9 @@ const ToastComponent = () => {
             newestOnTop={true}
             closeOnClick
             rtl={false}
+            pauseOnFocusLoss
             draggable
+            pauseOnHover
             theme="light"
         />
     );

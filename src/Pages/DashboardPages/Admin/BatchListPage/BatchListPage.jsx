@@ -9,9 +9,11 @@ import AddSessionModal from "../../../../Components/Non-Shared/DashboardPageCom/
 import { getAllHandler } from "../../../../utils/fetchHandlers";
 import { useQuery } from "react-query";
 import LoadingCom from "../../../../Components/Shared/LoadingCom/LoadingCom";
+import { useState } from "react";
 
 const BatchListPage = () => {
     const { pathname } = useLocation(); // required for Breadcumbs
+    const [openAddSessionModal, setOpenAddSessionModal] = useState(true);
     const {
         isLoading,
         isError,
@@ -48,10 +50,14 @@ const BatchListPage = () => {
                         </span>
                         <span className="text-xs">add session</span>
                     </label>
-                    <AddSessionModal />
+                    {openAddSessionModal && (
+                        <AddSessionModal
+                            setOpenAddSessionModal={setOpenAddSessionModal}
+                        />
+                    )}
                 </div>
                 <div className="session-card-container mt-6">
-                    {sessions?.sessions?.map((session) => {
+                    {sessions?.map((session) => {
                         return (
                             <SessionCard
                                 sessionData={session}

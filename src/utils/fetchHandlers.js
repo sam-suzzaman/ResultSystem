@@ -4,7 +4,7 @@ import useFetchConfig from "./useFetchConfig";
 export const getAllHandler = async (url) => {
     const config = useFetchConfig();
     const response = await axios.get(url, config);
-    return response?.data;
+    return response?.data?.result;
 };
 
 export const getSingleHandler = async ({ url, id }) => {

@@ -3,9 +3,15 @@ import "./LoginPage.css";
 import { MdOutlineKeyboardReturn } from "react-icons/md";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
     const [isPasswordShow, setIsPasswordShow] = useState(false);
+
+    const formHandler = (e) => {
+        e.prevendDefault();
+        toast.info("Login Done");
+    };
     return (
         <div className="h-screen flex justify-center items-center relative">
             <div className="absolute top-6 left-6">
@@ -19,7 +25,7 @@ const LoginPage = () => {
                     <span className="capitalize"> back to home</span>
                 </Link>
             </div>
-            <form action="" class="login-form">
+            <form action="" class="login-form" onSubmit={formHandler}>
                 <p class="heading">Login</p>
                 <div class="inputContainer">
                     <svg
@@ -69,7 +75,9 @@ const LoginPage = () => {
                     </span>
                 </div>
 
-                <button className="login-submit-btn">Login</button>
+                <button className="login-submit-btn" type="submit">
+                    Login
+                </button>
                 <a class="forgotLink" href="#">
                     Forgot your password?
                 </a>

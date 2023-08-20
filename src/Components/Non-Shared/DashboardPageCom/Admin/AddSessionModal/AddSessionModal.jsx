@@ -1,6 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { AiOutlineClose } from "react-icons/ai";
+import { useMutation, useQueryClient } from "react-query";
+import { postHandler } from "../../../../../utils/fetchHandlers";
+import { toast } from "react-toastify";
 
 const sessionOptions = [
     {
@@ -69,16 +72,38 @@ const sessionOptions = [
     },
 ];
 
-const AddSessionModal = () => {
+const AddSessionModal = ({ setOpenAddSessionModal }) => {
     const {
         register,
         handleSubmit,
         watch,
+        reset,
         formState: { errors },
     } = useForm();
-    // console.log(sessionOptions);
 
-    const onSubmit = (data) => console.log(data);
+    // create query client
+    const queryClient = useQueryClient();
+    const createSessionMutation = useMutation({
+        mutationFn: postHandler,
+        onSuccess: (data, variable, context) => {
+            queryClient.invalidateQueries("sessionList");
+            setOpenAddSessionModal(false);
+            toast("New Session Added");
+            reset();
+        },
+        onError: (error, variables, context) => {
+            // An error happened!
+            toast.warn(error.response.data.errors.common);
+        },
+    });
+
+    const sessionFormHandler = (data) => {
+        createSessionMutation.mutate({
+            body: data,
+            url: "https://student-management-delta.vercel.app/session",
+        });
+    };
+
     return (
         <div>
             <input
@@ -99,7 +124,7 @@ const AddSessionModal = () => {
                     <h3 className="font-bold text-lg text-center mb-6">
                         Add Session
                     </h3>
-                    <form onSubmit={handleSubmit(onsubmit)}>
+                    <form onSubmit={handleSubmit(sessionFormHandler)}>
                         <div className="form-control w-full">
                             <label className="label">
                                 <span className="label-text font-medium">
@@ -107,11 +132,11 @@ const AddSessionModal = () => {
                                 </span>
                             </label>
                             <input
+                                {...register("department")}
                                 type="text"
-                                placeholder="Type here"
-                                className="input input-bordered w-full"
+                                className="input input-bordered w-full rounded-sm"
                                 defaultValue="EEE"
-                                disabled
+                                readOnly
                             />
                             {/* <label className="label">
                                 <span className="label-text-alt text-xs  text-red-700">
@@ -119,14 +144,27 @@ const AddSessionModal = () => {
                                 </span>
                             </label> */}
                         </div>
-                        <div className="form-control w-full">
+                        <div className="form-control w-full mt-2">
                             <label className="label">
                                 <span className="label-text font-medium">
                                     Session
                                 </span>
                             </label>
-                            <select className="select w-full select-bordered">
-                                <option disabled value="false">
+                            <select
+                                className="select w-full select-bordered rounded-sm"
+                                {...register("session", {
+                                    validate: {
+                                        isSelectSession: (value) => {
+                                            return (
+                                                value !== "default" ||
+                                                "Session is Required"
+                                            );
+                                        },
+                                    },
+                                })}
+                                defaultValue="default"
+                            >
+                                <option readOnly value="default">
                                     Select A Session
                                 </option>
                                 {sessionOptions.map((session) => {
@@ -137,8 +175,13 @@ const AddSessionModal = () => {
                                     );
                                 })}
                             </select>
+                            <label className="label">
+                                <span className="label-text-alt text-xs  text-red-700">
+                                    {errors?.session?.message}
+                                </span>
+                            </label>
                         </div>
-                        <div className="flex justify-center mt-6 mb-6">
+                        <div className="flex justify-center mt-3 mb-6">
                             <button className="btn btn-sm rounded-sm bg-[#2d9958] text-white hover:bg-[#4fa070] text-xs font-medium">
                                 create session
                             </button>
