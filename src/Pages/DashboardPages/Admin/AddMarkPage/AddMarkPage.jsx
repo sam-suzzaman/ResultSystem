@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import "./AddMark.css";
 import { useLocation, useParams } from "react-router-dom";
 import Breadcrumb from "../../../../Components/Shared/Breadcrumb/Breadcrumb";
 import LoadingCom from "../../../../Components/Shared/LoadingCom/LoadingCom";
-import { useQuery } from "react-query";
-import { getAllHandler } from "../../../../utils/fetchHandlers";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { getAllHandler, postHandler } from "../../../../utils/fetchHandlers";
+import { toast } from "react-toastify";
 
 const AddMarkPage = () => {
-    const times = [1, 2];
-    const { session } = useParams();
+    // const times = [1, 2];
+    const { session, semester, courseCode } = useParams();
     const { pathname } = useLocation();
+    const [course, setCourse] = useState();
     const {
         isLoading,
         isError,
@@ -22,10 +24,31 @@ const AddMarkPage = () => {
         )
     );
     const {
+        isLoading: isCourseLoading,
+        isError: isCourseError,
+        data: courseList,
+        error: courseError,
+    } = useQuery("courseList", () =>
+        getAllHandler(
+            `https://student-management-delta.vercel.app/course/${session}/EEE/${
+                semester * 1
+            }`
+        )
+    );
+
+    useEffect(() => {
+        const result = courseList?.find(
+            (course) => course?.courseCode === courseCode
+        );
+        setCourse(result);
+    }, [courseList]);
+
+    const {
         register,
         handleSubmit,
         watch,
         control,
+        reset,
         formState: { errors },
     } = useForm();
 
@@ -34,17 +57,48 @@ const AddMarkPage = () => {
     //     control,
     // });
 
+    const addMarkMutation = useMutation({
+        mutationFn: postHandler,
+        onSuccess: (data, variable, context) => {
+            // reset();
+            toast.success("Result Add Successfully");
+        },
+        onError: (error, variable, context) => {
+            toast.error("Something Wrong");
+        },
+    });
+
     const handler = (data) => {
-        console.log(data);
+        const commonInfo = {
+            department: "EEE",
+            semester: semester * 1,
+            courseName: course.courseName,
+            courseCode: course.courseCode,
+        };
+        const mergedResult = data.resultList.map((result) => {
+            const totalMarks = Math.ceil(
+                (result.firstExaminer * 1 + result.secondExaminer * 1) / 2 +
+                    result.midOne * 1 +
+                    result.midTwo * 1 +
+                    result.attendance * 1 +
+                    result.presentationOrAssignment * 1
+            );
+            return { ...result, ...commonInfo, total: totalMarks };
+        });
+
+        addMarkMutation.mutate({
+            body: { marks: mergedResult },
+            url: "https://student-management-delta.vercel.app/mark",
+        });
     };
 
-    if (isLoading) {
+    if (isLoading || isCourseLoading) {
         return <LoadingCom />;
     }
-    if (isError) {
+    if (isError || isCourseError) {
         return (
             <h2 className="text-center font-bold text-lg mt-4">
-                {error?.message}
+                {error?.message || courseError?.message}
             </h2>
         );
     }
@@ -60,17 +114,15 @@ const AddMarkPage = () => {
                 </h2>
                 <h3 className="text-center font-medium text-sm text-[#414141]">
                     Course Title:
-                    <span className="capitalize">
-                        Computer aided engineering drawing
-                    </span>
+                    <span className="capitalize">{course?.courseName}</span>
                 </h3>
                 <h3 className="text-center font-medium text-sm text-[#434343]">
                     Course Code:
-                    <span className="capitalize">CSE-104</span>
+                    <span className="capitalize">{course?.courseCode}</span>
                 </h3>
                 <h3 className="text-center font-medium text-sm text-[#434343]">
                     Session:
-                    <span className="capitalize">2017-18</span>
+                    <span className="capitalize">{session}</span>
                 </h3>
             </div>
             <div className="mt-6">
@@ -108,7 +160,9 @@ const AddMarkPage = () => {
                                     <input
                                         type="text"
                                         className="idField"
-                                        {...register(`resultList.${index}.id`)}
+                                        {...register(
+                                            `resultList.${index}.roll`
+                                        )}
                                         defaultValue={student?.roll}
                                         readOnly
                                     />
@@ -123,42 +177,42 @@ const AddMarkPage = () => {
                                         type="text"
                                         placeholder=""
                                         {...register(
-                                            `resultList.${index}.mid1`
+                                            `resultList.${index}.midOne`
                                         )}
                                     />
                                     <input
                                         type="text"
                                         placeholder=""
                                         {...register(
-                                            `resultList.${index}.mid2`
+                                            `resultList.${index}.midTwo`
                                         )}
                                     />
                                     <input
                                         type="text"
                                         placeholder=""
                                         {...register(
-                                            `resultList.${index}.assignment`
+                                            `resultList.${index}.presentationOrAssignment`
                                         )}
                                     />
                                     <input
                                         type="text"
                                         placeholder=""
                                         {...register(
-                                            `resultList.${index}.first_examine`
+                                            `resultList.${index}.firstExaminer`
                                         )}
                                     />
                                     <input
                                         type="text"
                                         placeholder=""
                                         {...register(
-                                            `resultList.${index}.second_examine`
+                                            `resultList.${index}.secondExaminer`
                                         )}
                                     />
                                     <input
                                         type="text"
                                         placeholder=""
                                         {...register(
-                                            `resultList.${index}.third_examine`
+                                            `resultList.${index}.thirdExaminer`
                                         )}
                                     />
                                 </React.Fragment>

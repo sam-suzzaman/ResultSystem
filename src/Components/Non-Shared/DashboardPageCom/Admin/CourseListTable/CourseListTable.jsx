@@ -96,7 +96,7 @@ const CourseListTable = ({ courseList }) => {
                                 </td>
                                 <td>
                                     <Link
-                                        to={`/dashboard/admin/session-list/${session}/${semester}/add-mark`}
+                                        to={`/dashboard/admin/session-list/${session}/${semester}/add-mark/${course.courseCode}`}
                                         className="badge capitalize text-xs font-normal bg-[#2b9859] hover:bg-[#33b76a] text-white rounded-sm"
                                     >
                                         add marks

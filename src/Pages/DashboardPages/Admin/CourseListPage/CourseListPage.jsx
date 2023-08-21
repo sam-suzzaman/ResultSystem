@@ -11,7 +11,7 @@ import { useQuery } from "react-query";
 const CourseListPage = () => {
     const { pathname } = useLocation();
     const { session, semester } = useParams();
-    const [isShowAddCourseModal, setIsShowAddCourseModal] = useState(true);
+    const [isShowAddCourseModal, setIsShowAddCourseModal] = useState(true); // TODO: not working properly
     const {
         isLoading,
         isError,
@@ -25,9 +25,9 @@ const CourseListPage = () => {
         )
     );
 
-    useEffect(() => {
-        setIsShowAddCourseModal(true);
-    }, [courseList?.length]);
+    // useEffect(() => {
+    //     setIsShowAddCourseModal(true);
+    // }, [courseList?.length]);
 
     if (isLoading) {
         console.log("loading");
