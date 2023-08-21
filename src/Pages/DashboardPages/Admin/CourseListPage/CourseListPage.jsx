@@ -30,6 +30,7 @@ const CourseListPage = () => {
     }, [courseList?.length]);
 
     if (isLoading) {
+        console.log("loading");
         return <LoadingCom />;
     } else if (isError) {
         return <h2 className="font-bold text-lg">{error.message}</h2>;

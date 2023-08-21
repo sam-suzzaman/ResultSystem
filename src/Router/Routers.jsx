@@ -71,7 +71,7 @@ const Routers = createBrowserRouter([
                         element: <CourseListPage></CourseListPage>,
                     },
                     {
-                        path: "/dashboard/admin/batch-list/batch/semester-details/add-mark",
+                        path: "/dashboard/admin/session-list/:session/:semester/add-mark",
                         element: <AddMarkPage></AddMarkPage>,
                     },
                 ],

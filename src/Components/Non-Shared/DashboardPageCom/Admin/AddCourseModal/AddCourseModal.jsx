@@ -43,11 +43,10 @@ const AddCourseModal = ({ setIsShowAddCourseModal }) => {
                 credit: credit * 1,
             },
         };
-        console.log(course);
-        // createCoursenMutation.mutate({
-        //     body: course,
-        //     url: "https://student-management-delta.vercel.app/session/course",
-        // });
+        createCoursenMutation.mutate({
+            body: course,
+            url: "https://student-management-delta.vercel.app/session/course",
+        });
     };
 
     return (

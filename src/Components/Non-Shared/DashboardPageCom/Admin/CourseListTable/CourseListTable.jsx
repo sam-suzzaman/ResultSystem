@@ -52,6 +52,8 @@ const CourseListTable = ({ courseList }) => {
             credits: 3.0,
         },
     ];
+    const { session, semester } = useParams();
+
     if (courseList.length === 0) {
         return (
             <h2 className="font-bold text-center text-lg uppercase">
@@ -94,7 +96,7 @@ const CourseListTable = ({ courseList }) => {
                                 </td>
                                 <td>
                                     <Link
-                                        to="/dashboard/admin/batch-list/batch/semester-details/add-mark"
+                                        to={`/dashboard/admin/session-list/${session}/${semester}/add-mark`}
                                         className="badge capitalize text-xs font-normal bg-[#2b9859] hover:bg-[#33b76a] text-white rounded-sm"
                                     >
                                         add marks
