@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { updateHandler } from "../../../../../utils/fetchHandlers";
 import { toast } from "react-toastify";
 
-const AddCourseModal = () => {
+const AddCourseModal = ({ setIsShowAddCourseModal }) => {
     const { session, semester } = useParams();
     const {
         register,
@@ -22,6 +22,7 @@ const AddCourseModal = () => {
             queryClient.invalidateQueries("courseList");
             toast.success("New Course Added");
             reset();
+            // setIsShowAddCourseModal(false);
         },
         onError: (error, variables, context) => {
             console.log(error);
@@ -37,15 +38,16 @@ const AddCourseModal = () => {
             department: "EEE",
             course: {
                 courseName,
-                courseCode,
+                courseCode: courseCode.toUpperCase(),
                 semester: semester * 1,
                 credit: credit * 1,
             },
         };
-        createCoursenMutation.mutate({
-            body: course,
-            url: "https://student-management-delta.vercel.app/session/course",
-        });
+        console.log(course);
+        // createCoursenMutation.mutate({
+        //     body: course,
+        //     url: "https://student-management-delta.vercel.app/session/course",
+        // });
     };
 
     return (
@@ -138,7 +140,7 @@ const AddCourseModal = () => {
                                     },
                                 })}
                                 type="text"
-                                className="input input-bordered w-full rounded-sm"
+                                className="input input-bordered w-full rounded-sm uppercase"
                             />
                             <label className="label">
                                 <span className="label-text-alt text-xs  text-red-700">

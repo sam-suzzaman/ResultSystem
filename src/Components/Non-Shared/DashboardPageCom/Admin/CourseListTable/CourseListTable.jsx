@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-const CourseListTable = () => {
+const CourseListTable = ({ courseList }) => {
     const courses = [
         {
             _id: "1",
@@ -52,6 +52,13 @@ const CourseListTable = () => {
             credits: 3.0,
         },
     ];
+    if (courseList.length === 0) {
+        return (
+            <h2 className="font-bold text-center text-lg uppercase">
+                -- there is no courses yet. --
+            </h2>
+        );
+    }
     return (
         <div className="overflow-x-auto flex justify-center">
             <table className="table table-zebra  w-full max-w-[75%]">
@@ -66,13 +73,17 @@ const CourseListTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {courses.map((course) => {
+                    {courseList?.map((course, index) => {
                         return (
-                            <tr key={course._id}>
-                                <th>{course._id}</th>
-                                <td>{course.courseCode}</td>
-                                <td>{course.courseTitle}</td>
-                                <td>{course.credits}</td>
+                            <tr key={course.courseCode}>
+                                <th>{index + 1}</th>
+                                <td className="uppercase">
+                                    {course.courseCode}
+                                </td>
+                                <td className="capitalize">
+                                    {course.courseName}
+                                </td>
+                                <td>{course.credit}</td>
                                 <td>
                                     <button className="badge capitalize text-xs font-normal btn-warning  text-white rounded-sm mr-3">
                                         update
