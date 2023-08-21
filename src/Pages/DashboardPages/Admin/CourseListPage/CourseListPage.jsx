@@ -4,9 +4,26 @@ import { useLocation } from "react-router-dom";
 import CourseListTable from "../../../../Components/Non-Shared/DashboardPageCom/Admin/CourseListTable/CourseListTable";
 import { AiOutlinePlus } from "react-icons/ai";
 import AddCourseModal from "../../../../Components/Non-Shared/DashboardPageCom/Admin/AddCourseModal/AddCourseModal";
+import { getAllHandler } from "../../../../utils/fetchHandlers";
+import LoadingCom from "../../../../Components/Shared/LoadingCom/LoadingCom";
+import { useQuery } from "react-query";
 
 const CourseListPage = () => {
     const { pathname } = useLocation();
+    const {
+        isLoading,
+        isError,
+        data: courseList,
+        error,
+    } = useQuery("courseList", () =>
+        getAllHandler("http://localhost:2020/api/v1/category/list")
+    );
+
+    // if (isLoading) {
+    //     return <LoadingCom />;
+    // } else if (isError) {
+    //     return <h2 className="font-bold text-lg">{error.message}</h2>;
+    // }
 
     return (
         <div>
@@ -34,7 +51,7 @@ const CourseListPage = () => {
                     </label>
                     <AddCourseModal />
                 </div>
-                <CourseListTable />
+                <CourseListTable courseList={courseList} />
             </div>
         </div>
     );

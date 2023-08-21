@@ -67,7 +67,7 @@ const Routers = createBrowserRouter([
                         element: <StudentListPage></StudentListPage>,
                     },
                     {
-                        path: "/dashboard/admin/batch-list/batch/course",
+                        path: "/dashboard/admin/session-list/:session/:semester/course",
                         element: <CourseListPage></CourseListPage>,
                     },
                     {

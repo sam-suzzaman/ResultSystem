@@ -33,14 +33,14 @@ const SingleSessionPage = () => {
                 <AddStudentModal session={session} />
             </div>
             <div className="semester-card-container mt-8 mb-8">
-                <SemesterCard title="first semester" />
-                <SemesterCard title="second semester" />
-                <SemesterCard title="third semester" />
-                <SemesterCard title="fourth semester" />
-                <SemesterCard title="fifth semester" />
-                <SemesterCard title="sixth semester" />
-                <SemesterCard title="seventh semester" />
-                <SemesterCard title="eight semester" />
+                <SemesterCard semesterNo={1} session={session} />
+                <SemesterCard semesterNo={2} session={session} />
+                <SemesterCard semesterNo={3} session={session} />
+                <SemesterCard semesterNo={4} session={session} />
+                <SemesterCard semesterNo={5} session={session} />
+                <SemesterCard semesterNo={6} session={session} />
+                <SemesterCard semesterNo={7} session={session} />
+                <SemesterCard semesterNo={8} session={session} />
             </div>
         </div>
     );

@@ -18,3 +18,9 @@ export const postHandler = async ({ url, body }) => {
     const response = await axios.post(url, body, config);
     return response.data.result;
 };
+
+export const updateHandler = async ({ url, body }) => {
+    const config = useFetchConfig();
+    const response = await axios.put(url, body, config);
+    return response.data;
+};
