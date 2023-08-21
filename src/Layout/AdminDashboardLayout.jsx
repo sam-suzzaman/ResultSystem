@@ -15,7 +15,7 @@ const AdminDashboardLayout = () => {
         {
             id: 2,
             title: "sessions",
-            path: "/dashboard/admin/batch-list",
+            path: "/dashboard/admin/session-list",
             icon: <AiOutlineUsergroupAdd />,
         },
     ];

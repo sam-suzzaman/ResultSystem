@@ -1,22 +1,24 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import Breadcrumb from "../../../../Components/Shared/Breadcrumb/Breadcrumb";
 import SectionTitle from "../../../../Components/Non-Shared/DashboardPageCom/Admin/SectionTitle/SectionTitle";
 import { AiOutlinePlus } from "react-icons/ai";
 import AddStudentModal from "../../../../Components/Non-Shared/DashboardPageCom/Admin/AddStudentModal/AddStudentModal";
 import SemesterCard from "../../../../Components/Non-Shared/DashboardPageCom/Admin/SemesterCard/SemesterCard";
 
-import "./singleBatchPage.css";
+import "./singleSessionPage.css";
+import { useState } from "react";
 
-const SingleBatchPage = () => {
+const SingleSessionPage = () => {
     const { pathname } = useLocation();
+    const { session } = useParams();
+    // const [isShowAddStudentModal, setIsShowAddStudentModal] = useState(true);
     return (
         <div>
             <div>
                 <Breadcrumb location={pathname} />
             </div>
             <div className="mt-4 mb-4">
-                <SectionTitle title="Session 2017-18" />
+                <SectionTitle title={`Session ${session}`} />
             </div>
             <div className="flex justify-end">
                 <label
@@ -28,7 +30,7 @@ const SingleBatchPage = () => {
                     </span>
                     <span className="text-xs">add student</span>
                 </label>
-                <AddStudentModal />
+                <AddStudentModal session={session} />
             </div>
             <div className="semester-card-container mt-8 mb-8">
                 <SemesterCard title="first semester" />
@@ -44,4 +46,4 @@ const SingleBatchPage = () => {
     );
 };
 
-export default SingleBatchPage;
+export default SingleSessionPage;

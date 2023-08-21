@@ -8,12 +8,12 @@ import AdminDashboardPage from "../Pages/DashboardPages/Admin/AdminDashboardPage
 import StudentDashboardPage from "../Pages/DashboardPages/Student/StudentDashboardPage";
 import AdminDashboardLayout from "../Layout/AdminDashboardLayout";
 import StudentDashboardLayout from "../Layout/StudentDashboardLayout";
-import BatchListPage from "../Pages/DashboardPages/Admin/BatchListPage/BatchListPage";
-import SingleBatchPage from "../Pages/DashboardPages/Admin/SingleBatchPage/SingleBatchPage";
 import AddMarkPage from "../Pages/DashboardPages/Admin/AddMarkPage/AddMarkPage";
 import LoginPage from "../Pages/AuthenticationPages/LoginPage/LoginPage";
 import CourseListPage from "../Pages/DashboardPages/Admin/CourseListPage/CourseListPage";
 import StudentListPage from "../Pages/DashboardPages/Admin/StudentListPage/StudentListPage";
+import SessionListPage from "../Pages/DashboardPages/Admin/SessionListPage/SessionListPage";
+import SingleSessionPage from "../Pages/DashboardPages/Admin/SingleSessionPage/SingleSessionPage";
 
 const Routers = createBrowserRouter([
     {
@@ -55,12 +55,12 @@ const Routers = createBrowserRouter([
                         element: <AdminDashboardPage></AdminDashboardPage>,
                     },
                     {
-                        path: "/dashboard/admin/batch-list",
-                        element: <BatchListPage></BatchListPage>,
+                        path: "/dashboard/admin/session-list",
+                        element: <SessionListPage></SessionListPage>,
                     },
                     {
-                        path: "/dashboard/admin/batch-list/batch",
-                        element: <SingleBatchPage></SingleBatchPage>,
+                        path: "/dashboard/admin/session-list/:session",
+                        element: <SingleSessionPage></SingleSessionPage>,
                     },
                     {
                         path: "/dashboard/admin/batch-list/batch/student-list",

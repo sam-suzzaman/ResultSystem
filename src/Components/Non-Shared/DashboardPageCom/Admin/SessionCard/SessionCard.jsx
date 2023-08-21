@@ -26,8 +26,8 @@ const SessionCard = ({ sessionData }) => {
                     <h4 className="font-medium text-xs">{20} Students</h4>
                     <div className="session-card-divider"></div>
                     <Link
-                        to="/dashboard/admin/batch-list/batch"
-                        className="session-btn"
+                        to={`/dashboard/admin/session-list/${session}`}
+                        className="session-btn" 
                     >
                         Details
                         <span className="text-lg">

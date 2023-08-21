@@ -1,16 +1,36 @@
 import { AiOutlineClose } from "react-icons/ai";
-import TextInputField from "../../../../Shared/TextInputField/TextInputField";
 import { useForm } from "react-hook-form";
+import { useMutation } from "react-query";
+import { postHandler } from "../../../../../utils/fetchHandlers";
+import { toast } from "react-toastify";
 
-const AddStudentModal = () => {
+const AddStudentModal = ({ session }) => {
     const {
         register,
         handleSubmit,
         watch,
+        reset,
         formState: { errors },
     } = useForm();
 
-    const onSubmit = (data) => console.log(data);
+    const createStudentMutation = useMutation({
+        mutationFn: postHandler,
+        onSuccess: (data, variable, context) => {
+            toast.success("Student Created");
+            reset();
+        },
+        onError: (error, variables, context) => {
+            toast.warn("Something Wrong");
+        },
+    });
+
+    const addStudentFormHandler = (data) => {
+        const student = { ...data, currentSession: data.session };
+        createStudentMutation.mutate({
+            body: student,
+            url: "https://student-management-delta.vercel.app/user",
+        });
+    };
     return (
         <div>
             <input
@@ -32,66 +52,129 @@ const AddStudentModal = () => {
                         Add Student
                     </h3>
                     <form
-                        onSubmit={handleSubmit(onSubmit)}
+                        onSubmit={handleSubmit(addStudentFormHandler)}
                         noValidate
                         autoComplete="off"
                     >
-                        <TextInputField
-                            value={{
-                                ...register("username", {
+                        <div className="form-control w-full">
+                            <label className="label">
+                                <span className="label-text text-xs font-medium uppercase">
+                                    department
+                                </span>
+                            </label>
+                            <input
+                                type="text"
+                                placeholder="Type Here"
+                                className="input input-bordered rounded-sm w-full p-4"
+                                {...register("department", {
                                     required: {
                                         value: true,
-                                        message: "Username is required",
+                                        message: "Department is Required",
                                     },
-                                }),
-                            }}
-                            errors={errors}
-                            fieldName="username"
-                            fieldTitle="student name"
-                            fieldType="text"
-                        />
-                        <TextInputField
-                            value={{
-                                ...register("roll", {
+                                })}
+                                defaultValue="EEE"
+                                readOnly
+                            />
+                            <label className="label">
+                                <span className="label-text-alt text-xs font-medium text-red-600">
+                                    {errors.department?.message}
+                                </span>
+                            </label>
+                        </div>
+                        <div className="form-control w-full">
+                            <label className="label">
+                                <span className="label-text text-xs font-medium uppercase">
+                                    student session
+                                </span>
+                            </label>
+                            <input
+                                type="text"
+                                placeholder="Type Here"
+                                className="input input-bordered rounded-sm w-full p-4"
+                                {...register("session", {
                                     required: {
                                         value: true,
-                                        message: "Roll Number is required",
+                                        message: "Session is Required",
                                     },
-                                }),
-                            }}
-                            errors={errors}
-                            fieldName="roll"
-                            fieldTitle="student id"
-                            fieldType="text"
-                        />
-                        <TextInputField
-                            value={{
-                                ...register("session", {
+                                })}
+                                defaultValue={session}
+                                readOnly
+                            />
+                            <label className="label">
+                                <span className="label-text-alt text-xs font-medium text-red-600">
+                                    {errors.session?.message}
+                                </span>
+                            </label>
+                        </div>
+                        <div className="form-control w-full">
+                            <label className="label">
+                                <span className="label-text text-xs font-medium uppercase">
+                                    username
+                                </span>
+                            </label>
+                            <input
+                                type="text"
+                                placeholder="Type Here"
+                                className="input input-bordered rounded-sm w-full p-4"
+                                {...register("username", {
                                     required: {
                                         value: true,
-                                        message: "Student must have a session",
+                                        message: "Username is Required",
                                     },
-                                }),
-                            }}
-                            errors={errors}
-                            fieldName="session"
-                            fieldTitle="student session"
-                            fieldType="text"
-                        />
-                        <TextInputField
-                            value={{
-                                ...register("password", {
+                                })}
+                            />
+                            <label className="label">
+                                <span className="label-text-alt text-xs font-normal text-red-600">
+                                    {errors.username?.message}
+                                </span>
+                            </label>
+                        </div>
+                        <div className="form-control w-full">
+                            <label className="label">
+                                <span className="label-text text-xs font-medium uppercase">
+                                    student id
+                                </span>
+                            </label>
+                            <input
+                                type="text"
+                                placeholder="Type Here"
+                                className="input input-bordered rounded-sm w-full p-4"
+                                {...register("roll", {
                                     required: {
                                         value: true,
-                                        message: "Enter a login password",
+                                        message: "Student ID is Required",
                                     },
-                                }),
-                            }}
-                            errors={errors}
-                            fieldName="password"
-                            fieldTitle="password"
-                            fieldType="password"
-                        />
+                                })}
+                            />
+                            <label className="label">
+                                <span className="label-text-alt text-xs font-normal text-red-600">
+                                    {errors.roll?.message}
+                                </span>
+                            </label>
+                        </div>
+                        <div className="form-control w-full">
+                            <label className="label">
+                                <span className="label-text text-xs font-medium uppercase">
+                                    password
+                                </span>
+                            </label>
+                            <input
+                                type="text"
+                                placeholder="Type Here"
+                                className="input input-bordered rounded-sm w-full p-4"
+                                {...register("password", {
+                                    required: {
+                                        value: true,
+                                        message: "Password is Required",
+                                    },
+                                })}
+                            />
+                            <label className="label">
+                                <span className="label-text-alt text-xs font-normal text-red-600">
+                                    {errors.password?.message}
+                                </span>
+                            </label>
+                        </div>
                         <div className="flex justify-center mt-2">
                             <button
                                 type="submit"

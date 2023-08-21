@@ -3,7 +3,7 @@ import Breadcrumb from "../../../../Components/Shared/Breadcrumb/Breadcrumb";
 import SectionTitle from "../../../../Components/Non-Shared/DashboardPageCom/Admin/SectionTitle/SectionTitle";
 import SessionCard from "../../../../Components/Non-Shared/DashboardPageCom/Admin/SessionCard/SessionCard";
 
-import "./BatchListPage.css";
+import "./SessioListPage.css";
 import { AiOutlinePlus } from "react-icons/ai";
 import AddSessionModal from "../../../../Components/Non-Shared/DashboardPageCom/Admin/AddSessionModal/AddSessionModal";
 import { getAllHandler } from "../../../../utils/fetchHandlers";
@@ -11,7 +11,7 @@ import { useQuery } from "react-query";
 import LoadingCom from "../../../../Components/Shared/LoadingCom/LoadingCom";
 import { useState } from "react";
 
-const BatchListPage = () => {
+const SessionListPage = () => {
     const { pathname } = useLocation(); // required for Breadcumbs
     const [openAddSessionModal, setOpenAddSessionModal] = useState(true);
     const {
@@ -71,4 +71,4 @@ const BatchListPage = () => {
     );
 };
 
-export default BatchListPage;
+export default SessionListPage;

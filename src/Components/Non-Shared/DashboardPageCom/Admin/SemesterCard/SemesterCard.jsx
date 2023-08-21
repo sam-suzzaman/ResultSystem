@@ -3,10 +3,10 @@ import "./semesterCard.css";
 
 const SemesterCard = ({ title }) => {
     return (
-        <div class="semister-card">
-            <div class="top">
-                <div class="caption">
-                    <h3 class="title "> {title}</h3>
+        <div className="semister-card">
+            <div className="top">
+                <div className="caption">
+                    <h3 className="title "> {title}</h3>
                     <div className=" flex flex-wrap gap-2">
                         <Link
                             to="/dashboard/admin/batch-list/batch/student-list"
@@ -23,8 +23,8 @@ const SemesterCard = ({ title }) => {
                     </div>
                 </div>
             </div>
-            <div class="middle"></div>
-            <div class="bottom"></div>
+            <div className="middle"></div>
+            <div className="bottom"></div>
         </div>
     );
 };
