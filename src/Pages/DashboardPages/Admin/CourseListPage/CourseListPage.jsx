@@ -7,10 +7,13 @@ import AddCourseModal from "../../../../Components/Non-Shared/DashboardPageCom/A
 import {
     getAllHandler,
     getSingleHandler,
+    deleteHandler,
 } from "../../../../utils/fetchHandlers";
 import LoadingCom from "../../../../Components/Shared/LoadingCom/LoadingCom";
-import { useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import UpdateCourseModal from "../../../../Components/Non-Shared/DashboardPageCom/Admin/UpdateCourseModal/UpdateCourseModal";
+import ConfirmModal from "../../../../Components/Shared/ConfirmModal/ConfirmModal";
+import { toast } from "react-toastify";
 
 const CourseListPage = () => {
     const { pathname } = useLocation();
@@ -19,7 +22,9 @@ const CourseListPage = () => {
     const [updateCourseID, setUpdateCourseID] = useState("");
     const [showUpdateModal, setShowUpdateModal] = useState(false);
     const [singleCourse, setSingleCourse] = useState([]);
-
+    const [deletedCourseID, setDeletedCourseID] = useState("");
+    const [isShowConfirmModal, setIsShowConfirmModal] = useState(false);
+    const queryClient = useQueryClient();
     const {
         isLoading,
         isError,
@@ -44,6 +49,28 @@ const CourseListPage = () => {
                 console.error("Error fetching single course:", error);
             });
     }, [updateCourseID]);
+
+    const deleteMutation = useMutation({
+        mutationFn: deleteHandler,
+        onSuccess: (data, variable, context) => {
+            queryClient.invalidateQueries("courseList");
+            toast.success("Course Deleted");
+        },
+        onError: (error, variables, context) => {
+            console.log(error);
+            // toast.warn(error.response.data.errors.common);
+            toast.warn("Something Wrong");
+        },
+    });
+    const handleDeleteProcess = (response) => {
+        if (response) {
+            deleteMutation.mutate({
+                url: `https://student-management-delta.vercel.app/course/${session}/EEE/${deletedCourseID}`,
+            });
+        } else {
+            return;
+        }
+    };
 
     // useEffect(() => {
     //     setIsShowAddCourseModal(true);
@@ -91,6 +118,8 @@ const CourseListPage = () => {
                         setIsShowAddCourseModal={setIsShowAddCourseModal}
                         setUpdateCourseID={setUpdateCourseID}
                         setShowUpdateModal={setShowUpdateModal}
+                        setDeletedCourseID={setDeletedCourseID}
+                        setIsShowConfirmModal={setIsShowConfirmModal}
                     />
                 )}
                 {showUpdateModal && (
@@ -99,6 +128,12 @@ const CourseListPage = () => {
                         setShowUpdateModal={setShowUpdateModal}
                         session={session}
                         semester={semester}
+                    />
+                )}
+                {isShowConfirmModal && (
+                    <ConfirmModal
+                        message="course will be deleted permantly"
+                        handleDeleteProcess={handleDeleteProcess}
                     />
                 )}
             </div>

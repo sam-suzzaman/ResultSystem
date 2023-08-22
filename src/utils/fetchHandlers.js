@@ -24,3 +24,8 @@ export const updateHandler = async ({ url, body }) => {
     const response = await axios.put(url, body, config);
     return response.data;
 };
+
+export const deleteHandler = async ({ url }) => {
+    const response = await axios.delete(url);
+    return response.data.result;
+};

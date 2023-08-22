@@ -5,6 +5,8 @@ const CourseListTable = ({
     courseList,
     setUpdateCourseID,
     setShowUpdateModal,
+    setDeletedCourseID,
+    setIsShowConfirmModal,
 }) => {
     const courses = [
         {
@@ -101,9 +103,16 @@ const CourseListTable = ({
                                     >
                                         update
                                     </label>
-                                    <button className="badge capitalize text-xs font-normal bg-[#e96f6d] hover:bg-[#fa8b89] text-white rounded-sm">
+                                    <label
+                                        onClick={() => {
+                                            setDeletedCourseID(course._id);
+                                            setIsShowConfirmModal(true);
+                                        }}
+                                        htmlFor="confirm_modal"
+                                        className="badge capitalize text-xs font-normal bg-[#e96f6d] hover:bg-[#fa8b89] text-white rounded-sm"
+                                    >
                                         delete
-                                    </button>
+                                    </label>
                                 </td>
                                 <td>
                                     <Link
