@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import "./AddMark.css";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Breadcrumb from "../../../../Components/Shared/Breadcrumb/Breadcrumb";
 import LoadingCom from "../../../../Components/Shared/LoadingCom/LoadingCom";
 import { useMutation, useQuery, useQueryClient } from "react-query";
@@ -13,6 +13,7 @@ const AddMarkPage = () => {
     const { session, semester, courseCode } = useParams();
     const { pathname } = useLocation();
     const [course, setCourse] = useState();
+    const navigate = useNavigate();
     const {
         isLoading,
         isError,
@@ -62,9 +63,15 @@ const AddMarkPage = () => {
         onSuccess: (data, variable, context) => {
             // reset();
             toast.success("Result Add Successfully");
+            navigate(
+                `/dashboard/admin/session-list/${session}/${semester}/course`
+            );
         },
         onError: (error, variable, context) => {
             toast.error("Something Wrong");
+            //  navigate(
+            //      `/dashboard/admin/session-list/${session}/${semester}/course`
+            //  );
         },
     });
 
