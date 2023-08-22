@@ -1,4 +1,4 @@
-import { useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import Breadcrumb from "../../../../Components/Shared/Breadcrumb/Breadcrumb";
 import SectionTitle from "../../../../Components/Non-Shared/DashboardPageCom/Admin/SectionTitle/SectionTitle";
 import { AiOutlinePlus } from "react-icons/ai";
@@ -6,7 +6,6 @@ import AddStudentModal from "../../../../Components/Non-Shared/DashboardPageCom/
 import SemesterCard from "../../../../Components/Non-Shared/DashboardPageCom/Admin/SemesterCard/SemesterCard";
 
 import "./singleSessionPage.css";
-import { useState } from "react";
 
 const SingleSessionPage = () => {
     const { pathname } = useLocation();
@@ -21,16 +20,24 @@ const SingleSessionPage = () => {
                 <SectionTitle title={`Session ${session}`} />
             </div>
             <div className="flex justify-end">
-                <label
-                    htmlFor="add_student_modal"
-                    className="btn bg-[#3ab16a] btn-sm rounded-sm text-white hover:bg-[#2e9657] hover:shadow-md"
+                <Link
+                    to={`/dashboard/admin/${session}/student-list`}
+                    className="btn bg-[#3ab16a] btn-sm rounded-sm text-white hover:bg-[#2e9657] hover:shadow-md font-medium text-xs mr-1"
                 >
-                    <span className="text-base font-bold">
-                        <AiOutlinePlus />
-                    </span>
-                    <span className="text-xs">add student</span>
-                </label>
-                <AddStudentModal session={session} />
+                    students list
+                </Link>
+                <div className="">
+                    <label
+                        htmlFor="add_student_modal"
+                        className="btn bg-[#3ab16a] btn-sm rounded-sm text-white hover:bg-[#2e9657] hover:shadow-md"
+                    >
+                        <span className="text-base font-bold">
+                            <AiOutlinePlus />
+                        </span>
+                        <span className="text-xs">add student</span>
+                    </label>
+                    <AddStudentModal session={session} />
+                </div>
             </div>
             <div className="semester-card-container mt-8 mb-8">
                 <SemesterCard semesterNo={1} session={session} />

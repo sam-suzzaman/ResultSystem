@@ -1,7 +1,7 @@
 import React from "react";
 
-const StudentListTable = () => {
-    const students = [
+const StudentListTable = ({ students }) => {
+    const studentss = [
         {
             _id: "1",
             name: "student one",
@@ -34,18 +34,22 @@ const StudentListTable = () => {
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Name</th>
-                        <th>ID</th>
+                        <th>Student Name</th>
+                        <th>Student ID</th>
+                        <th>Session</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {students.map((student) => {
+                    {students.map((student, index) => {
                         return (
                             <tr key={student._id}>
-                                <th>{student._id}</th>
-                                <td className="capitalize">{student.name}</td>
+                                <th>{index + 1}</th>
+                                <td className="capitalize">
+                                    {student.username}
+                                </td>
                                 <td>{student.roll}</td>
+                                <td>{student.currentSession}</td>
                                 <td>
                                     <button className="btn btn-xs bg-[#e46b6b] text-white hover:bg-[#f77b7b] text-xs">
                                         delete

@@ -9,12 +9,6 @@ const SemesterCard = ({ semesterNo, session }) => {
                     <h3 className="title"> {semesterNo} semester</h3>
                     <div className=" flex flex-wrap gap-2">
                         <Link
-                            to="/dashboard/admin/batch-list/batch/student-list"
-                            className="badge text-xs font-normal bg-[#fa8740] hover:bg-[#ffb153] text-white rounded-sm"
-                        >
-                            students
-                        </Link>
-                        <Link
                             to={`/dashboard/admin/session-list/${session}/${semesterNo}/course`}
                             className="badge capitalize text-xs font-normal bg-[#2b9859] hover:bg-[#33b76a] text-white rounded-sm"
                         >

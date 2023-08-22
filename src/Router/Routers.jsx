@@ -63,7 +63,7 @@ const Routers = createBrowserRouter([
                         element: <SingleSessionPage></SingleSessionPage>,
                     },
                     {
-                        path: "/dashboard/admin/batch-list/batch/student-list",
+                        path: "/dashboard/admin/:session/student-list",
                         element: <StudentListPage></StudentListPage>,
                     },
                     {
