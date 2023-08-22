@@ -109,7 +109,7 @@ const CourseListTable = ({
                                             setIsShowConfirmModal(true);
                                         }}
                                         htmlFor="confirm_modal"
-                                        className="badge capitalize text-xs font-normal bg-[#e96f6d] hover:bg-[#fa8b89] text-white rounded-sm"
+                                        className="badge capitalize text-xs font-normal bg-[#e96f6d] hover:bg-[#fa8b89] text-white rounded-sm cursor-pointer"
                                     >
                                         delete
                                     </label>
