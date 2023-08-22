@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
-const CourseListTable = ({ courseList }) => {
+const CourseListTable = ({
+    courseList,
+    setUpdateCourseID,
+    setShowUpdateModal,
+}) => {
     const courses = [
         {
             _id: "1",
@@ -87,9 +91,16 @@ const CourseListTable = ({ courseList }) => {
                                 </td>
                                 <td>{course.credit}</td>
                                 <td>
-                                    <button className="badge capitalize text-xs font-normal btn-warning  text-white rounded-sm mr-3">
+                                    <label
+                                        onClick={() => {
+                                            setUpdateCourseID(course._id);
+                                            setShowUpdateModal(true);
+                                        }}
+                                        htmlFor="update_course_modal"
+                                        className="badge capitalize text-xs font-normal btn-warning  text-white rounded-sm mr-3 cursor-pointer"
+                                    >
                                         update
-                                    </button>
+                                    </label>
                                     <button className="badge capitalize text-xs font-normal bg-[#e96f6d] hover:bg-[#fa8b89] text-white rounded-sm">
                                         delete
                                     </button>

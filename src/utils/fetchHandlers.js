@@ -7,9 +7,9 @@ export const getAllHandler = async (url) => {
     return response?.data?.result;
 };
 
-export const getSingleHandler = async ({ url, id }) => {
+export const getSingleHandler = async (url) => {
     const config = useFetchConfig();
-    const response = await axios.get(`${url}/${id}`, config);
+    const response = await axios.get(url, config);
     return response.data.result;
 };
 
