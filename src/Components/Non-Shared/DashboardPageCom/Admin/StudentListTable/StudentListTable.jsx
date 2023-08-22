@@ -1,6 +1,6 @@
 import React from "react";
 
-const StudentListTable = ({ students }) => {
+const StudentListTable = ({ students, setDeleteStudentID }) => {
     const studentss = [
         {
             _id: "1",
@@ -51,9 +51,15 @@ const StudentListTable = ({ students }) => {
                                 <td>{student.roll}</td>
                                 <td>{student.currentSession}</td>
                                 <td>
-                                    <button className="btn btn-xs bg-[#e46b6b] text-white hover:bg-[#f77b7b] text-xs">
+                                    <label
+                                        onClick={() => {
+                                            setDeleteStudentID(student._id);
+                                        }}
+                                        htmlFor="confirm_modal"
+                                        className="btn btn-xs bg-[#e46b6b] text-white hover:bg-[#f77b7b] text-xs cursor-pointer rounded-sm"
+                                    >
                                         delete
-                                    </button>
+                                    </label>
                                 </td>
                             </tr>
                         );

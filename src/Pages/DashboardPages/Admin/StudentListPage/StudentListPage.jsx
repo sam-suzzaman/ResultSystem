@@ -1,13 +1,19 @@
 import Breadcrumb from "../../../../Components/Shared/Breadcrumb/Breadcrumb";
 import { useLocation, useParams } from "react-router-dom";
 import StudentListTable from "../../../../Components/Non-Shared/DashboardPageCom/Admin/StudentListTable/StudentListTable";
-import { useQuery } from "react-query";
-import { getAllHandler } from "../../../../utils/fetchHandlers";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { deleteHandler, getAllHandler } from "../../../../utils/fetchHandlers";
 import LoadingCom from "../../../../Components/Shared/LoadingCom/LoadingCom";
+import { toast } from "react-toastify";
+import ConfirmModal from "../../../../Components/Shared/ConfirmModal/ConfirmModal";
+import { useState } from "react";
 
 const StudentListPage = () => {
     const { pathname } = useLocation();
     const { session } = useParams();
+    const [deleteStudentID, setDeleteStudentID] = useState("");
+    const queryClient = useQueryClient();
+
     const {
         isLoading,
         isError,
@@ -18,6 +24,29 @@ const StudentListPage = () => {
             `https://student-management-delta.vercel.app/user/EEE/${session}`
         )
     );
+
+    const deleteMutation = useMutation({
+        mutationFn: deleteHandler,
+        onSuccess: (data, variable, context) => {
+            queryClient.invalidateQueries("students");
+            toast.success("Student Deleted");
+        },
+        onError: (error, variable, context) => {
+            console.log(error);
+            toast.error("Something Wrong");
+        },
+    });
+
+    const handleDeleteProcess = (response) => {
+        if (response) {
+            deleteMutation.mutate({
+                url: `https://student-management-delta.vercel.app/user/${deleteStudentID}`,
+            });
+        } else {
+            return;
+        }
+    };
+
     if (isLoading) {
         return <LoadingCom />;
     }
@@ -46,9 +75,16 @@ const StudentListPage = () => {
                         </h3>
                     </div>
 
-                    <StudentListTable students={students} />
+                    <StudentListTable
+                        students={students}
+                        setDeleteStudentID={setDeleteStudentID}
+                    />
                 </div>
             )}
+            <ConfirmModal
+                message="Student will removed permanently"
+                handleDeleteProcess={handleDeleteProcess}
+            />
         </div>
     );
 };
