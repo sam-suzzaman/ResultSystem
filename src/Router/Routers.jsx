@@ -14,6 +14,7 @@ import CourseListPage from "../Pages/DashboardPages/Admin/CourseListPage/CourseL
 import StudentListPage from "../Pages/DashboardPages/Admin/StudentListPage/StudentListPage";
 import SessionListPage from "../Pages/DashboardPages/Admin/SessionListPage/SessionListPage";
 import SingleSessionPage from "../Pages/DashboardPages/Admin/SingleSessionPage/SingleSessionPage";
+import AddMarkPageTwo from "../Pages/DashboardPages/Admin/AddMarkPage/AddMarkPageTwo";
 
 const Routers = createBrowserRouter([
     {
@@ -57,6 +58,10 @@ const Routers = createBrowserRouter([
                     {
                         path: "/dashboard/admin/session-list",
                         element: <SessionListPage></SessionListPage>,
+                    },
+                    {
+                        path: "/dashboard/admin/add-mark",
+                        element: <AddMarkPageTwo></AddMarkPageTwo>,
                     },
                     {
                         path: "/dashboard/admin/session-list/:session",
