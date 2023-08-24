@@ -5,22 +5,3 @@
     grid-column-gap: 40px;
     justify-content: center;
 }
-
-.session-card-container .session-card:nth-child(odd) .session-card-front {
-    background-color: #2f2d2e;
-}
-.session-card-container .session-card:nth-child(odd) .session-card-back {
-    background-color: #2f2d2e;
-}
-.session-card-container .session-card:nth-child(even) .session-card-front {
-    background-color: #777da7;
-}
-.session-card-container .session-card:nth-child(even) .session-card-back {
-    background-color: #777da7;
-}
-.session-card-container .session-card:nth-child(3n + 1) .session-card-front {
-    background-color: #d72483;
-}
-.session-card-container .session-card:nth-child(3n + 1) .session-card-back {
-    background-color: #d72483;
-}

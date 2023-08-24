@@ -1,5 +1,4 @@
 import { NavLink, Outlet } from "react-router-dom";
-
 // Icons
 import { AiFillHome, AiOutlineUsergroupAdd } from "react-icons/ai";
 import { SessionPageProvider } from "../context/Admin/SessionPageContext";

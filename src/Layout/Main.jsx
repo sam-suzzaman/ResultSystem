@@ -10,12 +10,16 @@ const Main = () => {
     // Check if the current route is either '/login'
     const shouldShowNavbarAndFooter = !["/login"].includes(location.pathname);
     return (
-        <div>
-            {shouldShowNavbarAndFooter && <Navbar />}
-            <Outlet />
-            {shouldShowNavbarAndFooter && <Footer />}
+        <>
+            <div className="main_wrapper">
+                {shouldShowNavbarAndFooter && <Navbar />}
+                <div className="content_wrapper">
+                    <Outlet />
+                </div>
+                {shouldShowNavbarAndFooter && <Footer />}
+            </div>
             <ToastComponent />
-        </div>
+        </>
     );
 };
 
