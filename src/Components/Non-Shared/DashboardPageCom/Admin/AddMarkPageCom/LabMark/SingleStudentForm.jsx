@@ -37,6 +37,7 @@ const assessments = [
         value: "presentationOrAssignment",
     },
 ];
+
 const SingleStudentForm = () => {
     const {
         register,
@@ -49,7 +50,6 @@ const SingleStudentForm = () => {
     const [isSessionSelected, setIsSessionSelected] = useState(false);
     const [isSemesterSelect, setIsSemesterSelect] = useState(false);
     const [isCourseSelect, setIsCourseSelect] = useState(false);
-    const [sessionData, setSessionData] = useState([]);
     const [courseData, setCourseData] = useState([]);
 
     const deptWatch = watch("department");
@@ -60,10 +60,6 @@ const SingleStudentForm = () => {
     useEffect(() => {
         if (deptWatch && deptWatch !== "default") {
             setIsDeptSelected(true);
-            const url = `https://student-management-delta.vercel.app/session/department/${deptWatch}`;
-            getAllHandler(url)
-                .then((res) => setSessionData(res))
-                .catch((err) => console.log(err));
         } else {
             setIsDeptSelected(false);
         }
@@ -100,7 +96,7 @@ const SingleStudentForm = () => {
     const onSubmit = (data) => console.log(data);
 
     return (
-        <div>
+        <div className="">
             <form action="" className="" onSubmit={handleSubmit(onSubmit)}>
                 <div className="grid grid-cols-3 gap-6">
                     <div className="form-control w-full">
@@ -164,7 +160,7 @@ const SingleStudentForm = () => {
                             <option disabled value="default">
                                 Select A Session
                             </option>
-                            {sessionData?.map((session) => {
+                            {sessions.map((session) => {
                                 return (
                                     <option
                                         key={session._id}
@@ -281,49 +277,6 @@ const SingleStudentForm = () => {
                     </div>
                     <div className="form-control w-full">
                         <label className="label">
-                            <span className="label-text">Assesment</span>
-                        </label>
-                        <select
-                            className="select select-bordered rounded-sm"
-                            disabled={!isCourseSelect}
-                            {...register("assesment", {
-                                validate: {
-                                    isValidValue: (value) => {
-                                        return (
-                                            value !== "default" ||
-                                            "Assesment is Required"
-                                        );
-                                    },
-                                },
-                                required: {
-                                    value: true,
-                                    message: "Assesment  is Required",
-                                },
-                            })}
-                            defaultValue="default"
-                        >
-                            <option disabled value="default">
-                                Select An Assesment
-                            </option>
-                            {assessments.map((assesment) => {
-                                return (
-                                    <option
-                                        key={assesment._id}
-                                        value={assesment.value}
-                                    >
-                                        {assesment.title}
-                                    </option>
-                                );
-                            })}
-                        </select>
-                        {errors?.assesment && (
-                            <span className=" mt-1 label-text-alt text-xs font-normal capitalize text-red-700">
-                                {errors.assesment?.message}
-                            </span>
-                        )}
-                    </div>
-                    <div className="form-control w-full">
-                        <label className="label">
                             <span className="label-text">Student Roll</span>
                         </label>
                         <input
@@ -346,17 +299,17 @@ const SingleStudentForm = () => {
                     </div>
                     <div className="form-control w-full">
                         <label className="label">
-                            <span className="label-text">Enter Mark</span>
+                            <span className="label-text">Lab Total Mark</span>
                         </label>
                         <input
                             type="text"
                             placeholder="Type here"
                             className="input input-bordered w-full rounded-sm"
                             disabled={!isCourseSelect}
-                            {...register("mark", {
+                            {...register("labTotal", {
                                 max: {
-                                    value: 10,
-                                    message: "Max (10) marks",
+                                    value: 60,
+                                    message: "Max (100) marks",
                                 },
                                 min: {
                                     value: 0,
@@ -364,18 +317,18 @@ const SingleStudentForm = () => {
                                 },
                                 required: {
                                     value: true,
-                                    message: "Mark is Required",
+                                    message: "Lab Mark is Required",
                                 },
                             })}
                         />
-                        {errors?.mark && (
+                        {errors?.labTotal && (
                             <span className=" mt-1 label-text-alt text-xs font-normal capitalize text-red-700">
-                                {errors.mark?.message}
+                                {errors.labTotal?.message}
                             </span>
                         )}
                     </div>
                 </div>
-                <div className="flex justify-center mt-3">
+                <div className="flex justify-center mt-6">
                     <button className="btn btn-sm bg-[#338543] hover:bg-[#2e763c] rounded-sm text-white font-normal text-sm">
                         submit mark
                     </button>

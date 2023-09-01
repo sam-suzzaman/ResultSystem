@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { getAllHandler } from "../../../../../../utils/fetchHandlers";
-import "./multipleStudentForm.css";
 
 const departments = [
     { _id: 1, name: "EEE", displayName: "Electical & Electronic Engineering" },
@@ -286,19 +285,13 @@ const MultipleStudentForm = () => {
                         </div>
                     </div>
                     {/* form-2 */}
-                    <div className="w-full mt-8 external_multiple_mark_wrapper">
-                        <div className="external_multiple_mark_container">
+                    <div className="w-full mt-8 mark_input_form_wrapper">
+                        <div className="mark_input_form_container">
                             <div className="mark">
                                 <h3>Student Roll</h3>
                             </div>
                             <div className="mark">
-                                <h3>First Examiner Mark</h3>
-                            </div>
-                            <div className="mark">
-                                <h3>Second Examiner Mark</h3>
-                            </div>
-                            <div className="mark">
-                                <h3>Third Examiner Mark</h3>
+                                <h3>Lab Total Mark</h3>
                             </div>
 
                             {studentList?.map((student, index) => {
@@ -315,23 +308,7 @@ const MultipleStudentForm = () => {
                                             type="text"
                                             placeholder=""
                                             {...register(
-                                                `resultList.${index}.firstExaminer`
-                                            )}
-                                            disabled={!isCourseSelect}
-                                        />
-                                        <input
-                                            type="text"
-                                            placeholder=""
-                                            {...register(
-                                                `resultList.${index}.secondExaminer`
-                                            )}
-                                            disabled={!isCourseSelect}
-                                        />
-                                        <input
-                                            type="text"
-                                            placeholder=""
-                                            {...register(
-                                                `resultList.${index}.thirdExaminer`
+                                                `resultList.${index}.labTotal`
                                             )}
                                             disabled={!isCourseSelect}
                                         />
