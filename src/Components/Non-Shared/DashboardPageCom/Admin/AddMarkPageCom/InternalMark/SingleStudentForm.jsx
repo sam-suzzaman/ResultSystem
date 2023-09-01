@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { getAllHandler } from "../../../../../../utils/fetchHandlers";
 
 const departments = [
     { _id: 1, name: "EEE", displayName: "Electical & Electronic Engineering" },
@@ -48,6 +49,7 @@ const SingleStudentForm = () => {
     const [isSessionSelected, setIsSessionSelected] = useState(false);
     const [isSemesterSelect, setIsSemesterSelect] = useState(false);
     const [isCourseSelect, setIsCourseSelect] = useState(false);
+    const [courseData, setCourseData] = useState([]);
 
     const deptWatch = watch("department");
     const sessionWatch = watch("session");
@@ -73,13 +75,17 @@ const SingleStudentForm = () => {
     useEffect(() => {
         if (semesterWatch) {
             setIsSemesterSelect(true);
+            const url = `https://student-management-delta.vercel.app/course/${sessionWatch}/${deptWatch}/${semesterWatch}`;
+            getAllHandler(url)
+                .then((res) => setCourseData(res))
+                .catch((err) => console.log(err));
         } else {
             setIsSemesterSelect(false);
         }
     }, [semesterWatch]);
 
     useEffect(() => {
-        if (courseWatch) {
+        if (courseWatch && courseWatch !== "default") {
             setIsCourseSelect(true);
         } else {
             setIsCourseSelect(false);
@@ -87,6 +93,7 @@ const SingleStudentForm = () => {
     }, [courseWatch]);
 
     const onSubmit = (data) => console.log(data);
+    
     return (
         <div>
             <form action="" className="" onSubmit={handleSubmit(onSubmit)}>
@@ -109,7 +116,7 @@ const SingleStudentForm = () => {
                             })}
                             defaultValue="default"
                         >
-                            <option readOnly value="default">
+                            <option disabled value="default">
                                 Select A Department
                             </option>
                             {departments.map((dept) => {
@@ -149,7 +156,7 @@ const SingleStudentForm = () => {
                             })}
                             defaultValue="default"
                         >
-                            <option readOnly value="default">
+                            <option disabled value="default">
                                 Select A Session
                             </option>
                             {sessions.map((session) => {
@@ -192,7 +199,7 @@ const SingleStudentForm = () => {
                             })}
                             defaultValue="default"
                         >
-                            <option readOnly value="default">
+                            <option disabled value="default">
                                 Select A Semester
                             </option>
                             {semesters.map((semester) => {
@@ -235,16 +242,31 @@ const SingleStudentForm = () => {
                             })}
                             defaultValue="default"
                         >
-                            <option readOnly value="default">
+                            <option disabled value="default">
                                 Select A Course
                             </option>
-                            {courses.map((course) => {
-                                return (
-                                    <option key={course._id} value={course._id}>
-                                        {course.title}
-                                    </option>
-                                );
-                            })}
+
+                            {courseData?.length === 0 ? (
+                                <option
+                                    value="default"
+                                    disabled
+                                    className="capitalize"
+                                >
+                                    no course found
+                                </option>
+                            ) : (
+                                courseData?.map((course) => {
+                                    return (
+                                        <option
+                                            key={course._id}
+                                            value={course._id}
+                                        >
+                                            {course.courseCode}{" "}
+                                            {course.courseName}
+                                        </option>
+                                    );
+                                })
+                            )}
                         </select>
                         {errors?.course && (
                             <span className=" mt-1 label-text-alt text-xs font-normal capitalize text-red-700">
@@ -275,7 +297,7 @@ const SingleStudentForm = () => {
                             })}
                             defaultValue="default"
                         >
-                            <option readOnly value="default">
+                            <option disabled value="default">
                                 Select An Assesment
                             </option>
                             {assessments.map((assesment) => {

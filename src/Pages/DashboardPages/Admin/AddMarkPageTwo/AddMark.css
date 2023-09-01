@@ -1,7 +1,7 @@
-.form-wrapper {
+.mark_input_form_wrapper {
     margin: 0 auto;
     width: fit-content;
-    max-height: 60vh;
+    max-height: 40vh;
     overflow-y: auto;
     overflow-x: auto;
     padding-right: 15px;
@@ -9,16 +9,16 @@
     scrollbar-color: #888 #f2f2f2; /* thumb color and track color */
 }
 /* Customize scrollbar for Chrome, Safari, and newer versions of Edge */
-.form-wrapper::-webkit-scrollbar {
+.mark_input_form_wrapper::-webkit-scrollbar {
     width: 5px; /* width of the vertical scrollbar */
 }
 
-.form-wrapper::-webkit-scrollbar-thumb {
+.mark_input_form_wrapper::-webkit-scrollbar-thumb {
     background-color: #888; /* color of the thumb */
     border-radius: 5px; /* rounded corners for the thumb */
 }
 
-.form-wrapper::-webkit-scrollbar-track {
+.mark_input_form_wrapper::-webkit-scrollbar-track {
     background-color: #f2f2f2; /* color of the track */
 }
 .mark_input_form_container {
