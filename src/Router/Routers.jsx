@@ -8,13 +8,15 @@ import AdminDashboardPage from "../Pages/DashboardPages/Admin/AdminDashboardPage
 import StudentDashboardPage from "../Pages/DashboardPages/Student/StudentDashboardPage";
 import AdminDashboardLayout from "../Layout/AdminDashboardLayout";
 import StudentDashboardLayout from "../Layout/StudentDashboardLayout";
-import AddMarkPage from "../Pages/DashboardPages/Admin/AddMarkPage/AddMarkPage";
 import LoginPage from "../Pages/AuthenticationPages/LoginPage/LoginPage";
 import CourseListPage from "../Pages/DashboardPages/Admin/CourseListPage/CourseListPage";
 import StudentListPage from "../Pages/DashboardPages/Admin/StudentListPage/StudentListPage";
 import SessionListPage from "../Pages/DashboardPages/Admin/SessionListPage/SessionListPage";
 import SingleSessionPage from "../Pages/DashboardPages/Admin/SingleSessionPage/SingleSessionPage";
-import AddMarkPageTwo from "../Pages/DashboardPages/Admin/AddMarkPage/AddMarkPageTwo";
+import AddMarkPage from "../Pages/DashboardPages/Admin/AddMarkPage/AddMarkPage";
+import InternalMarkAddPage from "../Pages/DashboardPages/Admin/AddMarkPage/InternalMarkAddPage";
+import ExternalMarkAddPage from "../Pages/DashboardPages/Admin/AddMarkPage/ExternalMarkAddPage";
+import LabMarkAddPage from "../Pages/DashboardPages/Admin/AddMarkPage/LabMarkAddPage";
 
 const Routers = createBrowserRouter([
     {
@@ -61,7 +63,19 @@ const Routers = createBrowserRouter([
                     },
                     {
                         path: "/dashboard/admin/add-mark",
-                        element: <AddMarkPageTwo></AddMarkPageTwo>,
+                        element: <AddMarkPage />,
+                    },
+                    {
+                        path: "/dashboard/admin/add-mark/internal",
+                        element: <InternalMarkAddPage />,
+                    },
+                    {
+                        path: "/dashboard/admin/add-mark/external",
+                        element: <ExternalMarkAddPage />,
+                    },
+                    {
+                        path: "/dashboard/admin/add-mark/lab",
+                        element: <LabMarkAddPage />,
                     },
                     {
                         path: "/dashboard/admin/session-list/:session",
