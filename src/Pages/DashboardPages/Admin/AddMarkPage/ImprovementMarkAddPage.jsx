@@ -2,6 +2,7 @@ import { AiOutlineUser, AiOutlineUsergroupAdd } from "react-icons/ai";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import SingleStudentForm from "../../../../Components/Non-Shared/DashboardPageCom/Admin/AddMarkPageCom/ImprovementMark/SingleStudentForm";
+import MultipleStudentForm from "../../../../Components/Non-Shared/DashboardPageCom/Admin/AddMarkPageCom/ImprovementMark/MultipleStudentForm";
 
 const ImprovementMarkAddPage = () => {
     return (
@@ -43,7 +44,9 @@ const ImprovementMarkAddPage = () => {
                     </TabPanel>
 
                     {/* Multiple Students Tab Content */}
-                    <TabPanel>{/* <MultipleStudentForm /> */}</TabPanel>
+                    <TabPanel>
+                        <MultipleStudentForm />
+                    </TabPanel>
                 </Tabs>
             </div>
         </section>
