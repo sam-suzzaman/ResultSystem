@@ -30,6 +30,11 @@ const AddMarkPage = () => {
                             <h3 className="">lab</h3>
                         </div>
                     </Link>
+                    <Link to="/dashboard/admin/add-mark/improvement">
+                        <div className="mark-card">
+                            <h3 className="">Improvement</h3>
+                        </div>
+                    </Link>
                 </div>
             </section>
         </>

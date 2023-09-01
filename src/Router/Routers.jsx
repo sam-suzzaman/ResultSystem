@@ -17,6 +17,7 @@ import AddMarkPage from "../Pages/DashboardPages/Admin/AddMarkPage/AddMarkPage";
 import InternalMarkAddPage from "../Pages/DashboardPages/Admin/AddMarkPage/InternalMarkAddPage";
 import ExternalMarkAddPage from "../Pages/DashboardPages/Admin/AddMarkPage/ExternalMarkAddPage";
 import LabMarkAddPage from "../Pages/DashboardPages/Admin/AddMarkPage/LabMarkAddPage";
+import ImprovementMarkAddPage from "../Pages/DashboardPages/Admin/AddMarkPage/ImprovementMarkAddPage";
 
 const Routers = createBrowserRouter([
     {
@@ -76,6 +77,10 @@ const Routers = createBrowserRouter([
                     {
                         path: "/dashboard/admin/add-mark/lab",
                         element: <LabMarkAddPage />,
+                    },
+                    {
+                        path: "/dashboard/admin/add-mark/improvement",
+                        element: <ImprovementMarkAddPage />,
                     },
                     {
                         path: "/dashboard/admin/session-list/:session",
