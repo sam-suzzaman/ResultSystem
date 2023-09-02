@@ -20,7 +20,9 @@ const SessionListPage = () => {
         data: sessions,
         error,
     } = useQuery("sessionList", () =>
-        getAllHandler("https://student-management-delta.vercel.app/session")
+        getAllHandler(
+            `https://student-management-delta.vercel.app/session/department/EEE`
+        )
     );
 
     if (isLoading) {

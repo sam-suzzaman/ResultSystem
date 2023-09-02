@@ -11,7 +11,7 @@ const ImprovementMarkAddPage = () => {
                 Add mark
             </h2>
             <h4 className="text-sm font-medium text-center uppercase mt-1">
-                Improvement Result
+                Improvement
             </h4>
             <div className="mt-8">
                 <Tabs>
