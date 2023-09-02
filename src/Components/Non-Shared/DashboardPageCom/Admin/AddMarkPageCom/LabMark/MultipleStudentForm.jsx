@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { getAllHandler } from "../../../../../../utils/fetchHandlers";
+import {
+    getAllHandler,
+    updateHandler,
+} from "../../../../../../utils/fetchHandlers";
 import {
     departments,
     semesters,
 } from "../..../../../../../../../utils/AddMarkFieldsData";
-
-const sessions = [
-    { _id: 1, session: "2017-18" },
-    { _id: 2, session: "2018-19" },
-    { _id: 3, session: "2019-20" },
-    { _id: 4, session: "2020-21" },
-];
+import { useMutation } from "react-query";
+import { toast } from "react-toastify";
 
 const MultipleStudentForm = () => {
     const {
         register,
         handleSubmit,
         watch,
+        reset,
         formState: { errors },
     } = useForm();
 
@@ -35,9 +34,27 @@ const MultipleStudentForm = () => {
     const semesterWatch = watch("semester");
     const courseWatch = watch("course");
 
+    const addMultipleLabMarkMutation = useMutation({
+        mutationFn: updateHandler,
+        onSuccess: (data, variable, context) => {
+            toast.success("Mark Submitted");
+            reset();
+            setStudentData([]);
+        },
+        onError: (error, variables, context) => {
+            console.log(error);
+            // toast.warn(error.response.data.errors.common);
+            toast.warn("Something Wrong");
+        },
+    });
+
     useEffect(() => {
         if (deptWatch && deptWatch !== "default") {
             setIsDeptSelected(true);
+            const url = `https://student-management-delta.vercel.app/session/department/${deptWatch}`;
+            getAllHandler(url)
+                .then((res) => setSessionData(res))
+                .catch((err) => console.log(err));
         } else {
             setIsDeptSelected(false);
         }
@@ -66,12 +83,31 @@ const MultipleStudentForm = () => {
     useEffect(() => {
         if (courseWatch && courseWatch !== "default") {
             setIsCourseSelect(true);
+            const url = `https://student-management-delta.vercel.app/user/${deptWatch}/${sessionWatch}`;
+            getAllHandler(url)
+                .then((res) => setStudentData(res))
+                .catch((err) => console.log(err));
         } else {
             setIsCourseSelect(false);
         }
     }, [courseWatch]);
 
-    const onSubmit = (data) => console.log(data);
+    const onSubmit = (data) => {
+        const { resultList, department, semester, course, assesment } = data;
+        const mergedResult = resultList.map((res) => {
+            return {
+                ...res,
+                department,
+                semester,
+                courseId: course,
+            };
+        });
+        const result = { marks: mergedResult };
+        addMultipleLabMarkMutation.mutate({
+            body: result,
+            url: "https://student-management-delta.vercel.app/mark/lab/multiple",
+        });
+    };
 
     return (
         <div>
@@ -142,7 +178,7 @@ const MultipleStudentForm = () => {
                                 <option disabled value="default">
                                     Select A Session
                                 </option>
-                                {sessions.map((session) => {
+                                {sessionData?.map((session) => {
                                     return (
                                         <option
                                             key={session._id}
@@ -268,7 +304,7 @@ const MultipleStudentForm = () => {
                                 <h3>Lab Total Mark</h3>
                             </div>
 
-                            {studentList?.map((student, index) => {
+                            {studentData?.map((student, index) => {
                                 return (
                                     <React.Fragment key={index}>
                                         <input
@@ -276,6 +312,8 @@ const MultipleStudentForm = () => {
                                             {...register(
                                                 `resultList.${index}.roll`
                                             )}
+                                            readOnly
+                                            defaultValue={student.roll}
                                             disabled={!isCourseSelect}
                                         />
                                         <input
