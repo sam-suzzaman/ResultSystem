@@ -1,53 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { getAllHandler } from "../../../../../../utils/fetchHandlers";
+import {
+    getAllHandler,
+    updateHandler,
+} from "../../../../../../utils/fetchHandlers";
+import {
+    departments,
+    semesters,
+} from "../../../../../../utils/AddMarkFieldsData";
+import { toast } from "react-toastify";
+import { useMutation } from "react-query";
 
-const departments = [
-    { _id: 1, name: "EEE", displayName: "Electical & Electronic Engineering" },
-    { _id: 2, name: "CSE", displayName: "Computer Science &  Engineering" },
-    { _id: 3, name: "ESE", displayName: "Environmental Science & Engineering" },
-];
 const sessions = [
     { _id: 1, session: "2017-18" },
     { _id: 2, session: "2018-19" },
     { _id: 3, session: "2019-20" },
     { _id: 4, session: "2020-21" },
 ];
-const semesters = [
-    { _id: 1, semester: 1 },
-    { _id: 2, semester: 2 },
-    { _id: 3, semester: 3 },
-    { _id: 4, semester: 4 },
-    { _id: 5, semester: 5 },
-    { _id: 6, semester: 6 },
-    { _id: 7, semester: 7 },
-    { _id: 8, semester: 8 },
-];
-const courses = [
-    { _id: 1, title: "Electrical Circuit" },
-    { _id: 2, title: "Power System I" },
-];
-const assessments = [
-    { _id: 1, title: "Attendance", value: "attendance" },
-    { _id: 2, title: "Midterm One", value: "midOne" },
-    { _id: 3, title: "Midterm Two", value: "midTwo" },
-    {
-        _id: 4,
-        title: "Assignment/Presentation",
-        value: "presentationOrAssignment",
-    },
-];
+
 const SingleStudentForm = () => {
     const {
         register,
         handleSubmit,
         watch,
+        reset,
         formState: { errors },
     } = useForm();
     const [isDeptSelected, setIsDeptSelected] = useState(false);
     const [isSessionSelected, setIsSessionSelected] = useState(false);
     const [isSemesterSelect, setIsSemesterSelect] = useState(false);
     const [isCourseSelect, setIsCourseSelect] = useState(false);
+    const [sessionData, setSessionData] = useState([]);
     const [courseData, setCourseData] = useState([]);
 
     const deptWatch = watch("department");
@@ -55,9 +38,26 @@ const SingleStudentForm = () => {
     const semesterWatch = watch("semester");
     const courseWatch = watch("course");
 
+    const addSingleImproveMarkMutation = useMutation({
+        mutationFn: updateHandler,
+        onSuccess: (data, variable, context) => {
+            toast.success("Mark Submitted");
+            reset();
+        },
+        onError: (error, variables, context) => {
+            console.log(error);
+            // toast.warn(error.response.data.errors.common);
+            toast.warn("Something Wrong");
+        },
+    });
+
     useEffect(() => {
         if (deptWatch && deptWatch !== "default") {
             setIsDeptSelected(true);
+            const url = `https://student-management-delta.vercel.app/session/department/${deptWatch}`;
+            getAllHandler(url)
+                .then((res) => setSessionData(res))
+                .catch((err) => console.log(err));
         } else {
             setIsDeptSelected(false);
         }
@@ -91,7 +91,31 @@ const SingleStudentForm = () => {
         }
     }, [courseWatch]);
 
-    const onSubmit = (data) => console.log(data);
+    const onSubmit = (data) => {
+        const {
+            department,
+            semester,
+            roll,
+            course,
+            firstExaminer,
+            secondExaminer,
+            thirdExaminer,
+        } = data;
+        const result = {
+            department,
+            semester,
+            roll,
+            courseId: course,
+            firstExaminer,
+            secondExaminer,
+            thirdExaminer: thirdExaminer || 0,
+        };
+
+        addSingleImproveMarkMutation.mutate({
+            body: result,
+            url: "https://student-management-delta.vercel.app/mark/improve/single",
+        });
+    };
 
     return (
         <div className="">
@@ -158,7 +182,7 @@ const SingleStudentForm = () => {
                             <option disabled value="default">
                                 Select A Session
                             </option>
-                            {sessions.map((session) => {
+                            {sessionData?.map((session) => {
                                 return (
                                     <option
                                         key={session._id}
