@@ -1,41 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { getAllHandler } from "../../../../../../utils/fetchHandlers";
+import {
+    departments,
+    semesters,
+} from "../..../../../../../../../utils/AddMarkFieldsData";
 
-const departments = [
-    { _id: 1, name: "EEE", displayName: "Electical & Electronic Engineering" },
-    { _id: 2, name: "CSE", displayName: "Computer Science &  Engineering" },
-    { _id: 3, name: "ESE", displayName: "Environmental Science & Engineering" },
-];
 const sessions = [
     { _id: 1, session: "2017-18" },
     { _id: 2, session: "2018-19" },
     { _id: 3, session: "2019-20" },
     { _id: 4, session: "2020-21" },
-];
-const semesters = [
-    { _id: 1, semester: 1 },
-    { _id: 2, semester: 2 },
-    { _id: 3, semester: 3 },
-    { _id: 4, semester: 4 },
-    { _id: 5, semester: 5 },
-    { _id: 6, semester: 6 },
-    { _id: 7, semester: 7 },
-    { _id: 8, semester: 8 },
-];
-const courses = [
-    { _id: 1, title: "Electrical Circuit" },
-    { _id: 2, title: "Power System I" },
-];
-const assessments = [
-    { _id: 1, title: "Attendance", value: "attendance" },
-    { _id: 2, title: "Midterm One", value: "midOne" },
-    { _id: 3, title: "Midterm Two", value: "midTwo" },
-    {
-        _id: 4,
-        title: "Assignment/Presentation",
-        value: "presentationOrAssignment",
-    },
 ];
 
 const MultipleStudentForm = () => {
@@ -50,11 +25,10 @@ const MultipleStudentForm = () => {
     const [isSessionSelected, setIsSessionSelected] = useState(false);
     const [isSemesterSelect, setIsSemesterSelect] = useState(false);
     const [isCourseSelect, setIsCourseSelect] = useState(false);
+    const [sessionData, setSessionData] = useState([]);
     const [courseData, setCourseData] = useState([]);
-    const studentList = [
-        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-        21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
-    ];
+    const [studentData, setStudentData] = useState([]);
+    const studentList = [1, 2];
 
     const deptWatch = watch("department");
     const sessionWatch = watch("session");
