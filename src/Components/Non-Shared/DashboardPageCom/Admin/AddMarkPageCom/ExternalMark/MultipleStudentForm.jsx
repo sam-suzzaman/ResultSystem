@@ -36,24 +36,6 @@ const MultipleStudentForm = () => {
     const courseWatch = watch("course");
 
     const isGoToThirdExaminer = (firstExaminerNumber, secondExaminerNumber) => {
-        // if (
-        //     firstExaminerNumber === undefined ||
-        //     secondExaminerNumber == undefined
-        // ) {
-        //     // console.log("if block");
-        //     firstExaminerNumber = Number(firstExaminerNumber);
-        //     secondExaminerNumber = Number(secondExaminerNumber);
-        //     const difference = Math.abs(
-        //         firstExaminerNumber - secondExaminerNumber
-        //     );
-        //     if (difference >= 12) {
-        //         return [true, difference];
-        //     }
-        //     return [false, difference];
-        // } else {
-        //     // console.log("else block");
-        //     return [false, "not available"];
-        // }
         if (
             firstExaminerNumber === undefined ||
             secondExaminerNumber === undefined ||
@@ -411,7 +393,7 @@ const MultipleStudentForm = () => {
                                                 {...register(
                                                     `resultList.${index}.thirdExaminer`
                                                 )}
-                                                readOnly={dif[0]}
+                                                readOnly={!dif[0]}
                                                 disabled={!isCourseSelect}
                                             />
                                         </React.Fragment>
