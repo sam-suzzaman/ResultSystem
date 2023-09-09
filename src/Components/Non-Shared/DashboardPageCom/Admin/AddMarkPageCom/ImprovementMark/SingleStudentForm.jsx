@@ -422,7 +422,11 @@ const SingleStudentForm = () => {
                             </span>
                         </span>
                     </div>
-                    <div className="form-control w-full">
+                    <div
+                        className={`form-control w-full ${
+                            !markDifference[0] ? "hidden" : "block"
+                        }`}
+                    >
                         <label className="label">
                             <span className="label-text">
                                 Third Examiner's Mark
@@ -432,7 +436,6 @@ const SingleStudentForm = () => {
                             type="text"
                             placeholder="Type here"
                             className="input input-bordered w-full rounded-sm"
-                            disabled={!markDifference[0]}
                             {...register("thirdExaminer", {
                                 max: {
                                     value: 60,
