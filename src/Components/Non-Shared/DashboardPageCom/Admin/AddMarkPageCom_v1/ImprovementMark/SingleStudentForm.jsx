@@ -8,48 +8,41 @@ import {
     departments,
     semesters,
 } from "../../../../../../utils/AddMarkFieldsData";
-import { useMutation } from "react-query";
 import { toast } from "react-toastify";
+import { useMutation } from "react-query";
+
+const sessions = [
+    { _id: 1, session: "2017-18" },
+    { _id: 2, session: "2018-19" },
+    { _id: 3, session: "2019-20" },
+    { _id: 4, session: "2020-21" },
+];
 
 const SingleStudentForm = () => {
-    const [isDeptSelected, setIsDeptSelected] = useState(false);
-    const [isSessionSelected, setIsSessionSelected] = useState(false);
-    const [isSemesterSelect, setIsSemesterSelect] = useState(false);
-    const [isCourseSelect, setIsCourseSelect] = useState(false);
-    const [isRollSelect, setIsRollSelect] = useState(false);
-    const [sessionData, setSessionData] = useState([]);
-    const [courseData, setCourseData] = useState([]);
-    const [internalResult, setInternalResult] = useState();
-
     const {
         register,
         handleSubmit,
         watch,
         reset,
         formState: { errors },
-    } = useForm({
-        defaultValues: {
-            attendance: "",
-            lastName: "",
-        },
-        defaultValues: {
-            attendance: internalResult?.attendance,
-        }, // will get updated once values returns
-    });
-    // console.log(internalResult?.midOne);
+    } = useForm();
+    const [isDeptSelected, setIsDeptSelected] = useState(false);
+    const [isSessionSelected, setIsSessionSelected] = useState(false);
+    const [isSemesterSelect, setIsSemesterSelect] = useState(false);
+    const [isCourseSelect, setIsCourseSelect] = useState(false);
+    const [sessionData, setSessionData] = useState([]);
+    const [courseData, setCourseData] = useState([]);
 
     const deptWatch = watch("department");
     const sessionWatch = watch("session");
     const semesterWatch = watch("semester");
     const courseWatch = watch("course");
-    const rollWatch = watch("roll");
 
-    const addSingleInternalMarkMutation = useMutation({
+    const addSingleImproveMarkMutation = useMutation({
         mutationFn: updateHandler,
         onSuccess: (data, variable, context) => {
             toast.success("Mark Submitted");
             reset();
-            setInternalResult({});
         },
         onError: (error, variables, context) => {
             console.log(error);
@@ -98,52 +91,36 @@ const SingleStudentForm = () => {
         }
     }, [courseWatch]);
 
-    useEffect(() => {
-        if (rollWatch && rollWatch !== "" && rollWatch.length == 8) {
-            setIsRollSelect(true);
-            const url = `https://student-management-delta.vercel.app/mark/${deptWatch}/${semesterWatch}/${courseWatch}/${rollWatch}`;
-            getAllHandler(url)
-                .then((res) => setInternalResult(res))
-                .catch((err) => console.log(err));
-        } else {
-            setIsRollSelect(false);
-            setInternalResult({});
-        }
-    }, [rollWatch]);
-
     const onSubmit = (data) => {
-        console.log(data);
         const {
             department,
             semester,
             roll,
             course,
-            attendance,
-            midOne,
-            midTwo,
-            presentationOrAssignment,
+            firstExaminer,
+            secondExaminer,
+            thirdExaminer,
         } = data;
         const result = {
             department,
             semester,
             roll,
             courseId: course,
-            attendance,
-            midOne,
-            midTwo,
-            presentationOrAssignment,
+            firstExaminer,
+            secondExaminer,
+            thirdExaminer: thirdExaminer || 0,
         };
 
-        addSingleInternalMarkMutation.mutate({
+        addSingleImproveMarkMutation.mutate({
             body: result,
-            url: "https://student-management-delta.vercel.app/mark/internal/single",
+            url: "https://student-management-delta.vercel.app/mark/improve/single",
         });
     };
 
     return (
-        <div>
-            <form className="" onSubmit={handleSubmit(onSubmit)}>
-                <div className="grid grid-cols-4 gap-4">
+        <div className="">
+            <form action="" className="" onSubmit={handleSubmit(onSubmit)}>
+                <div className="grid grid-cols-3 gap-6">
                     <div className="form-control w-full">
                         <label className="label">
                             <span className="label-text">Department</span>
@@ -163,7 +140,7 @@ const SingleStudentForm = () => {
                             defaultValue="default"
                         >
                             <option disabled value="default">
-                                Select Department
+                                Select A Department
                             </option>
                             {departments.map((dept) => {
                                 return (
@@ -179,7 +156,6 @@ const SingleStudentForm = () => {
                             </span>
                         )}
                     </div>
-
                     <div className="form-control w-full">
                         <label className="label">
                             <span className="label-text">Session</span>
@@ -204,7 +180,7 @@ const SingleStudentForm = () => {
                             defaultValue="default"
                         >
                             <option disabled value="default">
-                                Select Session
+                                Select A Session
                             </option>
                             {sessionData?.map((session) => {
                                 return (
@@ -223,7 +199,6 @@ const SingleStudentForm = () => {
                             </span>
                         )}
                     </div>
-
                     <div className="form-control w-full">
                         <label className="label">
                             <span className="label-text">Semester</span>
@@ -248,7 +223,7 @@ const SingleStudentForm = () => {
                             defaultValue="default"
                         >
                             <option disabled value="default">
-                                Select Semester
+                                Select A Semester
                             </option>
                             {semesters.map((semester) => {
                                 return (
@@ -267,7 +242,6 @@ const SingleStudentForm = () => {
                             </span>
                         )}
                     </div>
-
                     <div className="form-control w-full">
                         <label className="label">
                             <span className="label-text">Course</span>
@@ -292,7 +266,7 @@ const SingleStudentForm = () => {
                             defaultValue="default"
                         >
                             <option disabled value="default">
-                                Select Course
+                                Select A Course
                             </option>
 
                             {courseData?.length === 0 ? (
@@ -323,7 +297,6 @@ const SingleStudentForm = () => {
                             </span>
                         )}
                     </div>
-
                     <div className="form-control w-full">
                         <label className="label">
                             <span className="label-text">Student Roll</span>
@@ -346,117 +319,21 @@ const SingleStudentForm = () => {
                             </span>
                         )}
                     </div>
-
-                    <div className="form-control w-full">
-                        <label className="label">
-                            <span className="label-text">Attendance Mark</span>
-                        </label>
-                        <input
-                            type="text"
-                            placeholder="Type here"
-                            className="input input-bordered w-full rounded-sm"
-                            readOnly={!isRollSelect}
-                            {...register("attendance", {
-                                max: {
-                                    value: 10,
-                                    message: "Max (10) marks",
-                                },
-                                min: {
-                                    value: 0,
-                                    message: "At least 0 (not negative)",
-                                },
-                                required: {
-                                    value: true,
-                                    message: "Mark is Required",
-                                },
-                            })}
-                        />
-                        {errors?.attendance && (
-                            <span className=" mt-1 label-text-alt text-xs font-normal capitalize text-red-700">
-                                {errors.attendance?.message}
-                            </span>
-                        )}
-                    </div>
-
-                    <div className="form-control w-full">
-                        <label className="label">
-                            <span className="label-text">Midterm-1 Mark</span>
-                        </label>
-                        <input
-                            type="text"
-                            placeholder="Type here"
-                            className="input input-bordered w-full rounded-sm"
-                            disabled={!isRollSelect}
-                            {...register("midOne", {
-                                max: {
-                                    value: 10,
-                                    message: "Max (10) marks",
-                                },
-                                min: {
-                                    value: 0,
-                                    message: "At least 0 (not negative)",
-                                },
-                                required: {
-                                    value: true,
-                                    message: "Mark is Required",
-                                },
-                            })}
-                            defaultValue={internalResult?.midOne || ""}
-                        />
-                        {errors?.midOne && (
-                            <span className=" mt-1 label-text-alt text-xs font-normal capitalize text-red-700">
-                                {errors.midOne?.message}
-                            </span>
-                        )}
-                    </div>
-
-                    <div className="form-control w-full">
-                        <label className="label">
-                            <span className="label-text">Midterm-2 Mark</span>
-                        </label>
-                        <input
-                            type="text"
-                            placeholder="Type here"
-                            className="input input-bordered w-full rounded-sm"
-                            disabled={!isRollSelect}
-                            {...register("midTwo", {
-                                max: {
-                                    value: 10,
-                                    message: "Max (10) marks",
-                                },
-                                min: {
-                                    value: 0,
-                                    message: "At least 0 (not negative)",
-                                },
-                                required: {
-                                    value: true,
-                                    message: "Mark is Required",
-                                },
-                            })}
-                            defaultValue={internalResult?.midTwo || ""}
-                        />
-                        {errors?.midTwo && (
-                            <span className=" mt-1 label-text-alt text-xs font-normal capitalize text-red-700">
-                                {errors.midTwo?.message}
-                            </span>
-                        )}
-                    </div>
-
                     <div className="form-control w-full">
                         <label className="label">
                             <span className="label-text">
-                                Assignment/Presentation Mark
+                                First Examiner's Mark
                             </span>
                         </label>
                         <input
                             type="text"
                             placeholder="Type here"
                             className="input input-bordered w-full rounded-sm"
-                            disabled={!isRollSelect}
-                            {...register("presentationOrAssignment", {
+                            disabled={!isCourseSelect}
+                            {...register("firstExaminer", {
                                 max: {
-                                    value: 10,
-                                    message: "Max (10) marks",
+                                    value: 60,
+                                    message: "Max (60) marks",
                                 },
                                 min: {
                                     value: 0,
@@ -467,18 +344,75 @@ const SingleStudentForm = () => {
                                     message: "Mark is Required",
                                 },
                             })}
-                            defaultValue={
-                                internalResult?.presentationOrAssignment || ""
-                            }
                         />
-                        {errors?.presentationOrAssignment && (
+                        {errors?.firstExaminer && (
                             <span className=" mt-1 label-text-alt text-xs font-normal capitalize text-red-700">
-                                {errors.presentationOrAssignment?.message}
+                                {errors.firstExaminer?.message}
+                            </span>
+                        )}
+                    </div>
+                    <div className="form-control w-full">
+                        <label className="label">
+                            <span className="label-text">
+                                Second Examiner's Mark
+                            </span>
+                        </label>
+                        <input
+                            type="text"
+                            placeholder="Type here"
+                            className="input input-bordered w-full rounded-sm"
+                            disabled={!isCourseSelect}
+                            {...register("secondExaminer", {
+                                max: {
+                                    value: 60,
+                                    message: "Max (60) marks",
+                                },
+                                min: {
+                                    value: 0,
+                                    message: "At least 0 (not negative)",
+                                },
+                                required: {
+                                    value: true,
+                                    message: "Mark is Required",
+                                },
+                            })}
+                        />
+                        {errors?.secondExaminer && (
+                            <span className=" mt-1 label-text-alt text-xs font-normal capitalize text-red-700">
+                                {errors.secondExaminer?.message}
+                            </span>
+                        )}
+                    </div>
+                    <div className="form-control w-full">
+                        <label className="label">
+                            <span className="label-text">
+                                Third Examiner's Mark
+                            </span>
+                        </label>
+                        <input
+                            type="text"
+                            placeholder="Type here"
+                            className="input input-bordered w-full rounded-sm"
+                            disabled={!isCourseSelect}
+                            {...register("thirdExaminer", {
+                                max: {
+                                    value: 60,
+                                    message: "Max (60) marks",
+                                },
+                                min: {
+                                    value: 0,
+                                    message: "At least 0 (not negative)",
+                                },
+                            })}
+                        />
+                        {errors?.thirdExaminer && (
+                            <span className=" mt-1 label-text-alt text-xs font-normal capitalize text-red-700">
+                                {errors.thirdExaminer?.message}
                             </span>
                         )}
                     </div>
                 </div>
-                <div className="flex justify-center mt-3">
+                <div className="flex justify-center mt-6">
                     <button className="btn btn-sm bg-[#338543] hover:bg-[#2e763c] rounded-sm text-white font-normal text-sm">
                         submit mark
                     </button>
