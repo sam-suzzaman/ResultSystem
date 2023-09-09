@@ -19,7 +19,7 @@ const SingleStudentForm = () => {
     const [isRollSelect, setIsRollSelect] = useState(false);
     const [sessionData, setSessionData] = useState([]);
     const [courseData, setCourseData] = useState([]);
-    const [internalResult, setInternalResult] = useState();
+    const [internalResult, setInternalResult] = useState({});
 
     const {
         register,
@@ -27,16 +27,8 @@ const SingleStudentForm = () => {
         watch,
         reset,
         formState: { errors },
-    } = useForm({
-        defaultValues: {
-            attendance: "",
-            lastName: "",
-        },
-        defaultValues: {
-            attendance: internalResult?.attendance,
-        }, // will get updated once values returns
-    });
-    // console.log(internalResult?.midOne);
+        setValue,
+    } = useForm();
 
     const deptWatch = watch("department");
     const sessionWatch = watch("session");
@@ -111,6 +103,32 @@ const SingleStudentForm = () => {
         }
     }, [rollWatch]);
 
+    useEffect(() => {
+        if (internalResult?.attendance) {
+            setValue("attendance", internalResult?.attendance);
+        } else {
+            setValue("attendance", "");
+        }
+        if (internalResult?.midOne) {
+            setValue("midOne", internalResult?.midOne);
+        } else {
+            setValue("midOne", "");
+        }
+        if (internalResult?.midTwo) {
+            setValue("midTwo", internalResult?.midTwo);
+        } else {
+            setValue("midTwo", "");
+        }
+        if (internalResult?.presentationOrAssignment) {
+            setValue(
+                "presentationOrAssignment",
+                internalResult?.presentationOrAssignment
+            );
+        } else {
+            setValue("presentationOrAssignment", "");
+        }
+    }, [internalResult]);
+
     const onSubmit = (data) => {
         console.log(data);
         const {
@@ -142,7 +160,12 @@ const SingleStudentForm = () => {
 
     return (
         <div>
-            <form className="" onSubmit={handleSubmit(onSubmit)}>
+            <form
+                className=""
+                onSubmit={handleSubmit(onSubmit)}
+                autoComplete="off"
+                noValidate
+            >
                 <div className="grid grid-cols-4 gap-4">
                     <div className="form-control w-full">
                         <label className="label">
@@ -355,7 +378,7 @@ const SingleStudentForm = () => {
                             type="text"
                             placeholder="Type here"
                             className="input input-bordered w-full rounded-sm"
-                            readOnly={!isRollSelect}
+                            disabled={!isRollSelect}
                             {...register("attendance", {
                                 max: {
                                     value: 10,
@@ -401,7 +424,6 @@ const SingleStudentForm = () => {
                                     message: "Mark is Required",
                                 },
                             })}
-                            defaultValue={internalResult?.midOne || ""}
                         />
                         {errors?.midOne && (
                             <span className=" mt-1 label-text-alt text-xs font-normal capitalize text-red-700">
@@ -433,7 +455,6 @@ const SingleStudentForm = () => {
                                     message: "Mark is Required",
                                 },
                             })}
-                            defaultValue={internalResult?.midTwo || ""}
                         />
                         {errors?.midTwo && (
                             <span className=" mt-1 label-text-alt text-xs font-normal capitalize text-red-700">
@@ -467,9 +488,6 @@ const SingleStudentForm = () => {
                                     message: "Mark is Required",
                                 },
                             })}
-                            defaultValue={
-                                internalResult?.presentationOrAssignment || ""
-                            }
                         />
                         {errors?.presentationOrAssignment && (
                             <span className=" mt-1 label-text-alt text-xs font-normal capitalize text-red-700">

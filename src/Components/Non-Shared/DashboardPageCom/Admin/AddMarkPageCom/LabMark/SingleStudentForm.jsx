@@ -11,13 +11,6 @@ import {
 import { useMutation } from "react-query";
 import { toast } from "react-toastify";
 
-const sessions = [
-    { _id: 1, session: "2017-18" },
-    { _id: 2, session: "2018-19" },
-    { _id: 3, session: "2019-20" },
-    { _id: 4, session: "2020-21" },
-];
-
 const SingleStudentForm = () => {
     const {
         register,
@@ -25,19 +18,23 @@ const SingleStudentForm = () => {
         watch,
         reset,
         formState: { errors },
+        setValue,
     } = useForm();
 
     const [isDeptSelected, setIsDeptSelected] = useState(false);
     const [isSessionSelected, setIsSessionSelected] = useState(false);
     const [isSemesterSelect, setIsSemesterSelect] = useState(false);
     const [isCourseSelect, setIsCourseSelect] = useState(false);
+    const [isRollSelect, setIsRollSelect] = useState(false);
     const [sessionData, setSessionData] = useState([]);
     const [courseData, setCourseData] = useState([]);
+    const [internalResult, setInternalResult] = useState({});
 
     const deptWatch = watch("department");
     const sessionWatch = watch("session");
     const semesterWatch = watch("semester");
     const courseWatch = watch("course");
+    const rollWatch = watch("roll");
 
     const addSingleLabMarkMutation = useMutation({
         mutationFn: updateHandler,
@@ -92,6 +89,27 @@ const SingleStudentForm = () => {
         }
     }, [courseWatch]);
 
+    useEffect(() => {
+        if (internalResult?.labTotal) {
+            setValue("labTotal", internalResult?.labTotal);
+        } else {
+            setValue("labTotal", "");
+        }
+    }, [internalResult]);
+
+    useEffect(() => {
+        if (rollWatch && rollWatch !== "" && rollWatch.length == 8) {
+            setIsRollSelect(true);
+            const url = `https://student-management-delta.vercel.app/mark/${deptWatch}/${semesterWatch}/${courseWatch}/${rollWatch}`;
+            getAllHandler(url)
+                .then((res) => setInternalResult(res))
+                .catch((err) => console.log(err));
+        } else {
+            setIsRollSelect(false);
+            setInternalResult({});
+        }
+    }, [rollWatch]);
+
     const onSubmit = (data) => {
         const { department, session, semester, roll, course, labTotal } = data;
         const result = {
@@ -106,10 +124,15 @@ const SingleStudentForm = () => {
             url: "https://student-management-delta.vercel.app/mark/lab/single",
         });
     };
-
+    console.log(internalResult);
     return (
         <div className="">
-            <form action="" className="" onSubmit={handleSubmit(onSubmit)}>
+            <form
+                autoComplete="off"
+                noValidate
+                className=""
+                onSubmit={handleSubmit(onSubmit)}
+            >
                 <div className="grid grid-cols-3 gap-6">
                     <div className="form-control w-full">
                         <label className="label">
