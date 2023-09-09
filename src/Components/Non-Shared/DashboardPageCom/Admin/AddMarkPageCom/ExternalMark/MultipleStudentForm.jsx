@@ -384,17 +384,17 @@ const MultipleStudentForm = () => {
                                                 )}
                                                 readOnly={!isCourseSelect}
                                             />
-                                            <span className="text-xs font-medium capitalize text-center ">
+                                            <span className="text-xs font-medium capitalize text-center text-red-700">
                                                 {dif[1]}
                                             </span>
                                             <input
                                                 type="text"
+                                                className="disabled:cursor-not-allowed"
                                                 placeholder=""
                                                 {...register(
                                                     `resultList.${index}.thirdExaminer`
                                                 )}
-                                                readOnly={!dif[0]}
-                                                disabled={!isCourseSelect}
+                                                disabled={!dif[0]}
                                             />
                                         </React.Fragment>
                                     );
