@@ -389,7 +389,11 @@ const MultipleStudentForm = () => {
                                             </span>
                                             <input
                                                 type="text"
-                                                className="disabled:cursor-not-allowed"
+                                                className={`disabled:cursor-not-allowed ${
+                                                    !dif[0]
+                                                        ? "invisible"
+                                                        : "visible"
+                                                }`}
                                                 placeholder=""
                                                 {...register(
                                                     `resultList.${index}.thirdExaminer`
