@@ -32,17 +32,43 @@ const SingleStudentForm = () => {
     const [isCourseSelect, setIsCourseSelect] = useState(false);
     const [sessionData, setSessionData] = useState([]);
     const [courseData, setCourseData] = useState([]);
+    const [markDifference, setMarkDifference] = useState(0);
 
     const deptWatch = watch("department");
     const sessionWatch = watch("session");
     const semesterWatch = watch("semester");
     const courseWatch = watch("course");
+    const firstExaminerWatch = watch("firstExaminer");
+    const secondExaminerWatch = watch("secondExaminer");
+
+    const isGoToThirdExaminer = (firstExaminerNumber, secondExaminerNumber) => {
+        if (
+            firstExaminerNumber === undefined ||
+            secondExaminerNumber === undefined ||
+            firstExaminerNumber === "" ||
+            secondExaminerNumber === ""
+        ) {
+            setMarkDifference([false, "not available"]);
+        } else {
+            firstExaminerNumber = Number(firstExaminerNumber);
+            secondExaminerNumber = Number(secondExaminerNumber);
+            const difference = Math.abs(
+                firstExaminerNumber - secondExaminerNumber
+            );
+            if (difference >= 12) {
+                setMarkDifference([true, difference]);
+            } else {
+                setMarkDifference([false, difference]);
+            }
+        }
+    };
 
     const addSingleImproveMarkMutation = useMutation({
         mutationFn: updateHandler,
         onSuccess: (data, variable, context) => {
             toast.success("Mark Submitted");
             reset();
+            setMarkDifference([false, "not available"]);
         },
         onError: (error, variables, context) => {
             console.log(error);
@@ -91,6 +117,10 @@ const SingleStudentForm = () => {
         }
     }, [courseWatch]);
 
+    useEffect(() => {
+        isGoToThirdExaminer(firstExaminerWatch, secondExaminerWatch);
+    }, [firstExaminerWatch, secondExaminerWatch]);
+
     const onSubmit = (data) => {
         const {
             department,
@@ -120,7 +150,7 @@ const SingleStudentForm = () => {
     return (
         <div className="">
             <form action="" className="" onSubmit={handleSubmit(onSubmit)}>
-                <div className="grid grid-cols-3 gap-6">
+                <div className="grid grid-cols-4 gap-6">
                     <div className="form-control w-full">
                         <label className="label">
                             <span className="label-text">Department</span>
@@ -383,6 +413,15 @@ const SingleStudentForm = () => {
                             </span>
                         )}
                     </div>
+                    <div className="w-full flex items-center">
+                        <span className="text-sm font-medium">
+                            Mark Difference:
+                            <br />
+                            <span className="text-red-700 text-base">
+                                {markDifference[1]}
+                            </span>
+                        </span>
+                    </div>
                     <div className="form-control w-full">
                         <label className="label">
                             <span className="label-text">
@@ -393,7 +432,7 @@ const SingleStudentForm = () => {
                             type="text"
                             placeholder="Type here"
                             className="input input-bordered w-full rounded-sm"
-                            disabled={!isCourseSelect}
+                            disabled={!markDifference[0]}
                             {...register("thirdExaminer", {
                                 max: {
                                     value: 60,
