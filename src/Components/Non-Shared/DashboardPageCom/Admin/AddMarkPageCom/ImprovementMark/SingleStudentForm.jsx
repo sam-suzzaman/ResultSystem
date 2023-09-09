@@ -457,7 +457,9 @@ const SingleStudentForm = () => {
                     </div>
                     <div
                         className={`form-control w-full ${
-                            !markDifference[0] ? "hidden" : "block"
+                            internalResult?.thirdExaminer || markDifference[0]
+                                ? "block"
+                                : "hidden"
                         }`}
                     >
                         <label className="label">
