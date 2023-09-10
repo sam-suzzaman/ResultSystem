@@ -14,6 +14,7 @@ import StudentListPage from "../Pages/DashboardPages/Admin/StudentListPage/Stude
 import SessionListPage from "../Pages/DashboardPages/Admin/SessionListPage/SessionListPage";
 import SingleSessionPage from "../Pages/DashboardPages/Admin/SingleSessionPage/SingleSessionPage";
 import AddMarkPage from "../Pages/DashboardPages/Admin/AddMarkPage/AddMarkPage";
+import AddMarkPageTwo from "../Pages/DashboardPages/Admin/AddMarkPageTwo/AddMarkPage";
 import InternalMarkAddPage from "../Pages/DashboardPages/Admin/AddMarkPage/InternalMarkAddPage";
 import ExternalMarkAddPage from "../Pages/DashboardPages/Admin/AddMarkPage/ExternalMarkAddPage";
 import LabMarkAddPage from "../Pages/DashboardPages/Admin/AddMarkPage/LabMarkAddPage";
@@ -96,7 +97,7 @@ const Routers = createBrowserRouter([
                     },
                     {
                         path: "/dashboard/admin/session-list/:session/:semester/add-mark/:courseCode",
-                        element: <AddMarkPage></AddMarkPage>,
+                        element: <AddMarkPageTwo></AddMarkPageTwo>,
                     },
                 ],
             },
