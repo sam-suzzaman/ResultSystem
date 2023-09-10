@@ -26,7 +26,7 @@ const ImprovementMarkAddPage = () => {
                                 </span>
                             </div>
                         </Tab>
-                        <Tab>
+                        {/* <Tab>
                             <div className="flex justify-center items-center">
                                 <span className=" font-bold text-lg">
                                     <AiOutlineUsergroupAdd />
@@ -35,7 +35,7 @@ const ImprovementMarkAddPage = () => {
                                     Multiple students
                                 </span>
                             </div>
-                        </Tab>
+                        </Tab> */}
                     </TabList>
 
                     {/* Single Student Tab Content */}
@@ -44,9 +44,9 @@ const ImprovementMarkAddPage = () => {
                     </TabPanel>
 
                     {/* Multiple Students Tab Content */}
-                    <TabPanel>
+                    {/* <TabPanel>
                         <MultipleStudentForm />
-                    </TabPanel>
+                    </TabPanel> */}
                 </Tabs>
             </div>
         </section>

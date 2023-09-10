@@ -205,7 +205,7 @@ const SingleStudentForm = () => {
                             defaultValue="default"
                         >
                             <option disabled value="default">
-                                Select A Department
+                                Select Department
                             </option>
                             {departments.map((dept) => {
                                 return (
@@ -245,7 +245,7 @@ const SingleStudentForm = () => {
                             defaultValue="default"
                         >
                             <option disabled value="default">
-                                Select A Session
+                                Select Session
                             </option>
                             {sessionData?.map((session) => {
                                 return (
@@ -288,7 +288,7 @@ const SingleStudentForm = () => {
                             defaultValue="default"
                         >
                             <option disabled value="default">
-                                Select A Semester
+                                Select Semester
                             </option>
                             {semesters.map((semester) => {
                                 return (
@@ -331,7 +331,7 @@ const SingleStudentForm = () => {
                             defaultValue="default"
                         >
                             <option disabled value="default">
-                                Select A Course
+                                Select Course
                             </option>
 
                             {courseData?.length === 0 ? (
