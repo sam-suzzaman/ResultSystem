@@ -3,7 +3,6 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import SingleStudentForm from "../../../../Components/Non-Shared/DashboardPageCom/Admin/AddMarkPageCom/InternalMark/SingleStudentForm";
 import MultipleStudentForm from "../../../../Components/Non-Shared/DashboardPageCom/Admin/AddMarkPageCom/InternalMark/MultipleStudentForm";
-import { InternalMarkContextProvider } from "../../../../context/Admin/InternalMarkContext";
 
 const InternalMarkAddPage = () => {
     return (
@@ -47,9 +46,7 @@ const InternalMarkAddPage = () => {
 
                         {/* Multiple Students Tab Content */}
                         <TabPanel>
-                            <InternalMarkContextProvider>
-                                <MultipleStudentForm />
-                            </InternalMarkContextProvider>
+                            <MultipleStudentForm />
                         </TabPanel>
                     </Tabs>
                 </div>

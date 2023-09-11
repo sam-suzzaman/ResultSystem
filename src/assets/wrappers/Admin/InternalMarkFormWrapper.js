@@ -1,11 +1,6 @@
 import styled from "styled-components";
 
 const Wrapper = styled.section`
-    .form {
-        display: grid;
-        grid-template-columns: minmax(auto, 400px) 1fr;
-        grid-column-gap: 0.75vw;
-    }
     .mark_input_form_wrapper {
         width: 100%;
         max-height: 40vh;
@@ -32,11 +27,11 @@ const Wrapper = styled.section`
     .mark_input_form_container {
         width: 100%;
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(6, 1fr);
         justify-content: space-between;
         align-items: center;
-        grid-row-gap: 10px;
-        grid-column-gap: 4px;
+        grid-row-gap: 13px;
+        grid-column-gap: 2px;
     }
     .mark_input_form_container {
         -ms-overflow-style: none; /* IE and Edge */
@@ -48,7 +43,7 @@ const Wrapper = styled.section`
     }
 
     /* Target the first row */
-    .mark_input_form_container > *:nth-child(-n + 5) {
+    .mark_input_form_container > *:nth-child(-n + 6) {
         background-color: rgb(235, 235, 235);
         position: sticky;
         top: 0;
@@ -71,7 +66,7 @@ const Wrapper = styled.section`
 
     .mark_input_form_container input {
         width: 100%;
-        /* max-width: 50%; */
+        max-width: 50px;
         height: 22px;
         box-shadow: 0px 0px 0px 0.2px;
         border: none;
@@ -83,8 +78,9 @@ const Wrapper = styled.section`
         margin: 0 auto;
         padding: 4px 4px;
     }
-    .mark_input_form_container input.idField {
-        min-width: 80px;
+    .mark_input_form_container input.roll-field,
+    input.total-field {
+        min-width: fit-content;
         font-size: 11px;
         border: none;
         outline: none;
