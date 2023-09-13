@@ -1,11 +1,6 @@
 import styled from "styled-components";
 
 const Wrapper = styled.section`
-    .form {
-        display: grid;
-        grid-template-columns: minmax(auto, 400px) 1fr;
-        grid-column-gap: 0.75vw;
-    }
     .external_multiple_mark_wrapper {
         width: 100%;
         max-height: 40vh;
@@ -32,7 +27,7 @@ const Wrapper = styled.section`
     .external_multiple_mark_container {
         width: 100%;
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(5, 1fr);
         justify-content: space-between;
         align-items: center;
         grid-row-gap: 10px;
@@ -48,7 +43,7 @@ const Wrapper = styled.section`
 } */
 
     /* Target the first row */
-    .external_multiple_mark_container > *:nth-child(-n + 4) {
+    .external_multiple_mark_container > *:nth-child(-n + 5) {
         background-color: rgb(235, 235, 235);
         position: sticky;
         top: 0;

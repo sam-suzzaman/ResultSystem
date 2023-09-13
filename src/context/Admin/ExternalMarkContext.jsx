@@ -2,12 +2,12 @@ import { useState } from "react";
 import { useContext } from "react";
 import { createContext } from "react";
 
-const internalMarkContext = createContext();
-const InternalMarkContextProvider = ({ children }) => {
+const externalMarkContext = createContext();
+const ExternalMarkContextProvider = ({ children }) => {
     const [stepValue, setStepValue] = useState(1);
     const [stepOneValue, setStepOneValue] = useState({});
     const [stepTwoValue, setStepTwovalue] = useState([]);
-    const [internalMark, setInternalMark] = useState({});
+    const [externalMark, setExternalMark] = useState({});
     const [selectedCourse, setSelectedCourse] = useState({});
 
     // Passing Values
@@ -18,18 +18,18 @@ const InternalMarkContextProvider = ({ children }) => {
         setStepOneValue,
         stepTwoValue,
         setStepTwovalue,
-        internalMark,
-        setInternalMark,
+        externalMark,
+        setExternalMark,
         selectedCourse,
         setSelectedCourse,
     };
     return (
-        <internalMarkContext.Provider value={values}>
+        <externalMarkContext.Provider value={values}>
             {children}
-        </internalMarkContext.Provider>
+        </externalMarkContext.Provider>
     );
 };
 
-const useInternalContext = () => useContext(internalMarkContext);
+const useExternalContext = () => useContext(externalMarkContext);
 
-export { InternalMarkContextProvider, useInternalContext };
+export { ExternalMarkContextProvider, useExternalContext };

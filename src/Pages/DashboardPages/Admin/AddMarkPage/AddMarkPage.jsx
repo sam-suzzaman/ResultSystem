@@ -22,7 +22,7 @@ const AddMarkPage = () => {
                     </Link>
                     <Link to="/dashboard/admin/add-mark/external">
                         <div className="mark-card">
-                            <h3 className="">external</h3>
+                            <h3 className="">semester final</h3>
                         </div>
                     </Link>
                     <Link to="/dashboard/admin/add-mark/lab">

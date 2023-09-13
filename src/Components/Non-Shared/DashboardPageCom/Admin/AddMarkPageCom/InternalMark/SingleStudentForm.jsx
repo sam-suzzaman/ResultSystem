@@ -160,6 +160,15 @@ const SingleStudentForm = () => {
 
     return (
         <div>
+            <div className="mb-4">
+                <h2 className="text-xl text-center font-bold uppercase ">
+                    add mark
+                </h2>
+                <h4 className="text-sm font-medium text-center uppercase mt-1">
+                    internal
+                </h4>
+            </div>
+
             <form
                 className=""
                 onSubmit={handleSubmit(onSubmit)}

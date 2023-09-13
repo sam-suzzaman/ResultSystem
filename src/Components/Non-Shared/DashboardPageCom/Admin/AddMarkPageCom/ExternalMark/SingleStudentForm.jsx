@@ -179,6 +179,14 @@ const SingleStudentForm = () => {
 
     return (
         <div className="">
+            <div className="mb-6">
+                <h2 className="text-xl text-center font-bold uppercase ">
+                    add mark
+                </h2>
+                <h4 className="text-sm font-medium text-center uppercase mt-1">
+                    semester final
+                </h4>
+            </div>
             <form
                 autoComplete="off"
                 noValidate

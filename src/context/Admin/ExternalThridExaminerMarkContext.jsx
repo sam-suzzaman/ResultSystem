@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useContext } from "react";
 import { createContext } from "react";
 
-const internalMarkContext = createContext();
-const InternalMarkContextProvider = ({ children }) => {
+const externalThirdMarkContext = createContext();
+const ExternalThirdExamierMarkContextProvider = ({ children }) => {
     const [stepValue, setStepValue] = useState(1);
     const [stepOneValue, setStepOneValue] = useState({});
     const [stepTwoValue, setStepTwovalue] = useState([]);
@@ -24,12 +24,16 @@ const InternalMarkContextProvider = ({ children }) => {
         setSelectedCourse,
     };
     return (
-        <internalMarkContext.Provider value={values}>
+        <externalThirdMarkContext.Provider value={values}>
             {children}
-        </internalMarkContext.Provider>
+        </externalThirdMarkContext.Provider>
     );
 };
 
-const useInternalContext = () => useContext(internalMarkContext);
+const useExternalThirdExaminerContext = () =>
+    useContext(externalThirdMarkContext);
 
-export { InternalMarkContextProvider, useInternalContext };
+export {
+    ExternalThirdExamierMarkContextProvider,
+    useExternalThirdExaminerContext,
+};

@@ -9,13 +9,13 @@ const InternalMarkAddPage = () => {
     return (
         <>
             <section className="">
-                <h2 className="text-xl text-center font-bold uppercase mt-2">
+                {/* <h2 className="text-xl text-center font-bold uppercase mt-2">
                     Add mark
-                </h2>
-                <h4 className="text-sm font-medium text-center uppercase mt-1">
+                </h2> */}
+                {/* <h4 className="text-sm font-medium text-center uppercase mt-1">
                     internal
-                </h4>
-                <div className="mt-8">
+                </h4> */}
+                <div className="">
                     <Tabs>
                         <TabList className="flex justify-center border-b border-[#c3c3c3]">
                             <Tab>
@@ -24,7 +24,7 @@ const InternalMarkAddPage = () => {
                                         <AiOutlineUser />
                                     </span>
                                     <span className="font-medium capitalize ml-1 text-base">
-                                        single student
+                                        single
                                     </span>
                                 </div>
                             </Tab>
@@ -34,7 +34,7 @@ const InternalMarkAddPage = () => {
                                         <AiOutlineUsergroupAdd />
                                     </span>
                                     <span className="font-medium capitalize ml-1 text-base">
-                                        Multiple students
+                                        Multiple
                                     </span>
                                 </div>
                             </Tab>
