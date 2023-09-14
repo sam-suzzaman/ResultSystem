@@ -1,17 +1,13 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useMarkFormStepContext } from "../../../../../context/Admin/MarkFormStepContext";
 import { useForm } from "react-hook-form";
-import {
-    departments,
-    semesters,
-} from "../../../../../../../utils/AddMarkFieldsData";
-import { getAllHandler } from "../../../../../../../utils/fetchHandlers";
-import { useInternalContext } from "../../../../../../../context/Admin/InternalMarkContext";
+import { departments, semesters } from "../../../../../utils/AddMarkFieldsData";
+import { getAllHandler } from "../../../../../utils/fetchHandlers";
 
-const StepOne = () => {
+const FormStepOne = ({ name }) => {
     const { setStepValue, setStepOneValue, setSelectedCourse } =
-        useInternalContext();
+        useMarkFormStepContext();
+
     const {
         register,
         handleSubmit,
@@ -23,14 +19,12 @@ const StepOne = () => {
     const [isDeptSelected, setIsDeptSelected] = useState(false);
     const [isSessionSelected, setIsSessionSelected] = useState(false);
     const [isSemesterSelect, setIsSemesterSelect] = useState(false);
-    const [isCourseSelect, setIsCourseSelect] = useState(false);
     const [sessionData, setSessionData] = useState([]);
     const [courseData, setCourseData] = useState([]);
 
     const deptWatch = watch("department");
     const sessionWatch = watch("session");
     const semesterWatch = watch("semester");
-    const courseWatch = watch("course");
 
     useEffect(() => {
         if (deptWatch && deptWatch !== "default") {
@@ -73,16 +67,16 @@ const StepOne = () => {
 
     return (
         <>
-            <div className="">
+            <div className="mb-2">
                 <h2 className="text-xl text-center font-bold uppercase ">
                     Add mark
                 </h2>
                 <h4 className="text-sm font-medium text-center uppercase mt-1">
-                    internal
+                    {name}
                 </h4>
             </div>
             <form
-                className="w-full max-w-2xl mx-auto grid grid-cols-1 items-start gap-4"
+                className="w-full max-w-lg mx-auto grid grid-cols-1 items-start gap-y-4"
                 onSubmit={handleSubmit(onSubmit)}
             >
                 <div className="form-control w-full">
@@ -261,7 +255,7 @@ const StepOne = () => {
                     )}
                 </div>
 
-                <div className="flex justify-center mt-6">
+                <div className="flex justify-center mt-3">
                     <button
                         className="btn btn-sm bg-[#3ba550] hover:bg-[#2e763c] rounded-sm text-white font-normal text-sm"
                         type="submit"
@@ -274,4 +268,4 @@ const StepOne = () => {
     );
 };
 
-export default StepOne;
+export default FormStepOne;

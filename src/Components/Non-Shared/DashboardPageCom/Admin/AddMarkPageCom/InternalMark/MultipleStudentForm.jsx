@@ -1,19 +1,17 @@
 import React from "react";
 import Wrapper from "../../../../../../assets/wrappers/Admin/InternalMarkFormWrapper";
-import { useInternalContext } from "../../../../../../context/Admin/InternalMarkContext";
-import StepOne from "./MultipleStudentFormStep/StepOne";
 import StepTwo from "./MultipleStudentFormStep/StepTwo";
+import FormStepOne from "../FormStepOne";
+import { useMarkFormStepContext } from "../../../../../../context/Admin/MarkFormStepContext";
 
 const MultipleStudentForm = () => {
-    const { stepValue } = useInternalContext();
+    const { stepValue } = useMarkFormStepContext();
 
     return (
-        <Wrapper>
-            <div>
-                {stepValue === 1 && <StepOne />}
-                {stepValue === 2 && <StepTwo />}
-            </div>
-        </Wrapper>
+        <>
+            {stepValue === 1 && <FormStepOne name="internal" />}
+            <Wrapper>{stepValue === 2 && <StepTwo />}</Wrapper>
+        </>
     );
 };
 

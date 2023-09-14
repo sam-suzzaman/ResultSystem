@@ -1,6 +1,5 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useInternalContext } from "../../../../../../../context/Admin/InternalMarkContext";
 import LoadingCom from "../../../../../../Shared/LoadingCom/LoadingCom";
 import {
     getAllHandler,
@@ -8,10 +7,11 @@ import {
 } from "../../../../../../../utils/fetchHandlers";
 import { useMutation, useQuery } from "react-query";
 import { toast } from "react-toastify";
+import { useMarkFormStepContext } from "../../../../../../../context/Admin/MarkFormStepContext";
 
 const StepTwo = () => {
-    const { setStepValue, stepOneValue, setStepTwovalue, selectedCourse } =
-        useInternalContext();
+    const { setStepValue, stepOneValue, setStepTwoValue, selectedCourse } =
+        useMarkFormStepContext();
     const {
         register,
         handleSubmit,
@@ -62,7 +62,7 @@ const StepTwo = () => {
 
     const onSubmit = (data) => {
         const { resultList } = data;
-        setStepTwovalue(resultList);
+        setStepTwoValue(resultList);
         const mergedResult = resultList.map((res) => {
             return {
                 ...res,
@@ -188,13 +188,9 @@ const StepTwo = () => {
                                         `resultList.${index}.presentationOrAssignment`
                                     )}
                                 />
-                                <input
-                                    type="text"
-                                    className=""
-                                    placeholder=""
-                                    readOnly
-                                    value={totalValue}
-                                />
+                                <span className="text-center text-xs font-medium">
+                                    {totalValue}
+                                </span>
                             </React.Fragment>
                         );
                     })}

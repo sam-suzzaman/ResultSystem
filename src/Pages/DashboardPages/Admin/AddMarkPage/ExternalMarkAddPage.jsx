@@ -6,6 +6,7 @@ import MultipleStudentForm from "../../../../Components/Non-Shared/DashboardPage
 import { ExternalMarkContextProvider } from "../../../../context/Admin/ExternalMarkContext";
 import ThirdExaminerMarkForm from "../../../../Components/Non-Shared/DashboardPageCom/Admin/AddMarkPageCom/ExternalMark/ThirdExaminerMarkForm";
 import { ExternalThirdExamierMarkContextProvider } from "../../../../context/Admin/ExternalThridExaminerMarkContext";
+import { MarkFormStepProvider } from "../../../../context/Admin/MarkFormStepContext";
 
 const ExternalMarkAddPage = () => {
     return (
@@ -53,7 +54,9 @@ const ExternalMarkAddPage = () => {
 
                     {/* Single Student Tab Content */}
                     <TabPanel className="pt-8">
-                        <SingleStudentForm />
+                        <MarkFormStepProvider>
+                            <SingleStudentForm />
+                        </MarkFormStepProvider>
                     </TabPanel>
 
                     {/* Multiple Students Tab Content */}
