@@ -175,7 +175,7 @@ const FormStepTwo = () => {
                                         {...register(
                                             `resultList.${index}.firstExaminer`
                                         )}
-                                        defaultValue={student?.firstExaminer}
+                                        value={student?.firstExaminer}
                                         readOnly
                                     />
                                     <input
@@ -184,7 +184,7 @@ const FormStepTwo = () => {
                                         {...register(
                                             `resultList.${index}.secondExaminer`
                                         )}
-                                        defaultValue={student?.secondExaminer}
+                                        value={student?.secondExaminer}
                                         readOnly
                                     />
 
