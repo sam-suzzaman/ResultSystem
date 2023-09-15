@@ -1,26 +1,26 @@
-import React from "react";
-import { useMutation, useQuery } from "react-query";
+import React, { useEffect } from "react";
+import { useMarkFormStepContext } from "../../../../../../../context/Admin/MarkFormStepContext";
 import {
     getAllHandler,
     updateHandler,
 } from "../../../../../../../utils/fetchHandlers";
-import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
-import { useExternalContext } from "../../../../../../../context/Admin/ExternalMarkContext";
 import LoadingCom from "../../../../../../Shared/LoadingCom/LoadingCom";
+import { useMutation, useQuery } from "react-query";
+import { toast } from "react-toastify";
 
-const StepTwo = () => {
-    const { setStepValue, stepOneValue, setStepTwovalue, selectedCourse } =
-        useExternalContext();
+const FormStepTwo = () => {
+    const { setStepValue, stepOneValue, setStepTwoValue, selectedCourse } =
+        useMarkFormStepContext();
 
     const {
         isLoading,
         isError,
         data: students,
         error,
-    } = useQuery("students", () =>
+    } = useQuery("studentList", () =>
         getAllHandler(
-            `https://student-management-delta.vercel.app/user/${stepOneValue.department}/${stepOneValue.session}`
+            `https://student-management-delta.vercel.app/mark/${stepOneValue.department}/${stepOneValue.semester}/${stepOneValue.course}`
         )
     );
 
@@ -29,7 +29,6 @@ const StepTwo = () => {
         handleSubmit,
         watch,
         reset,
-        control,
         setValue,
         formState: { errors },
     } = useForm();
@@ -38,11 +37,7 @@ const StepTwo = () => {
         setStepValue(1);
     };
 
-    const isGoToThirdExaminer = (
-        firstExaminerNumber,
-        secondExaminerNumber,
-        index
-    ) => {
+    const isGoToThirdExaminer = (firstExaminerNumber, secondExaminerNumber) => {
         if (
             firstExaminerNumber === undefined ||
             secondExaminerNumber === undefined ||
@@ -78,9 +73,8 @@ const StepTwo = () => {
     });
 
     const onSubmit = (data) => {
-        console.log(data);
         const { resultList } = data;
-        setStepTwovalue(resultList);
+        setStepTwoValue(resultList);
 
         const mergedResult = resultList.map((res) => {
             return {
@@ -91,23 +85,11 @@ const StepTwo = () => {
             };
         });
         const result = { marks: mergedResult };
-
-        // const { department, session, semester, course, resultList } = data;
-
-        // const mergedResult = resultList.map((res) => {
-        //     return {
-        //         ...res,
-        //         thirdExaminer: res.thirdExaminer || 0,
-        //         department,
-        //         semester,
-        //         courseId: course,
-        //     };
-        // });
-
-        // addMultipleExternalMarkMutation.mutate({
-        //     body: result,
-        //     url: "https://student-management-delta.vercel.app/mark/external/multiple",
-        // });
+        console.log(result);
+        addMultipleExternalMarkMutation.mutate({
+            body: result,
+            url: "https://student-management-delta.vercel.app/mark/external/multiple",
+        });
     };
 
     if (isLoading) {
@@ -119,7 +101,7 @@ const StepTwo = () => {
     }
 
     return (
-        <>
+        <div>
             <div className="mb-6">
                 <h3 className="capitalize text-center text-sm font-normal">
                     Jaitya kabi kazi nazrul islam university
@@ -137,7 +119,7 @@ const StepTwo = () => {
                 </div>
                 <div className="flex justify-center items-center gap-x-1">
                     <h3 className=" text-center text-sm font-normal">
-                        Semester Final Marks,
+                        3rd Examiner Mark,
                     </h3>
                     <h3 className=" text-center text-sm font-normal">
                         Session: {stepOneValue?.session}
@@ -145,8 +127,8 @@ const StepTwo = () => {
                 </div>
             </div>
             <form action="" className="" onSubmit={handleSubmit(onSubmit)}>
-                <div className="w-full mt-8 external_multiple_mark_wrapper">
-                    <div className="external_multiple_mark_container">
+                <div className="w-full mt-8 mark_wrapper">
+                    <div className="mark_container">
                         <div className="mark">
                             <h3>Student Roll</h3>
                         </div>
@@ -159,9 +141,9 @@ const StepTwo = () => {
                         <div className="mark">
                             <h3>Difference</h3>
                         </div>
-                        {/* <div className="mark">
-                        <h3>Third Examiner Mark</h3>
-                    </div> */}
+                        <div className="mark">
+                            <h3>Third Examiner Mark</h3>
+                        </div>
 
                         {students?.map((student, index) => {
                             const firstExaminerWatch = watch(
@@ -179,11 +161,13 @@ const StepTwo = () => {
                             return (
                                 <React.Fragment key={index}>
                                     <input
+                                        className="roll_field"
                                         type="text"
                                         {...register(
                                             `resultList.${index}.roll`
                                         )}
-                                        defaultValue={student.roll}
+                                        defaultValue={student?.roll}
+                                        readOnly
                                     />
                                     <input
                                         type="text"
@@ -191,6 +175,8 @@ const StepTwo = () => {
                                         {...register(
                                             `resultList.${index}.firstExaminer`
                                         )}
+                                        defaultValue={student?.firstExaminer}
+                                        readOnly
                                     />
                                     <input
                                         type="text"
@@ -198,22 +184,22 @@ const StepTwo = () => {
                                         {...register(
                                             `resultList.${index}.secondExaminer`
                                         )}
+                                        defaultValue={student?.secondExaminer}
+                                        readOnly
                                     />
 
                                     <span className="text-xs font-medium capitalize text-center text-red-700">
                                         {dif[1]}
                                     </span>
-                                    {/* <input
-                                    type="text"
-                                    className={`disabled:cursor-not-allowed ${
-                                        !dif[0] ? "invisible" : "visible"
-                                    }`}
-                                    placeholder=""
-                                    {...register(
-                                        `resultList.${index}.thirdExaminer`
-                                    )}
-                                    disabled={!dif[0]}
-                                /> */}
+
+                                    <input
+                                        type="text"
+                                        placeholder=""
+                                        {...register(
+                                            `resultList.${index}.thirdExaminer`
+                                        )}
+                                        disabled={!dif[0]}
+                                    />
                                 </React.Fragment>
                             );
                         })}
@@ -235,8 +221,8 @@ const StepTwo = () => {
                     </button>
                 </div>
             </form>
-        </>
+        </div>
     );
 };
 
-export default StepTwo;
+export default FormStepTwo;

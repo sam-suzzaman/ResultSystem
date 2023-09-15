@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-const Wrapper = styled.section`
-    .external_multiple_mark_wrapper {
+const Wrapper = styled.div`
+    .mark_wrapper {
         width: 100%;
         max-height: 40vh;
         overflow-y: auto;
@@ -11,39 +11,39 @@ const Wrapper = styled.section`
         scrollbar-color: #888 #f2f2f2; /* thumb color and track color */
     }
     /* Customize scrollbar for Chrome, Safari, and newer versions of Edge */
-    .external_multiple_mark_wrapper::-webkit-scrollbar {
+    .mark_wrapper::-webkit-scrollbar {
         width: 5px; /* width of the vertical scrollbar */
     }
 
-    .external_multiple_mark_wrapper::-webkit-scrollbar-thumb {
+    .mark_wrapper::-webkit-scrollbar-thumb {
         background-color: #888; /* color of the thumb */
         border-radius: 5px; /* rounded corners for the thumb */
     }
 
-    .external_multiple_mark_wrapper::-webkit-scrollbar-track {
+    .mark_wrapper::-webkit-scrollbar-track {
         background-color: #f2f2f2; /* color of the track */
     }
 
-    .external_multiple_mark_container {
+    .mark_container {
         width: 100%;
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         justify-content: space-between;
         align-items: center;
-        grid-row-gap: 10px;
-        grid-column-gap: 4px;
+        grid-row-gap: 13px;
+        grid-column-gap: 2px;
     }
-    .external_multiple_mark_container {
+    .mark_container {
         -ms-overflow-style: none; /* IE and Edge */
         scrollbar-width: none; /* Firefox */
         overflow: -moz-scrollbars-none; /* Firefox */
     }
-    /* .external_multiple_mark_container::-webkit-scrollbar {
-    display: none;
-} */
+    .mark_container::-webkit-scrollbar {
+        display: none;
+    }
 
     /* Target the first row */
-    .external_multiple_mark_container > *:nth-child(-n + 5) {
+    .mark_container > *:nth-child(-n + 5) {
         background-color: rgb(235, 235, 235);
         position: sticky;
         top: 0;
@@ -56,16 +56,17 @@ const Wrapper = styled.section`
         align-items: center;
     }
 
-    .external_multiple_mark_container .mark h3 {
+    .mark_container .mark h3 {
         color: #363636;
         font-size: 13px;
         font-weight: 600;
         text-align: center;
+        text-transform: capitalize;
     }
 
-    .external_multiple_mark_container input {
+    .mark_container input {
         width: 100%;
-        max-width: fit-content;
+        max-width: 80px;
         height: 22px;
         box-shadow: 0px 0px 0px 0.2px;
         border: none;
@@ -77,13 +78,11 @@ const Wrapper = styled.section`
         margin: 0 auto;
         padding: 4px 4px;
     }
-    .external_multiple_mark_container input.idField {
-        min-width: 80px;
+    .mark_container input.roll_field {
+        min-width: fit-content;
         font-size: 11px;
-        border: none;
-        outline: none;
     }
-    .external_multiple_mark_container input:focus {
+    .mark_container input:focus {
         border: 1px solid #9e9e9e;
         outline: none;
     }

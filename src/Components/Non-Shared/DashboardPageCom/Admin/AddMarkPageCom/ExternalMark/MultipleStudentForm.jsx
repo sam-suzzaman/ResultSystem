@@ -1,16 +1,20 @@
 import Wrapper from "../../../../../../assets/wrappers/Admin/ExternalMarkFormWrapper";
-import StepOne from "../ExternalMark/MultipleStudentFormStep/StepOne";
-import StepTwo from "../ExternalMark/MultipleStudentFormStep/StepTwo";
-import { useExternalContext } from "../../../../../../context/Admin/ExternalMarkContext";
+import { useMarkFormStepContext } from "../../../../../../context/Admin/MarkFormStepContext";
+import FormStepOne from "../FormStepOne";
+import FormStepTwo from "./MultipleStudentFormStep/FormStepTwo";
 
 const MultipleStudentForm = () => {
-    const { stepValue } = useExternalContext();
+    const { stepValue } = useMarkFormStepContext();
 
     return (
         <Wrapper>
             <div>
-                {stepValue === 1 && <StepOne />}
-                {stepValue === 2 && <StepTwo />}
+                {stepValue === 1 && <FormStepOne name="Semester Final Mark" />}
+                {stepValue === 2 && (
+                    <Wrapper>
+                        <FormStepTwo />
+                    </Wrapper>
+                )}
             </div>
         </Wrapper>
     );

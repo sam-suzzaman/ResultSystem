@@ -1,17 +1,17 @@
 import React from "react";
+import { useMarkFormStepContext } from "../../../../../../../context/Admin/MarkFormStepContext";
+import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import {
     getAllHandler,
     updateHandler,
 } from "../../../../../../../utils/fetchHandlers";
 import { toast } from "react-toastify";
-import { useForm } from "react-hook-form";
-import { useExternalThirdExaminerContext } from "../../../../../../../context/Admin/ExternalThridExaminerMarkContext";
 import LoadingCom from "../../../../../../Shared/LoadingCom/LoadingCom";
 
-const StepTwo = () => {
-    const { setStepValue, stepOneValue, setStepTwovalue, selectedCourse } =
-        useExternalThirdExaminerContext();
+const FormStepTwo = () => {
+    const { setStepValue, stepOneValue, setStepTwoValue, selectedCourse } =
+        useMarkFormStepContext();
     const {
         isLoading,
         isError,
@@ -28,19 +28,14 @@ const StepTwo = () => {
         handleSubmit,
         watch,
         reset,
-        control,
-        setValue,
         formState: { errors },
     } = useForm();
 
     const backButtonHandler = () => {
         setStepValue(1);
     };
-    const isGoToThirdExaminer = (
-        firstExaminerNumber,
-        secondExaminerNumber,
-        index
-    ) => {
+
+    const isGoToThirdExaminer = (firstExaminerNumber, secondExaminerNumber) => {
         if (
             firstExaminerNumber === undefined ||
             secondExaminerNumber === undefined ||
@@ -78,7 +73,7 @@ const StepTwo = () => {
     const onSubmit = (data) => {
         console.log(data);
         const { resultList } = data;
-        setStepTwovalue(resultList);
+        setStepTwoValue(resultList);
 
         const mergedResult = resultList.map((res) => {
             return {
@@ -90,22 +85,10 @@ const StepTwo = () => {
         });
         const result = { marks: mergedResult };
 
-        // const { department, session, semester, course, resultList } = data;
-
-        // const mergedResult = resultList.map((res) => {
-        //     return {
-        //         ...res,
-        //         thirdExaminer: res.thirdExaminer || 0,
-        //         department,
-        //         semester,
-        //         courseId: course,
-        //     };
-        // });
-
-        // addMultipleExternalMarkMutation.mutate({
-        //     body: result,
-        //     url: "https://student-management-delta.vercel.app/mark/external/multiple",
-        // });
+        addMultipleExternalMarkMutation.mutate({
+            body: result,
+            url: "https://student-management-delta.vercel.app/mark/external/multiple",
+        });
     };
 
     if (isLoading) {
@@ -115,6 +98,7 @@ const StepTwo = () => {
     if (isError) {
         return <h2 className="font-bold text-lg">{error?.message}</h2>;
     }
+
     return (
         <>
             <div className="mb-6">
@@ -134,7 +118,7 @@ const StepTwo = () => {
                 </div>
                 <div className="flex justify-center items-center gap-x-1">
                     <h3 className=" text-center text-sm font-normal">
-                        Third Examiner Marks,
+                        Semester Final Marks,
                     </h3>
                     <h3 className=" text-center text-sm font-normal">
                         Session: {stepOneValue?.session}
@@ -142,8 +126,8 @@ const StepTwo = () => {
                 </div>
             </div>
             <form action="" className="" onSubmit={handleSubmit(onSubmit)}>
-                <div className="w-full mt-8 external_multiple_mark_wrapper">
-                    <div className="external_multiple_mark_container">
+                <div className="w-full mt-8 mark_wrapper">
+                    <div className="mark_container">
                         <div className="mark">
                             <h3>Student Roll</h3>
                         </div>
@@ -155,9 +139,6 @@ const StepTwo = () => {
                         </div>
                         <div className="mark">
                             <h3>Difference</h3>
-                        </div>
-                        <div className="mark">
-                            <h3>Third Examiner Mark</h3>
                         </div>
 
                         {students?.map((student, index) => {
@@ -176,6 +157,7 @@ const StepTwo = () => {
                             return (
                                 <React.Fragment key={index}>
                                     <input
+                                        className="roll_field"
                                         type="text"
                                         {...register(
                                             `resultList.${index}.roll`
@@ -188,7 +170,6 @@ const StepTwo = () => {
                                         {...register(
                                             `resultList.${index}.firstExaminer`
                                         )}
-                                        readOnly
                                     />
                                     <input
                                         type="text"
@@ -196,19 +177,11 @@ const StepTwo = () => {
                                         {...register(
                                             `resultList.${index}.secondExaminer`
                                         )}
-                                        readOnly
                                     />
 
                                     <span className="text-xs font-medium capitalize text-center text-red-700">
                                         {dif[1]}
                                     </span>
-                                    <input
-                                        type="text"
-                                        placeholder=""
-                                        {...register(
-                                            `resultList.${index}.thirdExaminer`
-                                        )}
-                                    />
                                 </React.Fragment>
                             );
                         })}
@@ -234,4 +207,4 @@ const StepTwo = () => {
     );
 };
 
-export default StepTwo;
+export default FormStepTwo;

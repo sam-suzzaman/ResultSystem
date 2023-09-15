@@ -1,16 +1,20 @@
 import React from "react";
-import StepOne from "./ThirdExaminerMarkFormStep/StepOne";
-import StepTwo from "./ThirdExaminerMarkFormStep/StepTwo";
-import { useExternalThirdExaminerContext } from "../../../../../../context/Admin/ExternalThridExaminerMarkContext";
 import Wrapper from "../../../../../../assets/wrappers/Admin/ExternalThirdExaminerFormWrapper";
+import { useMarkFormStepContext } from "../../../../../../context/Admin/MarkFormStepContext";
+import FormStepOne from "../FormStepOne";
+import FormStepTwo from "./ThirdExaminerMarkFormStep/FormStepTwo";
 
 const ThirdExaminerMarkForm = () => {
-    const { stepValue } = useExternalThirdExaminerContext();
+    const { stepValue } = useMarkFormStepContext();
     return (
         <Wrapper>
             <div>
-                {stepValue === 1 && <StepOne />}
-                {stepValue === 2 && <StepTwo />}
+                {stepValue === 1 && <FormStepOne name="Third Examiner Mark" />}
+                {stepValue === 2 && (
+                    <Wrapper>
+                        <FormStepTwo />
+                    </Wrapper>
+                )}
             </div>
         </Wrapper>
     );
