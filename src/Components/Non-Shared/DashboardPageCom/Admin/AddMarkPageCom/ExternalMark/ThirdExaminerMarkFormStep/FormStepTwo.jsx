@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useMarkFormStepContext } from "../../../../../../../context/Admin/MarkFormStepContext";
 import {
     getAllHandler,
@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 const FormStepTwo = () => {
     const { setStepValue, stepOneValue, setStepTwoValue, selectedCourse } =
         useMarkFormStepContext();
+    const [differences, setDifferences] = useState([]);
 
     const {
         isLoading,
@@ -33,10 +34,6 @@ const FormStepTwo = () => {
         formState: { errors },
     } = useForm();
 
-    const backButtonHandler = () => {
-        setStepValue(1);
-    };
-
     const isGoToThirdExaminer = (firstExaminerNumber, secondExaminerNumber) => {
         if (
             firstExaminerNumber === undefined ||
@@ -57,6 +54,18 @@ const FormStepTwo = () => {
 
             return [false, difference];
         }
+    };
+
+    // Initialize differences with initial values
+    useEffect(() => {
+        const initialDifferences = students?.map((student) =>
+            isGoToThirdExaminer(student.firstExaminer, student.secondExaminer)
+        );
+        setDifferences(initialDifferences);
+    }, [students]);
+
+    const backButtonHandler = () => {
+        setStepValue(1);
     };
 
     const addMultipleExternalMarkMutation = useMutation({
@@ -144,19 +153,14 @@ const FormStepTwo = () => {
                         <div className="mark">
                             <h3>Third Examiner Mark</h3>
                         </div>
-
+                        {students?.length === 0 && (
+                            <h2 className=" font-semibold capitalize text-lg">
+                                No Students found
+                            </h2>
+                        )}
                         {students?.map((student, index) => {
-                            const firstExaminerWatch = watch(
-                                `resultList.${index}.firstExaminer`
-                            );
-                            const secondExaminerWatch = watch(
-                                `resultList.${index}.secondExaminer`
-                            );
-
-                            let dif = isGoToThirdExaminer(
-                                firstExaminerWatch,
-                                secondExaminerWatch
-                            );
+                            const dif =
+                                differences?.length > 0 && differences[index];
 
                             return (
                                 <React.Fragment key={index}>
