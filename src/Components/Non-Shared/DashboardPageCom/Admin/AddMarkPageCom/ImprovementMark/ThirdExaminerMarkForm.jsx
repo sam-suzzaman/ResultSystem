@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useMarkFormStepContext } from "../../../../../../context/Admin/MarkFormStepContext";
 import FormStepOne from "../FormStepOne";
-import FormStepTwo from "./AddMarkForm/FormStepTwo";
-import Wrapper from "../../../../../../assets/wrappers/Admin/ImprovementFormWrapper";
+import FormStepTwo from "./ThirdExaminerForm/FormStepTwo";
+import Wrapper from "../../../../../../assets/wrappers/Admin/ImprovementThirdExaminerFromWrapper";
 
-const SingleStudentForm = () => {
+const ThirdExaminerMarkForm = () => {
     const { stepValue } = useMarkFormStepContext();
 
     return (
         <div>
-            {stepValue === 1 && <FormStepOne name="improvement mark" />}
+            {stepValue === 1 && <FormStepOne name="third examiner mark" />}
             {stepValue === 2 && (
                 <Wrapper>
                     <FormStepTwo />
@@ -19,4 +19,4 @@ const SingleStudentForm = () => {
     );
 };
 
-export default SingleStudentForm;
+export default ThirdExaminerMarkForm;

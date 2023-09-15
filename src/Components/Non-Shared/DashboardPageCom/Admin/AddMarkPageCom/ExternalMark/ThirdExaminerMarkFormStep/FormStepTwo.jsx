@@ -153,11 +153,6 @@ const FormStepTwo = () => {
                         <div className="mark">
                             <h3>Third Examiner Mark</h3>
                         </div>
-                        {students?.length === 0 && (
-                            <h2 className=" font-semibold capitalize text-lg">
-                                No Students found
-                            </h2>
-                        )}
                         {students?.map((student, index) => {
                             const dif =
                                 differences?.length > 0 && differences[index];
@@ -207,6 +202,11 @@ const FormStepTwo = () => {
                                 </React.Fragment>
                             );
                         })}
+                        {students?.length === 0 && (
+                            <h2 className=" font-semibold capitalize text-lg">
+                                No Students found
+                            </h2>
+                        )}
                     </div>
                 </div>
 

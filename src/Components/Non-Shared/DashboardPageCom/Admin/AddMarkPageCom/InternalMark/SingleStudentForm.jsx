@@ -1,15 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import {
-    getAllHandler,
-    updateHandler,
-} from "../../../../../../utils/fetchHandlers";
-import {
-    departments,
-    semesters,
-} from "../../../../../../utils/AddMarkFieldsData";
-import { useMutation } from "react-query";
-import { toast } from "react-toastify";
+import React from "react";
 import FormStepOne from "../FormStepOne";
 import { useMarkFormStepContext } from "../../../../../../context/Admin/MarkFormStepContext";
 import FormStepTwo from "./SingleOrUpdateForm/FormStepTwo";
