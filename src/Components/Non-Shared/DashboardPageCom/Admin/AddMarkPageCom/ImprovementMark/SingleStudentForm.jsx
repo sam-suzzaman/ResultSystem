@@ -9,7 +9,7 @@ const SingleStudentForm = () => {
 
     return (
         <div>
-            {stepValue === 1 && <FormStepOne name="improvement mark" />}
+            {stepValue === 1 && <FormStepOne name="improvement" />}
             {stepValue === 2 && (
                 <Wrapper>
                     <FormStepTwo />

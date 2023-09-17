@@ -9,7 +9,9 @@ const ThirdExaminerMarkForm = () => {
 
     return (
         <div>
-            {stepValue === 1 && <FormStepOne name="third examiner mark" />}
+            {stepValue === 1 && (
+                <FormStepOne name="third examiner (Improvement)" />
+            )}
             {stepValue === 2 && (
                 <Wrapper>
                     <FormStepTwo />

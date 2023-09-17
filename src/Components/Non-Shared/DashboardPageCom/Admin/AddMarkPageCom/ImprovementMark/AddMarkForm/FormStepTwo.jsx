@@ -58,7 +58,7 @@ const FormStepTwo = () => {
     useEffect(() => {
         if (rollWatch && rollWatch !== "" && rollWatch.length == 8) {
             setIsRollSelected(true);
-            const url = `https://student-management-delta.vercel.app/mark/${stepOneValue.department}/${stepOneValue.semester}/${stepOneValue.course}/${rollWatch}`;
+            const url = `https://student-management-delta.vercel.app/mark/improve/${stepOneValue.department}/${stepOneValue.semester}/${stepOneValue.course}/${rollWatch}`;
             getAllHandler(url)
                 .then((res) => setInternalResult(res))
                 .catch((err) => console.log(err));
@@ -103,7 +103,7 @@ const FormStepTwo = () => {
             firstExaminer: data.firstExaminer,
             secondExaminer: data.secondExaminer,
         };
-
+        console.log(result);
         addSingleImprovementMarkMutation.mutate({
             body: result,
             url: "https://student-management-delta.vercel.app/mark/improve/single",
@@ -129,7 +129,7 @@ const FormStepTwo = () => {
                 </div>
                 <div className="flex justify-center items-center gap-x-1">
                     <h3 className=" text-center text-sm font-normal">
-                        Semester Final Marks,
+                        Improvemnt Mark,
                     </h3>
                     <h3 className=" text-center text-sm font-normal">
                         Session: {stepOneValue?.session}

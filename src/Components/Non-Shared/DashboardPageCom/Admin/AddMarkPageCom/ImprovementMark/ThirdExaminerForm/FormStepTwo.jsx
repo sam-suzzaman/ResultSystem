@@ -58,7 +58,7 @@ const FormStepTwo = () => {
     useEffect(() => {
         if (rollWatch && rollWatch !== "" && rollWatch.length == 8) {
             setIsRollSelected(true);
-            const url = `https://student-management-delta.vercel.app/mark/${stepOneValue.department}/${stepOneValue.semester}/${stepOneValue.course}/${rollWatch}`;
+            const url = `https://student-management-delta.vercel.app/mark/improve/${stepOneValue.department}/${stepOneValue.semester}/${stepOneValue.course}/${rollWatch}`;
             getAllHandler(url)
                 .then((res) => setInternalResult(res))
                 .catch((err) => console.log(err));
@@ -102,11 +102,12 @@ const FormStepTwo = () => {
             courseId: stepOneValue.course,
             firstExaminer: data.firstExaminer,
             secondExaminer: data.secondExaminer,
+            thirdExaminer: data.thirdExaminer,
         };
 
         improvemntThirdExaminerMarkMutation.mutate({
             body: result,
-            url: "https://student-management-delta.vercel.app/mark/improve/single",
+            url: "https://student-management-delta.vercel.app/mark/improve/third",
         });
     };
 

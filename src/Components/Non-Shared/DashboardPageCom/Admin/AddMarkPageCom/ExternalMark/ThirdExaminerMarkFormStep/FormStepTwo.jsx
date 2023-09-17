@@ -6,7 +6,7 @@ import {
 } from "../../../../../../../utils/fetchHandlers";
 import { useForm } from "react-hook-form";
 import LoadingCom from "../../../../../../Shared/LoadingCom/LoadingCom";
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { toast } from "react-toastify";
 
 const FormStepTwo = () => {
@@ -68,9 +68,11 @@ const FormStepTwo = () => {
         setStepValue(1);
     };
 
+    const queryClient = useQueryClient();
     const addMultipleExternalMarkMutation = useMutation({
         mutationFn: updateHandler,
         onSuccess: (data, variable, context) => {
+            queryClient.invalidateQueries("studentList");
             toast.success("Mark Submitted");
             reset();
         },
@@ -87,17 +89,18 @@ const FormStepTwo = () => {
 
         const mergedResult = resultList.map((res) => {
             return {
-                ...res,
+                roll: res.roll,
+                thirdExaminer: res.thirdExaminer,
                 department: stepOneValue.department,
                 semester: stepOneValue.semester,
                 courseId: stepOneValue.course,
             };
         });
         const result = { marks: mergedResult };
-        console.log(result);
+
         addMultipleExternalMarkMutation.mutate({
             body: result,
-            url: "https://student-management-delta.vercel.app/mark/external/multiple",
+            url: "https://student-management-delta.vercel.app/mark/third/multiple",
         });
     };
 
