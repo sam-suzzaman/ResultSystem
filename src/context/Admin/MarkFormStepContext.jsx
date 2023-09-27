@@ -5,7 +5,7 @@ import { createContext } from "react";
 const markFormStep = createContext();
 
 const MarkFormStepProvider = ({ children }) => {
-    const [stepValue, setStepValue] = useState(1);
+    const [stepValue, setStepValue] = useState(1); // default=1
     const [stepOneValue, setStepOneValue] = useState({});
     const [stepTwoValue, setStepTwoValue] = useState([]);
     const [Marksheet, setMarksheet] = useState({});

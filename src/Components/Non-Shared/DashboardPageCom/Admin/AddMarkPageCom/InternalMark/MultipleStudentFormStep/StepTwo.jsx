@@ -33,8 +33,9 @@ const StepTwo = () => {
     const addMultipleInternalMarkMutation = useMutation({
         mutationFn: updateHandler,
         onSuccess: (data, variable, context) => {
-            toast.success("Mark Submitted");
+            // toast.success("Mark Submitted");
             // setStudentData([]);
+            setStepValue(3);
             reset();
         },
         onError: (error, variables, context) => {
@@ -131,8 +132,8 @@ const StepTwo = () => {
                     </div>
                     <div className="mark">
                         <h3>
-                            assignment/
-                            <br /> presentation
+                            assignment/ <br />
+                            presentation
                         </h3>
                     </div>
                     <div className="mark">
@@ -165,13 +166,40 @@ const StepTwo = () => {
                                     defaultValue={student.roll}
                                     readOnly
                                 />
-                                <input
-                                    type="text"
-                                    placeholder=""
-                                    {...register(
-                                        `resultList.${index}.attendance`
+                                <div className="flex flex-col">
+                                    <input
+                                        type="text"
+                                        placeholder=""
+                                        {...register(
+                                            `resultList.${index}.attendance`,
+                                            {
+                                                required: {
+                                                    value: true,
+                                                    message:
+                                                        "Attendance mark is  required",
+                                                },
+                                                min: {
+                                                    value: 0,
+                                                    message:
+                                                        "At least (0) is required",
+                                                },
+                                                max: {
+                                                    value: 10,
+                                                    message: "Max (10) marks",
+                                                },
+                                            }
+                                        )}
+                                    />
+                                    {errors?.resultList?.[index]
+                                        ?.attendance && (
+                                        <span className=" mt-1 label-text-alt text-xs font-normal capitalize text-red-700">
+                                            {
+                                                errors?.resultList[index]
+                                                    ?.attendance?.message
+                                            }
+                                        </span>
                                     )}
-                                />
+                                </div>
                                 <input
                                     type="text"
                                     {...register(`resultList.${index}.midOne`)}

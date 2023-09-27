@@ -3,6 +3,7 @@ import Wrapper from "../../../../../../assets/wrappers/Admin/InternalMarkFormWra
 import StepTwo from "./MultipleStudentFormStep/StepTwo";
 import FormStepOne from "../FormStepOne";
 import { useMarkFormStepContext } from "../../../../../../context/Admin/MarkFormStepContext";
+import StepThree from "./MultipleStudentFormStep/StepThree";
 
 const MultipleStudentForm = () => {
     const { stepValue } = useMarkFormStepContext();
@@ -11,6 +12,7 @@ const MultipleStudentForm = () => {
         <>
             {stepValue === 1 && <FormStepOne name="internal" />}
             <Wrapper>{stepValue === 2 && <StepTwo />}</Wrapper>
+            {stepValue === 3 && <StepThree />}
         </>
     );
 };
