@@ -2,8 +2,10 @@ import { NavLink } from "react-router-dom";
 import avatarPhoto from "../../../assets/avatar_photo.jpg";
 import { FiLogOut } from "react-icons/fi";
 import { MdOutlineDashboardCustomize } from "react-icons/md";
+import { useUserContext } from "../../../context/Admin/UserContext";
 
 const ProfileMenu = () => {
+    const { user, userLogout } = useUserContext();
     return (
         <div className="dropdown dropdown-end">
             <label tabIndex={0} className="">
@@ -15,9 +17,12 @@ const ProfileMenu = () => {
                     />
                     <div className="">
                         <h3 className="text-xs font-medium capitalize mb-0 text-slate-700">
-                            User name
+                            {user?.username || "unknown"}
                         </h3>
-                        <p className="text-xs mb-0 text-slate-500">Admin</p>
+                        <p className="text-xs mb-0 text-slate-500 capitalize font-normal">
+                            <span className="font-medium">role:</span>{" "}
+                            <span className="">{user?.role || "user"}</span>
+                        </p>
                     </div>
                 </div>
             </label>
@@ -37,7 +42,10 @@ const ProfileMenu = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <button className="flex items-center text-red-600 hover:text-red-700 hover:font-medium rounded-sm">
+                    <button
+                        onClick={() => userLogout()}
+                        className="flex items-center text-red-600 hover:text-red-700 hover:font-medium rounded-sm"
+                    >
                         <FiLogOut />
                         <span className="text-[11px] uppercase font-medium ">
                             logout

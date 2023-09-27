@@ -7,7 +7,8 @@
     background-color: rgb(255, 255, 255);
     padding: 30px 30px 30px 30px;
     /* box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.062); */
-    box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px,
+        rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
     position: relative;
     overflow: hidden;
 }
@@ -33,6 +34,14 @@
     margin: 5px 0 10px 0;
     z-index: 2;
 }
+.form-row {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    margin-bottom: 6px;
+    margin-top: 10px;
+}
 
 .login-form .inputContainer {
     width: 100%;
@@ -44,8 +53,8 @@
 }
 
 .login-form .inputIcon {
-    position: absolute;
-    left: 3px;
+    /* position: absolute;
+    left: 3px; */
 }
 
 .login-form .inputField {
@@ -54,12 +63,11 @@
     background-color: transparent;
     border: none;
     border-bottom: 2px solid rgb(173, 173, 173);
-    margin: 10px 0;
     color: black;
     font-size: 0.8em;
     font-weight: 500;
     box-sizing: border-box;
-    padding-left: 30px;
+    padding-left: 6px;
 }
 
 .login-form .inputField:focus {
@@ -74,7 +82,7 @@
 }
 .login-form .inputContainer .password-icon {
     position: absolute;
-    top: 17px;
+    top: 9px;
     right: 0;
     font-size: 18px;
     cursor: pointer;

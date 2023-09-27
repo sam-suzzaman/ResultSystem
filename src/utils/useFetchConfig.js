@@ -1,7 +1,7 @@
 const useFetchConfig = () => {
     const token = localStorage.getItem("access-token");
     const config = {
-        headers: { authorization: `Bearer ${token}` },
+        headers: { token: `Bearer ${token}` },
     };
     return config;
 };

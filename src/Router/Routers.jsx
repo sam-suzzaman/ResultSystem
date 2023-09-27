@@ -19,6 +19,7 @@ import InternalMarkAddPage from "../Pages/DashboardPages/Admin/AddMarkPage/Inter
 import ExternalMarkAddPage from "../Pages/DashboardPages/Admin/AddMarkPage/ExternalMarkAddPage";
 import LabMarkAddPage from "../Pages/DashboardPages/Admin/AddMarkPage/LabMarkAddPage";
 import ImprovementMarkAddPage from "../Pages/DashboardPages/Admin/AddMarkPage/ImprovementMarkAddPage";
+import ProtectAdminRoutes from "./ProtectAdminRoutes";
 
 const Routers = createBrowserRouter([
     {
@@ -48,7 +49,9 @@ const Routers = createBrowserRouter([
             {
                 path: "/dashboard/admin",
                 element: (
-                    <AdminDashboardLayout></AdminDashboardLayout>
+                    <ProtectAdminRoutes>
+                        <AdminDashboardLayout></AdminDashboardLayout>
+                    </ProtectAdminRoutes>
 
                     // <ProtectedRoutes>
                     //     <DashboardLayout></DashboardLayout>
