@@ -28,7 +28,7 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end">
                     <ProfileMenu />
-                    <Link
+                    {/* <Link
                         to="/login"
                         className="btn btn-sm rounded-sm bg-[#ff9645] hover:bg-[#fa9455] text-xs font-medium text-white"
                     >
@@ -36,7 +36,7 @@ const Navbar = () => {
                             <FiLogIn />
                         </span>
                         login
-                    </Link>
+                    </Link> */}
 
                     {/* <button className="flex justify-end items-center text-red-600 hover:text-red-700 hover:font-medium">
                             <span className="text-[10px] uppercase font-medium mr-1">

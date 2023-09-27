@@ -1,6 +1,6 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import avatarPhoto from "../../../assets/avatar_photo.jpg";
-import { FiLogOut } from "react-icons/fi";
+import { FiLogIn, FiLogOut } from "react-icons/fi";
 import { MdOutlineDashboardCustomize } from "react-icons/md";
 import { useUserContext } from "../../../context/Admin/UserContext";
 
@@ -21,7 +21,7 @@ const ProfileMenu = () => {
                         </h3>
                         <p className="text-xs mb-0 text-slate-500 capitalize font-normal">
                             <span className="font-medium">role:</span>{" "}
-                            <span className="">{user?.role || "user"}</span>
+                            <span className="">{user?.role || "..."}</span>
                         </p>
                     </div>
                 </div>
@@ -42,15 +42,27 @@ const ProfileMenu = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <button
-                        onClick={() => userLogout()}
-                        className="flex items-center text-red-600 hover:text-red-700 hover:font-medium rounded-sm"
-                    >
-                        <FiLogOut />
-                        <span className="text-[11px] uppercase font-medium ">
-                            logout
-                        </span>
-                    </button>
+                    {user?.username ? (
+                        <button
+                            onClick={() => userLogout()}
+                            className="flex items-center text-red-600 hover:text-red-700 hover:font-medium rounded-sm"
+                        >
+                            <FiLogOut />
+                            <span className="text-[11px] uppercase font-medium ">
+                                logout
+                            </span>
+                        </button>
+                    ) : (
+                        <Link
+                            to="/login"
+                            className="flex items-center text-red-600 hover:text-red-700 hover:font-medium rounded-sm"
+                        >
+                            <span className="font-bold text-base">
+                                <FiLogIn />
+                            </span>
+                            login
+                        </Link>
+                    )}
                 </li>
             </ul>
         </div>

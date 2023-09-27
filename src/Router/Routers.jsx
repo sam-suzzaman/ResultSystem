@@ -20,6 +20,7 @@ import ExternalMarkAddPage from "../Pages/DashboardPages/Admin/AddMarkPage/Exter
 import LabMarkAddPage from "../Pages/DashboardPages/Admin/AddMarkPage/LabMarkAddPage";
 import ImprovementMarkAddPage from "../Pages/DashboardPages/Admin/AddMarkPage/ImprovementMarkAddPage";
 import ProtectAdminRoutes from "./ProtectAdminRoutes";
+import ProtectLoginRoute from "./ProtectLoginRoute";
 
 const Routers = createBrowserRouter([
     {
@@ -32,7 +33,11 @@ const Routers = createBrowserRouter([
             },
             {
                 path: "/login",
-                element: <LoginPage></LoginPage>,
+                element: (
+                    <ProtectLoginRoute>
+                        <LoginPage></LoginPage>
+                    </ProtectLoginRoute>
+                ),
             },
             {
                 path: "/dashboard",
