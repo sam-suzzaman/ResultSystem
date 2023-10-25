@@ -1,6 +1,7 @@
 import { NavLink, Outlet } from "react-router-dom";
 // Icons
 import { AiFillHome, AiOutlineUsergroupAdd } from "react-icons/ai";
+import { GrDocumentPpt } from "react-icons/gr";
 import { BsBookmarks } from "react-icons/bs";
 import { SessionPageProvider } from "../context/Admin/SessionPageContext";
 
@@ -23,6 +24,12 @@ const AdminDashboardLayout = () => {
             title: "add mark",
             path: "/dashboard/admin/add-mark",
             icon: <BsBookmarks />,
+        },
+        {
+            id: 4,
+            title: "get mark",
+            path: "/dashboard/admin/get-mark",
+            icon: <GrDocumentPpt />,
         },
     ];
     return (

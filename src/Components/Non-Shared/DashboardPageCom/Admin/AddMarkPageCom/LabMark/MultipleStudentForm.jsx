@@ -93,13 +93,20 @@ const MultipleStudentForm = () => {
     }, [courseWatch]);
 
     const onSubmit = (data) => {
-        const { resultList, department, semester, course, assesment } = data;
+        const { resultList, department, semester, session, course, assesment } =
+            data;
+        const selectedCourse = courseData.find((c) => {
+            return c._id == course;
+        });
         const mergedResult = resultList.map((res) => {
             return {
                 ...res,
                 department,
                 semester,
                 courseId: course,
+                courseCode: selectedCourse.courseCode,
+                courseName: selectedCourse.courseName,
+                currentSession: session,
             };
         });
         const result = { marks: mergedResult };
@@ -111,7 +118,12 @@ const MultipleStudentForm = () => {
 
     return (
         <div>
-            <form action="" className="" onSubmit={handleSubmit(onSubmit)}>
+            <form
+                action=""
+                className=""
+                onSubmit={handleSubmit(onSubmit)}
+                autoComplete="off"
+            >
                 <div className="grid grid-cols-2 gap-x-12">
                     <div className="grid grid-cols-1 items-start">
                         <div className="form-control w-full">

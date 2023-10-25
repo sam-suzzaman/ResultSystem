@@ -1,6 +1,6 @@
 import "./sectionTitle.css";
 
-const SectionTitle = ({ title }) => {
+const SectionTitle = ({ title, subtitle }) => {
     return (
         <div className="admin_sec_title">
             <h1 className="heading_1 capitalize">{title}</h1>

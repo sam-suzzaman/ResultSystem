@@ -70,6 +70,9 @@ const StepTwo = () => {
                 department: stepOneValue.department,
                 semester: stepOneValue.semester,
                 courseId: stepOneValue.course,
+                courseCode: selectedCourse.courseCode,
+                courseName: selectedCourse.courseName,
+                currentSession: stepOneValue.session,
             };
         });
         const result = { marks: mergedResult };
@@ -116,6 +119,7 @@ const StepTwo = () => {
             <form
                 className="w-full  mark_input_form_wrapper"
                 onSubmit={handleSubmit(onSubmit)}
+                autoComplete="off"
             >
                 <div className="mark_input_form_container">
                     <div className="mark">
@@ -158,7 +162,7 @@ const StepTwo = () => {
                         );
 
                         return (
-                            <React.Fragment key={index}>
+                            <React.Fragment key={index + student.roll}>
                                 <input
                                     type="text"
                                     className="roll-field"

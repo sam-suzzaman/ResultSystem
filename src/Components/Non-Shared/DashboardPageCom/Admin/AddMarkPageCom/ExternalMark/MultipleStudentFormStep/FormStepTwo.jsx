@@ -62,6 +62,7 @@ const FormStepTwo = () => {
         onSuccess: (data, variable, context) => {
             toast.success("Mark Submitted");
             reset();
+            setStepValue(3);
         },
         onError: (error, variables, context) => {
             console.log(error);
@@ -71,7 +72,6 @@ const FormStepTwo = () => {
     });
 
     const onSubmit = (data) => {
-        console.log(data);
         const { resultList } = data;
         setStepTwoValue(resultList);
 
@@ -81,6 +81,9 @@ const FormStepTwo = () => {
                 department: stepOneValue.department,
                 semester: stepOneValue.semester,
                 courseId: stepOneValue.course,
+                courseCode: selectedCourse.courseCode,
+                courseName: selectedCourse.courseName,
+                currentSession: stepOneValue.session,
             };
         });
         const result = { marks: mergedResult };
@@ -125,7 +128,12 @@ const FormStepTwo = () => {
                     </h3>
                 </div>
             </div>
-            <form action="" className="" onSubmit={handleSubmit(onSubmit)}>
+            <form
+                action=""
+                className=""
+                onSubmit={handleSubmit(onSubmit)}
+                autoComplete="off"
+            >
                 <div className="w-full mt-8 mark_wrapper">
                     <div className="mark_container">
                         <div className="mark">

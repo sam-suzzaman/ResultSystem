@@ -93,6 +93,7 @@ const FormStepTwo = () => {
     }, [rollWatch]);
 
     useEffect(() => {
+        console.log(internalResult);
         if (internalResult?.attendance) {
             setValue("attendance", internalResult?.attendance);
         } else {
@@ -128,6 +129,9 @@ const FormStepTwo = () => {
             midOne: data.midOne,
             midTwo: data.midTwo,
             presentationOrAssignment: data.presentationOrAssignment,
+            courseCode: selectedCourse.courseCode,
+            courseName: selectedCourse.courseName,
+            currentSession: stepOneValue.session,
         };
 
         addSingleInternalMarkMutation.mutate({
@@ -165,6 +169,7 @@ const FormStepTwo = () => {
             <form
                 className="w-full  mark_input_form_wrapper"
                 onSubmit={handleSubmit(onSubmit)}
+                autoComplete="off"
             >
                 <div className="mark_input_form_container">
                     <div className="mark">

@@ -94,6 +94,9 @@ const FormStepTwo = () => {
                 department: stepOneValue.department,
                 semester: stepOneValue.semester,
                 courseId: stepOneValue.course,
+                courseCode: selectedCourse.courseCode,
+                courseName: selectedCourse.courseName,
+                currentSession: stepOneValue.session,
             };
         });
         const result = { marks: mergedResult };

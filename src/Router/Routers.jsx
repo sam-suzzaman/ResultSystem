@@ -21,6 +21,10 @@ import LabMarkAddPage from "../Pages/DashboardPages/Admin/AddMarkPage/LabMarkAdd
 import ImprovementMarkAddPage from "../Pages/DashboardPages/Admin/AddMarkPage/ImprovementMarkAddPage";
 import ProtectAdminRoutes from "./ProtectAdminRoutes";
 import ProtectLoginRoute from "./ProtectLoginRoute";
+import GetMarkPage from "../Pages/DashboardPages/Admin/GetMarkPage/GetMarkPage";
+import InternalMarkPage from "../Pages/DashboardPages/Admin/GetMarkPage/InternalMarkPage";
+import SemesterCourseMarkPage from "../Pages/DashboardPages/Admin/GetMarkPage/SemesterCourseMarkPage";
+import SemesterFinalMarkPage from "../Pages/DashboardPages/Admin/GetMarkPage/SemesterFinalMarkPage";
 
 const Routers = createBrowserRouter([
     {
@@ -106,6 +110,22 @@ const Routers = createBrowserRouter([
                     {
                         path: "/dashboard/admin/session-list/:session/:semester/add-mark/:courseCode",
                         element: <AddMarkPageTwo></AddMarkPageTwo>,
+                    },
+                    {
+                        path: "/dashboard/admin/get-mark",
+                        element: <GetMarkPage></GetMarkPage>,
+                    },
+                    {
+                        path: "/dashboard/admin/get-mark/internal",
+                        element: <InternalMarkPage />,
+                    },
+                    {
+                        path: "/dashboard/admin/get-mark/course-final",
+                        element: <SemesterCourseMarkPage />,
+                    },
+                    {
+                        path: "/dashboard/admin/get-mark/semester-final",
+                        element: <SemesterFinalMarkPage />,
                     },
                 ],
             },

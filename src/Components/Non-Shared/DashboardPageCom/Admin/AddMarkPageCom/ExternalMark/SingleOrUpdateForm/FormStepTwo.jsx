@@ -102,6 +102,9 @@ const FormStepTwo = () => {
             courseId: stepOneValue.course,
             firstExaminer: data.firstExaminer,
             secondExaminer: data.secondExaminer,
+            courseCode: selectedCourse.courseCode,
+            courseName: selectedCourse.courseName,
+            currentSession: stepOneValue.session,
         };
 
         addSingleExternalMarkMutation.mutate({
@@ -135,7 +138,12 @@ const FormStepTwo = () => {
                     </h3>
                 </div>
             </div>
-            <form action="" className="" onSubmit={handleSubmit(onSubmit)}>
+            <form
+                action=""
+                className=""
+                onSubmit={handleSubmit(onSubmit)}
+                autoComplete="off"
+            >
                 <div className="w-full mt-8 mark_wrapper">
                     <div className="mark_container">
                         <div className="mark">

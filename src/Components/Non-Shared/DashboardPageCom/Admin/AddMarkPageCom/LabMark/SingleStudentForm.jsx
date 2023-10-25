@@ -112,19 +112,24 @@ const SingleStudentForm = () => {
 
     const onSubmit = (data) => {
         const { department, session, semester, roll, course, labTotal } = data;
+        const selectedCourse = courseData.find((c) => {
+            return c._id == course;
+        });
         const result = {
             department,
             semester,
             roll,
             courseId: course,
             labTotal,
+            courseCode: selectedCourse.courseCode,
+            courseName: selectedCourse.courseName,
+            currentSession: session,
         };
         addSingleLabMarkMutation.mutate({
             body: result,
             url: "https://student-management-delta.vercel.app/mark/lab/single",
         });
     };
-    // console.log(internalResult);
     return (
         <div className="">
             <form
