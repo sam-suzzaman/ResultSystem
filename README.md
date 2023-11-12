@@ -1,10 +1,10 @@
 **Project Title: `Result Management System`**
 --- 
-**Introduction:**
+***Introduction:**
 It is a MERN Stack-based web application. Its main work is to calculate the academic results, prepare the result sheet, publish it, and manage the session-wise students and their courses, etc.
 
 
-**Used Technologies:**
+### Used Technologies:
 - React
 - Tailwind CSS
 - Daisy Ui
@@ -17,11 +17,11 @@ It is a MERN Stack-based web application. Its main work is to calculate the acad
 - Styled-Components
 - React-pdf Renderer
 
-  **Key Features:**
+### Key Features:
   1. User Authentication
      - Login
-  2. Protected Dashboard
-  3. Dashboard
+  2. Protected Dashboard Route
+  3. Dashboard Page
      - Session Page
        - `Manage Session:` Display All Session Cards
        - `Add Session`
@@ -37,7 +37,6 @@ It is a MERN Stack-based web application. Its main work is to calculate the acad
        - `Add or Update Single Student Mark`
        - `Add or Update Multiple Students Marks`
        -  `Generate Marks PDF after Submission`
-       -  
      - Get Mark Page
        - `Get Semester Final Mark Sheet` as a PDF
      
