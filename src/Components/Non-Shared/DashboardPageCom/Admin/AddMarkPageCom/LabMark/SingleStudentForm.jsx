@@ -28,6 +28,7 @@ const SingleStudentForm = () => {
     const [isRollSelect, setIsRollSelect] = useState(false);
     const [sessionData, setSessionData] = useState([]);
     const [courseData, setCourseData] = useState([]);
+    const [selectCourse, setSelectCourse] = useState({});
     const [internalResult, setInternalResult] = useState({});
 
     const deptWatch = watch("department");
@@ -85,6 +86,7 @@ const SingleStudentForm = () => {
         if (courseWatch && courseWatch !== "default") {
             setIsCourseSelect(true);
         } else {
+            console.log(courseWatch);
             setIsCourseSelect(false);
         }
     }, [courseWatch]);
@@ -101,6 +103,7 @@ const SingleStudentForm = () => {
         if (rollWatch && rollWatch !== "" && rollWatch.length == 8) {
             setIsRollSelect(true);
             const url = `https://student-management-delta.vercel.app/mark/lab/${deptWatch}/${semesterWatch}/${courseWatch}/${rollWatch}`;
+            // const url = `https://student-management-delta.vercel.app/mark/lab/${deptWatch}/${semesterWatch}/${selectedCourse?.courseName}/${selectedCourse.courseCode}/${rollWatch}`;
             getAllHandler(url)
                 .then((res) => setInternalResult(res))
                 .catch((err) => console.log(err));

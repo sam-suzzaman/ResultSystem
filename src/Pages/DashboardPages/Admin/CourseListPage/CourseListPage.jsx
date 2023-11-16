@@ -42,7 +42,6 @@ const CourseListPage = () => {
             `https://student-management-delta.vercel.app/course/update/${session}/EEE/${updateCourseID}`
         )
             .then((result) => {
-                console.log(result);
                 setSingleCourse(result);
             })
             .catch((error) => {

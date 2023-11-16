@@ -40,6 +40,7 @@ const LoginPage = () => {
             navigate(from, { replace: true });
         } catch (error) {
             // setOthersError(error.response?.data?.message);
+            console.log(error);
             toast.warn("something wrong");
         }
         setLoginLoading(false);

@@ -103,7 +103,7 @@ const FormStepTwo = () => {
             firstExaminer: data.firstExaminer,
             secondExaminer: data.secondExaminer,
         };
-        console.log(result);
+
         addSingleImprovementMarkMutation.mutate({
             body: result,
             url: "https://student-management-delta.vercel.app/mark/improve/single",

@@ -13,7 +13,6 @@ const FormStepTwo = () => {
     const { setStepValue, stepOneValue, setStepTwoValue, selectedCourse } =
         useMarkFormStepContext();
     const [differences, setDifferences] = useState([]);
-
     const {
         isLoading,
         isError,
@@ -21,10 +20,12 @@ const FormStepTwo = () => {
         error,
     } = useQuery("studentList", () =>
         getAllHandler(
-            `https://student-management-delta.vercel.app/mark/${stepOneValue.department}/${stepOneValue.semester}/${stepOneValue.course}`
+            `https://student-management-delta.vercel.app/mark/${stepOneValue.department}/${stepOneValue.semester}/${selectedCourse?.courseName}/${selectedCourse?.courseCode}`
         )
     );
-
+    console.log(
+        `https://student-management-delta.vercel.app/mark/${stepOneValue.department}/${stepOneValue.semester}/${selectedCourse?.courseName}/${selectedCourse?.courseCode}`
+    );
     const {
         register,
         handleSubmit,

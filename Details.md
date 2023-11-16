@@ -1,0 +1,27 @@
+### Functions:
+
+-   login/logout
+-   Session creation
+-   Add student (session wise)
+-   Displaying Student List(session wise)
+-   Add course (semseter wise)
+-   Display courses (semester wise)
+-   Update course
+-   Delete course
+-   Add internal mark
+-   Update internal mark
+-   Show pdf after internal mark submission
+-   Add semester mark
+-   Show pdf after mark submission
+-   Update semester mark:Todo
+-   Display third Examiner list(in semester mark)
+-   Add third examiner marks
+-   Add Lab mark
+-   Update lab mark:Todo
+-   Add Improvement Mark
+    -   For single student
+    -   For multiple student
+-   Get Marks (as pdf)
+    -   internal marksheet
+    -   single course marksheet
+    -   full semester marksheet
