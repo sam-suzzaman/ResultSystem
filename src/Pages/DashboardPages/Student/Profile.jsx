@@ -7,13 +7,17 @@ import { FiEdit } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 const Profile = () => {
+    const id = "10101";
     return (
         <Wrapper>
             <div class="container">
                 <div class="col-one">
                     <img src={student_avatar} alt="avatar" />
                     <div className="control flex justify-center items-center mt-4">
-                        <Link to="/" className="flex items-center">
+                        <Link
+                            to={`/dashboard/student/profile/${id}`}
+                            className="flex items-center"
+                        >
                             <FiEdit />{" "}
                             <span className="text-sm capitalize ml-1 font-medium ">
                                 edit
@@ -22,7 +26,7 @@ const Profile = () => {
                     </div>
                 </div>
                 <div class="col-two">
-                    <h5 className="title">About me - </h5>
+                    <h5 className="title">About me_ _ </h5>
                     <table className="information-table">
                         <tbody>
                             <tr className="row">
@@ -88,6 +92,8 @@ const Profile = () => {
 };
 
 const Wrapper = styled.section`
+    padding-top: calc(1rem + 1vh);
+    padding-bottom: calc(1rem + 1vh);
     display: flex;
     justify-content: center;
     .container {
@@ -164,10 +170,10 @@ const Wrapper = styled.section`
             margin-bottom: 25px;
         }
         .information-table .info {
-            width: 50%;
+            width: 40%;
         }
         .information-table .value {
-            width: 50%;
+            width: 60%;
         }
     }
 `;

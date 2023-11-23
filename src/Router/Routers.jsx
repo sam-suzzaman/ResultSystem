@@ -27,6 +27,7 @@ import SemesterCourseMarkPage from "../Pages/DashboardPages/Admin/GetMarkPage/Se
 import SemesterFinalMarkPage from "../Pages/DashboardPages/Admin/GetMarkPage/SemesterFinalMarkPage";
 import ResultPage from "../Pages/DashboardPages/Student/ResultPage";
 import Profile from "../Pages/DashboardPages/Student/Profile";
+import EditProfilePage from "../Pages/DashboardPages/Student/EditProfilePage";
 
 const Routers = createBrowserRouter([
     {
@@ -152,6 +153,10 @@ const Routers = createBrowserRouter([
                     {
                         path: "/dashboard/student/profile",
                         element: <Profile />,
+                    },
+                    {
+                        path: "/dashboard/student/profile/:id",
+                        element: <EditProfilePage />,
                     },
                 ],
             },

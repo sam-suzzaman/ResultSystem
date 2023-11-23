@@ -37,7 +37,7 @@ const AdminDashboardLayout = () => {
             <div className="h-full relative">
                 <div className="drawer lg:drawer-open h-full">
                     <input
-                        id="Dashboard_Drawer"
+                        id="Admin_Dashboard_Drawer"
                         type="checkbox"
                         className="drawer-toggle"
                     />
@@ -46,7 +46,7 @@ const AdminDashboardLayout = () => {
                     </div>
                     <div className="drawer-side h-full absolute !top-auto">
                         <label
-                            htmlFor="Dashboard_Drawer"
+                            htmlFor="Admin_Dashboard_Drawer"
                             className="drawer-overlay h-full"
                         ></label>
                         <ul className="menu h-full pl-2 pr-3 p-8 w-[250px] bg-base-200 text-base-content overflow-y-auto flex-nowrap ">

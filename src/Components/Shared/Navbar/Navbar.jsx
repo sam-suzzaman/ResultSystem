@@ -1,13 +1,34 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import jkkniuLogo from "../../../assets/Jkkniu_logo.png";
 import ProfileMenu from "./ProfileMenu";
 import { FiLogIn } from "react-icons/fi";
+import { RxHamburgerMenu } from "react-icons/rx";
 
 const Navbar = () => {
+    const { pathname } = useLocation();
+
     return (
         <nav className="shadow-md bg-base-100 sticky top-0 z-10">
             <div className="navbar w-full max-w-7xl mx-auto justify-between">
                 <div className="navbar-start">
+                    <div className="mr-3">
+                        {pathname.includes("/dashboard/admin") && (
+                            <label
+                                htmlFor="Admin_Dashboard_Drawer"
+                                className="btn btn-primary btn-sm drawer-button lg:hidden ml-1"
+                            >
+                                <RxHamburgerMenu></RxHamburgerMenu>
+                            </label>
+                        )}
+                        {pathname.includes("/dashboard/student") && (
+                            <label
+                                htmlFor="Student_Dashboard_Drawer"
+                                className="btn btn-primary btn-sm drawer-button lg:hidden ml-1"
+                            >
+                                <RxHamburgerMenu></RxHamburgerMenu>
+                            </label>
+                        )}
+                    </div>
                     <div className="w-12">
                         <Link to="/">
                             <img

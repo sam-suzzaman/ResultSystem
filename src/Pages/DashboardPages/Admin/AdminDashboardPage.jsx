@@ -14,13 +14,6 @@ const AdminDashboardPage = () => {
         <>
             <div>Admin Dashboard Page </div>
             {/* Dashboard Toggler Button */}
-
-            <label
-                htmlFor="Dashboard_Drawer"
-                className="btn btn-primary btn-sm drawer-button lg:hidden ml-1"
-            >
-                <RxHamburgerMenu></RxHamburgerMenu>
-            </label>
         </>
     );
 };

@@ -26,23 +26,22 @@ const StudentDashboardLayout = () => {
         },
     ];
     return (
-        <div className="">
-            <div className="drawer lg:drawer-open">
+        <div className="h-full relative">
+            <div className="drawer lg:drawer-open h-full">
                 <input
-                    id="Dashboard_Drawer"
+                    id="Student_Dashboard_Drawer"
                     type="checkbox"
                     className="drawer-toggle"
                 />
-                <div className="drawer-content  px-6 py-10">
+                <div className="drawer-content  px-6 py-4 overflow-auto">
                     <Outlet />
-                    {/* toggler */}
                 </div>
-                <div className="drawer-side">
+                <div className="drawer-side h-full absolute !top-auto">
                     <label
-                        htmlFor="Dashboard_Drawer"
-                        className="drawer-overlay"
+                        htmlFor="Student_Dashboard_Drawer"
+                        className="drawer-overlay h-full"
                     ></label>
-                    <ul className="menu p-4 w-[250px] h-full bg-base-200 text-base-content">
+                    <ul className="menu h-full pl-2 pr-3 p-8 w-[250px] bg-base-200 text-base-content overflow-y-auto flex-nowrap ">
                         {/* Sidebar content here */}
                         {menu_items?.map((item) => {
                             return (
