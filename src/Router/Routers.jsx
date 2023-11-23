@@ -25,6 +25,8 @@ import GetMarkPage from "../Pages/DashboardPages/Admin/GetMarkPage/GetMarkPage";
 import InternalMarkPage from "../Pages/DashboardPages/Admin/GetMarkPage/InternalMarkPage";
 import SemesterCourseMarkPage from "../Pages/DashboardPages/Admin/GetMarkPage/SemesterCourseMarkPage";
 import SemesterFinalMarkPage from "../Pages/DashboardPages/Admin/GetMarkPage/SemesterFinalMarkPage";
+import ResultPage from "../Pages/DashboardPages/Student/ResultPage";
+import Profile from "../Pages/DashboardPages/Student/Profile";
 
 const Routers = createBrowserRouter([
     {
@@ -129,26 +131,30 @@ const Routers = createBrowserRouter([
                     },
                 ],
             },
-            // {
-            //     path: "/dashboard/student",
-            //     element: (
-            //         <StudentDashboardLayout></StudentDashboardLayout>
+            {
+                path: "/dashboard/student",
+                element: (
+                    <StudentDashboardLayout></StudentDashboardLayout>
 
-            //         // <ProtectedRoutes>
-            //         //     <DashboardLayout></DashboardLayout>
-            //         // </ProtectedRoutes>
-            //     ),
-            //     children: [
-            //         {
-            //             path: "/dashboard/student",
-            //             element: <StudentDashboardPage></StudentDashboardPage>,
-            //         },
-            //         // {
-            //         //     path: "/dashboard/blog-list",
-            //         //     element: <BlogListPage></BlogListPage>,
-            //         // },
-            //     ],
-            // },
+                    // <ProtectedRoutes>
+                    //     <DashboardLayout></DashboardLayout>
+                    // </ProtectedRoutes>
+                ),
+                children: [
+                    {
+                        path: "/dashboard/student",
+                        element: <StudentDashboardPage></StudentDashboardPage>,
+                    },
+                    {
+                        path: "/dashboard/student/result",
+                        element: <ResultPage />,
+                    },
+                    {
+                        path: "/dashboard/student/profile",
+                        element: <Profile />,
+                    },
+                ],
+            },
             // {
             //     path: "*",
             //     element: <NotFoundPage />,

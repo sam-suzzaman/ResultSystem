@@ -4,15 +4,16 @@ import { NavLink, Outlet } from "react-router-dom";
 const StudentDashboardLayout = () => {
     const menu_items = [
         {
-            id: 1,
-            title: "blog list",
-            path: "/dashboard/blog-list",
+            id: 2,
+            title: "Profile",
+            path: "/dashboard/student/profile",
         },
         {
-            id: 2,
-            title: "create blog",
-            path: "/dashboard/create-blog",
+            id: 1,
+            title: "Result",
+            path: "/dashboard/student/result",
         },
+
         {
             id: 4,
             title: "user list",
