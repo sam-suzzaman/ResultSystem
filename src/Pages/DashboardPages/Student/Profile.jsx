@@ -4,6 +4,7 @@ import styled from "styled-components";
 import student_avatar from "../../../assets/student_avatar.png";
 
 import { FiEdit } from "react-icons/fi";
+import { GrPowerReset } from "react-icons/gr";
 import { Link } from "react-router-dom";
 
 const Profile = () => {
@@ -13,7 +14,7 @@ const Profile = () => {
             <div class="container">
                 <div class="col-one">
                     <img src={student_avatar} alt="avatar" />
-                    <div className="control flex justify-center items-center mt-4">
+                    <div className="control flex flex-col justify-center items-center mt-4">
                         <Link
                             to={`/dashboard/student/profile/${id}`}
                             className="flex items-center"
@@ -23,10 +24,19 @@ const Profile = () => {
                                 edit
                             </span>
                         </Link>
+                        <Link
+                            to={`/dashboard/student/reset/${id}`}
+                            className="flex items-center mt-2"
+                        >
+                            <GrPowerReset />
+                            <span className="text-sm capitalize ml-1 font-medium ">
+                                Reset Password
+                            </span>
+                        </Link>
                     </div>
                 </div>
                 <div class="col-two">
-                    <h5 className="title">About me_ _ </h5>
+                    <h5 className="title">About me_ _ _</h5>
                     <table className="information-table">
                         <tbody>
                             <tr className="row">

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { semesters } from "../../../../utils/AddMarkFieldsData";
 import { useResultContext } from "../ResultPage";
 
-const InternalStepTwo = () => {
+const SemesterFinalStepTwo = () => {
     const { step, setStep, setProcessValue } = useResultContext();
     const [showResult, setShowResult] = useState(false);
 
@@ -121,24 +121,28 @@ const InternalStepTwo = () => {
                 {showResult && (
                     <table className="result-table">
                         <tr>
-                            <th>Roll</th>
                             <th>Course Code</th>
                             <th>Course Title</th>
-                            <th>Attendance(10)</th>
-                            <th>Midterm-I(10)</th>
-                            <th>Midterm-II(10)</th>
-                            <th>Assignment(10)</th>
-                            <th>Total(40)</th>
+                            <th className="txt_cntr">Obtained Mark(100)</th>
+                            <th className="txt_cntr">Obtined Grade</th>
                         </tr>
                         <tr>
-                            <td>18102930</td>
                             <td>EEE-101</td>
                             <td>Electrical Circuit-I</td>
-                            <td className="text-center">08</td>
-                            <td className="text-center">08</td>
-                            <td className="text-center">08</td>
-                            <td className="text-center">08</td>
-                            <td className="text-center">32</td>
+                            <td className="text-center">85</td>
+                            <td className="text-center">A+</td>
+                        </tr>
+                        <tr>
+                            <td>EEE-101</td>
+                            <td>Electrical Circuit-I</td>
+                            <td className="text-center">85</td>
+                            <td className="text-center">A+</td>
+                        </tr>
+                        <tr>
+                            <td>EEE-101</td>
+                            <td>Electrical Circuit-I</td>
+                            <td className="text-center">85</td>
+                            <td className="text-center">A+</td>
                         </tr>
                     </table>
                 )}
@@ -147,4 +151,4 @@ const InternalStepTwo = () => {
     );
 };
 
-export default InternalStepTwo;
+export default SemesterFinalStepTwo;

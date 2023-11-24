@@ -28,6 +28,7 @@ import SemesterFinalMarkPage from "../Pages/DashboardPages/Admin/GetMarkPage/Sem
 import ResultPage from "../Pages/DashboardPages/Student/ResultPage";
 import Profile from "../Pages/DashboardPages/Student/Profile";
 import EditProfilePage from "../Pages/DashboardPages/Student/EditProfilePage";
+import ResetPassword from "../Pages/DashboardPages/Student/ResultPage/ResetPassword";
 
 const Routers = createBrowserRouter([
     {
@@ -157,6 +158,10 @@ const Routers = createBrowserRouter([
                     {
                         path: "/dashboard/student/profile/:id",
                         element: <EditProfilePage />,
+                    },
+                    {
+                        path: "/dashboard/student/reset/:id",
+                        element: <ResetPassword />,
                     },
                 ],
             },

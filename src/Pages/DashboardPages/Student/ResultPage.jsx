@@ -2,40 +2,78 @@ import React, { createContext, useContext, useState } from "react";
 import styled from "styled-components";
 
 import InternalStepTwo from "./ResultPage/InternalStepTwo";
-
-const markTypes = [
-    { _id: 1, type: "Internal" },
-    { _id: 2, type: "Semester Final" },
-];
+import SemesterFinalStepTwo from "./ResultPage/SemesterFinalStepTwo";
 
 const resultContext = createContext();
 const ResultPage = () => {
-    const [step, setStep] = useState(0);
+    const [step, setStep] = useState(1);
+    const [processValue, setProcessValue] = useState(1);
 
-    const values = { step, setStep };
+    const values = { step, setStep, processValue, setProcessValue };
 
     return (
         <resultContext.Provider value={values}>
             <Wrapper>
-                {step === 0 && (
+                <ul className="steps steps-vertical lg:steps-horizontal w-full">
+                    <li
+                        className={`step ${
+                            processValue === 1 ? "step-primary" : ""
+                        }`}
+                    >
+                        Select One
+                    </li>
+                    <li
+                        className={`step ${
+                            processValue === 2 ? "step-primary" : ""
+                        }`}
+                    >
+                        Fill Form
+                    </li>
+                    <li
+                        className={`step ${
+                            processValue === 3 ? "step-primary" : ""
+                        }`}
+                    >
+                        Get Result
+                    </li>
+                </ul>
+                {step === 1 && (
                     <div className="result-card-container">
-                        <div className="result-card" onClick={() => setStep(1)}>
+                        <div
+                            className="result-card"
+                            onClick={() => {
+                                setStep(11);
+                                setProcessValue(2);
+                            }}
+                        >
                             <h3 className="">Internal</h3>
                         </div>
-                        <div className="result-card" onClick={() => setStep(2)}>
+                        <div
+                            className="result-card"
+                            onClick={() => {
+                                setStep(22);
+                                setProcessValue(2);
+                            }}
+                        >
                             <h3 className="">
                                 semester <br />
                                 final
                             </h3>
                         </div>
-                        <div className="result-card" onClick={() => setStep(3)}>
+                        <div
+                            className="result-card"
+                            onClick={() => {
+                                setStep(33);
+                                setProcessValue(2);
+                            }}
+                        >
                             <h3 className="">improve</h3>
                         </div>
                     </div>
                 )}
-                {step == 1 && <InternalStepTwo />}
-                {step == 2 && <h4>semester step</h4>}
-                {step == 3 && <h4>improve step</h4>}
+                {step == 11 && <InternalStepTwo />}
+                {step == 22 && <SemesterFinalStepTwo />}
+                {step == 33 && <h4>improve step</h4>}
             </Wrapper>
         </resultContext.Provider>
     );
@@ -108,6 +146,9 @@ const Wrapper = styled.section`
         background-color: #24a148;
         color: #fff;
     }
+    .result-table th.txt_cntr {
+        text-align: center;
+    }
     .zero-result {
         font-size: calc(14px + 0.6vw);
         font-weight: 500;
@@ -127,7 +168,7 @@ const Wrapper = styled.section`
         border-radius: 6px;
         transition: all 0.3s linear;
         margin-top: calc(12px + 1vh);
-        margin-bottom: 30px;
+        /* margin-bottom: 30px; */
     }
     .back-btn:hover {
         background-color: #f3f3f3d4;
