@@ -51,14 +51,6 @@ const Routers = createBrowserRouter([
                 path: "/dashboard",
                 element: <DashboardPage />,
             },
-            // {
-            //     path: "/register",
-            //     element: <RegisterPage></RegisterPage>,
-            // },
-            // {
-            //     path: "/login",
-            //     element: <LoginPage></LoginPage>,
-            // },
             {
                 path: "/dashboard/admin",
                 element: (

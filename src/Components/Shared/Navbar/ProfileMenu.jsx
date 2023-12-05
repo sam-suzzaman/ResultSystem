@@ -31,15 +31,27 @@ const ProfileMenu = () => {
                 className="mt-5 z-[1] p-2 shadow-md menu menu-sm dropdown-content bg-base-100 rounded-sm w-52"
             >
                 <li>
-                    <NavLink
-                        to="/dashboard/admin/"
-                        className="capitalize rounded-sm"
-                    >
-                        <span className="text-lg">
-                            <MdOutlineDashboardCustomize />
-                        </span>
-                        dashboard
-                    </NavLink>
+                    {user?.role === "admin" ? (
+                        <NavLink
+                            to="/dashboard/admin/"
+                            className="capitalize rounded-sm"
+                        >
+                            <span className="text-lg">
+                                <MdOutlineDashboardCustomize />
+                            </span>
+                            dashboard
+                        </NavLink>
+                    ) : (
+                        <NavLink
+                            to="/dashboard/student/"
+                            className="capitalize rounded-sm"
+                        >
+                            <span className="text-lg">
+                                <MdOutlineDashboardCustomize />
+                            </span>
+                            dashboard
+                        </NavLink>
+                    )}
                 </li>
                 <li>
                     {user?.username ? (

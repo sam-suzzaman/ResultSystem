@@ -4,6 +4,8 @@ import styled from "styled-components";
 import InternalStepTwo from "./ResultPage/InternalStepTwo";
 import SemesterFinalStepTwo from "./ResultPage/SemesterFinalStepTwo";
 
+import { FaRegFilePdf } from "react-icons/fa";
+
 const resultContext = createContext();
 const ResultPage = () => {
     const [step, setStep] = useState(1);
@@ -14,7 +16,7 @@ const ResultPage = () => {
     return (
         <resultContext.Provider value={values}>
             <Wrapper>
-                <ul className="steps steps-vertical lg:steps-horizontal w-full">
+                <ul className="steps  steps-horizontal w-full mt-6 hidden">
                     <li
                         className={`step ${
                             processValue === 1 ? "step-primary" : ""
@@ -37,6 +39,7 @@ const ResultPage = () => {
                         Get Result
                     </li>
                 </ul>
+                <h4 className="sec-title">explore result</h4>
                 {step === 1 && (
                     <div className="result-card-container">
                         <div
@@ -46,7 +49,12 @@ const ResultPage = () => {
                                 setProcessValue(2);
                             }}
                         >
-                            <h3 className="">Internal</h3>
+                            <h3 className="">
+                                <span className="icon">
+                                    <FaRegFilePdf />
+                                </span>
+                                Internal
+                            </h3>
                         </div>
                         <div
                             className="result-card"
@@ -56,8 +64,11 @@ const ResultPage = () => {
                             }}
                         >
                             <h3 className="">
-                                semester <br />
-                                final
+                                {" "}
+                                <span className="icon">
+                                    <FaRegFilePdf />
+                                </span>
+                                semester
                             </h3>
                         </div>
                         <div
@@ -67,7 +78,13 @@ const ResultPage = () => {
                                 setProcessValue(2);
                             }}
                         >
-                            <h3 className="">improve</h3>
+                            <h3 className="">
+                                {" "}
+                                <span className="icon">
+                                    <FaRegFilePdf />
+                                </span>
+                                improve
+                            </h3>
                         </div>
                     </div>
                 )}
@@ -81,81 +98,72 @@ const ResultPage = () => {
 
 const Wrapper = styled.section`
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    .sec-title {
+        font-size: calc(22px + 0.75vw);
+        text-transform: capitalize;
+        font-weight: 700;
+        color: var(--primary-clr);
+    }
     .result-card-container {
-        height: 100%;
-        display: flex;
-        flex-wrap: wrap;
+        margin-top: 40px;
+        /* display: flex;
+        flex-wrap: wrap; */
+        display: grid;
+        grid-template-columns: repeat(3, minmax(150px, 190px));
         justify-content: center;
         align-items: center;
-        gap: calc(20px + 2vw);
+        gap: 30px;
     }
     .result-card-container .result-card {
-        width: 200px;
-        height: 200px;
-        background-color: #24a148;
-        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        height: 100%;
+        padding: 3rem 2.5rem;
         display: flex;
         justify-content: center;
         align-items: center;
         transition: all 0.3s linear;
         cursor: pointer;
+
+        border-radius: 8px;
+        background: #f7f7f7;
+        box-shadow: 5px 5px 11px #bfbfbf, -5px -5px 11px #ffffff;
+        transition: all 0.3s ease;
     }
     .result-card-container .result-card:hover {
-        border-radius: 56% 44% 48% 52% / 46% 57% 43% 54%;
+        box-shadow: inset -5px -5px 10px #b6b6b6, inset 5px 5px 10px #ffffff;
     }
     .result-card-container .result-card h3 {
-        font-size: calc(13px + 0.5vw);
+        font-size: calc(14px + 0.5vw);
         font-weight: 600;
-        text-transform: uppercase;
-        color: #fff;
-        letter-spacing: 1px;
+        text-transform: capitalize;
+        color: var(--secondary-clr);
         text-align: center;
-        line-height: 28px;
+        line-height: 29px;
+    }
+    .result-card-container .result-card h3 .icon {
+        font-size: 42px;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 16px;
+        opacity: 0.8;
     }
     .result-btn {
         display: inline-block;
-        padding: 8px 20px;
-        background-color: #24a148;
-        color: #fff;
+        padding: 7px 30px;
         text-transform: capitalize;
         font-size: calc(13px + 0.3vw);
         border-radius: 6px;
         transition: all 0.3s linear;
         margin-top: calc(12px + 1vh);
+        background-color: var(--primary-clr);
+        color: var(--white-clr);
     }
     .result-btn:hover {
-        background-color: #24a147d5;
-    }
-
-    .result-table {
-        margin-top: calc(20px + 3vw);
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-    .result-table td,
-    .result-table th {
-        font-size: 14px;
-        font-weight: 400;
-        letter-spacing: 0.5px;
-        border: 1px solid #ddd;
-        padding: 8px;
-    }
-    .result-table th {
-        text-align: left;
-        background-color: #24a148;
-        color: #fff;
-    }
-    .result-table th.txt_cntr {
-        text-align: center;
-    }
-    .zero-result {
-        font-size: calc(14px + 0.6vw);
-        font-weight: 500;
-        text-align: center;
-        text-transform: capitalize;
-        margin-top: calc(20px + 3vw);
-        color: #b52a2a;
+        background-color: var(--secondary-clr);
     }
 
     .back-btn {
@@ -168,10 +176,47 @@ const Wrapper = styled.section`
         border-radius: 6px;
         transition: all 0.3s linear;
         margin-top: calc(12px + 1vh);
-        /* margin-bottom: 30px; */
     }
     .back-btn:hover {
-        background-color: #f3f3f3d4;
+        background-color: var(--neutral-clr);
+        color: var(--black-clr);
+    }
+
+    .result-table {
+        margin-top: calc(20px + 3vw);
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .result-table td,
+    .result-table th {
+        color: var(--white-black);
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+    .result-table th {
+        text-align: left;
+        background-color: var(--primary-clr);
+        color: #fff;
+        font-weight: 400;
+    }
+    .result-table th.txt_cntr {
+        text-align: center;
+    }
+    .result-table td.cgpa {
+        font-weight: 400;
+        font-family: var(--roboto);
+    }
+    .zero-result {
+        font-size: calc(14px + 0.6vw);
+        font-weight: 500;
+        text-align: center;
+        text-transform: capitalize;
+        margin-top: calc(20px + 3vw);
+        color: #b52a2a;
     }
 `;
 

@@ -1,16 +1,15 @@
 /** @type {import('tailwindcss').Config} */
 export default {
     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-    // theme: {
-    //     extend: {
-    //         mytheme: {
-    //             primary: "#a991f7",
-    //             secondary: "#f6d860",
-    //             accent: "#37cdbe",
-    //             neutral: "#3d4451",
-    //             "base-100": "#ffffff",
-    //         },
-    //     },
-    // },
+    theme: {
+        extend: {
+            light: {
+                primary: "#0a2463",
+                secondary: "#123587db",
+                success: "#119e11",
+                "base-100": "#ffffff",
+            },
+        },
+    },
     plugins: [require("daisyui")],
 };
