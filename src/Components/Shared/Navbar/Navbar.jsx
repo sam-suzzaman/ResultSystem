@@ -29,6 +29,7 @@ const Navbar = () => {
                             </label>
                         )}
                     </div>
+
                     <div className="w-12">
                         <Link to="/">
                             <img
@@ -42,7 +43,7 @@ const Navbar = () => {
                 <div className="navbar-center">
                     <Link
                         to="/"
-                        className="font-bold hidden md:block text-xl uppercase"
+                        className="font-bold hidden md:block text-xl uppercas text-primary"
                     >
                         Dept. of Electrical and Electronic Engineering
                     </Link>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import student_avatar from "../../../assets/student_avatar.png";
@@ -6,95 +6,61 @@ import student_avatar from "../../../assets/student_avatar.png";
 import { FiEdit } from "react-icons/fi";
 import { GrPowerReset } from "react-icons/gr";
 import { Link } from "react-router-dom";
+import BasicInfoTable from "./ProfilePage/BasicInfoTable";
+import UpdateForm from "./ProfilePage/UpdateForm";
 
 const Profile = () => {
+    const [isShowUpdateForm, setIsShowUpdateForm] = useState(false);
+
     const id = "10101";
     return (
         <Wrapper>
-            <div class="container">
-                <div class="col-one">
+            <h3 className="page-title">my profile</h3>
+            <div className="profile-sec-container">
+                <div className="first-col">
                     <img src={student_avatar} alt="avatar" />
-                    <div className="control flex flex-col justify-center items-center mt-4">
-                        <Link
-                            to={`/dashboard/student/profile/${id}`}
-                            className="flex items-center"
-                        >
-                            <FiEdit />{" "}
-                            <span className="text-sm capitalize ml-1 font-medium ">
-                                edit
-                            </span>
-                        </Link>
-                        <Link
-                            to={`/dashboard/student/reset/${id}`}
-                            className="flex items-center mt-2"
-                        >
-                            <GrPowerReset />
-                            <span className="text-sm capitalize ml-1 font-medium ">
-                                Reset Password
-                            </span>
-                        </Link>
-                    </div>
+                    {!isShowUpdateForm && (
+                        <div className="control flex flex-col justify-center items-center mt-4">
+                            <Link
+                                to={`/dashboard/student/profile/${id}`}
+                                className="flex items-center"
+                            >
+                                <FiEdit />{" "}
+                                <span className="text-[13px] capitalize ml-1 font-medium ">
+                                    edit
+                                </span>
+                            </Link>
+                            <Link
+                                to={`/dashboard/student/reset/${id}`}
+                                className="flex items-center mt-2"
+                            >
+                                <GrPowerReset />
+                                <span className="text-[13px] capitalize ml-1 font-medium ">
+                                    Reset Password
+                                </span>
+                            </Link>
+                        </div>
+                    )}
                 </div>
-                <div class="col-two">
-                    <h5 className="title">About me_ _ _</h5>
-                    <table className="information-table">
-                        <tbody>
-                            <tr className="row">
-                                <td className="info">name :</td>
-                                <td className="value">demo student</td>
-                            </tr>
-                            <tr className="row">
-                                <td className="info">roll :</td>
-                                <td className="value">18102900</td>
-                            </tr>
-                            <tr className="row">
-                                <td className="info">Admission Session :</td>
-                                <td className="value">2017-18</td>
-                            </tr>
-                            <tr className="row">
-                                <td className="info">Current Session :</td>
-                                <td className="value">2017-18</td>
-                            </tr>
-                            <tr className="row">
-                                <td className="info">Department :</td>
-                                <td className="value">
-                                    Electrical and Electronic Engineering
-                                </td>
-                            </tr>
-                            <tr className="row">
-                                <td className="info">Gender :</td>
-                                <td className="value">Male</td>
-                            </tr>
-                            <tr className="row">
-                                <td className="info">Father's name :</td>
-                                <td className="value">demo father name</td>
-                            </tr>
-                            <tr className="row">
-                                <td className="info">Mother's name :</td>
-                                <td className="value">demo mother name</td>
-                            </tr>
-                            <tr className="row">
-                                <td className="info">Date of Birth :</td>
-                                <td className="value">01/01/2000</td>
-                            </tr>
-                            <tr className="row">
-                                <td className="info">Email :</td>
-                                <td className="value">Demo00@gmail.com</td>
-                            </tr>
-                            <tr className="row">
-                                <td className="info">Mobile :</td>
-                                <td className="value">+800-00000000000</td>
-                            </tr>
-                            <tr className="row">
-                                <td className="info">Address :</td>
-                                <td className="value">Abc road,Country</td>
-                            </tr>
-                            <tr className="row">
-                                <td className="info">Hometown :</td>
-                                <td className="value">Abc road,Country</td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+                <div className="second-col">
+                    <div className="sub-row-1">
+                        <div className="flex justify-between items-center">
+                            <h5 className="sec-title">Basic Information</h5>
+                            <div
+                                className="flex items-center cursor-pointer"
+                                onClick={() =>
+                                    setIsShowUpdateForm(!isShowUpdateForm)
+                                }
+                            >
+                                <FiEdit />
+                                <span className="text-[13px] capitalize ml-1 font-medium ">
+                                    edit
+                                </span>
+                            </div>
+                        </div>
+                        {isShowUpdateForm ? <UpdateForm /> : <BasicInfoTable />}
+                    </div>
                 </div>
             </div>
         </Wrapper>
@@ -102,90 +68,94 @@ const Profile = () => {
 };
 
 const Wrapper = styled.section`
-    padding-top: calc(1rem + 1vh);
-    padding-bottom: calc(1rem + 1vh);
-    display: flex;
-    justify-content: center;
-    .container {
-        display: flex;
-        width: 100%;
-        max-width: 850px;
-    }
-
-    .col-one {
-        width: 200px;
-    }
-
-    .col-two {
-        padding-left: 40px;
-        flex: 1;
-        overflow-y: auto;
-    }
-    .col-two .title {
-        font-size: calc(22px + 0.5vw);
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 1rem 0;
+    .page-title {
         text-transform: uppercase;
-        font-weight: 700;
-        color: #000000d1;
+        font-size: calc(24px + 0.6vw);
+        font-weight: 800;
+        color: var(--black-clr);
+        opacity: 0.5;
+        text-align: center;
+    }
+    .profile-sec-container {
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: minmax(auto, 200px) 1fr;
+        grid-gap: 20px;
+
+        padding: 2.5rem 2rem;
+
+        border-radius: 17px;
+        background: #ffffff;
+        box-shadow: -11px -11px 22px #d4d4d4, 11px 11px 22px #f8f8f8;
     }
 
-    .information-table {
+    @media screen and (max-width: 714px) {
+        .profile-sec-container {
+            display: flex;
+            flex-direction: column;
+        }
+        .profile-sec-container .first-col {
+            margin-bottom: 20px;
+        }
+    }
+
+    .profile-sec-container .first-col > img {
+        width: 100%;
+        max-width: 150px;
+        margin: 0 auto;
+    }
+    .profile-sec-container .second-col .sec-title {
+        font-weight: 600;
+        font-size: calc(19px + 0.5vw);
+        opacity: 0.85;
+        color: var(--primary-clr);
+    }
+    .profile-table {
         border-collapse: collapse;
         border-spacing: 0;
         width: 100%;
         margin-top: calc(12px + 0.2vw);
     }
 
-    .information-table .info {
+    .profile-table .info {
         width: 200px;
     }
-    .information-table .value {
+    .profile-table .value {
         width: calc(100% - 200px);
     }
 
-    th.row,
-    td {
+    .profile-table th.row,
+    .profile-table td {
         text-align: left;
         padding: 8px;
     }
 
-    td {
+    .profile-table td {
         font-size: calc(13px + 0.15vw);
         font-weight: 500;
         text-transform: capitalize;
         color: #00000097;
         margin-bottom: 20px;
     }
-    td.value {
-        color: #000000e0;
+    .profile-table td.value {
+        color: #000000f2;
+        font-weight: 400;
     }
-    @media screen and (max-width: 785px) {
-        .container {
-            flex-direction: column;
-        }
-        .col-one {
-            width: 100%;
-            margin-bottom: 25px;
-        }
-        .col-one img {
-            width: 100%;
-            max-width: 250px;
-            margin: 0 auto;
-        }
-        .col-two {
-            width: 100%;
-            padding-left: 0;
-        }
-        .col-two .title {
-            text-align: center;
-            margin-bottom: 25px;
-        }
+    .profile-table td.text-normal {
+        text-transform: none;
+    }
+    /* @media screen and (max-width: 785px) {
+       
         .information-table .info {
             width: 40%;
         }
         .information-table .value {
             width: 60%;
         }
-    }
+    } */
 `;
-
 export default Profile;

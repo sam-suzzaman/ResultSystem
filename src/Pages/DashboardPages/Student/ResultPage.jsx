@@ -5,6 +5,7 @@ import InternalStepTwo from "./ResultPage/InternalStepTwo";
 import SemesterFinalStepTwo from "./ResultPage/SemesterFinalStepTwo";
 
 import { FaRegFilePdf } from "react-icons/fa";
+import ImproveStepTwo from "./ResultPage/ImproveStepTwo";
 
 const resultContext = createContext();
 const ResultPage = () => {
@@ -90,7 +91,7 @@ const ResultPage = () => {
                 )}
                 {step == 11 && <InternalStepTwo />}
                 {step == 22 && <SemesterFinalStepTwo />}
-                {step == 33 && <h4>improve step</h4>}
+                {step == 33 && <ImproveStepTwo />}
             </Wrapper>
         </resultContext.Provider>
     );
