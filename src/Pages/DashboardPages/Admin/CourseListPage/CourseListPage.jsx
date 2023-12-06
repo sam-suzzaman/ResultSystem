@@ -102,7 +102,7 @@ const CourseListPage = () => {
                 <div className="flex justify-end mb-6">
                     <label
                         htmlFor="add_course_modal"
-                        className="badge badge-lg bg-[#3ab16a] text-lg capitalize cursor-pointer font-medium  rounded-sm text-white hover:bg-[#2e9657] hover:shadow-md"
+                        className="badge badge-lg bg-primary text-lg capitalize cursor-pointer font-medium  rounded-sm text-white hover:bg-secondary hover:shadow-md"
                     >
                         <span className="text-base font-bold">
                             <AiOutlinePlus />

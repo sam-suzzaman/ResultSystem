@@ -45,7 +45,7 @@ const SessionListPage = () => {
                 <div className="flex justify-end mt-4">
                     <label
                         htmlFor="add_session_modal"
-                        className="btn bg-[#3ab16a] btn-sm rounded-sm text-white hover:bg-[#2e9657] hover:shadow-md"
+                        className="btn bg-primary btn-sm rounded-sm text-white hover:bg-secondary hover:shadow-md"
                     >
                         <span className="text-base font-bold">
                             <AiOutlinePlus />

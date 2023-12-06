@@ -139,7 +139,7 @@ const AddCourseModal = ({ setIsShowAddCourseModal }) => {
                                     },
                                 })}
                                 type="text"
-                                className="input input-bordered w-full rounded-sm uppercase"
+                                className="input input-bordered input-sm  w-full rounded-sm uppercase"
                             />
                             <label className="label">
                                 <span className="label-text-alt text-xs  text-red-700">
@@ -161,7 +161,7 @@ const AddCourseModal = ({ setIsShowAddCourseModal }) => {
                                     },
                                 })}
                                 type="text"
-                                className="input input-bordered w-full rounded-sm"
+                                className="input input-bordered input-sm w-full rounded-sm"
                             />
                             <label className="label">
                                 <span className="label-text-alt text-xs  text-red-700">
@@ -183,7 +183,7 @@ const AddCourseModal = ({ setIsShowAddCourseModal }) => {
                                     },
                                 })}
                                 type="text"
-                                className="input input-bordered w-full rounded-sm"
+                                className="input input-bordered input-sm w-full rounded-sm"
                             />
                             <label className="label">
                                 <span className="label-text-alt text-xs  text-red-700">
@@ -192,7 +192,7 @@ const AddCourseModal = ({ setIsShowAddCourseModal }) => {
                             </label>
                         </div>
                         <div className="flex justify-center mt-3 mb-4">
-                            <button className="btn btn-sm rounded-sm bg-[#2d9958] text-white hover:bg-[#4fa070] text-xs font-medium">
+                            <button className="btn btn-sm rounded-sm bg-primary text-white hover:bg-secondary text-xs font-medium">
                                 Add course
                             </button>
                         </div>

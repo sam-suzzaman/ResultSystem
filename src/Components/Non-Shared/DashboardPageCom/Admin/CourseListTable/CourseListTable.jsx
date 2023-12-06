@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
+import empty from "../../../../../assets/empty.png";
+
 const CourseListTable = ({
     courseList,
     setUpdateCourseID,
@@ -62,9 +64,12 @@ const CourseListTable = ({
 
     if (courseList.length === 0) {
         return (
-            <h2 className="font-bold text-center text-lg uppercase">
-                -- there is no courses yet. --
-            </h2>
+            <div className="flex justify-center items-center flex-col">
+                <img src={empty} alt="" className="w-full max-w-[250px]" />
+                <h2 className="font-semibold text-center text-2xl opacity-80 capitalize">
+                    !!!Opps, no courses assigned yet.
+                </h2>
+            </div>
         );
     }
     return (
@@ -77,7 +82,7 @@ const CourseListTable = ({
                         <th>Course Title</th>
                         <th>Credits</th>
                         <th>Actions</th>
-                        <th>Others</th>
+                        {/* <th>Others</th> */}
                     </tr>
                 </thead>
                 <tbody>
@@ -99,7 +104,7 @@ const CourseListTable = ({
                                             setShowUpdateModal(true);
                                         }}
                                         htmlFor="update_course_modal"
-                                        className="badge capitalize text-xs font-normal btn-warning  text-white rounded-sm mr-3 cursor-pointer"
+                                        className="badge capitalize text-xs font-medium btn-warning  text-black rounded-sm mr-3 cursor-pointer"
                                     >
                                         update
                                     </label>
@@ -109,19 +114,19 @@ const CourseListTable = ({
                                             setIsShowConfirmModal(true);
                                         }}
                                         htmlFor="confirm_modal"
-                                        className="badge capitalize text-xs font-normal bg-[#e96f6d] hover:bg-[#fa8b89] text-white rounded-sm cursor-pointer"
+                                        className="badge capitalize text-xs font-normal bg-error hover:bg-error text-white rounded-sm cursor-pointer"
                                     >
                                         delete
                                     </label>
                                 </td>
-                                <td>
+                                {/* <td>
                                     <Link
                                         to={`/dashboard/admin/session-list/${session}/${semester}/add-mark/${course.courseCode}`}
                                         className="badge capitalize text-xs font-normal bg-[#2b9859] hover:bg-[#33b76a] text-white rounded-sm"
                                     >
                                         add marks
                                     </Link>
-                                </td>
+                                </td> */}
                             </tr>
                         );
                     })}

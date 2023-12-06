@@ -22,9 +22,10 @@ const StudentDashboardLayout = () => {
             path: "/dashboard/student/result",
         },
     ];
+
     return (
         <Wrapper>
-            <div className="h-full ">
+            <div className="h-full relative">
                 <div className="drawer lg:drawer-open h-full">
                     <input
                         id="Student_Dashboard_Drawer"
@@ -34,16 +35,16 @@ const StudentDashboardLayout = () => {
                     <div className="drawer-content  px-6 py-4 overflow-auto">
                         <Outlet />
                     </div>
-                    <div className="rms-sidebar drawer-side h-full">
+                    <div className="rms-sidebar drawer-side h-full absolute !top-auto">
                         <label
                             htmlFor="Student_Dashboard_Drawer"
                             className="drawer-overlay h-full"
                         ></label>
-                        <div className=" h-full  flex flex-col items-center mt-6">
+                        <div className=" h-full  flex flex-col items-center">
                             {/* <div className="brand">
                                 <img src={deptLogo} alt="eee" />
                             </div> */}
-                            <ul className="menu pl-2 pr-3  w-[250px] text-base-content overflow-y-auto flex-nowrap flex-1">
+                            <ul className="menu pl-2 pr-3 p-8 w-[250px] text-base-content overflow-y-auto flex-nowrap flex-1 bg-base-200">
                                 {/* Sidebar content here */}
                                 {menu_items?.map((item) => {
                                     return (
@@ -72,17 +73,6 @@ const StudentDashboardLayout = () => {
 const Wrapper = styled.aside`
     height: 100%;
 
-    .rms-sidebar {
-        border-right: 3px solid #eee;
-    }
-
-    .brand > img {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        padding: 4px;
-        margin: 10px 0;
-    }
     .menu .rms-link {
         border-radius: 4px;
         margin-bottom: 6px;

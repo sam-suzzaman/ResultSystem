@@ -176,13 +176,13 @@ const AddSessionModal = ({ setOpenAddSessionModal }) => {
                                 })}
                             </select>
                             <label className="label">
-                                <span className="label-text-alt text-xs  text-red-700">
+                                <span className="label-text-alt text-xs  text-red-600">
                                     {errors?.session?.message}
                                 </span>
                             </label>
                         </div>
                         <div className="flex justify-center mt-3 mb-6">
-                            <button className="btn btn-sm rounded-sm bg-[#2d9958] text-white hover:bg-[#4fa070] text-xs font-medium">
+                            <button className="btn btn-sm rounded-sm bg-primary px-4 text-white hover:bg-secondary text-xs font-medium">
                                 create session
                             </button>
                         </div>

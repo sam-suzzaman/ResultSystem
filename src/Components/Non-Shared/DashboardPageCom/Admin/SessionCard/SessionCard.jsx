@@ -11,8 +11,8 @@ const SessionCard = ({ sessionData }) => {
                 <span className="icon text-5xl text-slate-100 p-3 border-2 border-slate-100 rounded-full">
                     <FaUserGraduate />
                 </span>
-                <h4 className="capitalize font-medium mt-1 text-lg">
-                    session: {session}
+                <h4 className="capitalize font-medium mt-1 text-lg ">
+                    session: <span className="text-base number">{session}</span>
                 </h4>
                 <Link
                     to={`/dashboard/admin/session-list/${session}`}

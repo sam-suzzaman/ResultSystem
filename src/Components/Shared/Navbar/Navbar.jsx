@@ -15,7 +15,7 @@ const Navbar = () => {
                         {pathname.includes("/dashboard/admin") && (
                             <label
                                 htmlFor="Admin_Dashboard_Drawer"
-                                className="btn btn-primary btn-sm drawer-button lg:hidden ml-1"
+                                className="btn btn-secondary text-white btn-sm drawer-button lg:hidden ml-1"
                             >
                                 <RxHamburgerMenu></RxHamburgerMenu>
                             </label>
@@ -23,7 +23,7 @@ const Navbar = () => {
                         {pathname.includes("/dashboard/student") && (
                             <label
                                 htmlFor="Student_Dashboard_Drawer"
-                                className="btn btn-primary btn-sm drawer-button lg:hidden ml-1"
+                                className="btn btn-secondary text-white btn-sm drawer-button lg:hidden ml-1"
                             >
                                 <RxHamburgerMenu></RxHamburgerMenu>
                             </label>

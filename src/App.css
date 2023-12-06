@@ -13,8 +13,8 @@
     --accent-clr: #ffd700;
     --neutral-clr: #c3c3c3;
     --success-clr: #189341;
-    --danger-clr: #dc0909;
-    --warn-clr: rgb(244, 244, 10);
+    --danger-clr: #cc0606;
+    --warn-clr: #ffeb3b;
     --roboto: "Roboto", sans-serif;
 }
 * {

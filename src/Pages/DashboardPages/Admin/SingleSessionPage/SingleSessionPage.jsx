@@ -22,14 +22,14 @@ const SingleSessionPage = () => {
             <div className="flex justify-end">
                 <Link
                     to={`/dashboard/admin/${session}/student-list`}
-                    className="btn bg-[#3ab16a] btn-sm rounded-sm text-white hover:bg-[#2e9657] hover:shadow-md font-medium text-xs mr-1"
+                    className="btn bg-primary btn-sm rounded-sm text-white hover:bg-secondary hover:shadow-md font-medium text-xs mr-1"
                 >
                     students list
                 </Link>
                 <div className="">
                     <label
                         htmlFor="add_student_modal"
-                        className="btn bg-[#3ab16a] btn-sm rounded-sm text-white hover:bg-[#2e9657] hover:shadow-md"
+                        className="btn bg-primary btn-sm rounded-sm text-white hover:bg-secondary hover:shadow-md"
                     >
                         <span className="text-base font-bold">
                             <AiOutlinePlus />
