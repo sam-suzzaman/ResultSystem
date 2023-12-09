@@ -165,29 +165,90 @@ const FormStepTwo = () => {
                             return (
                                 <React.Fragment key={index}>
                                     <input
-                                        className="roll_field"
+                                        className="roll_field number"
                                         type="text"
                                         {...register(
                                             `resultList.${index}.roll`
                                         )}
                                         defaultValue={student.roll}
                                     />
-                                    <input
-                                        type="text"
-                                        placeholder=""
-                                        {...register(
-                                            `resultList.${index}.firstExaminer`
-                                        )}
-                                    />
-                                    <input
-                                        type="text"
-                                        placeholder=""
-                                        {...register(
-                                            `resultList.${index}.secondExaminer`
-                                        )}
-                                    />
 
-                                    <span className="text-xs font-medium capitalize text-center text-red-700">
+                                    <div className="flex flex-col">
+                                        <input
+                                            type="text"
+                                            className="number"
+                                            placeholder=""
+                                            {...register(
+                                                `resultList.${index}.firstExaminer`,
+                                                {
+                                                    required: {
+                                                        value: true,
+                                                        message:
+                                                            "Mark required",
+                                                    },
+                                                    min: {
+                                                        value: 0,
+                                                        message:
+                                                            "Be at least (0)",
+                                                    },
+                                                    max: {
+                                                        value: 60,
+                                                        message:
+                                                            "Max (60) marks",
+                                                    },
+                                                }
+                                            )}
+                                        />
+                                        {errors?.resultList?.[index]
+                                            ?.firstExaminer && (
+                                            <span className=" mt-1 label-text-alt text-xs font-normal capitalize text-red-700 text-center number">
+                                                {
+                                                    errors?.resultList?.[index]
+                                                        ?.firstExaminer?.message
+                                                }
+                                            </span>
+                                        )}
+                                    </div>
+
+                                    <div className="flex flex-col">
+                                        <input
+                                            type="text"
+                                            className="number"
+                                            placeholder=""
+                                            {...register(
+                                                `resultList.${index}.secondExaminer`,
+                                                {
+                                                    required: {
+                                                        value: true,
+                                                        message:
+                                                            "Mark required",
+                                                    },
+                                                    min: {
+                                                        value: 0,
+                                                        message:
+                                                            "Be at least (0)",
+                                                    },
+                                                    max: {
+                                                        value: 60,
+                                                        message:
+                                                            "Max (60) marks",
+                                                    },
+                                                }
+                                            )}
+                                        />
+                                        {errors?.resultList?.[index]
+                                            ?.secondExaminer && (
+                                            <span className=" mt-1 label-text-alt text-xs font-normal capitalize text-red-700 text-center number">
+                                                {
+                                                    errors?.resultList?.[index]
+                                                        ?.secondExaminer
+                                                        ?.message
+                                                }
+                                            </span>
+                                        )}
+                                    </div>
+
+                                    <span className="text-xs font-medium capitalize text-center text-red-700 number">
                                         {dif[1]}
                                     </span>
                                 </React.Fragment>
@@ -198,13 +259,13 @@ const FormStepTwo = () => {
 
                 <div className="flex justify-center mt-8 gap-x-2">
                     <button
-                        className="btn btn-sm bg-[#f44040] hover:bg-[#ea3333] rounded-sm text-white font-normal text-sm"
+                        className="btn btn-sm bg-error px-6 hover:bg-[#ea3333] rounded-sm text-white font-normal text-sm"
                         onClick={backButtonHandler}
                     >
                         back
                     </button>
                     <button
-                        className="btn btn-sm bg-[#3ba550] hover:bg-[#2e763c] rounded-sm text-white font-normal text-sm"
+                        className="btn btn-sm bg-primary hover:bg-secondary px-6 rounded-sm text-white font-normal text-sm"
                         type="submit"
                     >
                         submit

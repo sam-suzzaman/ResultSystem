@@ -63,7 +63,6 @@ const StepTwo = () => {
     };
 
     const onSubmit = (data) => {
-        console.log("submit");
         const { resultList } = data;
         setStepTwoValue(resultList);
         const mergedResult = resultList.map((res) => {
@@ -78,10 +77,10 @@ const StepTwo = () => {
             };
         });
         const result = { marks: mergedResult };
-        // addMultipleInternalMarkMutation.mutate({
-        //     body: result,
-        //     url: "https://student-management-delta.vercel.app/mark/internal/multiple",
-        // });
+        addMultipleInternalMarkMutation.mutate({
+            body: result,
+            url: "https://student-management-delta.vercel.app/mark/internal/multiple",
+        });
     };
 
     if (isLoading) {

@@ -78,7 +78,10 @@ const InternalMarkPDF = ({ results, stepOneValue, selectedCourse }) => {
                         <Text>Jaitya Kabi Kazi Nazrul Islam University</Text>
                     </H6>
                     <H6>
-                        <Text>Department of {stepOneValue?.department}</Text>
+                        <Text>
+                            Department of Electrical and Electronic Engineering
+                            || {stepOneValue?.department}
+                        </Text>
                     </H6>
                     <H6>
                         <Text>Course Code: {selectedCourse?.courseCode},</Text>{" "}
@@ -103,11 +106,6 @@ const InternalMarkPDF = ({ results, stepOneValue, selectedCourse }) => {
                                 <Text>Roll</Text>
                             </SPAN>
                         </DIV>
-                        {/* <DIV style={(styles.cell, styles.largeCell)}>
-                            <SPAN>
-                                <Text>Name</Text>
-                            </SPAN>
-                        </DIV> */}
                         <DIV
                             style={{
                                 ...styles.cell,

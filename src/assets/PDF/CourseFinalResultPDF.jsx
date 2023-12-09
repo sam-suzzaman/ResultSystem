@@ -71,7 +71,10 @@ const styles = StyleSheet.create({
     },
 });
 
-const CourseFinalResultPDF = ({ data }) => {
+const CourseFinalResultPDF = ({ results, stepOneValue, selectedCourse }) => {
+    // Todo:here i need to show selected course and other information at the top
+    // Todo: need to styling pdf
+
     return (
         <Document>
             <Page size="A4" style={styles.page}>
@@ -202,7 +205,7 @@ const CourseFinalResultPDF = ({ data }) => {
                     </DIV>
                 </DIV>
 
-                {data?.map((result) => {
+                {results?.map((result) => {
                     return (
                         <DIV style={styles.valueRow} key={result._id}>
                             <DIV

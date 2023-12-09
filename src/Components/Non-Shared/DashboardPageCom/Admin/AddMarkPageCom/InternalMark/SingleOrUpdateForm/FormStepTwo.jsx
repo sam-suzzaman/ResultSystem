@@ -39,7 +39,7 @@ const FormStepTwo = () => {
     const addSingleInternalMarkMutation = useMutation({
         mutationFn: updateHandler,
         onSuccess: (data, variable, context) => {
-            toast.success("Mark Submitted");
+            toast.success("Mark Updated");
             reset();
         },
         onError: (error, variables, context) => {
