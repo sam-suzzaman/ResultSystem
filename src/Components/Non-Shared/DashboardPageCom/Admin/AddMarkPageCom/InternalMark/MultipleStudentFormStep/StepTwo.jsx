@@ -8,6 +8,7 @@ import {
 import { useMutation, useQuery } from "react-query";
 import { toast } from "react-toastify";
 import { useMarkFormStepContext } from "../../../../../../../context/Admin/MarkFormStepContext";
+import styled from "styled-components";
 
 const StepTwo = () => {
     const { setStepValue, stepOneValue, setStepTwoValue, selectedCourse } =
@@ -62,6 +63,7 @@ const StepTwo = () => {
     };
 
     const onSubmit = (data) => {
+        console.log("submit");
         const { resultList } = data;
         setStepTwoValue(resultList);
         const mergedResult = resultList.map((res) => {
@@ -76,10 +78,10 @@ const StepTwo = () => {
             };
         });
         const result = { marks: mergedResult };
-        addMultipleInternalMarkMutation.mutate({
-            body: result,
-            url: "https://student-management-delta.vercel.app/mark/internal/multiple",
-        });
+        // addMultipleInternalMarkMutation.mutate({
+        //     body: result,
+        //     url: "https://student-management-delta.vercel.app/mark/internal/multiple",
+        // });
     };
 
     if (isLoading) {
@@ -92,158 +94,272 @@ const StepTwo = () => {
 
     return (
         <>
-            <div className="mb-6">
-                <h3 className="capitalize text-center text-sm font-normal">
-                    Jaitya kabi kazi nazrul islam university
-                </h3>
-                <h3 className=" text-center text-sm font-normal">
-                    Department of {stepOneValue?.department}
-                </h3>
-                <div className="flex justify-center items-center gap-x-1">
-                    <h3 className=" text-center text-sm font-normal">
-                        Course Code: {selectedCourse?.courseCode},
+            <Wrapper>
+                <div className="mb-6 form-header">
+                    <h3 className="capitalize text-center text-sm font-normal number">
+                        Jaitya kabi kazi nazrul islam university
                     </h3>
-                    <h3 className=" text-center text-sm font-normal">
-                        Course Title: {selectedCourse?.courseName}
+                    <h3 className=" text-center text-sm font-normal number">
+                        Department of {stepOneValue?.department}
                     </h3>
-                </div>
-                <div className="flex justify-center items-center gap-x-1">
-                    <h3 className=" text-center text-sm font-normal">
-                        Internal Marks,
-                    </h3>
-                    <h3 className=" text-center text-sm font-normal">
-                        Session: {stepOneValue?.session}
-                    </h3>
-                </div>
-            </div>
-            <form
-                className="w-full  mark_input_form_wrapper"
-                onSubmit={handleSubmit(onSubmit)}
-                autoComplete="off"
-            >
-                <div className="mark_input_form_container">
-                    <div className="mark">
-                        <h3>Student Roll</h3>
-                    </div>
-                    <div className="mark">
-                        <h3>Attendance</h3>
-                    </div>
-                    <div className="mark">
-                        <h3>Midterm-1</h3>
-                    </div>
-                    <div className="mark">
-                        <h3>Midterm-2</h3>
-                    </div>
-                    <div className="mark">
-                        <h3>
-                            assignment/ <br />
-                            presentation
+                    <div className="flex justify-center items-center gap-x-1 number">
+                        <h3 className=" text-center text-sm font-normal number">
+                            Course Code: {selectedCourse?.courseCode},
+                        </h3>
+                        <h3 className=" text-center text-sm font-normal number">
+                            Course Title: {selectedCourse?.courseName}
                         </h3>
                     </div>
-                    <div className="mark">
-                        <h3>Total</h3>
+                    <div className="flex justify-center items-center gap-x-1 number">
+                        <h3 className=" text-center text-sm font-normal number">
+                            Internal Marks,
+                        </h3>
+                        <h3 className=" text-center text-sm font-normal number">
+                            Session: {stepOneValue?.session}
+                        </h3>
                     </div>
+                </div>
+                <form
+                    className="w-full  mark_input_form_wrapper "
+                    onSubmit={handleSubmit(onSubmit)}
+                    autoComplete="off"
+                >
+                    <div className="mark_input_form_container">
+                        <div className="mark">
+                            <h3>Student Roll</h3>
+                        </div>
+                        <div className="mark">
+                            <h3>Attendance</h3>
+                        </div>
+                        <div className="mark">
+                            <h3>Midterm-1</h3>
+                        </div>
+                        <div className="mark">
+                            <h3>Midterm-2</h3>
+                        </div>
+                        <div className="mark">
+                            <h3>
+                                assignment/ <br />
+                                presentation
+                            </h3>
+                        </div>
+                        <div className="mark">
+                            <h3>Total</h3>
+                        </div>
 
-                    {students?.map((student, index) => {
-                        const attendanceWatch = watch(
-                            `resultList.${index}.attendance`
-                        );
-                        const midOneWatch = watch(`resultList.${index}.midOne`);
-                        const midTwoWatch = watch(`resultList.${index}.midTwo`);
-                        const presentationOrAssignmentWatch = watch(
-                            `resultList.${index}.presentationOrAssignment`
-                        );
+                        {students?.map((student, index) => {
+                            const attendanceWatch = watch(
+                                `resultList.${index}.attendance`
+                            );
+                            const midOneWatch = watch(
+                                `resultList.${index}.midOne`
+                            );
+                            const midTwoWatch = watch(
+                                `resultList.${index}.midTwo`
+                            );
+                            const presentationOrAssignmentWatch = watch(
+                                `resultList.${index}.presentationOrAssignment`
+                            );
 
-                        let totalValue = getTotal(
-                            attendanceWatch,
-                            midOneWatch,
-                            midTwoWatch,
-                            presentationOrAssignmentWatch
-                        );
+                            let totalValue = getTotal(
+                                attendanceWatch,
+                                midOneWatch,
+                                midTwoWatch,
+                                presentationOrAssignmentWatch
+                            );
 
-                        return (
-                            <React.Fragment key={index + student.roll}>
-                                <input
-                                    type="text"
-                                    className="roll-field"
-                                    {...register(`resultList.${index}.roll`)}
-                                    defaultValue={student.roll}
-                                    readOnly
-                                />
-                                <div className="flex flex-col">
+                            return (
+                                <React.Fragment key={index + student.roll}>
                                     <input
                                         type="text"
-                                        placeholder=""
+                                        className="roll-field number"
                                         {...register(
-                                            `resultList.${index}.attendance`,
-                                            {
-                                                required: {
-                                                    value: true,
-                                                    message:
-                                                        "Attendance mark is  required",
-                                                },
-                                                min: {
-                                                    value: 0,
-                                                    message:
-                                                        "At least (0) is required",
-                                                },
-                                                max: {
-                                                    value: 10,
-                                                    message: "Max (10) marks",
-                                                },
-                                            }
+                                            `resultList.${index}.roll`
                                         )}
+                                        defaultValue={student.roll}
+                                        readOnly
                                     />
-                                    {errors?.resultList?.[index]
-                                        ?.attendance && (
-                                        <span className=" mt-1 label-text-alt text-xs font-normal capitalize text-red-700">
-                                            {
-                                                errors?.resultList[index]
-                                                    ?.attendance?.message
-                                            }
-                                        </span>
-                                    )}
-                                </div>
-                                <input
-                                    type="text"
-                                    {...register(`resultList.${index}.midOne`)}
-                                />
-                                <input
-                                    type="text"
-                                    placeholder=""
-                                    {...register(`resultList.${index}.midTwo`)}
-                                />
-                                <input
-                                    type="text"
-                                    placeholder=""
-                                    {...register(
-                                        `resultList.${index}.presentationOrAssignment`
-                                    )}
-                                />
-                                <span className="text-center text-xs font-medium">
-                                    {totalValue}
-                                </span>
-                            </React.Fragment>
-                        );
-                    })}
-                </div>
-                <div className="flex justify-center mt-8 gap-x-2">
-                    <button
-                        className="btn btn-sm bg-[#f44040] hover:bg-[#ea3333] rounded-sm text-white font-normal text-sm"
-                        onClick={backButtonHandler}
-                    >
-                        back
-                    </button>
-                    <button
-                        className="btn btn-sm bg-[#3ba550] hover:bg-[#2e763c] rounded-sm text-white font-normal text-sm"
-                        type="submit"
-                    >
-                        submit
-                    </button>
-                </div>
-            </form>
+                                    <div className="flex flex-col">
+                                        <input
+                                            type="text"
+                                            className="number"
+                                            placeholder=""
+                                            {...register(
+                                                `resultList.${index}.attendance`,
+                                                {
+                                                    required: {
+                                                        value: true,
+                                                        message:
+                                                            "Mark required",
+                                                    },
+                                                    min: {
+                                                        value: 0,
+                                                        message:
+                                                            "be at least (0)",
+                                                    },
+                                                    max: {
+                                                        value: 10,
+                                                        message:
+                                                            "Max (10) marks",
+                                                    },
+                                                }
+                                            )}
+                                        />
+                                        {errors?.resultList?.[index]
+                                            ?.attendance && (
+                                            <span className=" mt-1 label-text-alt text-xs font-semibold capitalize text-red-700 text-center">
+                                                {
+                                                    errors?.resultList[index]
+                                                        ?.attendance?.message
+                                                }
+                                            </span>
+                                        )}
+                                    </div>
+
+                                    <div className="flex flex-col">
+                                        <input
+                                            type="text"
+                                            className="number"
+                                            {...register(
+                                                `resultList.${index}.midOne`,
+                                                {
+                                                    required: {
+                                                        value: true,
+                                                        message:
+                                                            "Mark required",
+                                                    },
+                                                    min: {
+                                                        value: 0,
+                                                        message:
+                                                            "Be at least (0)",
+                                                    },
+                                                    max: {
+                                                        value: 10,
+                                                        message:
+                                                            "Max (10) marks",
+                                                    },
+                                                }
+                                            )}
+                                        />
+
+                                        {errors?.resultList?.[index]
+                                            ?.midOne && (
+                                            <span className=" mt-1 label-text-alt text-xs font-semibold capitalize text-red-700 text-center">
+                                                {
+                                                    errors?.resultList?.[index]
+                                                        ?.midOne?.message
+                                                }
+                                            </span>
+                                        )}
+                                    </div>
+
+                                    <div className="flex flex-col">
+                                        <input
+                                            type="text"
+                                            className="number"
+                                            placeholder=""
+                                            {...register(
+                                                `resultList.${index}.midTwo`,
+                                                {
+                                                    required: {
+                                                        value: true,
+                                                        message:
+                                                            "Mark required",
+                                                    },
+                                                    min: {
+                                                        value: 0,
+                                                        message:
+                                                            "Be at least (0)",
+                                                    },
+                                                    max: {
+                                                        value: 10,
+                                                        message:
+                                                            "Max (10) marks",
+                                                    },
+                                                }
+                                            )}
+                                        />
+                                        {errors?.resultList?.[index]
+                                            ?.midTwo && (
+                                            <span className=" mt-1 label-text-alt text-xs font-semibold capitalize text-red-700 text-center">
+                                                {
+                                                    errors?.resultList?.[index]
+                                                        ?.midTwo?.message
+                                                }
+                                            </span>
+                                        )}
+                                    </div>
+
+                                    <div className="flex flex-col">
+                                        {" "}
+                                        <input
+                                            type="text"
+                                            className="number"
+                                            placeholder=""
+                                            {...register(
+                                                `resultList.${index}.presentationOrAssignment`,
+                                                {
+                                                    required: {
+                                                        value: true,
+                                                        message:
+                                                            "Mark required",
+                                                    },
+                                                    min: {
+                                                        value: 0,
+                                                        message:
+                                                            "Be at least (0)",
+                                                    },
+                                                    max: {
+                                                        value: 10,
+                                                        message:
+                                                            "Max (10) marks",
+                                                    },
+                                                }
+                                            )}
+                                        />
+                                        {errors?.resultList?.[index]
+                                            ?.presentationOrAssignment && (
+                                            <span className=" mt-1 label-text-alt text-xs font-semibold capitalize text-red-700 text-center">
+                                                {
+                                                    errors?.resultList?.[index]
+                                                        ?.presentationOrAssignment
+                                                        ?.message
+                                                }
+                                            </span>
+                                        )}
+                                    </div>
+
+                                    <span className="text-center text-xs font-medium number">
+                                        {totalValue}
+                                    </span>
+                                </React.Fragment>
+                            );
+                        })}
+                    </div>
+                    <div className="flex justify-center mt-8 gap-x-2">
+                        <button
+                            className="btn btn-sm bg-error px-6 hover:bg-[#ea3333] rounded-sm text-white font-normal text-sm"
+                            onClick={backButtonHandler}
+                        >
+                            back
+                        </button>
+                        <button
+                            className="btn btn-sm bg-primary hover:bg-secondary px-6 rounded-sm text-white font-normal text-sm"
+                            type="submit"
+                        >
+                            submit
+                        </button>
+                    </div>
+                </form>
+            </Wrapper>
         </>
     );
 };
+
+const Wrapper = styled.section`
+    .form-header {
+        font-family: var(--roboto);
+    }
+`;
 
 export default StepTwo;

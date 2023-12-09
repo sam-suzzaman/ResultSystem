@@ -112,8 +112,6 @@ const Wrapper = styled.section`
     }
     .result-card-container {
         margin-top: 40px;
-        /* display: flex;
-        flex-wrap: wrap; */
         display: grid;
         grid-template-columns: repeat(3, minmax(150px, 190px));
         justify-content: center;

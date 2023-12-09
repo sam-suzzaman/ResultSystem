@@ -257,7 +257,7 @@ const FormStepOne = ({ name }) => {
 
                 <div className="flex justify-center mt-3">
                     <button
-                        className="btn btn-sm bg-[#3ba550] hover:bg-[#2e763c] rounded-sm text-white font-normal text-sm"
+                        className="py-2 px-8 bg-primary hover:bg-secondary  text-white text-sm font-semibold capitalize tracking-widest rounded-sm"
                         type="submit"
                     >
                         next

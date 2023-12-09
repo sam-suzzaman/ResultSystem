@@ -5,6 +5,8 @@ import SectionTitle from "../../../../Components/Non-Shared/DashboardPageCom/Adm
 import "./AddMarkPage.css";
 import styled from "styled-components";
 
+import { LuFilePlus } from "react-icons/lu";
+
 const AddMarkPage = () => {
     const { pathname } = useLocation();
     return (
@@ -16,26 +18,50 @@ const AddMarkPage = () => {
                 </div>
 
                 <div className="add-mark-card-container mt-16">
-                    <Link to="/dashboard/admin/add-mark/internal">
-                        <div className="card">
-                            <h3 className="">internal</h3>
-                        </div>
-                    </Link>
-                    <Link to="/dashboard/admin/add-mark/external">
-                        <div className="card">
-                            <h3 className="">semester final</h3>
-                        </div>
-                    </Link>
-                    <Link to="/dashboard/admin/add-mark/lab">
-                        <div className="card">
-                            <h3 className="">lab</h3>
-                        </div>
-                    </Link>
-                    <Link to="/dashboard/admin/add-mark/improvement">
-                        <div className="card">
-                            <h3 className="">Improvement</h3>
-                        </div>
-                    </Link>
+                    <div className="card">
+                        <Link to="/dashboard/admin/add-mark/internal">
+                            {" "}
+                            <h3 className="">
+                                <span className="icon">
+                                    <LuFilePlus />
+                                </span>
+                                internal
+                            </h3>
+                        </Link>
+                    </div>
+
+                    <div className="card">
+                        <Link to="/dashboard/admin/add-mark/external">
+                            <h3 className="">
+                                <span className="icon">
+                                    <LuFilePlus />
+                                </span>
+                                semester final
+                            </h3>
+                        </Link>
+                    </div>
+
+                    <div className="card">
+                        <Link to="/dashboard/admin/add-mark/lab">
+                            <h3 className="">
+                                <span className="icon">
+                                    <LuFilePlus />
+                                </span>
+                                lab
+                            </h3>
+                        </Link>
+                    </div>
+
+                    <div className="card">
+                        <Link to="/dashboard/admin/add-mark/improvement">
+                            <h3 className="">
+                                <span className="icon">
+                                    <LuFilePlus />
+                                </span>
+                                Improvement
+                            </h3>
+                        </Link>
+                    </div>
                 </div>
             </div>
         </Wrapper>
@@ -44,47 +70,50 @@ const AddMarkPage = () => {
 
 const Wrapper = styled.section`
     .add-mark-card-container {
-        display: flex;
+        /* display: flex;
+        justify-content: center;
+        align-items: center; */
+        /* grid-gap: calc(15px + 1vw); */
+        /* gap: calc(14px + 1vw); */
+
+        display: grid;
+        grid-template-columns: repeat(4, minmax(150px, 190px));
         justify-content: center;
         align-items: center;
-        /* grid-gap: calc(15px + 1vw); */
-        gap: calc(14px + 1vw);
+        gap: 30px;
     }
     .add-mark-card-container .card {
-        width: 220px;
-        height: 210px;
-        padding: 10px 20px;
-
-        /* border-radius: 16px;
-            background: linear-gradient(315deg, #cfcfcf, #f6f6f6);
-            box-shadow: -11px -11px 38px #d8d8d8, 11px 11px 38px #f4f4f4; */
-
-        border-radius: 20px;
-        background: linear-gradient(315deg, #cfcfcf, #f6f6f6);
-        box-shadow: -7px -7px 14px #d6d6d6, 7px 7px 14px #f6f6f6;
-
+        height: 100%;
+        padding: 3rem 1rem;
         display: flex;
         justify-content: center;
         align-items: center;
         transition: all 0.3s linear;
+        cursor: pointer;
+
+        border-radius: 8px;
+        background: #f7f7f7;
+        box-shadow: 5px 5px 11px #bfbfbf, -5px -5px 11px #ffffff;
+        transition: all 0.3s ease;
     }
 
     .add-mark-card-container .card:hover {
-        /* border-radius: 23px;
-        background: #e6e6e6;
-        box-shadow: inset 11px 11px 22px #c6c6c6, inset -11px -11px 22px #ffffff; */
-        border-radius: 23px;
-        background: #e6e6e6;
-        box-shadow: inset 11px 11px 22px #c6c6c6, inset -11px -11px 22px #ffffff;
+        box-shadow: inset -5px -5px 10px #b6b6b6, inset 5px 5px 10px #ffffff;
     }
     .add-mark-card-container .card h3 {
-        font-size: calc(15px + 0.8vw);
+        font-size: calc(14px + 0.5vw);
+        font-weight: 600;
         text-transform: capitalize;
-        font-weight: 800;
-        letter-spacing: 1px;
+        color: var(--secondary-clr);
         text-align: center;
-        padding: 10px 20px;
-        opacity: 0.85;
+        line-height: 29px;
+    }
+    .add-mark-card-container .card h3 .icon {
+        font-size: 42px;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 16px;
+        opacity: 0.8;
     }
 `;
 
