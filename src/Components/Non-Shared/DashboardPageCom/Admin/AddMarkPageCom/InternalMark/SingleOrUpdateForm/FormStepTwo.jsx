@@ -141,26 +141,26 @@ const FormStepTwo = () => {
 
     return (
         <>
-            <div className="mb-6">
-                <h3 className="capitalize text-center text-sm font-normal">
+            <div className="mb-6 ">
+                <h3 className="capitalize text-center text-sm font-normal f-roboto">
                     Jaitya kabi kazi nazrul islam university
                 </h3>
-                <h3 className=" text-center text-sm font-normal">
+                <h3 className=" text-center text-sm font-normal f-roboto">
                     Department of {stepOneValue?.department}
                 </h3>
                 <div className="flex justify-center items-center gap-x-1">
-                    <h3 className=" text-center text-sm font-normal">
+                    <h3 className=" text-center text-sm font-normal f-roboto">
                         Course Code: {selectedCourse?.courseCode},
                     </h3>
-                    <h3 className=" text-center text-sm font-normal">
+                    <h3 className=" text-center text-sm font-normal f-roboto">
                         Course Title: {selectedCourse?.courseName}
                     </h3>
                 </div>
                 <div className="flex justify-center items-center gap-x-1">
-                    <h3 className=" text-center text-sm font-normal">
+                    <h3 className=" text-center text-sm font-normal f-roboto">
                         Internal Marks,
                     </h3>
-                    <h3 className=" text-center text-sm font-normal">
+                    <h3 className=" text-center text-sm font-normal f-roboto">
                         Session: {stepOneValue?.session}
                     </h3>
                 </div>
@@ -194,45 +194,131 @@ const FormStepTwo = () => {
                     </div>
 
                     <React.Fragment>
-                        <input
-                            type="text"
-                            className="roll-field"
-                            {...register(`roll`)}
-                        />
-                        <input
-                            type="text"
-                            {...register(`attendance`)}
-                            disabled={!isRollSelect}
-                        />
-                        <input
-                            type="text"
-                            {...register(`midOne`)}
-                            disabled={!isRollSelect}
-                        />
-                        <input
-                            type="text"
-                            {...register(`midTwo`)}
-                            disabled={!isRollSelect}
-                        />
-                        <input
-                            type="text"
-                            {...register(`presentationOrAssignment`)}
-                            disabled={!isRollSelect}
-                        />
-                        <span className="text-center text-xs font-medium">
+                        <div className="flex flex-col">
+                            <input
+                                type="text"
+                                className="roll-field number"
+                                {...register(`roll`)}
+                            />
+                        </div>
+                        <div className="flex flex-col">
+                            <input
+                                type="text"
+                                className="number"
+                                {...register(`attendance`, {
+                                    required: {
+                                        value: true,
+                                        message: "Mark required",
+                                    },
+                                    min: {
+                                        value: 0,
+                                        message: "be at least (0)",
+                                    },
+                                    max: {
+                                        value: 10,
+                                        message: "Max (10) marks",
+                                    },
+                                })}
+                                disabled={!isRollSelect}
+                            />
+                            {errors?.attendance && (
+                                <span className=" mt-1 label-text-alt text-xs font-semibold capitalize text-red-700 text-center">
+                                    {errors?.attendance?.message}
+                                </span>
+                            )}
+                        </div>
+                        <div className="flex flex-col">
+                            <input
+                                type="text"
+                                className="number"
+                                {...register(`midOne`, {
+                                    required: {
+                                        value: true,
+                                        message: "Mark required",
+                                    },
+                                    min: {
+                                        value: 0,
+                                        message: "Be at least (0)",
+                                    },
+                                    max: {
+                                        value: 10,
+                                        message: "Max (10) marks",
+                                    },
+                                })}
+                                disabled={!isRollSelect}
+                            />
+                            {errors?.midOne && (
+                                <span className=" mt-1 label-text-alt text-xs font-semibold capitalize text-red-700 text-center">
+                                    {errors?.midOne?.message}
+                                </span>
+                            )}
+                        </div>
+                        <div className="flex flex-col">
+                            <input
+                                type="text"
+                                className="number"
+                                {...register(`midTwo`, {
+                                    required: {
+                                        value: true,
+                                        message: "Mark required",
+                                    },
+                                    min: {
+                                        value: 0,
+                                        message: "Be at least (0)",
+                                    },
+                                    max: {
+                                        value: 10,
+                                        message: "Max (10) marks",
+                                    },
+                                })}
+                                disabled={!isRollSelect}
+                            />
+                            {errors?.midTwo && (
+                                <span className=" mt-1 label-text-alt text-xs font-semibold capitalize text-red-700 text-center">
+                                    {errors?.midTwo?.message}
+                                </span>
+                            )}
+                        </div>
+                        <div className="flex flex-col">
+                            <input
+                                type="text"
+                                className="number"
+                                {...register(`presentationOrAssignment`, {
+                                    required: {
+                                        value: true,
+                                        message: "Mark required",
+                                    },
+                                    min: {
+                                        value: 0,
+                                        message: "Be at least (0)",
+                                    },
+                                    max: {
+                                        value: 10,
+                                        message: "Max (10) marks",
+                                    },
+                                })}
+                                disabled={!isRollSelect}
+                            />
+                            {errors?.presentationOrAssignment && (
+                                <span className=" mt-1 label-text-alt text-xs font-semibold capitalize text-red-700 text-center">
+                                    {errors?.presentationOrAssignment?.message}
+                                </span>
+                            )}
+                        </div>
+                        <span className="text-center text-xs font-medium number">
                             {total}
                         </span>
                     </React.Fragment>
                 </div>
                 <div className="flex justify-center mt-8 gap-x-2">
                     <button
-                        className="btn btn-sm bg-[#f44040] hover:bg-[#ea3333] rounded-sm text-white font-normal text-sm"
+                        className="btn btn-sm rounded-sm font-normal text-sm back_btn px-5"
                         onClick={backButtonHandler}
                     >
                         back
                     </button>
                     <button
-                        className="btn btn-sm bg-[#3ba550] hover:bg-[#2e763c] rounded-sm text-white font-normal text-sm"
+                        className="btn btn-sm rounded-sm font-normal text-sm submit_btn px-5"
                         type="submit"
                     >
                         submit

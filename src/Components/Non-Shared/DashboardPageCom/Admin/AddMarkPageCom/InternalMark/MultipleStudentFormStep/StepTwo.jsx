@@ -290,7 +290,6 @@ const StepTwo = () => {
                                     </div>
 
                                     <div className="flex flex-col">
-                                        {" "}
                                         <input
                                             type="text"
                                             className="number"
@@ -335,15 +334,15 @@ const StepTwo = () => {
                             );
                         })}
                     </div>
-                    <div className="flex justify-center mt-8 gap-x-2">
+                    <div className="flex justify-center mt-10 gap-x-4">
                         <button
-                            className="btn btn-sm bg-error px-6 hover:bg-[#ea3333] rounded-sm text-white font-normal text-sm"
+                            className="btn btn-sm px-6  rounded-sm font-normal text-sm back_btn"
                             onClick={backButtonHandler}
                         >
                             back
                         </button>
                         <button
-                            className="btn btn-sm bg-primary hover:bg-secondary px-6 rounded-sm text-white font-normal text-sm"
+                            className="btn btn-sm  px-6 rounded-sm font-normal text-sm submit_btn"
                             type="submit"
                         >
                             submit

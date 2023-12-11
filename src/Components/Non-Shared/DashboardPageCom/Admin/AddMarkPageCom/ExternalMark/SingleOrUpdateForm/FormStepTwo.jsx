@@ -60,7 +60,7 @@ const FormStepTwo = () => {
             setIsRollSelected(true);
 
             const url = `https://student-management-delta.vercel.app/mark/${stepOneValue?.department}/${stepOneValue?.semester}/${selectedCourse?.courseName}/${selectedCourse.courseCode}/${rollWatch}`;
-            
+
             getAllHandler(url)
                 .then((res) => setInternalResult(res))
                 .catch((err) => console.log(err));
@@ -162,25 +162,69 @@ const FormStepTwo = () => {
                         </div>
 
                         <React.Fragment>
-                            <input
-                                type="text"
-                                {...register(`roll`)}
-                                className="roll_field"
-                            />
-                            <input
-                                type="text"
-                                placeholder=""
-                                {...register(`firstExaminer`)}
-                                disabled={!isRollSelected}
-                            />
-                            <input
-                                type="text"
-                                placeholder=""
-                                {...register(`secondExaminer`)}
-                                disabled={!isRollSelected}
-                            />
+                            <div className="flex flex-col">
+                                <input
+                                    type="text"
+                                    {...register(`roll`)}
+                                    className="roll_field number"
+                                />
+                            </div>
+                            <div className="flex flex-col">
+                                <input
+                                    type="text"
+                                    placeholder=""
+                                    className="number"
+                                    {...register(`firstExaminer`, {
+                                        required: {
+                                            value: true,
+                                            message: "Mark required",
+                                        },
+                                        min: {
+                                            value: 0,
+                                            message: "be at least (0)",
+                                        },
+                                        max: {
+                                            value: 60,
+                                            message: "Max (60) marks",
+                                        },
+                                    })}
+                                    disabled={!isRollSelected}
+                                />
+                                {errors?.firstExaminer && (
+                                    <span className=" mt-1 label-text-alt text-xs font-semibold capitalize text-red-700 text-center">
+                                        {errors?.firstExaminer?.message}
+                                    </span>
+                                )}
+                            </div>
+                            <div className="flex flex-col">
+                                <input
+                                    type="text"
+                                    placeholder=""
+                                    className="number"
+                                    {...register(`secondExaminer`, {
+                                        required: {
+                                            value: true,
+                                            message: "Mark required",
+                                        },
+                                        min: {
+                                            value: 0,
+                                            message: "be at least (0)",
+                                        },
+                                        max: {
+                                            value: 60,
+                                            message: "Max (60) marks",
+                                        },
+                                    })}
+                                    disabled={!isRollSelected}
+                                />
+                                {errors?.secondExaminer && (
+                                    <span className=" mt-1 label-text-alt text-xs font-semibold capitalize text-red-700 text-center">
+                                        {errors?.secondExaminer?.message}
+                                    </span>
+                                )}
+                            </div>
 
-                            <span className="text-xs font-medium capitalize text-center text-red-700">
+                            <span className="text-xs font-medium capitalize text-center text-red-700 number">
                                 {difference}
                             </span>
                         </React.Fragment>

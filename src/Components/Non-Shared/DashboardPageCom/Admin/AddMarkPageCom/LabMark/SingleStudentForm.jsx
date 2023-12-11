@@ -147,7 +147,7 @@ const SingleStudentForm = () => {
                             <span className="label-text">Department</span>
                         </label>
                         <select
-                            className="select select-bordered rounded-sm"
+                            className="select select-bordered rounded-sm select-sm"
                             {...register("department", {
                                 validate: {
                                     isValidValue: (value) => {
@@ -182,7 +182,7 @@ const SingleStudentForm = () => {
                             <span className="label-text">Session</span>
                         </label>
                         <select
-                            className="select select-bordered rounded-sm"
+                            className="select select-bordered rounded-sm select-sm"
                             disabled={!isDeptSelected}
                             {...register("session", {
                                 validate: {
@@ -225,7 +225,7 @@ const SingleStudentForm = () => {
                             <span className="label-text">Semester</span>
                         </label>
                         <select
-                            className="select select-bordered rounded-sm"
+                            className="select select-bordered rounded-sm select-sm"
                             disabled={!isSessionSelected}
                             {...register("semester", {
                                 validate: {
@@ -268,7 +268,7 @@ const SingleStudentForm = () => {
                             <span className="label-text">Course</span>
                         </label>
                         <select
-                            className="select select-bordered rounded-sm"
+                            className="select select-bordered rounded-sm select-sm"
                             disabled={!isSemesterSelect}
                             {...register("course", {
                                 validate: {
@@ -325,7 +325,7 @@ const SingleStudentForm = () => {
                         <input
                             type="text"
                             placeholder="Type here"
-                            className="input input-bordered w-full rounded-sm"
+                            className="input input-bordered w-full rounded-sm select-sm"
                             disabled={!isCourseSelect}
                             {...register("roll", {
                                 required: {
@@ -347,7 +347,7 @@ const SingleStudentForm = () => {
                         <input
                             type="text"
                             placeholder="Type here"
-                            className="input input-bordered w-full rounded-sm"
+                            className="input input-bordered w-full rounded-sm select-sm"
                             disabled={!isCourseSelect}
                             {...register("labTotal", {
                                 max: {
@@ -372,7 +372,7 @@ const SingleStudentForm = () => {
                     </div>
                 </div>
                 <div className="flex justify-center mt-6">
-                    <button className="btn btn-sm bg-[#338543] hover:bg-[#2e763c] rounded-sm text-white font-normal text-sm">
+                    <button className="btn btn-sm rounded-sm font-normal text-sm submit_btn px-6">
                         submit mark
                     </button>
                 </div>

@@ -137,7 +137,12 @@ const FormStepTwo = () => {
                     </h3>
                 </div>
             </div>
-            <form action="" className="" onSubmit={handleSubmit(onSubmit)}>
+            <form
+                action=""
+                className=""
+                onSubmit={handleSubmit(onSubmit)}
+                autoComplete="off"
+            >
                 <div className="w-full mt-8 mark_wrapper">
                     <div className="mark_container">
                         <div className="mark">
@@ -157,47 +162,121 @@ const FormStepTwo = () => {
                         </div>
 
                         <React.Fragment>
-                            <input
-                                type="text"
-                                {...register(`roll`)}
-                                className="roll_field"
-                            />
-                            <input
-                                type="text"
-                                placeholder=""
-                                {...register(`firstExaminer`)}
-                                disabled={!isRollSelected}
-                            />
-                            <input
-                                type="text"
-                                placeholder=""
-                                {...register(`secondExaminer`)}
-                                disabled={!isRollSelected}
-                            />
+                            <div className="flex flex-col">
+                                <input
+                                    type="text"
+                                    {...register(`roll`, {
+                                        required: {
+                                            value: true,
+                                            message: "Roll required",
+                                        },
+                                    })}
+                                    className="roll_field number"
+                                />
+                                {errors?.roll && (
+                                    <span className=" mt-1 label-text-alt text-xs font-semibold capitalize text-red-700 text-center">
+                                        {errors?.roll?.message}
+                                    </span>
+                                )}
+                            </div>
+                            <div className="flex flex-col">
+                                <input
+                                    type="text"
+                                    placeholder=""
+                                    className="number"
+                                    {...register(`firstExaminer`, {
+                                        required: {
+                                            value: true,
+                                            message: "Mark required",
+                                        },
+                                        min: {
+                                            value: 0,
+                                            message: "be at least (0)",
+                                        },
+                                        max: {
+                                            value: 60,
+                                            message: "Max (60) marks",
+                                        },
+                                    })}
+                                    disabled={!isRollSelected}
+                                />
+                                {errors?.firstExaminer && (
+                                    <span className=" mt-1 label-text-alt text-xs font-semibold capitalize text-red-700 text-center">
+                                        {errors?.firstExaminer?.message}
+                                    </span>
+                                )}
+                            </div>
+                            <div className="flex flex-col">
+                                <input
+                                    type="text"
+                                    placeholder=""
+                                    className="number"
+                                    {...register(`secondExaminer`, {
+                                        required: {
+                                            value: true,
+                                            message: "Mark required",
+                                        },
+                                        min: {
+                                            value: 0,
+                                            message: "be at least (0)",
+                                        },
+                                        max: {
+                                            value: 60,
+                                            message: "Max (60) marks",
+                                        },
+                                    })}
+                                    disabled={!isRollSelected}
+                                />
+                                {errors?.secondExaminer && (
+                                    <span className=" mt-1 label-text-alt text-xs font-semibold capitalize text-red-700 text-center">
+                                        {errors?.secondExaminer?.message}
+                                    </span>
+                                )}
+                            </div>
 
-                            <span className="text-xs font-medium capitalize text-center text-red-700">
+                            <span className="text-xs font-medium capitalize text-center text-red-700 number">
                                 {difference}
                             </span>
 
-                            <input
-                                type="text"
-                                placeholder=""
-                                {...register(`thirdExaminer`)}
-                                disabled={!isRollSelected}
-                            />
+                            <div className="flex flex-col">
+                                <input
+                                    type="text"
+                                    placeholder=""
+                                    {...register(`thirdExaminer`, {
+                                        required: {
+                                            value: true,
+                                            message: "Mark required",
+                                        },
+                                        min: {
+                                            value: 0,
+                                            message: "be at least (0)",
+                                        },
+                                        max: {
+                                            value: 60,
+                                            message: "Max (60) marks",
+                                        },
+                                    })}
+                                    disabled={!isRollSelected}
+                                />
+                                {errors?.thirdExaminer && (
+                                    <span className=" mt-1 label-text-alt text-xs font-semibold capitalize text-red-700 text-center">
+                                        {errors?.thirdExaminer?.message}
+                                    </span>
+                                )}
+                            </div>
                         </React.Fragment>
                     </div>
                 </div>
 
                 <div className="flex justify-center mt-8 gap-x-2">
                     <button
-                        className="btn btn-sm bg-[#f44040] hover:bg-[#ea3333] rounded-sm text-white font-normal text-sm"
+                        className="btn btn-sm rounded-sm font-normal text-sm back_btn px-6"
                         onClick={backButtonHandler}
                     >
                         back
                     </button>
                     <button
-                        className="btn btn-sm bg-[#3ba550] hover:bg-[#2e763c] rounded-sm text-white font-normal text-sm"
+                        className="btn btn-sm rounded-sm font-normal text-sm submit_btn px-6"
                         type="submit"
                     >
                         submit

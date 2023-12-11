@@ -23,9 +23,7 @@ const FormStepTwo = () => {
             `https://student-management-delta.vercel.app/mark/${stepOneValue.department}/${stepOneValue.semester}/${selectedCourse?.courseName}/${selectedCourse?.courseCode}`
         )
     );
-    console.log(
-        `https://student-management-delta.vercel.app/mark/${stepOneValue.department}/${stepOneValue.semester}/${selectedCourse?.courseName}/${selectedCourse?.courseCode}`
-    );
+
     const {
         register,
         handleSubmit,
@@ -167,7 +165,7 @@ const FormStepTwo = () => {
                             return (
                                 <React.Fragment key={index}>
                                     <input
-                                        className="roll_field"
+                                        className="roll_field number"
                                         type="text"
                                         {...register(
                                             `resultList.${index}.roll`
@@ -175,37 +173,125 @@ const FormStepTwo = () => {
                                         defaultValue={student?.roll}
                                         readOnly
                                     />
-                                    <input
-                                        type="text"
-                                        placeholder=""
-                                        {...register(
-                                            `resultList.${index}.firstExaminer`
+                                    <div className="flex flex-col">
+                                        <input
+                                            type="text"
+                                            placeholder=""
+                                            className="number"
+                                            {...register(
+                                                `resultList.${index}.firstExaminer`,
+                                                {
+                                                    required: {
+                                                        value: true,
+                                                        message:
+                                                            "Mark required",
+                                                    },
+                                                    min: {
+                                                        value: 0,
+                                                        message:
+                                                            "Be at least (0)",
+                                                    },
+                                                    max: {
+                                                        value: 60,
+                                                        message:
+                                                            "Max (60) marks",
+                                                    },
+                                                }
+                                            )}
+                                            value={student?.firstExaminer}
+                                            readOnly
+                                        />
+                                        {errors?.resultList?.[index]
+                                            ?.firstExaminer && (
+                                            <span className=" mt-1 label-text-alt text-xs font-normal capitalize text-red-700 text-center number">
+                                                {
+                                                    errors?.resultList?.[index]
+                                                        ?.firstExaminer?.message
+                                                }
+                                            </span>
                                         )}
-                                        value={student?.firstExaminer}
-                                        readOnly
-                                    />
-                                    <input
-                                        type="text"
-                                        placeholder=""
-                                        {...register(
-                                            `resultList.${index}.secondExaminer`
+                                    </div>
+                                    <div className="flex flex-col">
+                                        <input
+                                            type="text"
+                                            placeholder=""
+                                            className="number"
+                                            {...register(
+                                                `resultList.${index}.secondExaminer`,
+                                                {
+                                                    required: {
+                                                        value: true,
+                                                        message:
+                                                            "Mark required",
+                                                    },
+                                                    min: {
+                                                        value: 0,
+                                                        message:
+                                                            "Be at least (0)",
+                                                    },
+                                                    max: {
+                                                        value: 60,
+                                                        message:
+                                                            "Max (60) marks",
+                                                    },
+                                                }
+                                            )}
+                                            value={student?.secondExaminer}
+                                            readOnly
+                                        />
+                                        {errors?.resultList?.[index]
+                                            ?.secondExaminer && (
+                                            <span className=" mt-1 label-text-alt text-xs font-normal capitalize text-red-700 text-center number">
+                                                {
+                                                    errors?.resultList?.[index]
+                                                        ?.secondExaminer
+                                                        ?.message
+                                                }
+                                            </span>
                                         )}
-                                        value={student?.secondExaminer}
-                                        readOnly
-                                    />
+                                    </div>
 
-                                    <span className="text-xs font-medium capitalize text-center text-red-700">
+                                    <span className="text-xs font-medium capitalize text-center text-red-700 number">
                                         {dif[1]}
                                     </span>
 
-                                    <input
-                                        type="text"
-                                        placeholder=""
-                                        {...register(
-                                            `resultList.${index}.thirdExaminer`
+                                    <div className="flex flex-col">
+                                        <input
+                                            type="text"
+                                            placeholder=""
+                                            className="number"
+                                            {...register(
+                                                `resultList.${index}.thirdExaminer`,
+                                                {
+                                                    required: {
+                                                        value: true,
+                                                        message:
+                                                            "Mark required",
+                                                    },
+                                                    min: {
+                                                        value: 0,
+                                                        message:
+                                                            "Be at least (0)",
+                                                    },
+                                                    max: {
+                                                        value: 60,
+                                                        message:
+                                                            "Max (60) marks",
+                                                    },
+                                                }
+                                            )}
+                                            disabled={!dif[0]}
+                                        />
+                                        {errors?.resultList?.[index]
+                                            ?.thirdExaminer && (
+                                            <span className=" mt-1 label-text-alt text-xs font-normal capitalize text-red-700 text-center number">
+                                                {
+                                                    errors?.resultList?.[index]
+                                                        ?.thirdExaminer?.message
+                                                }
+                                            </span>
                                         )}
-                                        disabled={!dif[0]}
-                                    />
+                                    </div>
                                 </React.Fragment>
                             );
                         })}

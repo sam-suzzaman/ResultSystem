@@ -28,7 +28,7 @@ const AdminDashboardLayout = () => {
         },
         {
             id: 4,
-            title: "get mark",
+            title: "Result",
             path: "/dashboard/admin/get-mark",
             icon: <GrDocumentPpt />,
         },
@@ -55,18 +55,18 @@ const AdminDashboardLayout = () => {
                                 {/* <div className="brand">
                                 <img src={deptLogo} alt="eee" />
                             </div> */}
-                                <ul className="menu pl-2 pr-3 p-8 w-[250px] text-base-content overflow-y-auto flex-nowrap flex-1 bg-base-200">
+                                <ul className="menu pl-2 pr-3 p-8 w-[250px] text-base-content overflow-y-auto flex-nowrap flex-1 bg-base-300">
                                     {/* Sidebar content here */}
                                     {menu_items?.map((item) => {
                                         return (
                                             <li key={item.id}>
                                                 <NavLink
                                                     to={item.path}
-                                                    className="capitalize font-medium rms-link"
+                                                    className="capitalize font-semibold rms-link"
                                                 >
-                                                    <span className="text-xl">
+                                                    <span className="text-xl mr-1 inline-flex items-center ">
                                                         {item?.icon}
-                                                    </span>{" "}
+                                                    </span>
                                                     {item.title}
                                                 </NavLink>
                                             </li>

@@ -308,7 +308,7 @@ const MultipleStudentForm = () => {
                     </div>
                     {/* form-2 */}
                     <div className="w-full mt-8 mark_input_form_wrapper">
-                        <div className="mark_input_form_container">
+                        <div className="mark_input_form_container grid-cols-2 w-full">
                             <div className="mark">
                                 <h3>Student Roll</h3>
                             </div>
@@ -343,7 +343,7 @@ const MultipleStudentForm = () => {
                     </div>
                 </div>
                 <div className="flex justify-center mt-6">
-                    <button className="btn btn-sm bg-[#338543] hover:bg-[#2e763c] rounded-sm text-white font-normal text-sm">
+                    <button className="btn btn-sm rounded-sm font-normal text-sm submit_btn px-6">
                         submit mark
                     </button>
                 </div>

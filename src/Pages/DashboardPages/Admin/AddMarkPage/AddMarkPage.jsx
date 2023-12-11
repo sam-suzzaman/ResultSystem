@@ -18,50 +18,51 @@ const AddMarkPage = () => {
                 </div>
 
                 <div className="add-mark-card-container mt-16">
-                    <div className="card">
-                        <Link to="/dashboard/admin/add-mark/internal">
-                            {" "}
-                            <h3 className="">
-                                <span className="icon">
-                                    <LuFilePlus />
-                                </span>
-                                internal
-                            </h3>
-                        </Link>
-                    </div>
+                    <Link
+                        to="/dashboard/admin/add-mark/internal"
+                        className="card"
+                    >
+                        {" "}
+                        <h3 className="">
+                            <span className="icon">
+                                <LuFilePlus />
+                            </span>
+                            internal
+                        </h3>
+                    </Link>
 
-                    <div className="card">
-                        <Link to="/dashboard/admin/add-mark/external">
-                            <h3 className="">
-                                <span className="icon">
-                                    <LuFilePlus />
-                                </span>
-                                semester final
-                            </h3>
-                        </Link>
-                    </div>
+                    <Link
+                        to="/dashboard/admin/add-mark/external"
+                        className="card"
+                    >
+                        <h3 className="">
+                            <span className="icon">
+                                <LuFilePlus />
+                            </span>
+                            semester final
+                        </h3>
+                    </Link>
 
-                    <div className="card">
-                        <Link to="/dashboard/admin/add-mark/lab">
-                            <h3 className="">
-                                <span className="icon">
-                                    <LuFilePlus />
-                                </span>
-                                lab
-                            </h3>
-                        </Link>
-                    </div>
+                    <Link to="/dashboard/admin/add-mark/lab" className="card">
+                        <h3 className="">
+                            <span className="icon">
+                                <LuFilePlus />
+                            </span>
+                            lab
+                        </h3>
+                    </Link>
 
-                    <div className="card">
-                        <Link to="/dashboard/admin/add-mark/improvement">
-                            <h3 className="">
-                                <span className="icon">
-                                    <LuFilePlus />
-                                </span>
-                                Improvement
-                            </h3>
-                        </Link>
-                    </div>
+                    <Link
+                        to="/dashboard/admin/add-mark/improvement"
+                        className="card"
+                    >
+                        <h3 className="">
+                            <span className="icon">
+                                <LuFilePlus />
+                            </span>
+                            Improvement
+                        </h3>
+                    </Link>
                 </div>
             </div>
         </Wrapper>

@@ -7,15 +7,35 @@
 
 :root {
     --primary-clr: #0a2463;
-    --secondary-clr: #123587db;
+    --secondary-clr: #123587;
+    --accent-clr: #3f8efc;
+    --neutral-clr: #87bfff;
     --black-clr: #000;
     --white-clr: #fff;
     --accent-clr: #ffd700;
-    --neutral-clr: #c3c3c3;
+    --neutral-clr: #bebebe;
     --success-clr: #189341;
     --danger-clr: #cc0606;
     --warn-clr: #ffeb3b;
     --roboto: "Roboto", sans-serif;
+}
+.back_btn {
+    background-color: var(--black-clr);
+    color: var(--white-clr);
+    transition: all 0.3s linear;
+}
+.back_btn:hover {
+    background-color: #383838;
+    color: var(--white-clr);
+}
+.submit_btn {
+    background-color: var(--primary-clr);
+    color: var(--white-clr);
+    transition: all 0.3s linear;
+}
+.submit_btn:hover {
+    background-color: var(--secondary-clr);
+    transition: all 0.3s linear;
 }
 * {
     scroll-behavior: smooth;
@@ -25,7 +45,8 @@
     box-sizing: border-box;
     transition: all 0.3s linear;
 }
-.number {
+.number,
+.f-roboto {
     font-family: var(--roboto);
 }
 .main_wrapper {

@@ -44,7 +44,7 @@ const StudentDashboardLayout = () => {
                             {/* <div className="brand">
                                 <img src={deptLogo} alt="eee" />
                             </div> */}
-                            <ul className="menu pl-2 pr-3 p-8 w-[250px] text-base-content overflow-y-auto flex-nowrap flex-1 bg-base-200">
+                            <ul className="menu pl-2 pr-3 p-8 w-[250px] text-base-content overflow-y-auto flex-nowrap flex-1">
                                 {/* Sidebar content here */}
                                 {menu_items?.map((item) => {
                                     return (
@@ -72,6 +72,7 @@ const StudentDashboardLayout = () => {
 
 const Wrapper = styled.aside`
     height: 100%;
+    box-shadow: 4px 0 6px rgba(0, 0, 0, 0.4);
 
     .menu .rms-link {
         border-radius: 4px;
