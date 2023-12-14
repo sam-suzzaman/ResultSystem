@@ -6,7 +6,10 @@ import {
     getAllHandler,
     updateHandler,
 } from "../../../../../../../utils/fetchHandlers";
+
 import { toast } from "react-toastify";
+
+import Swal from "sweetalert2";
 
 const FormStepTwo = () => {
     const [total, setTotal, setOneValue] = useState(0);
@@ -39,13 +42,25 @@ const FormStepTwo = () => {
     const addSingleInternalMarkMutation = useMutation({
         mutationFn: updateHandler,
         onSuccess: (data, variable, context) => {
-            toast.success("Mark Updated");
+            // toast.success("Mark Updated");
+            Swal.fire({
+                title: "Done!",
+                text: "Mark Updated Successfully",
+                icon: "success",
+                confirmButtonText: "Close",
+            });
             reset();
         },
         onError: (error, variables, context) => {
             console.log(error);
             // toast.warn(error.response.data.errors.common);
-            toast.warn("Something Wrong");
+            // toast.warn("Something Wrong");
+            Swal.fire({
+                title: "Oops!",
+                text: "Mark Updated Failed",
+                icon: "error",
+                confirmButtonText: "Close",
+            });
         },
     });
 

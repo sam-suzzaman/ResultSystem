@@ -1,24 +1,19 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import Breadcrumb from "../../../../Components/Shared/Breadcrumb/Breadcrumb";
-import CommonStepOne from "./Components/CommonStepOne";
-import InternalStepTwo from "./Components/InternalStepTwo";
 
-const resultContext = createContext();
+import CommonStepOne from "../../../../Components/Non-Shared/DashboardPageCom/Admin/ResultPageCom/CommonStepOne";
+import StepTwo from "../../../../Components/Non-Shared/DashboardPageCom/Admin/ResultPageCom/Internal/StepTwo";
+
+import { useResultStepContext } from "../../../../context/Admin/ResultStepContext";
 
 const InternalMarkPage = () => {
-    const [step, setStep] = useState(1);
-    const [stepOneValue, setStepOneValue] = useState({});
+    const { step } = useResultStepContext();
 
     return (
-        <resultContext.Provider
-            value={{ step, setStep, stepOneValue, setStepOneValue }}
-        >
-            <Wrapper>
-                {step === 1 && <CommonStepOne name="internal" />}
-                {step === 2 && <InternalStepTwo />}
-            </Wrapper>
-        </resultContext.Provider>
+        <Wrapper>
+            {step === 1 && <CommonStepOne name="internal" />}
+            {step === 2 && <StepTwo />}
+        </Wrapper>
     );
 };
 
@@ -55,5 +50,4 @@ const Wrapper = styled.section`
     }
 `;
 
-export const useResultContext = () => useContext(resultContext);
 export default InternalMarkPage;

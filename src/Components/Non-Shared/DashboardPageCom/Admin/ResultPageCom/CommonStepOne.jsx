@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
+
 import styled from "styled-components";
-import { useMarkFormStepContext } from "../../../../../context/Admin/MarkFormStepContext";
 
 import { departments, semesters } from "../../../../../utils/AddMarkFieldsData";
 
 import { getAllHandler } from "../../../../../utils/fetchHandlers";
 
 import { useForm } from "react-hook-form";
-import { useResultContext } from "../InternalMarkPage";
+
+import { useResultStepContext } from "../../../../../context/Admin/ResultStepContext";
 
 const CommonStepOne = ({ name }) => {
-    const { step, setStep, setStepOneValue } = useResultContext();
+    const { setStep, setStepOneValue } = useResultStepContext();
 
     const {
         register,
@@ -75,15 +76,15 @@ const CommonStepOne = ({ name }) => {
     return (
         <Wrapper>
             <div className="mb-10">
-                <h4 className="text-sm font-bold text-center uppercase mb-1">
+                <h4 className="text-xs font-bold text-center uppercase mb-1">
                     {name}
                 </h4>
                 <h2 className="text-3xl text-center font-bold capitalize ">
-                    search now
+                    search result
                 </h2>
             </div>
             <form
-                className="w-full max-w-lg mx-auto grid grid-cols-1 items-start gap-y-4"
+                className="w-full max-w-md mx-auto grid grid-cols-1 items-start gap-y-4"
                 onSubmit={handleSubmit(onSubmit)}
             >
                 {/* department */}
@@ -258,13 +259,16 @@ const CommonStepOne = ({ name }) => {
                         ) : (
                             courseData?.map((course) => {
                                 return (
-                                    <option
-                                        key={course._id}
-                                        value={course._id}
-                                        className="number"
-                                    >
-                                        {course.courseCode} {course.courseName}
-                                    </option>
+                                    course?.credit !== 1.5 && (
+                                        <option
+                                            key={course._id}
+                                            value={course._id}
+                                            className="number"
+                                        >
+                                            {course.courseName} (
+                                            {course.courseCode})
+                                        </option>
+                                    )
                                 );
                             })
                         )}

@@ -18,6 +18,7 @@
     --danger-clr: #cc0606;
     --warn-clr: #ffeb3b;
     --roboto: "Roboto", sans-serif;
+    --railway: "Raleway", sans-serif;
 }
 .back_btn {
     background-color: var(--black-clr);
@@ -39,7 +40,7 @@
 }
 * {
     scroll-behavior: smooth;
-    font-family: "Raleway", sans-serif;
+    font-family: var(--railway);
     margin: 0;
     padding: 0;
     box-sizing: border-box;

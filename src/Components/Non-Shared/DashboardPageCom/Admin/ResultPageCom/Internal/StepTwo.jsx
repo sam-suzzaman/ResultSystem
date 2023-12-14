@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import { useResultContext } from "../InternalMarkPage";
+
 import styled from "styled-components";
+
 import { PDFViewer } from "@react-pdf/renderer";
-import InternalMarkPDF from "../../../../../Components/Non-Shared/DashboardPageCom/Admin/AddMarkPageCom/InternalMark/InternalMarkPDF";
+import InternalMarkPDF from "../../AddMarkPageCom/InternalMark/InternalMarkPDF";
+
+import { useResultStepContext } from "../../../../../../context/Admin/ResultStepContext";
 
 // todo: fetch data
 const resultList = [
@@ -48,13 +51,17 @@ const resultList = [
     },
 ];
 
-const InternalStepTwo = () => {
-    const { step, setStep, stepOneValue, setStepOneValue } = useResultContext();
+const StepTwo = () => {
+    const { step, setStep, stepOneValue, setStepOneValue } =
+        useResultStepContext();
     const [results, setResults] = useState(resultList);
 
     return (
         <Wrapper>
             <div className="row-1 mb-4 mt-1">
+                <h3 className="text-[22px] text-secondary capitalize font-bold">
+                    your Search Result
+                </h3>
                 <button className="submit_btn px-6 py-2 text-sm font-medium capitalize rounded-md">
                     publish
                 </button>
@@ -79,10 +86,10 @@ const InternalStepTwo = () => {
 const Wrapper = styled.div`
     .row-1 {
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
         align-items: center;
         column-gap: 10px;
     }
 `;
 
-export default InternalStepTwo;
+export default StepTwo;

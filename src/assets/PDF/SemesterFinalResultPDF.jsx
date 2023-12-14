@@ -110,15 +110,14 @@ const styles = StyleSheet.create({
         textAlign: "left",
     },
 });
-const SemesterFinalResultPDF = ({ data, setLoading }) => {
+const SemesterFinalResultPDF = ({ results }) => {
     const [colData, setColData] = useState([]);
 
     useEffect(() => {
-        setLoading(true);
-        setColData(data[0]?.marks);
-        setLoading(false);
-    }, [data]);
-
+        // setLoading(true);
+        setColData(results[0]?.marks);
+        // setLoading(false);
+    }, [results]);
     // const [cellArray, sestCellArrya] = useState([]);
 
     // useEffect(() => {
@@ -234,11 +233,11 @@ const SemesterFinalResultPDF = ({ data, setLoading }) => {
                                                 paddingTop: "2.5pt",
                                             }}
                                         >
-                                            {course.courseCode}({course.credit}{" "}
-                                            Cr)
+                                            {course.courseCode}(
+                                            {course.courseCredit} Cr)
                                         </SPAN>
                                     </DIV>
-                                    {course.credit === 3.0 && (
+                                    {course.courseCredit === 3.0 && (
                                         <DIV style={styles.courseInnerRow}>
                                             <SPAN
                                                 style={{
@@ -293,7 +292,7 @@ const SemesterFinalResultPDF = ({ data, setLoading }) => {
                                             </SPAN>
                                         </DIV>
                                     )}
-                                    {course.credit === 1.5 && (
+                                    {course.courseCredit === 1.5 && (
                                         <DIV
                                             style={{
                                                 ...styles.courseInnerRow,
@@ -384,7 +383,7 @@ const SemesterFinalResultPDF = ({ data, setLoading }) => {
                                     }}
                                 >
                                     CGPA in 2nd Year 1st semester (Total
-                                    Credit=18)
+                                    courseCredit=18)
                                 </SPAN>
                                 <SPAN
                                     style={{
@@ -402,7 +401,7 @@ const SemesterFinalResultPDF = ({ data, setLoading }) => {
                     </DIV>
 
                     {/* Third Row:Value Row */}
-                    {data?.map((res) => {
+                    {results?.map((res) => {
                         return (
                             <DIV style={styles.valueRow}>
                                 <DIV style={styles.valueRollCell}>
@@ -443,7 +442,7 @@ const SemesterFinalResultPDF = ({ data, setLoading }) => {
                                                 }
                                             >
                                                 <SPAN style={styles.text}>
-                                                    {mark["total"]}
+                                                    {mark["total (100%)"]}
                                                 </SPAN>
                                             </DIV>
                                             <DIV
@@ -478,7 +477,7 @@ const SemesterFinalResultPDF = ({ data, setLoading }) => {
                                         textAlign: "center",
                                     }}
                                 >
-                                    <SPAN style={styles.text}>{res.CGPA}</SPAN>
+                                    <SPAN style={styles.text}>{res.cgpa}</SPAN>
                                 </DIV>
                                 <DIV
                                     style={{
@@ -488,7 +487,7 @@ const SemesterFinalResultPDF = ({ data, setLoading }) => {
                                         textAlign: "center",
                                     }}
                                 >
-                                    <SPAN style={styles.text}>{res.GPA}</SPAN>
+                                    <SPAN style={styles.text}>{res.gpa}</SPAN>
                                 </DIV>
                             </DIV>
                         );

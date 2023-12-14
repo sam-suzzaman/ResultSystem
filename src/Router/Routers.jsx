@@ -23,12 +23,14 @@ import ProtectAdminRoutes from "./ProtectAdminRoutes";
 import ProtectLoginRoute from "./ProtectLoginRoute";
 import GetMarkPage from "../Pages/DashboardPages/Admin/GetMarkPage/GetMarkPage";
 import InternalMarkPage from "../Pages/DashboardPages/Admin/GetMarkPage/InternalMarkPage";
-import SemesterCourseMarkPage from "../Pages/DashboardPages/Admin/GetMarkPage/SemesterCourseMarkPage";
 import SemesterFinalMarkPage from "../Pages/DashboardPages/Admin/GetMarkPage/SemesterFinalMarkPage";
 import ResultPage from "../Pages/DashboardPages/Student/ResultPage";
 import Profile from "../Pages/DashboardPages/Student/Profile";
 import EditProfilePage from "../Pages/DashboardPages/Student/EditProfilePage";
 import ResetPassword from "../Pages/DashboardPages/Student/ResultPage/ResetPassword";
+import CourseFinalMarkPage from "../Pages/DashboardPages/Admin/GetMarkPage/CourseFinalMarkPage";
+import ResultStepContext from "../context/Admin/ResultStepContext";
+import ImprovementMarkPage from "../Pages/DashboardPages/Admin/GetMarkPage/ImprovementMarkPage";
 
 const Routers = createBrowserRouter([
     {
@@ -113,15 +115,35 @@ const Routers = createBrowserRouter([
                     },
                     {
                         path: "/dashboard/admin/get-mark/internal",
-                        element: <InternalMarkPage />,
+                        element: (
+                            <ResultStepContext>
+                                <InternalMarkPage />
+                            </ResultStepContext>
+                        ),
                     },
                     {
                         path: "/dashboard/admin/get-mark/course-final",
-                        element: <SemesterCourseMarkPage />,
+                        element: (
+                            <ResultStepContext>
+                                <CourseFinalMarkPage />
+                            </ResultStepContext>
+                        ),
                     },
                     {
                         path: "/dashboard/admin/get-mark/semester-final",
-                        element: <SemesterFinalMarkPage />,
+                        element: (
+                            <ResultStepContext>
+                                <SemesterFinalMarkPage />
+                            </ResultStepContext>
+                        ),
+                    },
+                    {
+                        path: "/dashboard/admin/get-mark/improve",
+                        element: (
+                            <ResultStepContext>
+                                <ImprovementMarkPage />
+                            </ResultStepContext>
+                        ),
                     },
                 ],
             },

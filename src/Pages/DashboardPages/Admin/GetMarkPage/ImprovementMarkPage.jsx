@@ -1,21 +1,19 @@
 import React from "react";
 
 import styled from "styled-components";
-
-import CommonStepOne from "../../../../Components/Non-Shared/DashboardPageCom/Admin/ResultPageCom/CommonStepOne";
-import StepTwo from "../../../../Components/Non-Shared/DashboardPageCom/Admin/ResultPageCom/SemesterFinal/StepTwo";
-
 import { useResultStepContext } from "../../../../context/Admin/ResultStepContext";
 
-const SemesterFinalMarkPage = () => {
-    const { step } = useResultStepContext();
+import CommonStepOne from "../../../../Components/Non-Shared/DashboardPageCom/Admin/ResultPageCom/CommonStepOne";
+import StepTwo from "../../../../Components/Non-Shared/DashboardPageCom/Admin/ResultPageCom/Improvement/StepTwo";
+
+const ImprovementMarkPage = () => {
+    const { step, setStep } = useResultStepContext();
+
     return (
-        <>
-            <Wrapper>
-                {step === 1 && <CommonStepOne name="semester final" />}
-                {step === 2 && <StepTwo />}
-            </Wrapper>
-        </>
+        <Wrapper>
+            {step === 1 && <CommonStepOne name="improvement" />}
+            {step === 2 && <StepTwo />}
+        </Wrapper>
     );
 };
 
@@ -51,5 +49,4 @@ const Wrapper = styled.section`
         gap: 20px;
     }
 `;
-
-export default SemesterFinalMarkPage;
+export default ImprovementMarkPage;

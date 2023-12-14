@@ -3,6 +3,7 @@ import { useMarkFormStepContext } from "../../../../../context/Admin/MarkFormSte
 import { useForm } from "react-hook-form";
 import { departments, semesters } from "../../../../../utils/AddMarkFieldsData";
 import { getAllHandler } from "../../../../../utils/fetchHandlers";
+import styled from "styled-components";
 
 const FormStepOne = ({ name }) => {
     const { setStepValue, setStepOneValue, setSelectedCourse } =
@@ -66,7 +67,7 @@ const FormStepOne = ({ name }) => {
     };
 
     return (
-        <>
+        <Wrapper>
             <div className="mb-2">
                 <h2 className="text-xl text-center font-bold uppercase ">
                     Add mark
@@ -76,7 +77,7 @@ const FormStepOne = ({ name }) => {
                 </h4>
             </div>
             <form
-                className="w-full max-w-lg mx-auto grid grid-cols-1 items-start gap-y-4"
+                className="w-full max-w-md mx-auto grid grid-cols-1 items-start gap-y-4 add-mark-form"
                 onSubmit={handleSubmit(onSubmit)}
             >
                 <div className="form-control w-full">
@@ -84,7 +85,7 @@ const FormStepOne = ({ name }) => {
                         <span className="label-text">Department</span>
                     </label>
                     <select
-                        className="select select-bordered rounded-sm select-sm"
+                        className="select select-bordered rounded-sm select-sm number"
                         {...register("department", {
                             validate: {
                                 isValidValue: (value) => {
@@ -102,7 +103,11 @@ const FormStepOne = ({ name }) => {
                         </option>
                         {departments.map((dept) => {
                             return (
-                                <option key={dept._id} value={dept.name}>
+                                <option
+                                    key={dept._id}
+                                    value={dept.name}
+                                    className="number"
+                                >
                                     {dept.displayName}
                                 </option>
                             );
@@ -120,7 +125,7 @@ const FormStepOne = ({ name }) => {
                         <span className="label-text">Session</span>
                     </label>
                     <select
-                        className="select select-bordered rounded-sm select-sm"
+                        className="select select-bordered rounded-sm select-sm number"
                         disabled={!isDeptSelected}
                         {...register("session", {
                             validate: {
@@ -146,6 +151,7 @@ const FormStepOne = ({ name }) => {
                                 <option
                                     key={session._id}
                                     value={session.session}
+                                    className="number"
                                 >
                                     {session.session}
                                 </option>
@@ -164,7 +170,7 @@ const FormStepOne = ({ name }) => {
                         <span className="label-text">Semester</span>
                     </label>
                     <select
-                        className="select select-bordered rounded-sm select-sm"
+                        className="select select-bordered rounded-sm select-sm number"
                         disabled={!isSessionSelected}
                         {...register("semester", {
                             validate: {
@@ -190,6 +196,7 @@ const FormStepOne = ({ name }) => {
                                 <option
                                     key={semester._id}
                                     value={semester.session}
+                                    className="number"
                                 >
                                     {semester.semester}
                                 </option>
@@ -208,7 +215,7 @@ const FormStepOne = ({ name }) => {
                         <span className="label-text">Course</span>
                     </label>
                     <select
-                        className="select select-bordered rounded-sm select-sm"
+                        className="select select-bordered rounded-sm select-sm number"
                         disabled={!isSemesterSelect}
                         {...register("course", {
                             validate: {
@@ -241,9 +248,16 @@ const FormStepOne = ({ name }) => {
                         ) : (
                             courseData?.map((course) => {
                                 return (
-                                    <option key={course._id} value={course._id}>
-                                        {course.courseCode} {course.courseName}
-                                    </option>
+                                    course?.credit !== 1.5 && (
+                                        <option
+                                            key={course._id}
+                                            value={course._id}
+                                            className="number"
+                                        >
+                                            {course.courseName} (
+                                            {course.courseCode})
+                                        </option>
+                                    )
                                 );
                             })
                         )}
@@ -264,8 +278,13 @@ const FormStepOne = ({ name }) => {
                     </button>
                 </div>
             </form>
-        </>
+        </Wrapper>
     );
 };
+
+const Wrapper = styled.div`
+    .add-mark-form {
+    }
+`;
 
 export default FormStepOne;

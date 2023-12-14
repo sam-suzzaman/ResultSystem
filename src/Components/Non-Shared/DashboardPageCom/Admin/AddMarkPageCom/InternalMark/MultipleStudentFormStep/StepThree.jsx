@@ -9,6 +9,7 @@ import styled from "styled-components";
 import done from "../../../../../../../assets/done.png";
 
 import { FiEye } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const resultList = [
     {
@@ -65,9 +66,6 @@ const StepThree = () => {
         <Wrapper>
             <div className="result-container">
                 <div className="flex justify-center">
-                    {/* <span className="font-bold text-5xl text-[#5cd089]">
-                            <AiOutlineCheckCircle />
-                        </span> */}
                     <img className="done" src={done} alt="success" />
                 </div>
                 <div className="">
@@ -89,37 +87,15 @@ const StepThree = () => {
                             </span>
                             add new
                         </button>
-
-                        {/* Button to download PDF */}
-                        <PDFDownloadLink
-                            document={
-                                <InternalMarkPDF
-                                    results={results}
-                                    stepOneValue={stepOneValue}
-                                    selectedCourse={selectedCourse}
-                                />
-                            }
-                            fileName="demo"
+                        <Link
+                            to="/dashboard/admin/get-mark/internal"
+                            className="btn btn-sm text-xs font-normal bg-primary rounded-sm text-white hover:bg-secondary px-4"
                         >
-                            {({ loading, error }) =>
-                                loading ? (
-                                    <button className="inline-flex justify-center items-center btn btn-xs text-xs font-medium bg-primary rounded-sm text-white hover:bg-secondary px-4 ">
-                                        <span className="text-lg font-bold">
-                                            <GoDownload />
-                                        </span>
-                                        loading...
-                                    </button>
-                                ) : (
-                                    <button className="inline-flex justify-center items-center btn btn-sm text-xs font-medium bg-primary rounded-sm text-white hover:bg-secondary px-4">
-                                        <span className="text-lg font-bold">
-                                            <GoDownload />
-                                            {/* <FiEye /> */}
-                                        </span>
-                                        download
-                                    </button>
-                                )
-                            }
-                        </PDFDownloadLink>
+                            <span className="text-lg font-bold">
+                                <FiEye />
+                            </span>
+                            view
+                        </Link>
                     </div>
                 </div>
             </div>

@@ -23,7 +23,6 @@ const GetMarkPage = () => {
                             to="/dashboard/admin/get-mark/internal"
                             className="card"
                         >
-                            {" "}
                             <h3 className="">
                                 <span className="icon">
                                     <FaRegFilePdf />
@@ -55,7 +54,7 @@ const GetMarkPage = () => {
                             </h3>
                         </Link>
 
-                        <Link
+                        {/* <Link
                             to="/dashboard/admin/add-mark/lab"
                             className="card"
                         >
@@ -65,10 +64,10 @@ const GetMarkPage = () => {
                                 </span>
                                 lab
                             </h3>
-                        </Link>
+                        </Link> */}
 
                         <Link
-                            to="/dashboard/admin/get-mark/improvement"
+                            to="/dashboard/admin/get-mark/improve"
                             className="card"
                         >
                             <h3 className="">

@@ -11,6 +11,8 @@ import done from "../../../../../../../assets/done.png";
 import { GoDownload } from "react-icons/go";
 
 import CourseFinalResultPDF from "../../../../../../../assets/PDF/CourseFinalResultPDF";
+import { Link } from "react-router-dom";
+import { FiEye } from "react-icons/fi";
 
 const FormStepThree = () => {
     const {
@@ -61,35 +63,15 @@ const FormStepThree = () => {
                                 download
                             </button> */}
                         {/* Button to download PDF */}
-                        <PDFDownloadLink
-                            document={
-                                <CourseFinalResultPDF
-                                    results={results}
-                                    stepOneValue={stepOneValue}
-                                    selectedCourse={selectedCourse}
-                                />
-                            }
-                            fileName="demo"
+                        <Link
+                            to="/dashboard/admin/get-mark/course-final"
+                            className="btn btn-sm text-xs font-normal bg-primary rounded-sm text-white hover:bg-secondary px-4"
                         >
-                            {({ loading, error }) =>
-                                loading ? (
-                                    <button className="inline-flex justify-center items-center btn btn-xs text-xs font-medium bg-primary rounded-sm text-white hover:bg-secondary px-4 ">
-                                        <span className="text-lg font-bold">
-                                            <GoDownload />
-                                        </span>
-                                        loading...
-                                    </button>
-                                ) : (
-                                    <button className="inline-flex justify-center items-center btn btn-sm text-xs font-medium bg-primary rounded-sm text-white hover:bg-secondary px-4">
-                                        <span className="text-lg font-bold">
-                                            <GoDownload />
-                                            {/* <FiEye /> */}
-                                        </span>
-                                        download
-                                    </button>
-                                )
-                            }
-                        </PDFDownloadLink>
+                            <span className="text-lg font-bold">
+                                <FiEye />
+                            </span>
+                            view
+                        </Link>
                     </div>
                 </div>
             </div>
