@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form";
 
 import { useResultStepContext } from "../../../../../context/Admin/ResultStepContext";
 
-const CommonStepOne = ({ name }) => {
+const CommonStepOne = ({ name, type = "default" }) => {
     const { setStep, setStepOneValue } = useResultStepContext();
 
     const {
@@ -221,45 +221,45 @@ const CommonStepOne = ({ name }) => {
                 </div>
 
                 {/* course */}
-                <div className="form-control w-full">
-                    <label className="label">
-                        <span className="label-text">Course</span>
-                    </label>
-                    <select
-                        className="select select-bordered rounded-sm select-sm number"
-                        disabled={!isSemesterSelect}
-                        {...register("course", {
-                            validate: {
-                                isValidValue: (value) => {
-                                    return (
-                                        value !== "default" ||
-                                        "Course is Required"
-                                    );
+                {type !== "semester_final" && (
+                    <div className="form-control w-full">
+                        <label className="label">
+                            <span className="label-text">Course</span>
+                        </label>
+                        <select
+                            className="select select-bordered rounded-sm select-sm number"
+                            disabled={!isSemesterSelect}
+                            {...register("course", {
+                                validate: {
+                                    isValidValue: (value) => {
+                                        return (
+                                            value !== "default" ||
+                                            "Course is Required"
+                                        );
+                                    },
                                 },
-                            },
-                            required: {
-                                value: true,
-                                message: "Course  is Required",
-                            },
-                        })}
-                        defaultValue="default"
-                    >
-                        <option disabled value="default">
-                            Select Course
-                        </option>
-
-                        {courseData?.length === 0 ? (
-                            <option
-                                value="default"
-                                disabled
-                                className="capitalize"
-                            >
-                                no course found
+                                required: {
+                                    value: true,
+                                    message: "Course  is Required",
+                                },
+                            })}
+                            defaultValue="default"
+                        >
+                            <option disabled value="default">
+                                Select Course
                             </option>
-                        ) : (
-                            courseData?.map((course) => {
-                                return (
-                                    course?.credit !== 1.5 && (
+
+                            {courseData?.length === 0 ? (
+                                <option
+                                    value="default"
+                                    disabled
+                                    className="capitalize"
+                                >
+                                    no course found
+                                </option>
+                            ) : (
+                                courseData?.map((course) => {
+                                    return (
                                         <option
                                             key={course._id}
                                             value={course._id}
@@ -268,17 +268,17 @@ const CommonStepOne = ({ name }) => {
                                             {course.courseName} (
                                             {course.courseCode})
                                         </option>
-                                    )
-                                );
-                            })
+                                    );
+                                })
+                            )}
+                        </select>
+                        {errors?.course && (
+                            <span className=" mt-1 label-text-alt text-xs font-normal capitalize text-red-700">
+                                {errors.course?.message}
+                            </span>
                         )}
-                    </select>
-                    {errors?.course && (
-                        <span className=" mt-1 label-text-alt text-xs font-normal capitalize text-red-700">
-                            {errors.course?.message}
-                        </span>
-                    )}
-                </div>
+                    </div>
+                )}
 
                 <div className="flex justify-center mt-6">
                     <button

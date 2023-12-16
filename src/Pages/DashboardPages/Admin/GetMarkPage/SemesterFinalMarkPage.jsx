@@ -12,7 +12,12 @@ const SemesterFinalMarkPage = () => {
     return (
         <>
             <Wrapper>
-                {step === 1 && <CommonStepOne name="semester final" />}
+                {step === 1 && (
+                    <CommonStepOne
+                        name="semester final"
+                        type="semester_final"
+                    />
+                )}
                 {step === 2 && <StepTwo />}
             </Wrapper>
         </>

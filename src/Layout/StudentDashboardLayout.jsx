@@ -6,6 +6,7 @@ import deptLogo from "../assets/deptLogo.jpg";
 
 import { LuFlagTriangleRight } from "react-icons/lu";
 import { BiUserPin } from "react-icons/bi";
+import { GrDocumentPdf } from "react-icons/gr";
 
 const StudentDashboardLayout = () => {
     const menu_items = [
@@ -20,6 +21,12 @@ const StudentDashboardLayout = () => {
             title: "Result",
             icon: <LuFlagTriangleRight />,
             path: "/dashboard/student/result",
+        },
+        {
+            id: 3,
+            title: "Transcript",
+            icon: <GrDocumentPdf />,
+            path: "/dashboard/student/transcript",
         },
     ];
 
@@ -77,6 +84,7 @@ const Wrapper = styled.aside`
     .menu .rms-link {
         border-radius: 4px;
         margin-bottom: 6px;
+        font-weight: 500;
     }
     .menu .rms-link.active {
         background-color: rgba(0, 0, 0, 0.06);

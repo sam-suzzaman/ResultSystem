@@ -31,6 +31,8 @@ import ResetPassword from "../Pages/DashboardPages/Student/ResultPage/ResetPassw
 import CourseFinalMarkPage from "../Pages/DashboardPages/Admin/GetMarkPage/CourseFinalMarkPage";
 import ResultStepContext from "../context/Admin/ResultStepContext";
 import ImprovementMarkPage from "../Pages/DashboardPages/Admin/GetMarkPage/ImprovementMarkPage";
+import TranscriptPage from "../Pages/DashboardPages/Student/TranscriptPage";
+import SemesterTranscriptPage from "../Pages/DashboardPages/Student/SemesterTranscriptPage";
 
 const Routers = createBrowserRouter([
     {
@@ -145,6 +147,14 @@ const Routers = createBrowserRouter([
                             </ResultStepContext>
                         ),
                     },
+                    // {
+                    //     path: "/dashboard/admin/transcript",
+                    //     element: (
+                    //         <ResultStepContext>
+                    //             <Trans />
+                    //         </ResultStepContext>
+                    //     ),
+                    // },
                 ],
             },
             {
@@ -176,6 +186,14 @@ const Routers = createBrowserRouter([
                     {
                         path: "/dashboard/student/reset/:id",
                         element: <ResetPassword />,
+                    },
+                    {
+                        path: "/dashboard/student/transcript",
+                        element: <TranscriptPage />,
+                    },
+                    {
+                        path: "/dashboard/student/transcript/semester",
+                        element: <SemesterTranscriptPage />,
                     },
                 ],
             },
