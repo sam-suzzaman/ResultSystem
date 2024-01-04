@@ -1,32 +1,38 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import { GrDocumentVerified } from "react-icons/gr";
 import { HiOutlineDocumentArrowDown } from "react-icons/hi2";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import Breadcrumb from "../../../../Components/Shared/Breadcrumb/Breadcrumb";
+import SectionTitle from "../../../../Components/Non-Shared/DashboardPageCom/Admin/SectionTitle/SectionTitle";
 
 const TranscriptPage = () => {
+    const { pathname } = useLocation();
     return (
         <Wrapper>
             <div className="">
-                <h4 className="sec-title">search transcript</h4>
-                <div className="card-container">
-                    <Link
-                        to="/dashboard/student/transcript/semester"
-                        className="card"
-                    >
-                        <HiOutlineDocumentArrowDown className="icon" />
-                        <h4 className="text">
-                            Semester final <br /> transcript
-                        </h4>
-                    </Link>
-                    {/* <Link to="" className="card">
+                <Breadcrumb location={pathname} />
+                <div className="mt-6">
+                    <SectionTitle title="Manage marks" />
+                </div>
+            </div>
+            <div className="card-container mt-12">
+                <Link
+                    to="/dashboard/admin/transcript/semester"
+                    className="card"
+                >
+                    <HiOutlineDocumentArrowDown className="icon" />
+                    <h4 className="text">
+                        Semester final <br /> transcript
+                    </h4>
+                </Link>
+                {/* <Link to="" className="card">
                     <HiOutlineDocumentArrowDown className="icon" />
                     <h4 className="text">
                         final <br /> transcript
                     </h4>
                 </Link> */}
-                </div>
             </div>
         </Wrapper>
     );
@@ -34,22 +40,11 @@ const TranscriptPage = () => {
 
 const Wrapper = styled.section`
     width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    .sec-title {
-        font-size: calc(22px + 0.75vw);
-        text-transform: capitalize;
-        font-weight: 700;
-        color: var(--primary-clr);
-    }
 
     .card-container {
-        margin-top: 30px;
         display: grid;
         grid-template-columns: repeat(2, minmax(auto, 250px));
+        justify-content: center;
         grid-gap: 40px;
     }
 
@@ -71,15 +66,16 @@ const Wrapper = styled.section`
     }
 
     .card-container .card .icon {
-        font-size: calc(2rem + 1.5vw);
+        font-size: calc(2rem + 2vw);
         opacity: 0.8;
     }
     .card-container .card .text {
-        font-size: calc(0.8rem + 0.5vw);
+        font-size: calc(0.8rem + 0.6vw);
         font-weight: 700;
         text-transform: capitalize;
         margin-top: 17px;
         opacity: 0.9;
     }
 `;
+
 export default TranscriptPage;

@@ -9,7 +9,7 @@ import {
     Image,
 } from "@react-pdf/renderer";
 
-import logo from "../../assets/jkkniu_logo.png";
+import logo from "../../assets/Jkkniu_logo.png";
 import grade from "../../assets/grade.png";
 
 const styles = StyleSheet.create({

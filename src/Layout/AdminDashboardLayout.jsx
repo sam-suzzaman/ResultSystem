@@ -3,6 +3,8 @@ import { NavLink, Outlet } from "react-router-dom";
 import { AiFillHome, AiOutlineUsergroupAdd } from "react-icons/ai";
 import { GrDocumentPpt } from "react-icons/gr";
 import { BsBookmarks } from "react-icons/bs";
+import { HiDocumentCheck } from "react-icons/hi2";
+
 import { SessionPageProvider } from "../context/Admin/SessionPageContext";
 import styled from "styled-components";
 
@@ -28,9 +30,15 @@ const AdminDashboardLayout = () => {
         },
         {
             id: 4,
-            title: "Result",
+            title: "Results",
             path: "/dashboard/admin/get-mark",
             icon: <GrDocumentPpt />,
+        },
+        {
+            id: 4,
+            title: "Transcripts",
+            path: "/dashboard/admin/transcript",
+            icon: <HiDocumentCheck />,
         },
     ];
     return (
