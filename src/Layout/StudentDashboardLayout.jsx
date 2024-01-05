@@ -14,7 +14,8 @@ const StudentDashboardLayout = () => {
             id: 2,
             title: "Profile",
             icon: <BiUserPin />,
-            path: "/dashboard/student/profile",
+            path: ".",
+            // path: "/dashboard/student/profile",
         },
         {
             id: 1,
@@ -59,6 +60,7 @@ const StudentDashboardLayout = () => {
                                             <NavLink
                                                 to={item.path}
                                                 className="capitalize font-medium rms-link"
+                                                end
                                             >
                                                 <span className="text-xl">
                                                     {item?.icon}

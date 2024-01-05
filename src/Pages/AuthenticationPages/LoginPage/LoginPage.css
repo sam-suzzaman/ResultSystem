@@ -1,6 +1,6 @@
 .login-form {
     /* width: 280px; */
-    width: 350px;
+    width: 320px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,7 +21,7 @@
     content: "";
     width: 320px;
     height: 300px;
-    background-color: rgb(183, 249, 226);
+    background-color: #97b7ff;
     transform: rotate(45deg);
     left: -180px;
     bottom: 30px;
@@ -66,8 +66,8 @@
     background-color: transparent;
     border: none;
     border-bottom: 2px solid rgb(173, 173, 173);
-    color: black;
-    font-size: 0.8em;
+    color: var(--primary-clr);
+    font-size: 0.85em;
     font-weight: 500;
     box-sizing: border-box;
     padding-left: 6px;
@@ -75,11 +75,11 @@
 
 .login-form .inputField:focus {
     outline: none;
-    border-bottom: 2px solid #37a574;
+    border-bottom: 2px solid var(--primary-clr);
 }
 
 .login-form .inputField::placeholder {
-    color: rgb(80, 80, 80);
+    color: #3b3a3a;
     font-size: 1em;
     font-weight: 500;
 }
@@ -97,7 +97,7 @@
     position: relative;
     width: 100%;
     border: none;
-    background-color: #37a574;
+    background-color: var(--secondary-clr);
     border-radius: 4px;
     height: 30px;
     color: white;
@@ -109,7 +109,7 @@
 }
 
 .login-form .login-submit-btn:hover {
-    background-color: #2a8d60;
+    background-color: var(--primary-clr);
 }
 
 .login-form .forgotLink {

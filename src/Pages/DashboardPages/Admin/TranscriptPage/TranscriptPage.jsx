@@ -14,7 +14,7 @@ const TranscriptPage = () => {
             <div className="">
                 <Breadcrumb location={pathname} />
                 <div className="mt-6">
-                    <SectionTitle title="Manage marks" />
+                    <SectionTitle title="Manage Transcripts" />
                 </div>
             </div>
             <div className="card-container mt-12">

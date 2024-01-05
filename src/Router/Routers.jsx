@@ -66,16 +66,17 @@ const Routers = createBrowserRouter([
                     </ProtectAdminRoutes>
                 ),
                 children: [
+                    // {
+                    //     path: "/dashboard/admin",
+                    //     element: (
+                    //         <ProtectAdminRoutes>
+                    //             <AdminDashboardPage></AdminDashboardPage>
+                    //         </ProtectAdminRoutes>
+                    //     ),
+                    // },
                     {
-                        path: "/dashboard/admin",
-                        element: (
-                            <ProtectAdminRoutes>
-                                <AdminDashboardPage></AdminDashboardPage>
-                            </ProtectAdminRoutes>
-                        ),
-                    },
-                    {
-                        path: "/dashboard/admin/session-list",
+                        // path: ".",
+                        index: true,
                         element: <SessionListPage></SessionListPage>,
                     },
                     {
@@ -168,21 +169,23 @@ const Routers = createBrowserRouter([
                     </ProtectStudentRoute>
                 ),
                 children: [
+                    // {
+                    //     // path: "/dashboard/student",
+                    //     index: true,
+                    //     element: (
+                    //         <ProtectStudentRoute>
+                    //             <StudentDashboardPage></StudentDashboardPage>
+                    //         </ProtectStudentRoute>
+                    //     ),
+                    // },
                     {
-                        path: "/dashboard/student",
-                        element: (
-                            <ProtectStudentRoute>
-                                <StudentDashboardPage></StudentDashboardPage>
-                            </ProtectStudentRoute>
-                        ),
+                        // path: "/dashboard/student/profile",
+                        index: true,
+                        element: <Profile />,
                     },
                     {
                         path: "/dashboard/student/result",
                         element: <ResultPage />,
-                    },
-                    {
-                        path: "/dashboard/student/profile",
-                        element: <Profile />,
                     },
                     {
                         path: "/dashboard/student/profile/:id",

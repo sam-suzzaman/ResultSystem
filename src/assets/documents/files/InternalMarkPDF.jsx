@@ -1,21 +1,18 @@
-import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
 import React from "react";
-// import {
-//     DIV,
-//     SECTION,
-//     SPAN,
-//     H6,
-// } from "../../../../../../../public/pdf/Components";
+import { Document, Page, StyleSheet, Image, Text } from "@react-pdf/renderer";
+
+import { DIV, SPAN, H6, H3 } from "../Components";
+import logo from "../../Jkkniu_logo.png";
 
 const styles = StyleSheet.create({
     page: {
         paddingTop: 20,
-        paddingBottom: 20,
-        paddingLeft: 30,
-        paddingRight: 30,
+        paddingBottom: 40,
+        paddingLeft: 40,
+        paddingRight: 40,
     },
     titleRow: {
-        paddingBottom: 6,
+        // paddingBottom: 6,
     },
     table: {
         width: "100%",
@@ -73,33 +70,85 @@ const styles = StyleSheet.create({
         borderBottom: 0,
         borderLeft: 0,
     },
+    pageNumber: {
+        position: "absolute",
+        fontSize: "10pt",
+        bottom: "20pt",
+        left: 0,
+        right: 0,
+        textAlign: "center",
+        color: "grey",
+    },
 });
 
-const InternalMarkPDF = ({ results, stepOneValue, selectedCourse }) => {
+const InternlMarkPDF = ({ results, stepOneValue }) => {
     return (
         <Document>
             <Page size="A4" style={styles.page}>
-                <DIV isFixed={true}>
-                    <H6>
-                        <Text>Jaitya Kabi Kazi Nazrul Islam University</Text>
-                    </H6>
-                    <H6>
-                        <Text>
+                {/* PDF Title Row */}
+                <DIV isFixed={true} style={{ marginBottom: "10pt" }}>
+                    <DIV
+                        style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            justifyContent: "center",
+                            marginBottom: "10pt",
+                        }}
+                    >
+                        <Image style={{ width: "50pt" }} src={logo} />
+                    </DIV>
+                    <DIV style={{ marginBottom: "8pt" }}>
+                        <H3
+                            style={{
+                                fontWeight: "500",
+                                fontSize: "14pt",
+                                textAlign: "center",
+                                marginBottom: "4pt",
+                            }}
+                        >
+                            Jatiya Kabi Kazi Nazrul Islam University
+                        </H3>
+                        <H3
+                            style={{
+                                fontWeight: "400",
+                                fontSize: "11pt",
+                                textAlign: "center",
+                                marginBottom: "4pt",
+                            }}
+                        >
                             Department of Electrical and Electronic Engineering
-                            || {stepOneValue?.department}
-                        </Text>
-                    </H6>
-                    <H6>
-                        <Text>Course Code: {selectedCourse?.courseCode},</Text>{" "}
-                        <Text>Course Title: {selectedCourse?.courseName}</Text>
-                    </H6>
-                    <H6 style={styles.titleRow}>
-                        <Text>Internal Marks,</Text>{" "}
-                        <Text>Session: {stepOneValue?.session}</Text>
-                    </H6>
+                        </H3>
+                        <H3
+                            style={{
+                                fontWeight: "400",
+                                fontSize: "11pt",
+                                textAlign: "center",
+                                marginBottom: "4pt",
+                            }}
+                        >
+                            Course Code: {stepOneValue?.courseCode},{"   "}
+                            Course Title: {stepOneValue?.courseName}
+                        </H3>
+                        <H3
+                            style={{
+                                fontWeight: "400",
+                                fontSize: "11pt",
+                                textAlign: "center",
+                            }}
+                        >
+                            Internal Marks,{"  "}Session:{" "}
+                            {stepOneValue?.session}
+                        </H3>
+                    </DIV>
                 </DIV>
-                <SECTION style={styles.table}>
-                    <DIV style={styles.tableHead} isFixed={true}>
+
+                {/* TABLE Row */}
+                <DIV style={{ ...styles.table }}>
+                    {/* THEAD Row */}
+                    <DIV
+                        style={{ ...styles.tableHead, margnTop: "10pt" }}
+                        isFixed={true}
+                    >
                         <DIV
                             style={{
                                 ...styles.cell,
@@ -112,6 +161,11 @@ const InternalMarkPDF = ({ results, stepOneValue, selectedCourse }) => {
                                 <Text>Roll</Text>
                             </SPAN>
                         </DIV>
+                        {/* <DIV style={(styles.cell, styles.largeCell)}>
+                            <SPAN>
+                                <Text>Name</Text>
+                            </SPAN>
+                        </DIV> */}
                         <DIV
                             style={{
                                 ...styles.cell,
@@ -156,16 +210,16 @@ const InternalMarkPDF = ({ results, stepOneValue, selectedCourse }) => {
                                 justifyContent: "center",
                             }}
                         >
-                            <View>
+                            <DIV>
                                 <SPAN>
                                     <Text>Assignment /</Text>
                                 </SPAN>
-                            </View>
-                            <View>
+                            </DIV>
+                            <DIV>
                                 <SPAN>
                                     <Text>Presentation</Text>
                                 </SPAN>
-                            </View>
+                            </DIV>
                         </DIV>
                         <DIV
                             style={{
@@ -180,9 +234,11 @@ const InternalMarkPDF = ({ results, stepOneValue, selectedCourse }) => {
                             </SPAN>
                         </DIV>
                     </DIV>
+
+                    {/* TBODY Row */}
                     {results?.map((result) => {
                         return (
-                            <DIV style={styles.row}>
+                            <DIV style={styles.row} wrap={false}>
                                 <DIV style={styles.cell}>
                                     <SPAN>
                                         <Text>{result.roll}</Text>
@@ -223,10 +279,19 @@ const InternalMarkPDF = ({ results, stepOneValue, selectedCourse }) => {
                             </DIV>
                         );
                     })}
-                </SECTION>
+                </DIV>
+
+                {/* TFOOTER Row */}
+                <Text
+                    style={styles.pageNumber}
+                    render={({ pageNumber, totalPages }) =>
+                        `${pageNumber} / ${totalPages}`
+                    }
+                    fixed
+                />
             </Page>
         </Document>
     );
 };
 
-export default InternalMarkPDF;
+export default InternlMarkPDF;

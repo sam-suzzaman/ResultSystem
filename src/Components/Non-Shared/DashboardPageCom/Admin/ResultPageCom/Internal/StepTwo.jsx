@@ -3,59 +3,39 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 import { PDFViewer } from "@react-pdf/renderer";
-import InternalMarkPDF from "../../AddMarkPageCom/InternalMark/InternalMarkPDF";
 
 import { useResultStepContext } from "../../../../../../context/Admin/ResultStepContext";
 
+import InternlMarkPDF from "../../../../../../assets/documents/files/InternalMarkPDF";
+
 // todo: fetch data
-const resultList = [
-    {
-        _id: 1,
-        name: "Rizoan Kabir Akanda",
-        roll: "18102901",
-        attendance: 10,
-        midOne: 8,
-        midTwo: 8,
-        presentationOrAssignment: 8,
-        total: 34,
-    },
-    {
-        _id: 2,
-        name: "Alpona Akter koly",
-        roll: "18102902",
-        attendance: 10,
-        midOne: 9,
-        midTwo: 9,
-        presentationOrAssignment: 8,
-        total: 36,
-    },
-    {
-        _id: 3,
-        name: "Samsuzzaman",
-        roll: "18102930",
-        attendance: 10,
-        midOne: 7,
-        midTwo: 8,
-        presentationOrAssignment: 8,
-        total: 33,
-    },
-    {
-        _id: 4,
-        name: "Lipon Chandra Roy",
-        roll: "18102940",
-        attendance: 10,
-        midOne: 7,
-        midTwo: 8,
-        presentationOrAssignment: 8,
-        total: 33,
-    },
-];
+import Result from "../../../../../../assets/documents/data/InternalMark";
+import ResultErrorCom from "../../../../../Shared/ResultErrorCom/ResultErrorCom";
+import useFetchData from "../../../../../../utils/fetchDataHook";
+import LoadingCom from "../../../../../Shared/LoadingCom/LoadingCom";
 
 const StepTwo = () => {
     const { step, setStep, stepOneValue, setStepOneValue } =
         useResultStepContext();
-    const [results, setResults] = useState(resultList);
-
+    const { loading, data, isError } = useFetchData(
+        "internal-mark",
+        `https://student-management-delta.vercel.app/mark/${
+            stepOneValue?.department
+        }/${stepOneValue?.semester}/${stepOneValue?.courseName}/${
+            stepOneValue.courseCode
+        }/18102930`
+    );
+    const [results, setResults] = useState(Result);
+    console.log(stepOneValue);
+    if (loading) {
+        return <LoadingCom />;
+    }
+    if (data) {
+        console.log(data);
+    }
+    if (isError) {
+        return <ResultErrorCom homeURL="/dashboard/admin/get-mark" />;
+    }
     return (
         <Wrapper>
             <div className="row-1 mb-4 mt-1">
@@ -73,7 +53,11 @@ const StepTwo = () => {
                 <PDFViewer width={1250} height={540}>
                     {/* <SemesterPDF colData={colData} /> */}
                     {/* <CourseFinalResultPDF data={rearrangedMark} /> */}
-                    <InternalMarkPDF
+                    {/* <InternalMarkPDF
+                        results={results}
+                        stepOneValue={stepOneValue}
+                    /> */}
+                    <InternlMarkPDF
                         results={results}
                         stepOneValue={stepOneValue}
                     />

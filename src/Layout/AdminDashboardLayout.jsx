@@ -10,16 +10,17 @@ import styled from "styled-components";
 
 const AdminDashboardLayout = () => {
     const menu_items = [
-        {
-            id: 1,
-            title: "Home",
-            path: "/dashboard/admin/",
-            icon: <AiFillHome />,
-        },
+        // {
+        //     id: 1,
+        //     title: "Home",
+        //     path: "/dashboard/admin/",
+        //     icon: <AiFillHome />,
+        // },
         {
             id: 2,
             title: "sessions",
-            path: "/dashboard/admin/session-list",
+            path: ".",
+            // path: "/dashboard/admin/session-list",
             icon: <AiOutlineUsergroupAdd />,
         },
         {
@@ -71,6 +72,7 @@ const AdminDashboardLayout = () => {
                                                 <NavLink
                                                     to={item.path}
                                                     className="capitalize font-semibold rms-link"
+                                                    end
                                                 >
                                                     <span className="text-xl mr-1 inline-flex items-center ">
                                                         {item?.icon}
