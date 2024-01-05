@@ -19,14 +19,10 @@ const StepTwo = () => {
         useResultStepContext();
     const { loading, data, isError } = useFetchData(
         "internal-mark",
-        `https://student-management-delta.vercel.app/mark/${
-            stepOneValue?.department
-        }/${stepOneValue?.semester}/${stepOneValue?.courseName}/${
-            stepOneValue.courseCode
-        }/18102930`
+        `https://student-management-delta.vercel.app/mark/${stepOneValue?.department}/${stepOneValue?.semester}/${stepOneValue?.courseName}/${stepOneValue.courseCode}/18102930`
     );
     const [results, setResults] = useState(Result);
-    console.log(stepOneValue);
+
     if (loading) {
         return <LoadingCom />;
     }
@@ -38,7 +34,7 @@ const StepTwo = () => {
     }
     return (
         <Wrapper>
-            <div className="row-1 mb-4 mt-1">
+            <div className="row-1 fancy-sec">
                 <h3 className="text-[22px] text-secondary capitalize font-bold">
                     your Search Result
                 </h3>
@@ -68,6 +64,11 @@ const StepTwo = () => {
 };
 
 const Wrapper = styled.div`
+    .fancy-sec {
+        padding: 1rem;
+        border-radius: 10px 10px 0 0;
+        background-color: #e8e8e8;
+    }
     .row-1 {
         display: flex;
         justify-content: space-between;

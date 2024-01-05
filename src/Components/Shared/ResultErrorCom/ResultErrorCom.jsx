@@ -24,9 +24,17 @@ const ResultErrorCom = ({ homeURL }) => {
 };
 
 const Wrapper = styled.div`
+    /* width: 100%;
+    height: 100%;
+    background-color: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center; */
+    padding-top: 10vh;
+
     .img-container {
         width: 100%;
-        max-width: 50%;
+        max-width: 30%;
         margin: 0 auto;
     }
     .info-container {

@@ -3,15 +3,35 @@ import styled from "styled-components";
 
 import { PDFViewer } from "@react-pdf/renderer";
 import { useSemesterTranscriptContext } from "../../../../../../Pages/DashboardPages/Admin/TranscriptPage/SemesterTranscriptPage";
-import SemesterTranscriptPDF from "../../../../../../assets/PDF/SemesterTranscriptPDF";
-import SemesterTranscriptData from "../../../../../../../DB/SemesterTranscriptData";
+import SemesterTranscriptPDF from "../../../../../../assets/documents/files/SemesterTranscriptPDF";
+// import SemesterTranscriptData from "../../../../../../../DB/SemesterTranscriptData";
+import useFetchData from "../../../../../../utils/fetchDataHook";
+import LoadingCom from "../../../../../Shared/LoadingCom/LoadingCom";
+import ResultErrorCom from "../../../../../Shared/ResultErrorCom/ResultErrorCom";
 
 const StepTwoTranscript = () => {
     const { step, setStep, stepOneValue } = useSemesterTranscriptContext();
-    const [results, setResults] = useState(SemesterTranscriptData);
+    // const [results, setResults] = useState(SemesterTranscriptData);
+
+    const { loading, data, isError, error } = useFetchData(
+        "student-semester-transcript-mark",
+        `https://student-management-delta.vercel.app/result/semester-transcript/EEE/2017-18/18102940`
+    );
+
+    if (loading) {
+        return <LoadingCom />;
+    }
+    if (data) {
+        console.log(data);
+    }
+    if (false) {
+        console.log(error);
+        return <ResultErrorCom homeURL="/dashboard/admin/transcript" />;
+    }
+
     return (
         <Wrapper>
-            <div className="row-1 mb-4 mt-1">
+            <div className="row-1 mt-1 fancy-sec">
                 <h3 className="text-[22px] text-secondary capitalize font-bold">
                     your Search Result
                 </h3>
@@ -24,8 +44,12 @@ const StepTwoTranscript = () => {
             </div>
             <div className="w-full">
                 <PDFViewer width={1250} height={540}>
-                    <SemesterTranscriptPDF
+                    {/* <SemesterTranscriptPDF
                         TranscriptData={results}
+                        stepOneValue={stepOneValue}
+                    /> */}
+                    <SemesterTranscriptPDF
+                        TranscriptData={data}
                         stepOneValue={stepOneValue}
                     />
                 </PDFViewer>
@@ -34,6 +58,13 @@ const StepTwoTranscript = () => {
     );
 };
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+    .fancy-sec {
+        width: 100%;
+        background-color: #d7d7d7;
+        padding: 1rem 1rem;
+        border-radius: 17px 17px 0 0;
+    }
+`;
 
 export default StepTwoTranscript;

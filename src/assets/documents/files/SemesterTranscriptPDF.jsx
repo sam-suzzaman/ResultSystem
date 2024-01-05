@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 
 import { Document, Page, StyleSheet, Image } from "@react-pdf/renderer";
-import { DIV, SPAN, H1, H2, H3, H4 } from "../../Components";
+import { DIV, SPAN, H1, H2, H3, H4 } from "../Components";
 
-import logo from "../../../../assets/Jkkniu_logo.png";
-import grade from "../../../../assets/grade.png";
+import logo from "../../../assets/Jkkniu_logo.png";
+import grade from "../../../assets/grade.png";
 
 // import TranscriptData from "../../data/SemesterTranscript";
 

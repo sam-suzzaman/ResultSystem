@@ -5,7 +5,7 @@ import { PDFViewer } from "@react-pdf/renderer";
 import { useSemesterTranscriptContext } from "../../../../../../Pages/DashboardPages/Student/SemesterTranscriptPage";
 // import SemesterTranscriptPDF from "../../../../../../assets/PDF/SemesterTranscriptPDF";
 // import SemesterTranscriptData from "../../../../../../../DB/SemesterTranscriptData";
-import SemesterTranscriptPDF from "../../../../../../assets/documents/files/student/SemesterTranscriptPDF";
+import SemesterTranscriptPDF from "../../../../../../assets/documents/files/SemesterTranscriptPDF";
 import semesterTranscript from "../../../../../../assets/documents/data/SemesterTranscript";
 import LoadingCom from "../../../../../Shared/LoadingCom/LoadingCom";
 import ResultErrorCom from "../../../../../Shared/ResultErrorCom/ResultErrorCom";

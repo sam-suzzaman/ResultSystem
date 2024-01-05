@@ -57,7 +57,10 @@ const StepTwo = () => {
 
     return (
         <Wrapper>
-            <div className="row-1 mb-4 mt-1">
+            <div className="row-1 fancy-sec">
+                <h3 className="text-[22px] text-secondary capitalize font-bold">
+                    your Search Result
+                </h3>
                 <button className="submit_btn px-6 py-2 text-sm font-medium capitalize rounded-md">
                     publish
                 </button>
@@ -78,9 +81,14 @@ const StepTwo = () => {
 };
 
 const Wrapper = styled.div`
+    .fancy-sec {
+        padding: 1rem;
+        border-radius: 10px 10px 0 0;
+        background-color: #e8e8e8;
+    }
     .row-1 {
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
         align-items: center;
         column-gap: 10px;
     }
