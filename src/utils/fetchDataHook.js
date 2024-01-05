@@ -1,10 +1,9 @@
 import { useQuery } from "react-query";
-import { getAllHandler } from "./fetchHandlers";
+import { fetchAllHandler } from "./fetchHandlers";
 
 const useFetchData = (field, url) => {
-    console.log(url);
     const { isLoading, isError, data, error } = useQuery(field, () =>
-        getAllHandler(url)
+        fetchAllHandler(url)
     );
 
     return { loading: isLoading, data, isError, error };

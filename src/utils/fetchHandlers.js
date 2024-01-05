@@ -1,6 +1,11 @@
 import axios from "axios";
 import useFetchConfig from "./useFetchConfig";
 
+export const fetchAllHandler = async (url) => {
+    const config = useFetchConfig();
+    const response = await axios.get(url, config);
+    return response?.data;
+};
 export const getAllHandler = async (url) => {
     const config = useFetchConfig();
     const response = await axios.get(url, config);

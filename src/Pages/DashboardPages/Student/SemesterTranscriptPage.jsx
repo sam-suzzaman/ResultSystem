@@ -5,7 +5,7 @@ import StepTwoTranscript from "../../../Components/Non-Shared/DashboardPageCom/S
 
 const transcriptContext = createContext();
 const SemesterTranscriptPage = () => {
-    const [step, setStep] = useState(1);
+    const [step, setStep] = useState(1); //1
     const [stepOneValue, setStepOneValue] = useState({});
 
     return (

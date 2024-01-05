@@ -22,11 +22,65 @@ export const SPAN = ({ style, children }) => {
     );
 };
 
+export const H1 = ({ children, style }) => {
+    return (
+        <Text
+            style={{
+                display: "block",
+                fontSize: "24pt",
+                fontWeight: "bold",
+                ...style,
+            }}
+        >
+            {children}
+        </Text>
+    );
+};
+export const H2 = ({ children, style }) => {
+    return (
+        <Text
+            style={{
+                display: "block",
+                ...style,
+            }}
+        >
+            {children}
+        </Text>
+    );
+};
 export const H3 = ({ children, style }) => {
     return (
         <Text
             style={{
                 display: "block",
+                ...style,
+            }}
+        >
+            {children}
+        </Text>
+    );
+};
+export const H4 = ({ children, style }) => {
+    return (
+        <Text
+            style={{
+                display: "block",
+                fontSize: "14pt",
+                fontWeight: "bold",
+                ...style,
+            }}
+        >
+            {children}
+        </Text>
+    );
+};
+export const H5 = ({ children, style }) => {
+    return (
+        <Text
+            style={{
+                display: "block",
+                fontSize: "12pt",
+                fontWeight: "bold",
                 ...style,
             }}
         >
