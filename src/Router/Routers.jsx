@@ -35,6 +35,7 @@ import TranscriptPageStudent from "../Pages/DashboardPages/Student/TranscriptPag
 import TranscriptPageAdmin from "../Pages/DashboardPages/Admin/TranscriptPage/TranscriptPage";
 import SemesterTranscriptPageAdmin from "../Pages/DashboardPages/Admin/TranscriptPage/SemesterTranscriptPage";
 import SemesterTranscriptPageStudent from "../Pages/DashboardPages/Student/SemesterTranscriptPage";
+import ProtectStudentRoute from "./ProtectStudentRoute";
 
 const Routers = createBrowserRouter([
     {
@@ -53,25 +54,25 @@ const Routers = createBrowserRouter([
                     </ProtectLoginRoute>
                 ),
             },
-            {
-                path: "/dashboard",
-                element: <DashboardPage />,
-            },
+            // {
+            //     path: "/dashboard",
+            //     element: <DashboardPage />,
+            // },
             {
                 path: "/dashboard/admin",
                 element: (
                     <ProtectAdminRoutes>
                         <AdminDashboardLayout></AdminDashboardLayout>
                     </ProtectAdminRoutes>
-
-                    // <ProtectedRoutes>
-                    //     <DashboardLayout></DashboardLayout>
-                    // </ProtectedRoutes>
                 ),
                 children: [
                     {
                         path: "/dashboard/admin",
-                        element: <AdminDashboardPage></AdminDashboardPage>,
+                        element: (
+                            <ProtectAdminRoutes>
+                                <AdminDashboardPage></AdminDashboardPage>
+                            </ProtectAdminRoutes>
+                        ),
                     },
                     {
                         path: "/dashboard/admin/session-list",
@@ -162,16 +163,18 @@ const Routers = createBrowserRouter([
             {
                 path: "/dashboard/student",
                 element: (
-                    <StudentDashboardLayout></StudentDashboardLayout>
-
-                    // <ProtectedRoutes>
-                    //     <DashboardLayout></DashboardLayout>
-                    // </ProtectedRoutes>
+                    <ProtectStudentRoute>
+                        <StudentDashboardLayout></StudentDashboardLayout>
+                    </ProtectStudentRoute>
                 ),
                 children: [
                     {
                         path: "/dashboard/student",
-                        element: <StudentDashboardPage></StudentDashboardPage>,
+                        element: (
+                            <ProtectStudentRoute>
+                                <StudentDashboardPage></StudentDashboardPage>
+                            </ProtectStudentRoute>
+                        ),
                     },
                     {
                         path: "/dashboard/student/result",

@@ -6,15 +6,18 @@ import LoadingCom from "../Components/Shared/LoadingCom/LoadingCom";
 const ProtectStudentRoute = ({ children }) => {
     const location = useLocation();
     const { user, userLoading } = useUserContext();
+    console.log(user);
 
     if (userLoading) {
         return <LoadingCom />;
     }
-    if (user?.role == "student") {
+    if (user?.role === "student") {
         return children;
+    } else if (user?.role) {
+        return <Navigate to="/" />;
     }
 
-    return <Navigate to="/" state={{ from: location }} replace />;
+    return <Navigate to="/login" state={{ from: location }} replace />;
 };
 
 export default ProtectStudentRoute;

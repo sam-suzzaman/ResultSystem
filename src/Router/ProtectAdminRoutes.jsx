@@ -10,11 +10,13 @@ const ProtectAdminRoutes = ({ children }) => {
     if (userLoading) {
         return <LoadingCom />;
     }
-    if (user?.role == "admin") {
+    if (user?.role === "admin") {
         return children;
+    } else if (user?.role) {
+        return <Navigate to="/" />;
     }
 
-    return <Navigate to="/" state={{ from: location }} replace />;
+    return <Navigate to="/login" state={{ from: location }} replace />;
 };
 
 export default ProtectAdminRoutes;

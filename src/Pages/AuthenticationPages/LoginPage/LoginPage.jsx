@@ -11,7 +11,7 @@ import axios from "axios";
 const LoginPage = () => {
     const [isPasswordShow, setIsPasswordShow] = useState(false);
     const [loginLoading, setLoginLoading] = useState(false); // handle login loading
-    const { handleLoginToken, setUserLoading } = useUserContext();
+    const { handleLoginToken, setUserLoading, user } = useUserContext();
 
     let navigate = useNavigate();
     let location = useLocation();
@@ -41,7 +41,7 @@ const LoginPage = () => {
         } catch (error) {
             // setOthersError(error.response?.data?.message);
             console.log(error);
-            toast.warn("something wrong");
+            toast.warn("Enter Valid Credentials");
         }
         setLoginLoading(false);
     };
@@ -79,7 +79,7 @@ const LoginPage = () => {
                         </svg>
                         <input
                             type="text"
-                            className="inputField"
+                            className="inputField number"
                             id="username"
                             placeholder="Student Roll"
                             {...register("userRoll", {
@@ -114,7 +114,7 @@ const LoginPage = () => {
                         </svg>
                         <input
                             type={isPasswordShow ? "text" : "password"}
-                            className="inputField"
+                            className="inputField number"
                             id="password"
                             placeholder="Password"
                             {...register("password", {
