@@ -15,11 +15,7 @@ export const DIV = ({ children, style, isFixed }) => {
 };
 
 export const SPAN = ({ style, children }) => {
-    return (
-        <Text style={{ ...style, fontSize: 9, fontWeight: 500 }}>
-            {children}
-        </Text>
-    );
+    return <Text style={{ ...style }}>{children}</Text>;
 };
 
 export const H1 = ({ children, style }) => {
@@ -65,8 +61,6 @@ export const H4 = ({ children, style }) => {
         <Text
             style={{
                 display: "block",
-                fontSize: "14pt",
-                fontWeight: "bold",
                 ...style,
             }}
         >
@@ -79,8 +73,6 @@ export const H5 = ({ children, style }) => {
         <Text
             style={{
                 display: "block",
-                fontSize: "12pt",
-                fontWeight: "bold",
                 ...style,
             }}
         >
@@ -94,11 +86,7 @@ export const H6 = ({ style, children }) => {
         <Text
             style={{
                 ...style,
-                fontSize: 10,
-                fontWeight: 400,
                 display: "block",
-                textAlign: "center",
-                marginBottom: 2,
             }}
         >
             {children}

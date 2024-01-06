@@ -8,12 +8,28 @@ import ImproveResultPDF from "../../../../../../assets/PDF/ImproveResultPDF";
 import { useResultStepContext } from "../../../../../../context/Admin/ResultStepContext";
 
 // todo: fetch data
-import data from "../../../../../../../DB/ImproveResult";
+import data from "../../../../../../assets/documents/data/ImproveTabulationData";
+import ImproveTabulation from "../../../../../../assets/documents/files/ImproveTabulation";
+
+import useFetchData from "../../../../../../utils/fetchDataHook";
+import LoadingCom from "../../../../../Shared/LoadingCom/LoadingCom";
+import ResultErrorCom from "../../../../../Shared/ResultErrorCom/ResultErrorCom";
 
 const StepTwo = () => {
     const { step, setStep, stepOneValue, setStepOneValue } =
         useResultStepContext();
-    const [results, setResults] = useState(data);
+    // ToDO:fetch data
+    // const { loading, data, isError } = useFetchData("course-final-mark", "url");
+
+    // if (loading) {
+    //     return <LoadingCom />;
+    // }
+    // if (data) {
+    //     console.log(data);
+    // }
+    // if (isError) {
+    //     return <ResultErrorCom homeURL="/dashboard/admin/get-mark" />;
+    // }
 
     return (
         <Wrapper>
@@ -29,8 +45,12 @@ const StepTwo = () => {
                 <PDFViewer width={1250} height={540}>
                     {/* <SemesterPDF colData={colData} /> */}
                     {/* <CourseFinalResultPDF data={rearrangedMark} /> */}
-                    <ImproveResultPDF
+                    {/* <ImproveResultPDF
                         results={results}
+                        stepOneValue={stepOneValue}
+                    /> */}
+                    <ImproveTabulation
+                        results={data}
                         stepOneValue={stepOneValue}
                     />
                 </PDFViewer>

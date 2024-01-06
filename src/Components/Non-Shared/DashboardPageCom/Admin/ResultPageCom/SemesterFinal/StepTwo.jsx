@@ -9,16 +9,33 @@ import { useResultStepContext } from "../../../../../../context/Admin/ResultStep
 import SemesterFinalResultPDF from "../../../../../../assets/PDF/SemesterFinalResultPDF";
 
 // todo: fetch data
-import data from "../../../../../../../DB/SemesterFinalResult";
+// import data from "../../../../../../../DB/SemesterFinalResult";
+import useFetchData from "../../../../../../utils/fetchDataHook";
+import SemesterFinalTabulation from "../../../../../../assets/documents/files/SemesterFinalTabulation";
+import data from "../../../../../../assets/documents/data/SemesterFinalTabulationData";
 
 const StepTwo = () => {
     const { step, setStep, stepOneValue, setStepOneValue } =
         useResultStepContext();
-    const [results, setResults] = useState(data);
+    // ToDO:fetch data
+    // const { loading, data, isError } = useFetchData("semester-final-tabulation-mark", "url");
+
+    // if (loading) {
+    //     return <LoadingCom />;
+    // }
+    // if (data) {
+    //     console.log(data);
+    // }
+    // if (isError) {
+    //     return <ResultErrorCom homeURL="/dashboard/admin/get-mark" />;
+    // }
 
     return (
         <Wrapper>
-            <div className="row-1 mb-4 mt-1">
+            <div className="row-1 fancy-sec">
+                <h3 className="text-[22px] text-secondary capitalize font-bold">
+                    your Search Result
+                </h3>
                 <button className="submit_btn px-6 py-2 text-sm font-medium capitalize rounded-md">
                     publish
                 </button>
@@ -30,8 +47,12 @@ const StepTwo = () => {
                 <PDFViewer width={1250} height={540}>
                     {/* <SemesterPDF colData={colData} /> */}
                     {/* <CourseFinalResultPDF data={rearrangedMark} /> */}
-                    <SemesterFinalResultPDF
+                    {/* <SemesterFinalResultPDF
                         results={results}
+                        stepOneValue={stepOneValue}
+                    /> */}
+                    <SemesterFinalTabulation
+                        results={data}
                         stepOneValue={stepOneValue}
                     />
                 </PDFViewer>
@@ -41,9 +62,14 @@ const StepTwo = () => {
 };
 
 const Wrapper = styled.div`
+    .fancy-sec {
+        padding: 1rem;
+        border-radius: 10px 10px 0 0;
+        background-color: #e8e8e8;
+    }
     .row-1 {
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
         align-items: center;
         column-gap: 10px;
     }

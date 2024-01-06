@@ -6,54 +6,70 @@ import { PDFViewer } from "@react-pdf/renderer";
 
 import { useResultStepContext } from "../../../../../../context/Admin/ResultStepContext";
 
-import CourseFinalResultPDF from "../../../../../../assets/PDF/CourseFinalResultPDF";
+// import CourseFinalResultPDF from "../../../../../../assets/PDF/CourseFinalResultPDF";
+import SingleCourseFinalPDF from "../../../../../../assets/documents/files/SingleCourseFinalPDF";
+import resultList from "../../../../../../assets/documents/data/CourseFinalMark";
+import useFetchData from "../../../../../../utils/fetchDataHook";
+import LoadingCom from "../../../../../Shared/LoadingCom/LoadingCom";
+import ResultErrorCom from "../../../../../Shared/ResultErrorCom/ResultErrorCom";
 
-const resultList = [
-    {
-        _id: 1,
-        name: "Rizoan Kabir Akanda",
-        roll: "18102901",
-        attendance: 10,
-        midOne: 8,
-        midTwo: 8,
-        presentationOrAssignment: 8,
-        total: 34,
-    },
-    {
-        _id: 2,
-        name: "Alpona Akter koly",
-        roll: "18102902",
-        attendance: 10,
-        midOne: 9,
-        midTwo: 9,
-        presentationOrAssignment: 8,
-        total: 36,
-    },
-    {
-        _id: 3,
-        name: "Samsuzzaman",
-        roll: "18102930",
-        attendance: 10,
-        midOne: 7,
-        midTwo: 8,
-        presentationOrAssignment: 8,
-        total: 33,
-    },
-    {
-        _id: 4,
-        name: "Lipon Chandra Roy",
-        roll: "18102940",
-        attendance: 10,
-        midOne: 7,
-        midTwo: 8,
-        presentationOrAssignment: 8,
-        total: 33,
-    },
-];
+// const resultList = [
+//     {
+//         _id: 1,
+//         name: "Rizoan Kabir Akanda",
+//         roll: "18102901",
+//         attendance: 10,
+//         midOne: 8,
+//         midTwo: 8,
+//         presentationOrAssignment: 8,
+//         total: 34,
+//     },
+//     {
+//         _id: 2,
+//         name: "Alpona Akter koly",
+//         roll: "18102902",
+//         attendance: 10,
+//         midOne: 9,
+//         midTwo: 9,
+//         presentationOrAssignment: 8,
+//         total: 36,
+//     },
+//     {
+//         _id: 3,
+//         name: "Samsuzzaman",
+//         roll: "18102930",
+//         attendance: 10,
+//         midOne: 7,
+//         midTwo: 8,
+//         presentationOrAssignment: 8,
+//         total: 33,
+//     },
+//     {
+//         _id: 4,
+//         name: "Lipon Chandra Roy",
+//         roll: "18102940",
+//         attendance: 10,
+//         midOne: 7,
+//         midTwo: 8,
+//         presentationOrAssignment: 8,
+//         total: 33,
+//     },
+// ];
 
 const StepTwo = () => {
     const { step, setStep, stepOneValue } = useResultStepContext();
-    const [results, setResults] = useState(resultList);
+    // ToDO:fetch data
+    // const { loading, data, isError } = useFetchData("course-final-mark", "url");
+
+    // if (loading) {
+    //     return <LoadingCom />;
+    // }
+    // if (data) {
+    //     console.log(data);
+    // }
+    // if (isError) {
+    //     return <ResultErrorCom homeURL="/dashboard/admin/get-mark" />;
+    // }
 
     return (
         <Wrapper>
@@ -70,8 +86,12 @@ const StepTwo = () => {
             </div>
             <div className="w-full">
                 <PDFViewer width={1250} height={540}>
-                    <CourseFinalResultPDF
+                    {/* <CourseFinalResultPDF
                         results={results}
+                        stepOneValue={stepOneValue}
+                    /> */}
+                    <SingleCourseFinalPDF
+                        results={resultList}
                         stepOneValue={stepOneValue}
                     />
                 </PDFViewer>

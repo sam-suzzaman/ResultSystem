@@ -30,7 +30,7 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center; */
-    padding-top: 10vh;
+    padding-top: 7vh;
 
     .img-container {
         width: 100%;
