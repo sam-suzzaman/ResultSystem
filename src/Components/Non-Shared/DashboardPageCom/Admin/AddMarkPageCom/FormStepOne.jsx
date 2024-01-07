@@ -5,7 +5,7 @@ import { departments, semesters } from "../../../../../utils/AddMarkFieldsData";
 import { getAllHandler } from "../../../../../utils/fetchHandlers";
 import styled from "styled-components";
 
-const FormStepOne = ({ name }) => {
+const FormStepOne = ({ title, name }) => {
     const { setStepValue, setStepOneValue, setSelectedCourse } =
         useMarkFormStepContext();
 
@@ -70,7 +70,7 @@ const FormStepOne = ({ name }) => {
         <Wrapper>
             <div className="mb-2">
                 <h2 className="text-xl text-center font-bold uppercase ">
-                    Add mark
+                    {title || " Add mark"}
                 </h2>
                 <h4 className="text-sm font-medium text-center uppercase mt-1">
                     {name}
@@ -248,7 +248,7 @@ const FormStepOne = ({ name }) => {
                         ) : (
                             courseData?.map((course) => {
                                 return (
-                                    course?.credit !== 1.5 && (
+                                    // course?.credit !== 1.5 && (
                                         <option
                                             key={course._id}
                                             value={course._id}
@@ -257,7 +257,7 @@ const FormStepOne = ({ name }) => {
                                             {course.courseName} (
                                             {course.courseCode})
                                         </option>
-                                    )
+                                    // )
                                 );
                             })
                         )}

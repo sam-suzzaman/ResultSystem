@@ -31,7 +31,7 @@ const AdminDashboardLayout = () => {
         },
         {
             id: 4,
-            title: "Results",
+            title: "Marksheets",
             path: "/dashboard/admin/get-mark",
             icon: <GrDocumentPpt />,
         },

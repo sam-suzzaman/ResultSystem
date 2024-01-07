@@ -4,52 +4,57 @@ import "react-tabs/style/react-tabs.css";
 import SingleStudentForm from "../../../../Components/Non-Shared/DashboardPageCom/Admin/AddMarkPageCom/LabMark/SingleStudentForm";
 import MultipleStudentForm from "../../../../Components/Non-Shared/DashboardPageCom/Admin/AddMarkPageCom/LabMark/MultipleStudentForm";
 
+import Wrapper from "../../../../assets/wrappers/Common/MarksTabWrapper";
+import { MarkFormStepProvider } from "../../../../context/Admin/MarkFormStepContext";
+
 const LabMarkAddPage = () => {
     return (
-        <section className="">
-            <h2 className="text-xl text-center font-bold uppercase mt-2">
-                Add mark
-            </h2>
-            <h4 className="text-sm font-medium text-center uppercase mt-1">
-                Lab
-            </h4>
-            <div className="mt-8">
-                <Tabs>
-                    <TabList className="flex justify-center border-b border-[#c3c3c3]">
-                        <Tab>
-                            <div className="flex justify-center items-center ">
-                                <span className=" font-bold text-lg">
-                                    <AiOutlineUser />
-                                </span>
-                                <span className="font-medium capitalize ml-1 text-base">
-                                    single student
-                                </span>
-                            </div>
-                        </Tab>
-                        <Tab>
-                            <div className="flex justify-center items-center">
-                                <span className=" font-bold text-lg">
-                                    <AiOutlineUsergroupAdd />
-                                </span>
-                                <span className="font-medium capitalize ml-1 text-base">
-                                    Multiple students
-                                </span>
-                            </div>
-                        </Tab>
-                    </TabList>
+        <>
+            <section className="">
+                <div className="">
+                    <Tabs>
+                        <Wrapper>
+                            <TabList className="">
+                                <Tab>
+                                    <div className="flex justify-center items-center">
+                                        <span className=" font-bold text-lg">
+                                            <AiOutlineUsergroupAdd />
+                                        </span>
+                                        <span className="font-medium capitalize ml-1 text-base">
+                                            Add mark
+                                        </span>
+                                    </div>
+                                </Tab>
+                                <Tab>
+                                    <div className="flex justify-center items-center ">
+                                        <span className=" font-bold text-lg">
+                                            <AiOutlineUser />
+                                        </span>
+                                        <span className="font-medium capitalize ml-1 text-base">
+                                            update
+                                        </span>
+                                    </div>
+                                </Tab>
+                            </TabList>
+                        </Wrapper>
 
-                    {/* Single Student Tab Content */}
-                    <TabPanel className="pt-8">
-                        <SingleStudentForm />
-                    </TabPanel>
+                        {/* Multiple Students Tab Content */}
+                        <TabPanel className="mt-5">
+                            <MarkFormStepProvider>
+                                <MultipleStudentForm />
+                            </MarkFormStepProvider>
+                        </TabPanel>
 
-                    {/* Multiple Students Tab Content */}
-                    <TabPanel>
-                        <MultipleStudentForm />
-                    </TabPanel>
-                </Tabs>
-            </div>
-        </section>
+                        {/* Single Student Tab Content */}
+                        <TabPanel className="mt-5">
+                            <MarkFormStepProvider>
+                                <SingleStudentForm />
+                            </MarkFormStepProvider>
+                        </TabPanel>
+                    </Tabs>
+                </div>
+            </section>
+        </>
     );
 };
 

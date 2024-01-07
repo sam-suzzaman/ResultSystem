@@ -6,12 +6,10 @@ import {
     getAllHandler,
     updateHandler,
 } from "../../../../../../../utils/fetchHandlers";
-
-import { toast } from "react-toastify";
-
 import Swal from "sweetalert2";
+import styled from "styled-components";
 
-const FormStepTwo = () => {
+const StepTwo = () => {
     const [total, setTotal, setOneValue] = useState(0);
     const [internalResult, setInternalResult] = useState({});
     const [isRollSelect, setIsRollSelect] = useState(false);
@@ -35,11 +33,11 @@ const FormStepTwo = () => {
 
     const rollWatch = watch(`roll`);
     const attendanceWatch = watch(`attendance`);
-    const midOneWatch = watch(`midOne`);
-    const midTwoWatch = watch(`midTwo`);
-    const presentationOrAssignmentWatch = watch(`presentationOrAssignment`);
+    const labReportWatch = watch(`labReport`);
+    const continuousAssesmentWatch = watch(`continuousAssesment`);
+    const finalExaminationWatch = watch(`finalExamination`);
 
-    const addSingleInternalMarkMutation = useMutation({
+    const addOrUpdateSingleLabMarkMutation = useMutation({
         mutationFn: updateHandler,
         onSuccess: (data, variable, context) => {
             // toast.success("Mark Updated");
@@ -68,19 +66,19 @@ const FormStepTwo = () => {
         setStepValue(1);
     };
 
-    // calculate total value
+    // calculate internal total value
     useEffect(() => {
         if (
             attendanceWatch &&
-            midOneWatch &&
-            midTwoWatch &&
-            presentationOrAssignmentWatch
+            labReportWatch &&
+            continuousAssesmentWatch &&
+            finalExaminationWatch
         ) {
             let attendance = Number(attendanceWatch);
-            let mid1 = Number(midOneWatch);
-            let mid2 = Number(midTwoWatch);
-            let assignment = Number(presentationOrAssignmentWatch);
-            const temp = attendance + mid1 + mid2 + assignment;
+            let labReport = Number(labReportWatch);
+            let continuousAssessment = Number(continuousAssesmentWatch);
+            let final = Number(finalExaminationWatch);
+            const temp = attendance + labReport + continuousAssessment + final;
             setTotal(temp);
             return;
         } else {
@@ -89,11 +87,12 @@ const FormStepTwo = () => {
         }
     }, [
         attendanceWatch,
-        midOneWatch,
-        midTwoWatch,
-        presentationOrAssignmentWatch,
+        labReportWatch,
+        continuousAssesmentWatch,
+        finalExaminationWatch,
     ]);
 
+    // Todo:(update url) Fetch Student data if exists
     useEffect(() => {
         if (rollWatch && rollWatch !== "" && rollWatch.length == 8) {
             setIsRollSelect(true);
@@ -107,29 +106,30 @@ const FormStepTwo = () => {
         }
     }, [rollWatch]);
 
+    // Set Student Data in the state
     useEffect(() => {
         if (internalResult?.attendance) {
             setValue("attendance", internalResult?.attendance);
         } else {
             setValue("attendance", "");
         }
-        if (internalResult?.midOne) {
-            setValue("midOne", internalResult?.midOne);
+        if (internalResult?.labReport) {
+            setValue("labReport", internalResult?.labReport);
         } else {
-            setValue("midOne", "");
+            setValue("labReport", "");
         }
-        if (internalResult?.midTwo) {
-            setValue("midTwo", internalResult?.midTwo);
-        } else {
-            setValue("midTwo", "");
-        }
-        if (internalResult?.presentationOrAssignment) {
+        if (internalResult?.continuousAssesment) {
             setValue(
-                "presentationOrAssignment",
-                internalResult?.presentationOrAssignment
+                "continuousAssesment",
+                internalResult?.continuousAssesment
             );
         } else {
-            setValue("presentationOrAssignment", "");
+            setValue("continuousAssesment", "");
+        }
+        if (internalResult?.finalExamination) {
+            setValue("finalExamination", internalResult?.finalExamination);
+        } else {
+            setValue("finalExamination", "");
         }
     }, [internalResult]);
 
@@ -138,24 +138,23 @@ const FormStepTwo = () => {
             department: stepOneValue.department,
             semester: stepOneValue.semester,
             roll: data.roll,
-            courseId: stepOneValue.course,
             attendance: data.attendance,
-            midOne: data.midOne,
-            midTwo: data.midTwo,
-            presentationOrAssignment: data.presentationOrAssignment,
+            labReport: data.labReport,
+            continuousAssesment: data.continuousAssesment,
+            finalExamination: data.finalExamination,
             courseCode: selectedCourse.courseCode,
             courseName: selectedCourse.courseName,
             currentSession: stepOneValue.session,
         };
 
-        addSingleInternalMarkMutation.mutate({
+        addOrUpdateSingleLabMarkMutation.mutate({
             body: result,
-            url: "https://student-management-delta.vercel.app/mark/internal/single",
+            url: "https://student-management-delta.vercel.app/mark/lab/single",
         });
     };
 
     return (
-        <>
+        <Wrapper>
             <div className="mb-6 ">
                 <h3 className="capitalize text-center text-sm font-normal f-roboto">
                     Jaitya kabi kazi nazrul islam university
@@ -188,28 +187,32 @@ const FormStepTwo = () => {
             >
                 <div className="mark_input_form_container">
                     <div className="mark">
-                        <h3>Student Roll</h3>
+                        <h3 className="number">Student Roll</h3>
                     </div>
                     <div className="mark">
-                        <h3>Attendance</h3>
+                        <h3 className="number">Attendance(10%)</h3>
                     </div>
                     <div className="mark">
-                        <h3>Midterm-1</h3>
-                    </div>
-                    <div className="mark">
-                        <h3>Midterm-2</h3>
+                        <h3 className="number">lab report(10%)</h3>
                     </div>
                     <div className="mark">
                         <h3>
-                            assignment/
-                            <br /> presentation
+                            <span className="number">continuous</span> <br />
+                            <span className="number">assessment(20%)</span>
                         </h3>
                     </div>
                     <div className="mark">
-                        <h3>Total</h3>
+                        <h3 className="number">
+                            Final Exam
+                            <br /> Mark(60%)
+                        </h3>
+                    </div>
+                    <div className="mark">
+                        <h3 className="number">Total</h3>
                     </div>
 
                     <React.Fragment>
+                        {/* Roll */}
                         <div className="flex flex-col">
                             <input
                                 type="text"
@@ -217,6 +220,8 @@ const FormStepTwo = () => {
                                 {...register(`roll`)}
                             />
                         </div>
+
+                        {/* Attendance */}
                         <div className="flex flex-col">
                             <input
                                 type="text"
@@ -243,11 +248,13 @@ const FormStepTwo = () => {
                                 </span>
                             )}
                         </div>
+
+                        {/* Lab Report */}
                         <div className="flex flex-col">
                             <input
                                 type="text"
                                 className="number"
-                                {...register(`midOne`, {
+                                {...register(`labReport`, {
                                     required: {
                                         value: true,
                                         message: "Mark required",
@@ -263,17 +270,19 @@ const FormStepTwo = () => {
                                 })}
                                 disabled={!isRollSelect}
                             />
-                            {errors?.midOne && (
+                            {errors?.labReport && (
                                 <span className=" mt-1 label-text-alt text-xs font-semibold capitalize text-red-700 text-center">
-                                    {errors?.midOne?.message}
+                                    {errors?.labReport?.message}
                                 </span>
                             )}
                         </div>
+
+                        {/* Assessment */}
                         <div className="flex flex-col">
                             <input
                                 type="text"
                                 className="number"
-                                {...register(`midTwo`, {
+                                {...register(`continuousAssesment`, {
                                     required: {
                                         value: true,
                                         message: "Mark required",
@@ -283,23 +292,25 @@ const FormStepTwo = () => {
                                         message: "Be at least (0)",
                                     },
                                     max: {
-                                        value: 10,
-                                        message: "Max (10) marks",
+                                        value: 20,
+                                        message: "Max (20) marks",
                                     },
                                 })}
                                 disabled={!isRollSelect}
                             />
-                            {errors?.midTwo && (
+                            {errors?.continuousAssesment && (
                                 <span className=" mt-1 label-text-alt text-xs font-semibold capitalize text-red-700 text-center">
-                                    {errors?.midTwo?.message}
+                                    {errors?.continuousAssesment?.message}
                                 </span>
                             )}
                         </div>
+
+                        {/* Final Mark */}
                         <div className="flex flex-col">
                             <input
                                 type="text"
                                 className="number"
-                                {...register(`presentationOrAssignment`, {
+                                {...register(`finalExamination`, {
                                     required: {
                                         value: true,
                                         message: "Mark required",
@@ -309,18 +320,19 @@ const FormStepTwo = () => {
                                         message: "Be at least (0)",
                                     },
                                     max: {
-                                        value: 10,
-                                        message: "Max (10) marks",
+                                        value: 60,
+                                        message: "Max (60) marks",
                                     },
                                 })}
                                 disabled={!isRollSelect}
                             />
-                            {errors?.presentationOrAssignment && (
+                            {errors?.finalExamination && (
                                 <span className=" mt-1 label-text-alt text-xs font-semibold capitalize text-red-700 text-center">
-                                    {errors?.presentationOrAssignment?.message}
+                                    {errors?.finalExamination?.message}
                                 </span>
                             )}
                         </div>
+
                         <span className="text-center text-xs font-medium number">
                             {total}
                         </span>
@@ -341,8 +353,105 @@ const FormStepTwo = () => {
                     </button>
                 </div>
             </form>
-        </>
+        </Wrapper>
     );
 };
 
-export default FormStepTwo;
+const Wrapper = styled.section`
+    .mark_input_form_wrapper {
+        width: 100%;
+        max-height: 40vh;
+        overflow-y: auto;
+        padding: 10px;
+        padding-top: 0;
+        scrollbar-width: auto; /* width of the scrollbar */
+        scrollbar-color: #888 #f2f2f2; /* thumb color and track color */
+    }
+    /* Customize scrollbar for Chrome, Safari, and newer versions of Edge */
+    .mark_input_form_wrapper::-webkit-scrollbar {
+        width: 5px; /* width of the vertical scrollbar */
+    }
+
+    .mark_input_form_wrapper::-webkit-scrollbar-thumb {
+        background-color: #888; /* color of the thumb */
+        border-radius: 5px; /* rounded corners for the thumb */
+    }
+
+    .mark_input_form_wrapper::-webkit-scrollbar-track {
+        background-color: #f2f2f2; /* color of the track */
+    }
+
+    .mark_input_form_container {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        justify-content: space-between;
+        align-items: center;
+        grid-row-gap: 13px;
+        grid-column-gap: 2px;
+    }
+    .mark_input_form_container {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+        overflow: -moz-scrollbars-none; /* Firefox */
+    }
+    .mark_input_form_container::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Target the first row */
+    .mark_input_form_container > *:nth-child(-n + 6) {
+        background-color: rgb(235, 235, 235);
+        position: sticky;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 4px 0;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .mark_input_form_container .mark h3 {
+        color: #363636;
+        font-size: 13px;
+        font-weight: 600;
+        text-align: center;
+        text-transform: capitalize;
+    }
+
+    .mark_input_form_container input {
+        width: 100%;
+        max-width: 50px;
+        height: 22px;
+        box-shadow: 0px 0px 0px 0.2px;
+        border: none;
+        text-align: center;
+        font-size: 11px;
+        font-weight: 600;
+        border-radius: 1.5px;
+        outline: none;
+        margin: 0 auto;
+        padding: 4px 4px;
+    }
+    .mark_input_form_container input.roll-field,
+    input.total-field {
+        min-width: fit-content;
+        font-size: 11px;
+        border: none;
+        outline: none;
+    }
+    .mark_input_form_container input:focus {
+        border: 1px solid #9e9e9e;
+        outline: none;
+    }
+
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+`;
+
+export default StepTwo;

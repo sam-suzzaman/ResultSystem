@@ -1,15 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { useMarkFormStepContext } from "../../../../../../../context/Admin/MarkFormStepContext";
-import { AiOutlineCheckCircle, AiOutlinePlus } from "react-icons/ai";
-import { GoDownload } from "react-icons/go";
-import { PDFDownloadLink } from "@react-pdf/renderer";
-import InternalMarkPDF from "../InternalMarkPDF";
+
 import styled from "styled-components";
 
 import done from "../../../../../../../assets/done.png";
 
 import { FiEye } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import { AiOutlinePlus } from "react-icons/ai";
 
 const StepThree = () => {
     const {
@@ -19,7 +17,6 @@ const StepThree = () => {
         setStepTwoValue,
         selectedCourse,
     } = useMarkFormStepContext();
-
     return (
         <Wrapper>
             <div className="result-container">
@@ -46,7 +43,7 @@ const StepThree = () => {
                             add new
                         </button>
                         <Link
-                            to="/dashboard/admin/get-mark/internal"
+                            to="/dashboard/admin/get-mark"
                             className="btn btn-sm text-xs font-normal bg-primary rounded-sm text-white hover:bg-secondary px-4"
                         >
                             <span className="text-lg font-bold">
