@@ -37,6 +37,10 @@ import SemesterTranscriptPageAdmin from "../Pages/DashboardPages/Admin/Transcrip
 import SemesterTranscriptPageStudent from "../Pages/DashboardPages/Student/SemesterTranscriptPage";
 import ProtectStudentRoute from "./ProtectStudentRoute";
 
+import InternalMarkPageStudent from "../Pages/DashboardPages/Student/ResultPage/InternalMarkPage";
+import SemesterMarkPageStudent from "../Pages/DashboardPages/Student/ResultPage/SemesterMarkPage";
+import ImproveMarkPageStudent from "../Pages/DashboardPages/Student/ResultPage/ImproveMarkPage";
+
 const Routers = createBrowserRouter([
     {
         path: "/",
@@ -186,6 +190,18 @@ const Routers = createBrowserRouter([
                     {
                         path: "/dashboard/student/result",
                         element: <ResultPage />,
+                    },
+                    {
+                        path: "/dashboard/student/result/internal",
+                        element: <InternalMarkPageStudent />,
+                    },
+                    {
+                        path: "/dashboard/student/result/semester",
+                        element: <SemesterMarkPageStudent />,
+                    },
+                    {
+                        path: "/dashboard/student/result/improve",
+                        element: <ImproveMarkPageStudent />,
                     },
                     {
                         path: "/dashboard/student/profile/:id",

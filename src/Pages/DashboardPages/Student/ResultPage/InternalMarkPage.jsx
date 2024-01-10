@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { useResultContext } from "../ResultPage";
 
 import { useForm } from "react-hook-form";
 import { departments, semesters } from "../../../../utils/AddMarkFieldsData";
 import { getAllHandler } from "../../../../utils/fetchHandlers";
 import { useUserContext } from "../../../../context/Admin/UserContext";
 import axios from "axios";
+import styled from "styled-components";
+import { Result } from "postcss";
 
-const InternalStepTwo = () => {
+const InternalMarkPage = () => {
     // States
     const [courseData, setCourseData] = useState([]);
     const [isSemesterSelect, setIsSemesterSelect] = useState(false);
     const [result, setResult] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(false);
+    const [error, setError] = useState({ status: false, message: "" });
 
     // Contexts
-    const { step, setStep, setProcessValue } = useResultContext();
     const { user } = useUserContext();
 
     // Hooks
@@ -29,11 +29,6 @@ const InternalStepTwo = () => {
     } = useForm();
 
     const semesterWatch = watch("semester");
-
-    const handleBackBtn = () => {
-        setProcessValue(1);
-        setStep(1);
-    };
 
     // Fetching Courses Data
     useEffect(() => {
@@ -60,38 +55,37 @@ const InternalStepTwo = () => {
             const url = `https://student-management-delta.vercel.app/mark/theory-mark/${user?.department}/${user?.session}/${data.semester}/${selectedCourse.courseName}/${selectedCourse.courseCode}/${data.roll}`;
             const response = await axios.get(url);
             setResult(response?.data?.result);
-            setError(false);
             setLoading(false);
-            console.log(response.data.result);
+
+            // handling errors
+            if (response?.data?.result) {
+                setError({ status: false, message: "" });
+            } else {
+                setError({ status: true, message: "--- No Result Found ---" });
+            }
         } catch (error) {
-            setError(true);
+            setError({ status: true, message: error?.message });
             setLoading(false);
             // console.log(error);
         }
     };
 
     return (
-        <>
-            {/* <div className="">
-                <button className="back-btn" onClick={handleBackBtn}>
-                    cancel
-                </button>
-            </div> */}
+        <Wrapper>
             <div className="w-full">
-                <div className="top-row w-full max-w-5xl mx-auto">
-                    {/* <h4 className="text-lg font-bold uppercase">
-                    Search Your Result
-                </h4> */}
+                <div className="top-row w-full">
                     <div className="">
-                        <h4 className="sec-title text-center">explore result</h4>
+                        <h4 className="sec-title text-center">
+                            explore result
+                        </h4>
                         <h4 className="text-base font-medium  capitalize text-center">
                             Internal
                         </h4>
                     </div>
-                    <div className="mt-8 bg-gray-100 px-8 py-8 rounded-md ">
+                    <div className="mt-8 bg-gray-100 px-8 py-4 rounded-md ">
                         <form
                             action=""
-                            className=""
+                            className="w-full max-w-5xl mx-auto"
                             onSubmit={handleSubmit(onSubmit)}
                         >
                             <div className="grid grid-cols-4 justify-center gap-8">
@@ -241,6 +235,11 @@ const InternalStepTwo = () => {
                     )} */}
                 </div>
                 <div className="mt-20">
+                    {error?.status && (
+                        <h3 className="capitalize font-semibold text-2xl text-red-600 mb-3 text-center">
+                            {error?.message}
+                        </h3>
+                    )}
                     {result && (
                         <h3 className="capitalize font-semibold text-xl text-primary mb-3 text-center">
                             Your Search Result
@@ -288,8 +287,71 @@ const InternalStepTwo = () => {
                     )}
                 </div>
             </div>
-        </>
+        </Wrapper>
     );
 };
 
-export default InternalStepTwo;
+const Wrapper = styled.section`
+    .sec-title {
+        margin-top: 20px;
+        font-size: calc(22px + 0.75vw);
+        text-transform: capitalize;
+        font-weight: 700;
+        color: var(--primary-clr);
+    }
+
+    .result-btn {
+        display: inline-block;
+        padding: 5px 30px;
+        text-transform: capitalize;
+        font-size: calc(13px + 0.3vw);
+        border-radius: 6px;
+        transition: all 0.3s linear;
+        margin-top: calc(8px + 1vh);
+        background-color: var(--primary-clr);
+        color: var(--white-clr);
+    }
+    .result-btn:hover {
+        background-color: var(--secondary-clr);
+    }
+
+    .result-table {
+        /* margin-top: calc(20px + 3vw); */
+        /* margin-top: 20px; */
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .result-table td,
+    .result-table th {
+        color: var(--white-black);
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+    .result-table th {
+        text-align: left;
+        background-color: var(--primary-clr);
+        color: #fff;
+        font-weight: 400;
+    }
+    .result-table th.txt_cntr {
+        text-align: center;
+    }
+    .result-table td.cgpa {
+        font-weight: 400;
+        font-family: var(--roboto);
+    }
+    .zero-result {
+        font-size: calc(14px + 0.6vw);
+        font-weight: 500;
+        text-align: center;
+        text-transform: capitalize;
+        margin-top: calc(20px + 3vw);
+        color: #b52a2a;
+    }
+`;
+
+export default InternalMarkPage;

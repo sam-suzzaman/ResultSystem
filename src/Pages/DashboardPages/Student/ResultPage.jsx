@@ -6,6 +6,7 @@ import SemesterFinalStepTwo from "./ResultPage/SemesterFinalStepTwo";
 
 import { FaRegFilePdf } from "react-icons/fa";
 import ImproveStepTwo from "./ResultPage/ImproveStepTwo";
+import { Link } from "react-router-dom";
 
 const resultContext = createContext();
 const ResultPage = () => {
@@ -17,7 +18,7 @@ const ResultPage = () => {
     return (
         <resultContext.Provider value={values}>
             <Wrapper>
-                <ul className="steps  steps-horizontal w-full mt-6 hidden">
+                {/* <ul className="steps  steps-horizontal w-full mt-6 hidden">
                     <li
                         className={`step ${
                             processValue === 1 ? "step-primary" : ""
@@ -40,7 +41,7 @@ const ResultPage = () => {
                         Get Result
                     </li>
                 </ul>
-                <h4 className="sec-title">explore result</h4>
+                {step === 1 && <h4 className="sec-title">explore result</h4>}
                 {step === 1 && (
                     <div className="result-card-container">
                         <div
@@ -88,10 +89,49 @@ const ResultPage = () => {
                             </h3>
                         </div>
                     </div>
-                )}
-                {step == 11 && <InternalStepTwo />}
+                )} */}
+                {/* {step == 11 && <InternalStepTwo />}
                 {step == 22 && <SemesterFinalStepTwo />}
-                {step == 33 && <ImproveStepTwo />}
+                {step == 33 && <ImproveStepTwo />} */}
+
+                <h4 className="sec-title">explore result</h4>
+                <div className="result-card-container">
+                    <Link
+                        to="/dashboard/student/result/internal"
+                        className="result-card"
+                    >
+                        <h3 className="">
+                            <span className="icon">
+                                <FaRegFilePdf />
+                            </span>
+                            Internal
+                        </h3>
+                    </Link>
+
+                    <Link
+                        to="/dashboard/student/result/semester"
+                        className="result-card"
+                    >
+                        <h3 className="">
+                            <span className="icon">
+                                <FaRegFilePdf />
+                            </span>
+                            semester
+                        </h3>
+                    </Link>
+
+                    <Link
+                        to="/dashboard/student/result/improve"
+                        className="result-card"
+                    >
+                        <h3 className="">
+                            <span className="icon">
+                                <FaRegFilePdf />
+                            </span>
+                            improve
+                        </h3>
+                    </Link>
+                </div>
             </Wrapper>
         </resultContext.Provider>
     );
@@ -136,6 +176,7 @@ const Wrapper = styled.section`
         box-shadow: inset -5px -5px 10px #b6b6b6, inset 5px 5px 10px #ffffff;
     }
     .result-card-container .result-card h3 {
+        text-decoration: none;
         font-size: calc(14px + 0.5vw);
         font-weight: 600;
         text-transform: capitalize;
@@ -182,7 +223,8 @@ const Wrapper = styled.section`
     }
 
     .result-table {
-        margin-top: calc(20px + 3vw);
+        /* margin-top: calc(20px + 3vw); */
+        /* margin-top: 20px; */
         border-collapse: collapse;
         width: 100%;
     }
