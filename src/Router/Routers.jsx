@@ -27,7 +27,7 @@ import SemesterFinalMarkPage from "../Pages/DashboardPages/Admin/GetMarkPage/Sem
 import ResultPage from "../Pages/DashboardPages/Student/ResultPage";
 import Profile from "../Pages/DashboardPages/Student/Profile";
 import EditProfilePage from "../Pages/DashboardPages/Student/EditProfilePage";
-import ResetPassword from "../Pages/DashboardPages/Student/ResultPage/ResetPassword";
+import ResetPassword from "../Pages/DashboardPages/Student/ProfilePage/ResetPassword";
 import CourseFinalMarkPage from "../Pages/DashboardPages/Admin/GetMarkPage/CourseFinalMarkPage";
 import ResultStepContext from "../context/Admin/ResultStepContext";
 import ImprovementMarkPage from "../Pages/DashboardPages/Admin/GetMarkPage/ImprovementMarkPage";

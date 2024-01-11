@@ -120,9 +120,10 @@ const SemesterTranscriptPDF = ({ TranscriptData, stepOneValue }) => {
     // refactor result data
     useEffect(() => {
         const courses = results?.courseData;
+        console.log(courses);
         const newCourses = courses?.map((course) => {
             let credit_earned;
-            if (course.CGP) {
+            if (course?.CGP) {
                 credit_earned = course.CGP;
             } else {
                 credit_earned = 0;
@@ -155,7 +156,7 @@ const SemesterTranscriptPDF = ({ TranscriptData, stepOneValue }) => {
 
         setTotalValue({ totalCredits, totalCreditsEarned, totalGPE });
     }, [refactoredResults]);
-    console.log(refactoredResults);
+    // console.log(refactoredResults);
     return (
         <Document>
             <Page size="A4" style={styles.page}>

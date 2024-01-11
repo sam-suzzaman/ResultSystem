@@ -10,25 +10,34 @@ import semesterTranscript from "../../../../../../assets/documents/data/Semester
 import LoadingCom from "../../../../../Shared/LoadingCom/LoadingCom";
 import ResultErrorCom from "../../../../../Shared/ResultErrorCom/ResultErrorCom";
 import useFetchData from "../../../../../../utils/fetchDataHook";
+import { useUserContext } from "../../../../../../context/Admin/UserContext";
 
 const StepTwoTranscript = () => {
     const { step, setStep, stepOneValue } = useSemesterTranscriptContext();
     // const [results, setResults] = useState(SemesterTranscriptData);
+    const { user } = useUserContext();
 
     const { loading, data, isError, error } = useFetchData(
         "student-semester-transcript-mark",
-        `https://student-management-delta.vercel.app/result/semester-transcript/EEE/2017-18/18102940`
+        `https://student-management-delta.vercel.app/result/semester-transcript/${user?.department}/${user?.session}/${stepOneValue?.semester}/${user?.roll}`
     );
 
     if (loading) {
         return <LoadingCom />;
     }
     if (data) {
-        console.log(data);
+        // console.log(data);
     }
     if (isError) {
-        console.log(error);
         return <ResultErrorCom homeURL="/dashboard/student/transcript" />;
+    }
+    if (!data?.semesterTranscript?.GPA) {
+        return (
+            <ResultErrorCom
+                msg="Transcript not Published yet"
+                homeURL="/dashboard/student/transcript"
+            />
+        );
     }
     return (
         <Wrapper>

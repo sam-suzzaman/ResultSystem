@@ -156,9 +156,9 @@ const LoginPage = () => {
                 </div>
 
                 <button
-                    className="login-submit-btn"
+                    className="login-submit-btn disabled:cursor-not-allowed"
                     type="submit"
-                    disabled={loginLoading ? true : false}
+                    disabled={loginLoading}
                 >
                     {loginLoading ? "Loading" : "Login"}
                 </button>

@@ -17,7 +17,7 @@ const TranscriptPage = () => {
                     >
                         <HiOutlineDocumentArrowDown className="icon" />
                         <h4 className="text">
-                            Semester final <br /> transcript
+                            Semester Final <br /> transcript
                         </h4>
                     </Link>
                     {/* <Link to="" className="card">

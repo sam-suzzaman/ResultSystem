@@ -9,8 +9,12 @@ import { useForm } from "react-hook-form";
 import { useSemesterTranscriptContext } from "../../../../../../Pages/DashboardPages/Student/SemesterTranscriptPage";
 import styled from "styled-components";
 import { getAllHandler } from "../../../../../../utils/fetchHandlers";
+import { useUserContext } from "../../../../../../context/Admin/UserContext";
+import axios from "axios";
 
 const StepOneForm = () => {
+    // Contexts
+    const { user } = useUserContext();
     const { step, setStep, stepOneValue, setStepOneValue } =
         useSemesterTranscriptContext();
 
@@ -54,7 +58,7 @@ const StepOneForm = () => {
     }, [sessionWatch]);
 
     // form handler
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         setStepOneValue(data);
         setStep(2);
     };
@@ -76,7 +80,7 @@ const StepOneForm = () => {
                     autoComplete="off"
                 >
                     {/* department */}
-                    <div className="form-control w-full">
+                    {/* <div className="form-control w-full">
                         <label className="label">
                             <span className="label-text">Department</span>
                         </label>
@@ -92,7 +96,8 @@ const StepOneForm = () => {
                                     },
                                 },
                             })}
-                            defaultValue="default"
+                            defaultValue={user?.department}
+                            readOnly
                         >
                             <option disabled value="default">
                                 Select Department
@@ -114,10 +119,10 @@ const StepOneForm = () => {
                                 {errors.department?.message}
                             </span>
                         )}
-                    </div>
+                    </div> */}
 
                     {/* session */}
-                    <div className="form-control w-full">
+                    {/* <div className="form-control w-full">
                         <label className="label">
                             <span className="label-text">Session</span>
                         </label>
@@ -160,7 +165,7 @@ const StepOneForm = () => {
                                 {errors.session?.message}
                             </span>
                         )}
-                    </div>
+                    </div> */}
 
                     {/* semester */}
                     <div className="form-control w-full">
@@ -169,7 +174,6 @@ const StepOneForm = () => {
                         </label>
                         <select
                             className="select select-bordered rounded-sm select-sm number"
-                            disabled={!isSessionSelected}
                             {...register("semester", {
                                 validate: {
                                     isValidValue: (value) => {
@@ -223,6 +227,8 @@ const StepOneForm = () => {
                                     message: "Roll  is Required",
                                 },
                             })}
+                            defaultValue={user?.roll}
+                            readOnly
                         />
                         {errors?.roll && (
                             <span className=" mt-1 label-text-alt text-xs font-normal capitalize text-red-700">

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import pic from "../../../assets/empty.png";
 import { useNavigate } from "react-router-dom";
 
-const ResultErrorCom = ({ homeURL }) => {
+const ResultErrorCom = ({ homeURL, msg }) => {
     const navigate = useNavigate();
     return (
         <Wrapper>
@@ -13,9 +13,17 @@ const ResultErrorCom = ({ homeURL }) => {
                     <img src={pic} alt="" />
                 </div>
                 <div className="info-container">
-                    <h2 className="">
-                        Opps! <span className="capitalize">data not found</span>
-                    </h2>
+                    {msg && (
+                        <h2 className="">
+                            <span className="capitalize">{msg}</span>
+                        </h2>
+                    )}
+                    {!msg && (
+                        <h2 className="">
+                            Opps!
+                            <span className="capitalize">data not found</span>
+                        </h2>
+                    )}
                     <button onClick={() => navigate(homeURL)}>back</button>
                 </div>
             </div>

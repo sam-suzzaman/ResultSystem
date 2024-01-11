@@ -1,11 +1,7 @@
 import React, { createContext, useContext, useState } from "react";
 import styled from "styled-components";
 
-import InternalStepTwo from "./ResultPage/InternalStepTwo";
-import SemesterFinalStepTwo from "./ResultPage/SemesterFinalStepTwo";
-
 import { FaRegFilePdf } from "react-icons/fa";
-import ImproveStepTwo from "./ResultPage/ImproveStepTwo";
 import { Link } from "react-router-dom";
 
 const resultContext = createContext();
@@ -18,82 +14,6 @@ const ResultPage = () => {
     return (
         <resultContext.Provider value={values}>
             <Wrapper>
-                {/* <ul className="steps  steps-horizontal w-full mt-6 hidden">
-                    <li
-                        className={`step ${
-                            processValue === 1 ? "step-primary" : ""
-                        }`}
-                    >
-                        Select One
-                    </li>
-                    <li
-                        className={`step ${
-                            processValue === 2 ? "step-primary" : ""
-                        }`}
-                    >
-                        Fill Form
-                    </li>
-                    <li
-                        className={`step ${
-                            processValue === 3 ? "step-primary" : ""
-                        }`}
-                    >
-                        Get Result
-                    </li>
-                </ul>
-                {step === 1 && <h4 className="sec-title">explore result</h4>}
-                {step === 1 && (
-                    <div className="result-card-container">
-                        <div
-                            className="result-card"
-                            onClick={() => {
-                                setStep(11);
-                                setProcessValue(2);
-                            }}
-                        >
-                            <h3 className="">
-                                <span className="icon">
-                                    <FaRegFilePdf />
-                                </span>
-                                Internal
-                            </h3>
-                        </div>
-                        <div
-                            className="result-card"
-                            onClick={() => {
-                                setStep(22);
-                                setProcessValue(2);
-                            }}
-                        >
-                            <h3 className="">
-                                {" "}
-                                <span className="icon">
-                                    <FaRegFilePdf />
-                                </span>
-                                semester
-                            </h3>
-                        </div>
-                        <div
-                            className="result-card"
-                            onClick={() => {
-                                setStep(33);
-                                setProcessValue(2);
-                            }}
-                        >
-                            <h3 className="">
-                                {" "}
-                                <span className="icon">
-                                    <FaRegFilePdf />
-                                </span>
-                                improve
-                            </h3>
-                        </div>
-                    </div>
-                )} */}
-                {/* {step == 11 && <InternalStepTwo />}
-                {step == 22 && <SemesterFinalStepTwo />}
-                {step == 33 && <ImproveStepTwo />} */}
-
                 <h4 className="sec-title">explore result</h4>
                 <div className="result-card-container">
                     <Link
