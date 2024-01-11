@@ -10,7 +10,7 @@ const ProtectStudentRoute = ({ children }) => {
     if (userLoading) {
         return <LoadingCom />;
     }
-    if (user?.role === "student") {
+    if (user?.role === "user") {
         return children;
     } else if (user?.role) {
         return <Navigate to="/" />;

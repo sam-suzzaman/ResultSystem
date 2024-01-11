@@ -64,6 +64,7 @@ const InternalMarkPage = () => {
                 setError({ status: true, message: "--- No Result Found ---" });
             }
         } catch (error) {
+            setResult(null);
             setError({ status: true, message: error?.message });
             setLoading(false);
             // console.log(error);
@@ -249,14 +250,25 @@ const InternalMarkPage = () => {
                         <div className="overflow-x-auto">
                             <table className="result-table w-full">
                                 <tr>
-                                    <th>Roll</th>
-                                    <th>Course Code</th>
-                                    <th>Course Title</th>
-                                    <th>Attendance(10)</th>
-                                    <th>Midterm-I(10)</th>
-                                    <th>Midterm-II(10)</th>
-                                    <th>Assignment(10)</th>
-                                    <th>Total(40)</th>
+                                    <th className="number">Roll</th>
+                                    <th className="number">Course Code</th>
+                                    <th className="number">Course Title</th>
+                                    <th className="number txt_cntr">
+                                        Attendance(10)
+                                    </th>
+                                    <th className="number txt_cntr">
+                                        Midterm-I(10)
+                                    </th>
+                                    <th className="number txt_cntr">
+                                        Midterm-II(10)
+                                    </th>
+                                    <th className="number txt_cntr">
+                                        Assignment <br />
+                                        Presenetation(10)
+                                    </th>
+                                    <th className="number txt_cntr">
+                                        Total(40)
+                                    </th>
                                 </tr>
                                 <tr>
                                     <td className="number">{result?.roll}</td>
@@ -325,11 +337,12 @@ const Wrapper = styled.section`
     .result-table td,
     .result-table th {
         color: var(--white-black);
-        font-size: 14px;
+        font-size: 13px;
         font-weight: 500;
         letter-spacing: 0.5px;
         border: 1px solid #ddd;
         padding: 8px;
+        /* text-align: center; */
     }
     .result-table th {
         text-align: left;
