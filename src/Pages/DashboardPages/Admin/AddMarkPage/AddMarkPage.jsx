@@ -22,7 +22,6 @@ const AddMarkPage = () => {
                         to="/dashboard/admin/add-mark/internal"
                         className="card"
                     >
-                        {" "}
                         <h3 className="">
                             <span className="icon">
                                 <LuFilePlus />
@@ -53,14 +52,27 @@ const AddMarkPage = () => {
                     </Link>
 
                     <Link
-                        to="/dashboard/admin/add-mark/improvement"
+                        to="/dashboard/admin/add-mark/theory-improvement"
                         className="card"
                     >
                         <h3 className="">
                             <span className="icon">
                                 <LuFilePlus />
                             </span>
-                            Improvement
+                            Improvement <br />
+                            <span className="text-base">( theory )</span>
+                        </h3>
+                    </Link>
+                    <Link
+                        to="/dashboard/admin/add-mark/lab-improvement"
+                        className="card"
+                    >
+                        <h3 className="">
+                            <span className="icon">
+                                <LuFilePlus />
+                            </span>
+                            Improvement <br />
+                            <span className="text-base">( lab )</span>
                         </h3>
                     </Link>
                 </div>
@@ -78,10 +90,10 @@ const Wrapper = styled.section`
         /* gap: calc(14px + 1vw); */
 
         display: grid;
-        grid-template-columns: repeat(4, minmax(150px, 190px));
+        grid-template-columns: repeat(3, minmax(150px, 200px));
         justify-content: center;
         align-items: center;
-        gap: 30px;
+        gap: 20px;
     }
     .add-mark-card-container .card {
         height: 100%;

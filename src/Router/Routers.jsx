@@ -40,6 +40,7 @@ import ProtectStudentRoute from "./ProtectStudentRoute";
 import InternalMarkPageStudent from "../Pages/DashboardPages/Student/ResultPage/InternalMarkPage";
 import SemesterMarkPageStudent from "../Pages/DashboardPages/Student/ResultPage/SemesterMarkPage";
 import ImproveMarkPageStudent from "../Pages/DashboardPages/Student/ResultPage/ImproveMarkPage";
+import LabImproveAddMarkPage from "../Pages/DashboardPages/Admin/AddMarkPage/LabImproveAddMarkPage";
 
 const Routers = createBrowserRouter([
     {
@@ -100,8 +101,12 @@ const Routers = createBrowserRouter([
                         element: <LabMarkAddPage />,
                     },
                     {
-                        path: "/dashboard/admin/add-mark/improvement",
+                        path: "/dashboard/admin/add-mark/theory-improvement",
                         element: <ImprovementMarkAddPage />,
+                    },
+                    {
+                        path: "/dashboard/admin/add-mark/lab-improvement",
+                        element: <LabImproveAddMarkPage />,
                     },
                     {
                         path: "/dashboard/admin/session-list/:session",

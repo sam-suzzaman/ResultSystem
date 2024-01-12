@@ -154,7 +154,7 @@ const ImproveMarkPage = () => {
                                     <th className="txt_cntr">Previous CGPA</th>
                                     <th className="txt_cntr">New CGPA</th>
                                     <th className="txt_cntr">Obtined Grade</th>
-                                    <th className="txt_cntr">Status</th>
+                                    {/* <th className="txt_cntr">Status</th> */}
                                 </tr>
                                 {result?.marksWithImprove?.map((data) => {
                                     return (
@@ -162,17 +162,17 @@ const ImproveMarkPage = () => {
                                             <td className="number">
                                                 {data?.courseCode}
                                             </td>
-                                            <td className="number">
+                                            <td className="number col-span-2">
                                                 {data?.courseName}
-                                            </td>
-                                            <td className="text-center cgpa number">
-                                                {data?.improve?.GP}
                                             </td>
                                             <td className="text-center cgpa number">
                                                 {data?.regular?.GP}
                                             </td>
+                                            <td className="text-center cgpa number">
+                                                {data?.improve?.GP}
+                                            </td>
                                             <td className="text-center number">
-                                                {data?.regular?.LG}
+                                                {data?.improve?.LG}
                                             </td>
                                         </tr>
                                     );

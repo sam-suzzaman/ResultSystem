@@ -1,13 +1,14 @@
 import { AiOutlineUser, AiOutlineUsergroupAdd } from "react-icons/ai";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import SingleStudentForm from "../../../../Components/Non-Shared/DashboardPageCom/Admin/AddMarkPageCom/ImprovementMark/SingleStudentForm";
-import MultipleStudentForm from "../../../../Components/Non-Shared/DashboardPageCom/Admin/AddMarkPageCom/ImprovementMark/MultipleStudentForm";
+// import SingleStudentForm from "../../../../Components/Non-Shared/DashboardPageCom/Admin/AddMarkPageCom/ImprovementMark/SingleStudentForm";
+// import MultipleStudentForm from "../../../../Components/Non-Shared/DashboardPageCom/Admin/AddMarkPageCom/ImprovementMark/MultipleStudentForm";
 import Wrapper from "../../../../assets/wrappers/Common/MarksTabWrapper";
 import { MarkFormStepProvider } from "../../../../context/Admin/MarkFormStepContext";
-import ThirdExaminerMarkForm from "../../../../Components/Non-Shared/DashboardPageCom/Admin/AddMarkPageCom/ImprovementMark/ThirdExaminerMarkForm";
+// import ThirdExaminerMarkForm from "../../../../Components/Non-Shared/DashboardPageCom/Admin/AddMarkPageCom/ImprovementMark/ThirdExaminerMarkForm";
+import SingleLabMarkForm from "../../../../Components/Non-Shared/DashboardPageCom/Admin/AddMarkPageCom/ImprovementMark/LabMarkSingleForm";
 
-const ImprovementMarkAddPage = () => {
+const LabImproveAddMarkPage = () => {
     return (
         <section className="">
             <div className="">
@@ -35,24 +36,24 @@ const ImprovementMarkAddPage = () => {
                                     </span>
                                 </div>
                             </Tab> */}
-                            <Tab>
+                            {/* <Tab>
                                 <div className="flex justify-center items-center">
                                     <span className=" font-bold text-lg">
-                                        {/* <AiOutlineUsergroupAdd /> */}
+                                        <AiOutlineUsergroupAdd />
                                         <AiOutlineUser />
                                     </span>
                                     <span className="font-medium capitalize ml-1 text-base">
                                         3rd examiner
                                     </span>
                                 </div>
-                            </Tab>
+                            </Tab> */}
                         </TabList>
                     </Wrapper>
 
                     {/* Single Student Tab Content */}
                     <TabPanel className="mt-5">
                         <MarkFormStepProvider>
-                            <SingleStudentForm />
+                            <SingleLabMarkForm />
                         </MarkFormStepProvider>
                     </TabPanel>
 
@@ -64,16 +65,16 @@ const ImprovementMarkAddPage = () => {
                         </MarkFormStepProvider>
                     </TabPanel> */}
 
-                    <TabPanel className="mt-5">
-                        {/* <MultipleStudentForm /> */}
+                    {/* <TabPanel className="mt-5">
+                        <MultipleStudentForm />
                         <MarkFormStepProvider>
                             <ThirdExaminerMarkForm />
                         </MarkFormStepProvider>
-                    </TabPanel>
+                    </TabPanel> */}
                 </Tabs>
             </div>
         </section>
     );
 };
 
-export default ImprovementMarkAddPage;
+export default LabImproveAddMarkPage;

@@ -7,6 +7,7 @@ import {
 } from "../../../../../../../utils/fetchHandlers";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 const FormStepTwo = () => {
     const { setStepValue, stepOneValue, setStepTwovalue, selectedCourse } =
@@ -58,7 +59,8 @@ const FormStepTwo = () => {
     useEffect(() => {
         if (rollWatch && rollWatch !== "" && rollWatch.length == 8) {
             setIsRollSelected(true);
-            const url = `https://student-management-delta.vercel.app/mark/improve/${stepOneValue.department}/${stepOneValue.semester}/${stepOneValue.course}/${rollWatch}`;
+            const url = `https://student-management-delta.vercel.app/mark/theory-improve/${stepOneValue.department}/${stepOneValue?.session}/${stepOneValue.semester}/${selectedCourse.courseName}/${selectedCourse.courseCode}/${rollWatch}`;
+
             getAllHandler(url)
                 .then((res) => setInternalResult(res))
                 .catch((err) => console.log(err));
@@ -84,25 +86,38 @@ const FormStepTwo = () => {
     const addSingleImprovementMarkMutation = useMutation({
         mutationFn: updateHandler,
         onSuccess: (data, variable, context) => {
-            toast.success("Mark Submitted");
+            Swal.fire({
+                title: "Done!",
+                text: "Mark Submitted Successfully",
+                icon: "success",
+                confirmButtonText: "Close",
+            });
             reset();
         },
         onError: (error, variables, context) => {
             console.log(error);
             // toast.warn(error.response.data.errors.common);
-            toast.warn("Something Wrong");
+            Swal.fire({
+                title: "Opps...!",
+                text: "Mark Submission Failed",
+                icon: "error",
+                confirmButtonText: "Close",
+            });
         },
     });
-
+    // console.log({ stepOneValue, selectedCourse });
     const onSubmit = (data) => {
         const result = {
             department: stepOneValue.department,
             semester: stepOneValue.semester,
+            currentSession: stepOneValue.session,
             roll: data.roll,
-            courseId: stepOneValue.course,
+            courseName: selectedCourse.courseName,
+            courseCode: selectedCourse.courseCode,
             firstExaminer: data.firstExaminer,
             secondExaminer: data.secondExaminer,
         };
+        // console.log(result);
 
         addSingleImprovementMarkMutation.mutate({
             body: result,
@@ -113,29 +128,30 @@ const FormStepTwo = () => {
     return (
         <>
             <div className="mb-6">
-                <h3 className="capitalize text-center text-sm font-normal">
+                <h3 className="capitalize text-center text-sm font-normal number">
                     Jaitya kabi kazi nazrul islam university
                 </h3>
-                <h3 className=" text-center text-sm font-normal">
-                    Department of {stepOneValue?.department}
+                <h3 className=" text-center text-sm font-normal number">
+                    Department of Electrical and Electronic Engineering
                 </h3>
-                <div className="flex justify-center items-center gap-x-1">
-                    <h3 className=" text-center text-sm font-normal">
+                <div className="flex justify-center items-center gap-x-1 number">
+                    <h3 className=" text-center text-sm font-normal number">
                         Course Code: {selectedCourse?.courseCode},
                     </h3>
-                    <h3 className=" text-center text-sm font-normal">
+                    <h3 className=" text-center text-sm font-normal number">
                         Course Title: {selectedCourse?.courseName}
                     </h3>
                 </div>
-                <div className="flex justify-center items-center gap-x-1">
-                    <h3 className=" text-center text-sm font-normal">
-                        Improvemnt Mark,
+                <div className="flex justify-center items-center gap-x-1 number">
+                    <h3 className=" text-center text-sm font-normal number">
+                        Improvement Mark,
                     </h3>
-                    <h3 className=" text-center text-sm font-normal">
+                    <h3 className=" text-center text-sm font-normal number">
                         Session: {stepOneValue?.session}
                     </h3>
                 </div>
             </div>
+
             <form
                 action=""
                 className=""

@@ -19,9 +19,12 @@ const StepTwo = () => {
         useResultStepContext();
     const { loading, data, isError } = useFetchData(
         "internal-mark",
-        `https://student-management-delta.vercel.app/mark/${stepOneValue?.department}/${stepOneValue?.semester}/${stepOneValue?.courseName}/${stepOneValue.courseCode}/18102930`
+        `https://student-management-delta.vercel.app/mark/theory-marks/${stepOneValue?.department}/${stepOneValue?.session}/${stepOneValue?.semester}/${stepOneValue?.courseName}/${stepOneValue.courseCode}`
     );
-    const [results, setResults] = useState(Result);
+
+    console.log(
+        `https://student-management-delta.vercel.app/mark/theory-marks/${stepOneValue?.department}/${stepOneValue?.session}/${stepOneValue?.semester}/${stepOneValue?.courseName}/${stepOneValue.courseCode}`
+    );
 
     if (loading) {
         return <LoadingCom />;
@@ -54,7 +57,7 @@ const StepTwo = () => {
                         stepOneValue={stepOneValue}
                     /> */}
                     <InternlMarkPDF
-                        results={results}
+                        results={data?.result}
                         stepOneValue={stepOneValue}
                     />
                 </PDFViewer>

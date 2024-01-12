@@ -273,7 +273,7 @@ const InternlMarkPDF = ({ results, stepOneValue }) => {
                                 </DIV>
                                 <DIV style={styles.cell}>
                                     <SPAN>
-                                        <Text>{result.total}</Text>
+                                        <Text>{result.totalInternal}</Text>
                                     </SPAN>
                                 </DIV>
                             </DIV>

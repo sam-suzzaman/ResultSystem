@@ -9,6 +9,7 @@ import {
 import { toast } from "react-toastify";
 import LoadingCom from "../../../../../../Shared/LoadingCom/LoadingCom";
 import styled from "styled-components";
+import Swal from "sweetalert2";
 
 const StepTwo = () => {
     const { setStepValue, stepOneValue, setStepTwoValue, selectedCourse } =
@@ -35,15 +36,16 @@ const StepTwo = () => {
     const addLabMarkMutation = useMutation({
         mutationFn: updateHandler,
         onSuccess: (data, variable, context) => {
-            // toast.success("Mark Submitted");
-            // setStudentData([]);
             setStepValue(3);
             reset();
         },
         onError: (error, variables, context) => {
             console.log(error);
-            // toast.warn(error.response.data.errors.common);
-            toast.warn("Something Wrong");
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: error?.message,
+            });
         },
     });
 
@@ -73,6 +75,7 @@ const StepTwo = () => {
             };
         });
         const result = { marks: mergedResult };
+
         addLabMarkMutation.mutate({
             body: result,
             url: "https://student-management-delta.vercel.app/mark/lab/multiple",
@@ -98,7 +101,7 @@ const StepTwo = () => {
                     Jaitya kabi kazi nazrul islam university
                 </h3>
                 <h3 className=" text-center text-sm font-normal number">
-                    Department of {stepOneValue?.department}
+                    Department of Electrical and Electronic Engineering
                 </h3>
                 <div className="flex justify-center items-center gap-x-1 number">
                     <h3 className=" text-center text-sm font-normal number">
@@ -110,7 +113,7 @@ const StepTwo = () => {
                 </div>
                 <div className="flex justify-center items-center gap-x-1 number">
                     <h3 className=" text-center text-sm font-normal number">
-                        Internal Marks,
+                        Lab Marks,
                     </h3>
                     <h3 className=" text-center text-sm font-normal number">
                         Session: {stepOneValue?.session}

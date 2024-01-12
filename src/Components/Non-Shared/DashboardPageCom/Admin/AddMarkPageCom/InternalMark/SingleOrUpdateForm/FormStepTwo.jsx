@@ -4,10 +4,9 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import {
     getAllHandler,
+    fetchAllHandler,
     updateHandler,
 } from "../../../../../../../utils/fetchHandlers";
-
-import { toast } from "react-toastify";
 
 import Swal from "sweetalert2";
 
@@ -97,9 +96,16 @@ const FormStepTwo = () => {
     useEffect(() => {
         if (rollWatch && rollWatch !== "" && rollWatch.length == 8) {
             setIsRollSelect(true);
-            const url = `https://student-management-delta.vercel.app/mark/${stepOneValue?.department}/${stepOneValue?.semester}/${selectedCourse?.courseName}/${selectedCourse.courseCode}/${rollWatch}`;
+            // https://student-management-delta.vercel.app/mark/theory-mark/EEE/2017-18/1/Computer Programming/CSE-101/18102940
+            const url = `https://student-management-delta.vercel.app/mark/theory-mark/${stepOneValue?.department}/${stepOneValue?.session}/${stepOneValue?.semester}/${selectedCourse?.courseName}/${selectedCourse.courseCode}/${rollWatch}`;
+            // const url =
+            //     "https://student-management-delta.vercel.app/mark/theory-mark/EEE/2017-18/1/Computer Programming/CSE-101/18102940";
+
             getAllHandler(url)
-                .then((res) => setInternalResult(res))
+                .then((res) => {
+                    console.log(res);
+                    setInternalResult(res);
+                })
                 .catch((err) => console.log(err));
         } else {
             setIsRollSelect(false);
@@ -108,6 +114,7 @@ const FormStepTwo = () => {
     }, [rollWatch]);
 
     useEffect(() => {
+        console.log(internalResult);
         if (internalResult?.attendance) {
             setValue("attendance", internalResult?.attendance);
         } else {

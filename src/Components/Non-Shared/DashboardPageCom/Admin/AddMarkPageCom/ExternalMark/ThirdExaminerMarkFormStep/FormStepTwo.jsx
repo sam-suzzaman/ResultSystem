@@ -8,6 +8,8 @@ import { useForm } from "react-hook-form";
 import LoadingCom from "../../../../../../Shared/LoadingCom/LoadingCom";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
+import ResultErrorCom from "../../../../../../Shared/ResultErrorCom/ResultErrorCom";
 
 const FormStepTwo = () => {
     const { setStepValue, stepOneValue, setStepTwoValue, selectedCourse } =
@@ -20,10 +22,11 @@ const FormStepTwo = () => {
         error,
     } = useQuery("studentList", () =>
         getAllHandler(
-            `https://student-management-delta.vercel.app/mark/${stepOneValue.department}/${stepOneValue.semester}/${selectedCourse?.courseName}/${selectedCourse?.courseCode}`
+            `https://student-management-delta.vercel.app/mark/theory-is-third-examiner-marks/${stepOneValue.department}/${stepOneValue?.session}/${stepOneValue.semester}/${selectedCourse?.courseName}/${selectedCourse?.courseCode}`
         )
     );
-
+    // https://student-management-delta.vercel.app/mark/theory-is-third-examiner-marks/EEE/2017-18/1/Computer Programming/CSE-101
+    // `https://student-management-delta.vercel.app/mark/${stepOneValue.department}/${stepOneValue.semester}/${selectedCourse?.courseName}/${selectedCourse?.courseCode}`
     const {
         register,
         handleSubmit,
@@ -72,13 +75,22 @@ const FormStepTwo = () => {
         mutationFn: updateHandler,
         onSuccess: (data, variable, context) => {
             queryClient.invalidateQueries("studentList");
-            toast.success("Mark Submitted");
             reset();
+            Swal.fire({
+                icon: "success",
+                title: "Done",
+                text: "Mark Submitted",
+            });
         },
         onError: (error, variables, context) => {
             console.log(error);
             // toast.warn(error.response.data.errors.common);
-            toast.warn("Something Wrong");
+            // toast.warn("Something Wrong");
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: error?.message,
+            });
         },
     });
 
@@ -114,6 +126,14 @@ const FormStepTwo = () => {
         return <h2 className="font-bold text-lg">{error?.message}</h2>;
     }
 
+    if (students?.length === 0) {
+        return (
+            <ResultErrorCom
+                homeURL="/dashboard/admin/add-mark/external"
+                msg="There is no student"
+            />
+        );
+    }
     return (
         <div>
             <div className="mb-6">
@@ -295,23 +315,23 @@ const FormStepTwo = () => {
                                 </React.Fragment>
                             );
                         })}
-                        {students?.length === 0 && (
+                        {/* {students?.length === 0 && (
                             <h2 className=" font-semibold capitalize text-lg">
                                 No Students found
                             </h2>
-                        )}
+                        )} */}
                     </div>
                 </div>
 
                 <div className="flex justify-center mt-8 gap-x-2">
                     <button
-                        className="btn btn-sm bg-[#f44040] hover:bg-[#ea3333] rounded-sm text-white font-normal text-sm"
+                        className="btn btn-sm back_btn rounded-sm text-white font-normal text-sm"
                         onClick={backButtonHandler}
                     >
                         back
                     </button>
                     <button
-                        className="btn btn-sm bg-[#3ba550] hover:bg-[#2e763c] rounded-sm text-white font-normal text-sm"
+                        className="btn btn-sm bg-primary hover:bg-secondary rounded-sm text-white font-normal text-sm"
                         type="submit"
                     >
                         submit

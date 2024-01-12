@@ -77,7 +77,7 @@ const FormStepOne = ({ title, name }) => {
                 </h4>
             </div>
             <form
-                className="w-full max-w-md mx-auto grid grid-cols-1 items-start gap-y-4 add-mark-form"
+                className="w-full max-w-md mx-auto grid grid-cols-1 items-start gap-y-4 add-mark-form mt-4"
                 onSubmit={handleSubmit(onSubmit)}
             >
                 <div className="form-control w-full">
@@ -249,14 +249,14 @@ const FormStepOne = ({ title, name }) => {
                             courseData?.map((course) => {
                                 return (
                                     // course?.credit !== 1.5 && (
-                                        <option
-                                            key={course._id}
-                                            value={course._id}
-                                            className="number"
-                                        >
-                                            {course.courseName} (
-                                            {course.courseCode})
-                                        </option>
+                                    <option
+                                        key={course._id}
+                                        value={course._id}
+                                        className="number"
+                                    >
+                                        {course.courseName} ({course.courseCode}
+                                        )
+                                    </option>
                                     // )
                                 );
                             })

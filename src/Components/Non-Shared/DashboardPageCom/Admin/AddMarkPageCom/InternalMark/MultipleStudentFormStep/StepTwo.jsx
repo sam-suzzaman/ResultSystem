@@ -42,7 +42,7 @@ const StepTwo = () => {
         onError: (error, variables, context) => {
             console.log(error);
             // toast.warn(error.response.data.errors.common);
-            toast.warn("Something Wrong");
+            toast.warn("Mark Submission failed");
         },
     });
 

@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useMarkFormStepContext } from "../../../../../../../context/Admin/MarkFormStepContext";
+
+import Swal from "sweetalert2";
+import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
+
+import { useMarkFormStepContext } from "../../../../../../../context/Admin/MarkFormStepContext";
 import {
     getAllHandler,
     updateHandler,
 } from "../../../../../../../utils/fetchHandlers";
-import Swal from "sweetalert2";
-import styled from "styled-components";
 
 const StepTwo = () => {
     const [total, setTotal, setOneValue] = useState(0);
@@ -43,7 +45,7 @@ const StepTwo = () => {
             // toast.success("Mark Updated");
             Swal.fire({
                 title: "Done!",
-                text: "Mark Updated Successfully",
+                text: "Mark Submitted Successfully",
                 icon: "success",
                 confirmButtonText: "Close",
             });
@@ -52,10 +54,9 @@ const StepTwo = () => {
         onError: (error, variables, context) => {
             console.log(error);
             // toast.warn(error.response.data.errors.common);
-            // toast.warn("Something Wrong");
             Swal.fire({
                 title: "Oops!",
-                text: "Mark Updated Failed",
+                text: "Mark Submission Failed",
                 icon: "error",
                 confirmButtonText: "Close",
             });
@@ -95,7 +96,9 @@ const StepTwo = () => {
     useEffect(() => {
         if (rollWatch && rollWatch !== "" && rollWatch.length === 8) {
             setIsRollSelect(true);
-            const url = `https://student-management-delta.vercel.app/mark/lab/${stepOneValue?.department}/${stepOneValue?.session}/${stepOneValue?.semester}/${selectedCourse?.courseName}/${selectedCourse.courseCode}/${rollWatch}`;
+
+            const url = `https://student-management-delta.vercel.app/mark/lab-improve/${stepOneValue?.department}/${stepOneValue?.session}/${stepOneValue?.semester}/${selectedCourse?.courseName}/${selectedCourse.courseCode}/${rollWatch}`;
+
             getAllHandler(url)
                 .then((res) => setInternalResult(res))
                 .catch((err) => console.log(err));
@@ -148,7 +151,7 @@ const StepTwo = () => {
 
         addOrUpdateSingleLabMarkMutation.mutate({
             body: result,
-            url: "https://student-management-delta.vercel.app/mark/lab/single",
+            url: "https://student-management-delta.vercel.app/mark/lab/improve/single",
         });
     };
 

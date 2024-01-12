@@ -7,6 +7,7 @@ import {
 } from "../../../../../../../utils/fetchHandlers";
 import { toast } from "react-toastify";
 import { useMutation } from "react-query";
+import Swal from "sweetalert2";
 
 const FormStepTwo = () => {
     const { setStepValue, stepOneValue, setStepTwovalue, selectedCourse } =
@@ -59,7 +60,7 @@ const FormStepTwo = () => {
         if (rollWatch && rollWatch !== "" && rollWatch.length == 8) {
             setIsRollSelected(true);
 
-            const url = `https://student-management-delta.vercel.app/mark/${stepOneValue?.department}/${stepOneValue?.semester}/${selectedCourse?.courseName}/${selectedCourse.courseCode}/${rollWatch}`;
+            const url = `https://student-management-delta.vercel.app/mark/theory-mark/${stepOneValue?.department}/${stepOneValue?.session}/${stepOneValue?.semester}/${selectedCourse?.courseName}/${selectedCourse.courseCode}/${rollWatch}`;
 
             getAllHandler(url)
                 .then((res) => setInternalResult(res))
@@ -86,13 +87,23 @@ const FormStepTwo = () => {
     const addSingleExternalMarkMutation = useMutation({
         mutationFn: updateHandler,
         onSuccess: (data, variable, context) => {
-            toast.success("Mark Submitted");
+            // toast.success("Mark Submitted");
             reset();
+            Swal.fire({
+                icon: "success",
+                title: "Done",
+                text: "Mark updated successfully",
+            });
         },
         onError: (error, variables, context) => {
             console.log(error);
             // toast.warn(error.response.data.errors.common);
-            toast.warn("Something Wrong");
+            // toast.warn("Something Wrong");
+            Swal.fire({
+                icon: "error",
+                title: "Something Wrong",
+                text: error?.message,
+            });
         },
     });
 
@@ -233,13 +244,13 @@ const FormStepTwo = () => {
 
                 <div className="flex justify-center mt-8 gap-x-2">
                     <button
-                        className="btn btn-sm bg-[#f44040] hover:bg-[#ea3333] rounded-sm text-white font-normal text-sm"
+                        className="btn btn-sm back_btn rounded-sm text-white font-normal text-sm"
                         onClick={backButtonHandler}
                     >
                         back
                     </button>
                     <button
-                        className="btn btn-sm bg-[#3ba550] hover:bg-[#2e763c] rounded-sm text-white font-normal text-sm"
+                        className="btn btn-sm bg-primary hover:bg-secondary rounded-sm text-white font-normal text-sm"
                         type="submit"
                     >
                         submit

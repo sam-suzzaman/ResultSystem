@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useMarkFormStepContext } from "../../../../../../context/Admin/MarkFormStepContext";
 import FormStepOne from "../FormStepOne";
-import FormStepTwo from "./AddMarkForm/FormStepTwo";
 import Wrapper from "../../../../../../assets/wrappers/Admin/ImprovementFormWrapper";
+import StepTwo from "./LabImprove/StepTwo";
 
-const SingleStudentForm = () => {
+const SingleLabMarkForm = () => {
     const { stepValue } = useMarkFormStepContext();
 
     return (
         <div>
-            {stepValue === 1 && <FormStepOne name="improvement(theory)" />}
+            {stepValue === 1 && <FormStepOne name="improvement(lab)" />}
             {stepValue === 2 && (
                 <Wrapper>
-                    <FormStepTwo />
+                    <StepTwo />
                 </Wrapper>
             )}
         </div>
     );
 };
 
-export default SingleStudentForm;
+export default SingleLabMarkForm;

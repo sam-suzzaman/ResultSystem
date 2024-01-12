@@ -18,7 +18,10 @@ const StepTwo = () => {
     const { step, setStep, stepOneValue, setStepOneValue } =
         useResultStepContext();
     // ToDO:fetch data
-    // const { loading, data, isError } = useFetchData("semester-final-tabulation-mark", "url");
+    const { loading, data, isError } = useFetchData(
+        "semester-final-tabulation-mark",
+        `https://student-management-delta.vercel.app/mark/theory-marks/${stepOneValue?.deparment}/${stepOneValue?.session}/${stepOneValue?.semester}/${stepOneValue?.courseName}/${stepOneValue.courseCode}`
+    );
 
     // if (loading) {
     //     return <LoadingCom />;

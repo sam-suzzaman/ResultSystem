@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { useMarkFormStepContext } from "../../../../../../../context/Admin/MarkFormStepContext";
 import { useMutation } from "react-query";
+import Swal from "sweetalert2";
 
 const FormStepTwo = () => {
     const { setStepValue, stepOneValue, setStepTwovalue, selectedCourse } =
@@ -58,7 +59,8 @@ const FormStepTwo = () => {
     useEffect(() => {
         if (rollWatch && rollWatch !== "" && rollWatch.length == 8) {
             setIsRollSelected(true);
-            const url = `https://student-management-delta.vercel.app/mark/improve/${stepOneValue.department}/${stepOneValue.semester}/${stepOneValue.course}/${rollWatch}`;
+            const url = `https://student-management-delta.vercel.app/mark/improve-is-third-examiner-mark/${stepOneValue.department}/${stepOneValue.session}/${stepOneValue.semester}/${selectedCourse.courseName}/${selectedCourse.courseCode}/${rollWatch}`;
+            // https://student-management-delta.vercel.app/mark/improve-is-third-examiner-mark/EEE/2017-18/1/Computer Programming/CSE-101/18102940
             getAllHandler(url)
                 .then((res) => setInternalResult(res))
                 .catch((err) => console.log(err));
@@ -79,18 +81,35 @@ const FormStepTwo = () => {
         } else {
             setValue("secondExaminer", "");
         }
+        if (internalResult?.thirdExaminer) {
+            setValue("thirdExaminer", internalResult?.thirdExaminer);
+        } else {
+            setValue("thirdExaminer", "");
+        }
     }, [internalResult]);
 
     const improvemntThirdExaminerMarkMutation = useMutation({
         mutationFn: updateHandler,
         onSuccess: (data, variable, context) => {
-            toast.success("Mark Submitted");
+            Swal.fire({
+                title: "Done!",
+                text: "Mark Submitted Successfully",
+                icon: "success",
+                confirmButtonText: "Close",
+            });
             reset();
         },
         onError: (error, variables, context) => {
             console.log(error);
             // toast.warn(error.response.data.errors.common);
-            toast.warn("Something Wrong");
+            Swal.fire({
+                title: "Opps...!",
+                text:
+                    error.response.data.errors.common.message +
+                    " or Mark alreday submitted",
+                icon: "error",
+                confirmButtonText: "Close",
+            });
         },
     });
 
@@ -98,10 +117,12 @@ const FormStepTwo = () => {
         const result = {
             department: stepOneValue.department,
             semester: stepOneValue.semester,
+            currentSession: stepOneValue.session,
             roll: data.roll,
-            courseId: stepOneValue.course,
-            firstExaminer: data.firstExaminer,
-            secondExaminer: data.secondExaminer,
+            courseName: selectedCourse.courseName,
+            courseCode: selectedCourse.courseCode,
+            // firstExaminer: data.firstExaminer,
+            // secondExaminer: data.secondExaminer,
             thirdExaminer: data.thirdExaminer,
         };
 
@@ -199,6 +220,7 @@ const FormStepTwo = () => {
                                         },
                                     })}
                                     disabled={!isRollSelected}
+                                    readOnly
                                 />
                                 {errors?.firstExaminer && (
                                     <span className=" mt-1 label-text-alt text-xs font-semibold capitalize text-red-700 text-center">
@@ -226,6 +248,7 @@ const FormStepTwo = () => {
                                         },
                                     })}
                                     disabled={!isRollSelected}
+                                    readOnly
                                 />
                                 {errors?.secondExaminer && (
                                     <span className=" mt-1 label-text-alt text-xs font-semibold capitalize text-red-700 text-center">
@@ -241,6 +264,7 @@ const FormStepTwo = () => {
                             <div className="flex flex-col">
                                 <input
                                     type="text"
+                                    className="number"
                                     placeholder=""
                                     {...register(`thirdExaminer`, {
                                         required: {
