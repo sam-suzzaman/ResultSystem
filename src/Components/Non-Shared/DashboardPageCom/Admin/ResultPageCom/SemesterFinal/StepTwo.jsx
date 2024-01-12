@@ -12,7 +12,9 @@ import SemesterFinalResultPDF from "../../../../../../assets/PDF/SemesterFinalRe
 // import data from "../../../../../../../DB/SemesterFinalResult";
 import useFetchData from "../../../../../../utils/fetchDataHook";
 import SemesterFinalTabulation from "../../../../../../assets/documents/files/SemesterFinalTabulation";
-import data from "../../../../../../assets/documents/data/SemesterFinalTabulationData";
+import data2 from "../../../../../../assets/documents/data/SemesterFinalTabulationData";
+import LoadingCom from "../../../../../Shared/LoadingCom/LoadingCom";
+import ResultErrorCom from "../../../../../Shared/ResultErrorCom/ResultErrorCom";
 
 const StepTwo = () => {
     const { step, setStep, stepOneValue, setStepOneValue } =
@@ -23,13 +25,13 @@ const StepTwo = () => {
         `https://student-management-delta.vercel.app/mark/theory-marks/${stepOneValue?.deparment}/${stepOneValue?.session}/${stepOneValue?.semester}/${stepOneValue?.courseName}/${stepOneValue.courseCode}`
     );
 
-    // if (loading) {
-    //     return <LoadingCom />;
-    // }
-    // if (data) {
-    //     console.log(data);
-    // }
-    // if (isError) {
+    if (loading) {
+        return <LoadingCom />;
+    }
+    if (data) {
+        console.log(data);
+    }
+    // if (isError || !data?.length) {
     //     return <ResultErrorCom homeURL="/dashboard/admin/get-mark" />;
     // }
 
@@ -55,7 +57,7 @@ const StepTwo = () => {
                         stepOneValue={stepOneValue}
                     /> */}
                     <SemesterFinalTabulation
-                        results={data}
+                        results={data2}
                         stepOneValue={stepOneValue}
                     />
                 </PDFViewer>

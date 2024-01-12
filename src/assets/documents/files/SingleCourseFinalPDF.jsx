@@ -5,6 +5,7 @@ import { DIV, SPAN, H1, H2, H3, H4 } from "../Components";
 
 import logo from "../../../assets/Jkkniu_logo.png";
 import grade from "../../../assets/grade.png";
+import useGetYearSemester from "../../../utils/useGetYearSemester";
 
 // import Results from "../data/CourseResult";
 
@@ -68,6 +69,8 @@ const styles = StyleSheet.create({
 });
 
 const SingleCourseFinalPDF = ({ results, stepOneValue }) => {
+    const sessionData = useGetYearSemester(stepOneValue?.semester);
+
     return (
         <Document>
             <Page size="A4" orientation="landscape" style={styles.page}>
@@ -122,7 +125,8 @@ const SingleCourseFinalPDF = ({ results, stepOneValue }) => {
                                 marginBottom: "4pt",
                             }}
                         >
-                            2nd Year 1st Semester Final Examination - 2018
+                            {sessionData?.year} Year {sessionData?.semester}{" "}
+                            Semester Final Examination
                         </H3>
                         <H3
                             style={{
@@ -132,7 +136,7 @@ const SingleCourseFinalPDF = ({ results, stepOneValue }) => {
                                 marginBottom: "4pt",
                             }}
                         >
-                            Course Name: Power Electronics
+                            Course Name: {stepOneValue?.courseName}
                         </H3>
                         <H3
                             style={{
@@ -142,7 +146,7 @@ const SingleCourseFinalPDF = ({ results, stepOneValue }) => {
                                 marginBottom: "4pt",
                             }}
                         >
-                            Course Code : EEE-311
+                            Course Code : {stepOneValue?.courseCode}
                         </H3>
                         <H3
                             style={{
@@ -151,7 +155,7 @@ const SingleCourseFinalPDF = ({ results, stepOneValue }) => {
                                 textAlign: "center",
                             }}
                         >
-                            Session: 2017-18
+                            Session: {stepOneValue?.session}
                         </H3>
                     </DIV>
                 </DIV>
@@ -225,72 +229,72 @@ const SingleCourseFinalPDF = ({ results, stepOneValue }) => {
                     return (
                         <DIV
                             style={styles.valueRow}
-                            key={result._id}
+                            key={result?._id}
                             wrap={false}
                         >
                             <DIV style={{ ...styles.valueCell, width: "60pt" }}>
                                 <SPAN style={styles.valueText}>
-                                    {result.roll}
+                                    {result?._id}
                                 </SPAN>
                             </DIV>
                             <DIV style={{ ...styles.valueCell, width: "55pt" }}>
                                 <SPAN style={styles.valueText}>
-                                    {result.attendance}
+                                    {result?.marks?.attendance}
                                 </SPAN>
                             </DIV>
                             <DIV style={{ ...styles.valueCell }}>
                                 <SPAN style={styles.valueText}>
-                                    {result.midOne}
+                                    {result?.marks?.midOne}
                                 </SPAN>
                             </DIV>
                             <DIV style={styles.valueCell}>
                                 <SPAN style={styles.valueText}>
-                                    {result.midTwo}
+                                    {result?.marks?.midTwo}
                                 </SPAN>
                             </DIV>
                             <DIV style={{ ...styles.valueCell, width: "60pt" }}>
                                 <SPAN style={styles.valueText}>
-                                    {result.assignmentOrPresentation}
+                                    {result?.marks?.presentationOrAssignment}
                                 </SPAN>
                             </DIV>
                             <DIV style={styles.valueCell}>
                                 <SPAN style={styles.valueText}>
-                                    {result.continuous}
+                                    {result?.marks?.totalInternal}
                                 </SPAN>
                             </DIV>
                             <DIV style={styles.valueCell}>
                                 <SPAN style={styles.valueText}>
-                                    {result.firstExaminer}
+                                    {result?.marks?.firstExaminer}
                                 </SPAN>
                             </DIV>
                             <DIV style={styles.valueCell}>
                                 <SPAN style={styles.valueText}>
-                                    {result.secondExaminer}
+                                    {result?.marks?.secondExaminer}
                                 </SPAN>
                             </DIV>
                             <DIV style={styles.valueCell}>
                                 <SPAN style={styles.valueText}>
-                                    {result.thirdExaminer || 0}
+                                    {result?.marks?.thirdExaminer || 0}
                                 </SPAN>
                             </DIV>
                             <DIV style={{ ...styles.valueCell, width: "40pt" }}>
                                 <SPAN style={styles.valueText}>
-                                    {result.finalMark}
+                                    {result?.marks?.totalExternal}
                                 </SPAN>
                             </DIV>
                             <DIV style={{ ...styles.valueCell, width: "45pt" }}>
                                 <SPAN style={styles.valueText}>
-                                    {result.total}
+                                    {result?.marks?.total}
                                 </SPAN>
                             </DIV>
                             <DIV style={{ ...styles.valueCell, width: "40pt" }}>
                                 <SPAN style={styles.valueText}>
-                                    {result.LetterGrade}
+                                    {result?.marks?.LG}
                                 </SPAN>
                             </DIV>
                             <DIV style={{ ...styles.valueCell, width: "40pt" }}>
                                 <SPAN style={styles.valueText}>
-                                    {result.GradePoint}
+                                    {result?.marks?.GP}
                                 </SPAN>
                             </DIV>
                             <DIV
@@ -301,7 +305,7 @@ const SingleCourseFinalPDF = ({ results, stepOneValue }) => {
                                 }}
                             >
                                 <SPAN style={styles.valueText}>
-                                    {result.roll}
+                                    {result?._id}
                                 </SPAN>
                             </DIV>
                         </DIV>

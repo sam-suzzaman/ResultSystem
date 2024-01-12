@@ -80,7 +80,7 @@ const CommonStepOne = ({ name, type = "default" }) => {
                     {name}
                 </h4>
                 <h2 className="text-3xl text-center font-bold capitalize ">
-                    search result
+                    Result sheet
                 </h2>
             </div>
             <form

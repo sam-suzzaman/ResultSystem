@@ -58,18 +58,20 @@ import ResultErrorCom from "../../../../../Shared/ResultErrorCom/ResultErrorCom"
 
 const StepTwo = () => {
     const { step, setStep, stepOneValue } = useResultStepContext();
-    // ToDO:fetch data
-    // const { loading, data, isError } = useFetchData("course-final-mark", "url");
+    const { loading, data, isError } = useFetchData(
+        "course-final-mark",
+        `https://student-management-delta.vercel.app/result/${stepOneValue.department}/${stepOneValue.session}/${stepOneValue.semester}/${stepOneValue.courseName}/${stepOneValue.courseCode}`
+    );
 
-    // if (loading) {
-    //     return <LoadingCom />;
-    // }
+    if (loading) {
+        return <LoadingCom />;
+    }
     // if (data) {
     //     console.log(data);
     // }
-    // if (isError) {
-    //     return <ResultErrorCom homeURL="/dashboard/admin/get-mark" />;
-    // }
+    if (isError) {
+        return <ResultErrorCom homeURL="/dashboard/admin/get-mark" />;
+    }
 
     return (
         <Wrapper>
@@ -77,9 +79,9 @@ const StepTwo = () => {
                 <h3 className="text-[22px] text-secondary capitalize font-bold">
                     your Search Result
                 </h3>
-                <button className="submit_btn px-6 py-2 text-sm font-medium capitalize rounded-md">
+                {/* <button className="submit_btn px-6 py-2 text-sm font-medium capitalize rounded-md">
                     publish
-                </button>
+                </button> */}
                 {/* <button className="back_btn px-6 py-2 text-sm font-medium capitalize rounded-md">
                     back
                 </button> */}
@@ -91,7 +93,7 @@ const StepTwo = () => {
                         stepOneValue={stepOneValue}
                     /> */}
                     <SingleCourseFinalPDF
-                        results={resultList}
+                        results={data?.result}
                         stepOneValue={stepOneValue}
                     />
                 </PDFViewer>

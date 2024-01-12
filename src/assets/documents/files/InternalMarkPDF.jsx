@@ -1,7 +1,7 @@
 import React from "react";
 import { Document, Page, StyleSheet, Image, Text } from "@react-pdf/renderer";
 
-import { DIV, SPAN, H6, H3 } from "../Components";
+import { DIV, SPAN, H6, H3, H4 } from "../Components";
 import logo from "../../Jkkniu_logo.png";
 
 const styles = StyleSheet.create({
@@ -92,7 +92,7 @@ const InternlMarkPDF = ({ results, stepOneValue }) => {
                             display: "flex",
                             flexDirection: "row",
                             justifyContent: "center",
-                            marginBottom: "10pt",
+                            marginBottom: "15pt",
                         }}
                     >
                         <Image style={{ width: "50pt" }} src={logo} />
@@ -100,8 +100,8 @@ const InternlMarkPDF = ({ results, stepOneValue }) => {
                     <DIV style={{ marginBottom: "8pt" }}>
                         <H3
                             style={{
-                                fontWeight: "500",
-                                fontSize: "14pt",
+                                fontWeight: "700",
+                                fontSize: "13pt",
                                 textAlign: "center",
                                 marginBottom: "4pt",
                             }}
@@ -126,14 +126,15 @@ const InternlMarkPDF = ({ results, stepOneValue }) => {
                                 marginBottom: "4pt",
                             }}
                         >
-                            Course Code: {stepOneValue?.courseCode},{"   "}
-                            Course Title: {stepOneValue?.courseName}
+                            Course Title: {stepOneValue?.courseName} (
+                            {stepOneValue?.courseCode})
                         </H3>
                         <H3
                             style={{
                                 fontWeight: "400",
                                 fontSize: "11pt",
                                 textAlign: "center",
+                                marginBottom: "4pt",
                             }}
                         >
                             Internal Marks,{"  "}Session:{" "}
@@ -146,7 +147,7 @@ const InternlMarkPDF = ({ results, stepOneValue }) => {
                 <DIV style={{ ...styles.table }}>
                     {/* THEAD Row */}
                     <DIV
-                        style={{ ...styles.tableHead, margnTop: "10pt" }}
+                        style={{ ...styles.tableHead, margnTop: "8pt" }}
                         isFixed={true}
                     >
                         <DIV
@@ -157,8 +158,10 @@ const InternlMarkPDF = ({ results, stepOneValue }) => {
                                 justifyContent: "center",
                             }}
                         >
-                            <SPAN>
-                                <Text>Roll</Text>
+                            <SPAN
+                                style={{ fontSize: "10pt", fontWeight: "bold" }}
+                            >
+                                Roll
                             </SPAN>
                         </DIV>
                         {/* <DIV style={(styles.cell, styles.largeCell)}>
@@ -174,8 +177,10 @@ const InternlMarkPDF = ({ results, stepOneValue }) => {
                                 justifyContent: "center",
                             }}
                         >
-                            <SPAN>
-                                <Text>Attendance</Text>
+                            <SPAN
+                                style={{ fontSize: "10pt", fontWeight: "bold" }}
+                            >
+                                Attendance
                             </SPAN>
                         </DIV>
                         <DIV
@@ -186,8 +191,10 @@ const InternlMarkPDF = ({ results, stepOneValue }) => {
                                 justifyContent: "center",
                             }}
                         >
-                            <SPAN>
-                                <Text>Mid One</Text>
+                            <SPAN
+                                style={{ fontSize: "10pt", fontWeight: "bold" }}
+                            >
+                                MidTerm-I
                             </SPAN>
                         </DIV>
                         <DIV
@@ -198,8 +205,10 @@ const InternlMarkPDF = ({ results, stepOneValue }) => {
                                 justifyContent: "center",
                             }}
                         >
-                            <SPAN>
-                                <Text>Mid Two</Text>
+                            <SPAN
+                                style={{ fontSize: "10pt", fontWeight: "bold" }}
+                            >
+                                Midterm-II
                             </SPAN>
                         </DIV>
                         <DIV
@@ -212,12 +221,26 @@ const InternlMarkPDF = ({ results, stepOneValue }) => {
                         >
                             <DIV>
                                 <SPAN>
-                                    <Text>Assignment /</Text>
+                                    <Text
+                                        style={{
+                                            fontSize: "10pt",
+                                            fontWeight: "bold",
+                                        }}
+                                    >
+                                        Assignment /
+                                    </Text>
                                 </SPAN>
                             </DIV>
                             <DIV>
                                 <SPAN>
-                                    <Text>Presentation</Text>
+                                    <Text
+                                        style={{
+                                            fontSize: "9pt",
+                                            fontWeight: "bold",
+                                        }}
+                                    >
+                                        Presentation
+                                    </Text>
                                 </SPAN>
                             </DIV>
                         </DIV>
@@ -229,8 +252,10 @@ const InternlMarkPDF = ({ results, stepOneValue }) => {
                                 justifyContent: "center",
                             }}
                         >
-                            <SPAN>
-                                <Text>Total</Text>
+                            <SPAN
+                                style={{ fontSize: "10pt", fontWeight: "bold" }}
+                            >
+                                Total
                             </SPAN>
                         </DIV>
                     </DIV>
@@ -241,7 +266,14 @@ const InternlMarkPDF = ({ results, stepOneValue }) => {
                             <DIV style={styles.row} wrap={false}>
                                 <DIV style={styles.cell}>
                                     <SPAN>
-                                        <Text>{result.roll}</Text>
+                                        <Text
+                                            style={{
+                                                fontSize: "10pt",
+                                                fontWeight: "bold",
+                                            }}
+                                        >
+                                            {result.roll}
+                                        </Text>
                                     </SPAN>
                                 </DIV>
                                 {/* <DIV style={(styles.cell, styles.largeCell)}>
@@ -251,29 +283,62 @@ const InternlMarkPDF = ({ results, stepOneValue }) => {
                                 </DIV> */}
                                 <DIV style={styles.cell}>
                                     <SPAN>
-                                        <Text>{result.attendance}</Text>
+                                        <Text
+                                            style={{
+                                                fontSize: "10pt",
+                                                fontWeight: "bold",
+                                            }}
+                                        >
+                                            {result.attendance}
+                                        </Text>
                                     </SPAN>
                                 </DIV>
                                 <DIV style={styles.cell}>
                                     <SPAN>
-                                        <Text>{result.midOne}</Text>
+                                        <Text
+                                            style={{
+                                                fontSize: "10pt",
+                                                fontWeight: "bold",
+                                            }}
+                                        >
+                                            {result.midOne}
+                                        </Text>
                                     </SPAN>
                                 </DIV>
                                 <DIV style={styles.cell}>
                                     <SPAN>
-                                        <Text>{result.midTwo}</Text>
+                                        <Text
+                                            style={{
+                                                fontSize: "10pt",
+                                                fontWeight: "bold",
+                                            }}
+                                        >
+                                            {result.midTwo}
+                                        </Text>
                                     </SPAN>
                                 </DIV>
                                 <DIV style={styles.cell}>
                                     <SPAN>
-                                        <Text>
+                                        <Text
+                                            style={{
+                                                fontSize: "10pt",
+                                                fontWeight: "bold",
+                                            }}
+                                        >
                                             {result.presentationOrAssignment}
                                         </Text>
                                     </SPAN>
                                 </DIV>
                                 <DIV style={styles.cell}>
                                     <SPAN>
-                                        <Text>{result.totalInternal}</Text>
+                                        <Text
+                                            style={{
+                                                fontSize: "10pt",
+                                                fontWeight: "bold",
+                                            }}
+                                        >
+                                            {result.totalInternal}
+                                        </Text>
                                     </SPAN>
                                 </DIV>
                             </DIV>

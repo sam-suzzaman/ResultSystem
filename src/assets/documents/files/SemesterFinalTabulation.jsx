@@ -430,7 +430,7 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
                                 <DIV style={styles.valueRollCell}>
                                     <SPAN style={styles.text}>{res.roll}</SPAN>
                                 </DIV>
-                                {res.marks.map((mark) => {
+                                {res?.marks?.map((mark) => {
                                     return (
                                         <>
                                             <DIV style={styles.valueCellSize}>
@@ -475,7 +475,7 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
                                                 }
                                             >
                                                 <SPAN style={styles.text}>
-                                                    {mark.LG}
+                                                    {mark?.LG}
                                                 </SPAN>
                                             </DIV>
                                             <DIV
@@ -485,7 +485,7 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
                                                 }
                                             >
                                                 <SPAN style={styles.text}>
-                                                    {mark.GP}
+                                                    {mark?.GP}
                                                 </SPAN>
                                             </DIV>
                                         </>
@@ -502,7 +502,7 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
                                         justifyContent: "center",
                                     }}
                                 >
-                                    <SPAN style={styles.text}>{res.cgpa}</SPAN>
+                                    <SPAN style={styles.text}>{res?.cgpa}</SPAN>
                                 </DIV>
                                 <DIV
                                     style={{
@@ -514,7 +514,7 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
                                         justifyContent: "center",
                                     }}
                                 >
-                                    <SPAN style={styles.text}>{res.gpa}</SPAN>
+                                    <SPAN style={styles.text}>{res?.gpa}</SPAN>
                                 </DIV>
                             </DIV>
                         );
