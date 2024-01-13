@@ -1,20 +1,17 @@
 import React, { createContext, useContext, useState } from "react";
 import styled from "styled-components";
 import StepOneForm from "../../../../Components/Non-Shared/DashboardPageCom/Admin/TranscriptPageCom/Semester/StepOneForm";
-import StepTwoTranscript from "../../../../Components/Non-Shared/DashboardPageCom/Admin/TranscriptPageCom/Semester/StepTwoTranscript";
-import {
-    MarkFormStepProvider,
-    useMarkFormStepContext,
-} from "../../../../context/Admin/MarkFormStepContext";
+import { useMarkFormStepContext } from "../../../../context/Admin/MarkFormStepContext";
+import StepTwo from "../../../../Components/Non-Shared/DashboardPageCom/Admin/TranscriptPageCom/Yearly/StepTwo";
 
-const SemesterTranscriptPage = () => {
+const YearlyTranscriptPage = () => {
     const { stepValue } = useMarkFormStepContext();
     return (
         <Wrapper>
-            <MarkFormStepProvider>
-                {/* {step === 1 && <StepOneForm formName="semester final" />} */}
-                {/* {step === 2 && <StepTwoTranscript />} */}
-            </MarkFormStepProvider>
+            {stepValue === 1 && (
+                <StepOneForm formName="Year final" type="year_final" />
+            )}
+            {stepValue === 2 && <StepTwo />}
         </Wrapper>
     );
 };
@@ -30,4 +27,4 @@ const Wrapper = styled.div`
 
 // export const useSemesterTranscriptContext = () => useContext(transcriptContext);
 
-export default SemesterTranscriptPage;
+export default YearlyTranscriptPage;

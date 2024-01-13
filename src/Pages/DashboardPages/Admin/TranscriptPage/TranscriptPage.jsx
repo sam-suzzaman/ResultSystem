@@ -17,7 +17,7 @@ const TranscriptPage = () => {
                     <SectionTitle title="Manage Transcripts" />
                 </div>
             </div>
-            <div className="card-container mt-12">
+            {/* <div className="card-container mt-12">
                 <Link
                     to="/dashboard/admin/transcript/semester"
                     className="card"
@@ -25,6 +25,17 @@ const TranscriptPage = () => {
                     <HiOutlineDocumentArrowDown className="icon" />
                     <h4 className="text">
                         Semester final <br /> transcript
+                    </h4>
+                </Link>
+            </div> */}
+            <div className="card-container mt-12">
+                <Link
+                    to="/dashboard/admin/transcript/yearly-transcript"
+                    className="card"
+                >
+                    <HiOutlineDocumentArrowDown className="icon" />
+                    <h4 className="text">
+                        Yearly <br /> transcript
                     </h4>
                 </Link>
                 {/* <Link to="" className="card">

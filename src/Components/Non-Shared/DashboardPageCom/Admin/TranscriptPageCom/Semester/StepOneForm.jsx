@@ -3,18 +3,18 @@ import React, { useEffect, useState } from "react";
 import {
     departments,
     semesters,
+    years,
 } from "../../../../../../utils/AddMarkFieldsData";
 
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 
-import { useSemesterTranscriptContext } from "../../../../../../Pages/DashboardPages/Admin/TranscriptPage/SemesterTranscriptPage";
-
 import { getAllHandler } from "../../../../../../utils/fetchHandlers";
+import { useMarkFormStepContext } from "../../../../../../context/Admin/MarkFormStepContext";
 
-const StepOneForm = () => {
-    const { step, setStep, stepOneValue, setStepOneValue } =
-        useSemesterTranscriptContext();
+const StepOneForm = ({ formName, type }) => {
+    const { stepValue, setStepValue, stepOneValue, setStepOneValue } =
+        useMarkFormStepContext();
 
     const {
         register,
@@ -57,7 +57,7 @@ const StepOneForm = () => {
     // form handler
     const onSubmit = (data) => {
         setStepOneValue(data);
-        setStep(2);
+        setStepValue(2);
     };
 
     return (
@@ -65,7 +65,7 @@ const StepOneForm = () => {
             <div className="w-full mt-12">
                 <div className="mb-10">
                     <h4 className="text-xs font-bold text-center uppercase mb-1">
-                        semester final
+                        {formName}
                     </h4>
                     <h2 className="text-3xl text-center font-bold capitalize ">
                         search transcript
@@ -164,50 +164,100 @@ const StepOneForm = () => {
                     </div>
 
                     {/* semester */}
-                    <div className="form-control w-full">
-                        <label className="label">
-                            <span className="label-text">Semester</span>
-                        </label>
-                        <select
-                            className="select select-bordered rounded-sm select-sm number"
-                            disabled={!isSessionSelected}
-                            {...register("semester", {
-                                validate: {
-                                    isValidValue: (value) => {
-                                        return (
-                                            value !== "default" ||
-                                            "Semester is Required"
-                                        );
+                    {type !== "year_final" && (
+                        <div className="form-control w-full">
+                            <label className="label">
+                                <span className="label-text">Semester</span>
+                            </label>
+                            <select
+                                className="select select-bordered rounded-sm select-sm number"
+                                disabled={!isSessionSelected}
+                                {...register("semester", {
+                                    validate: {
+                                        isValidValue: (value) => {
+                                            return (
+                                                value !== "default" ||
+                                                "Semester is Required"
+                                            );
+                                        },
                                     },
-                                },
-                                required: {
-                                    value: true,
-                                    message: "Semester  is Required",
-                                },
-                            })}
-                            defaultValue="default"
-                        >
-                            <option disabled value="default">
-                                Select Semester
-                            </option>
-                            {semesters.map((semester) => {
-                                return (
-                                    <option
-                                        className="number"
-                                        key={semester._id}
-                                        value={semester.session}
-                                    >
-                                        {semester.semester}
-                                    </option>
-                                );
-                            })}
-                        </select>
-                        {errors?.semester && (
-                            <span className=" mt-1 label-text-alt text-xs font-normal capitalize text-red-700">
-                                {errors.semester?.message}
-                            </span>
-                        )}
-                    </div>
+                                    required: {
+                                        value: true,
+                                        message: "Semester  is Required",
+                                    },
+                                })}
+                                defaultValue="default"
+                            >
+                                <option disabled value="default">
+                                    Select Semester
+                                </option>
+                                {semesters.map((semester) => {
+                                    return (
+                                        <option
+                                            className="number"
+                                            key={semester._id}
+                                            value={semester.session}
+                                        >
+                                            {semester.semester}
+                                        </option>
+                                    );
+                                })}
+                            </select>
+                            {errors?.semester && (
+                                <span className=" mt-1 label-text-alt text-xs font-normal capitalize text-red-700">
+                                    {errors.semester?.message}
+                                </span>
+                            )}
+                        </div>
+                    )}
+
+                    {/* year */}
+                    {type === "year_final" && (
+                        <div className="form-control w-full">
+                            <label className="label">
+                                <span className="label-text">Year</span>
+                            </label>
+                            <select
+                                className="select select-bordered rounded-sm select-sm number"
+                                disabled={!isSessionSelected}
+                                {...register("year", {
+                                    validate: {
+                                        isValidValue: (value) => {
+                                            return (
+                                                value !== "default" ||
+                                                "Year value required"
+                                            );
+                                        },
+                                    },
+                                    required: {
+                                        value: true,
+                                        message: "Year value required",
+                                    },
+                                })}
+                                defaultValue="default"
+                            >
+                                <option disabled value="default">
+                                    Select Year
+                                </option>
+                                {years.map((year) => {
+                                    return (
+                                        <option
+                                            className="number"
+                                            key={year._id}
+                                            value={year.session}
+                                        >
+                                            {year.year}
+                                        </option>
+                                    );
+                                })}
+                            </select>
+                            {errors?.year && (
+                                <span className=" mt-1 label-text-alt text-xs font-normal capitalize text-red-700">
+                                    {errors.year?.message}
+                                </span>
+                            )}
+                        </div>
+                    )}
 
                     {/* roll */}
                     <div className="form-control w-full">

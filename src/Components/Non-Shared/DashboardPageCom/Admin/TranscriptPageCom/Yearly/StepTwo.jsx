@@ -1,22 +1,17 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-
-import { PDFViewer } from "@react-pdf/renderer";
-
-import SemesterTranscriptPDF from "../../../../../../assets/documents/files/SemesterTranscriptPDF";
-// import SemesterTranscriptData from "../../../../../../../DB/SemesterTranscriptData";
-import useFetchData from "../../../../../../utils/fetchDataHook";
+import React, { useEffect, useState } from "react";
+import { useMarkFormStepContext } from "../../../../../../context/Admin/MarkFormStepContext";
 import LoadingCom from "../../../../../Shared/LoadingCom/LoadingCom";
 import ResultErrorCom from "../../../../../Shared/ResultErrorCom/ResultErrorCom";
-import { useMarkFormStepContext } from "../../../../../../context/Admin/MarkFormStepContext";
+import styled from "styled-components";
+import PerYearlyTabulation from "../../../../../../assets/documents/files/PerYearlyTabulation";
+import { PDFViewer } from "@react-pdf/renderer";
+import useFetchData from "../../../../../../utils/fetchDataHook";
 
-const StepTwoTranscript = () => {
-    const { step, setStep, stepOneValue } = useMarkFormStepContext();
-    // const [results, setResults] = useState(SemesterTranscriptData);
-
+const StepTwo = () => {
+    const { stepOneValue } = useMarkFormStepContext();
     const { loading, data, isError, error } = useFetchData(
-        "student-semester-transcript-mark",
-        `https://student-management-delta.vercel.app/result/semester-transcript/EEE/2017-18/18102940`
+        "yearly-transcript",
+        `https://student-management-delta.vercel.app/result/tabulation-sheet-per-year/${stepOneValue.year}/${stepOneValue.department}/${stepOneValue.session}/${stepOneValue.roll}`
     );
 
     if (loading) {
@@ -25,7 +20,15 @@ const StepTwoTranscript = () => {
     if (data) {
         console.log(data);
     }
-    if (false) {
+    if (Object.keys(data?.yearTabulation?.marks)?.length === 0) {
+        return (
+            <ResultErrorCom
+                msg="Marks not available"
+                homeURL="/dashboard/admin/transcript"
+            />
+        );
+    }
+    if (isError) {
         console.log(error);
         return <ResultErrorCom homeURL="/dashboard/admin/transcript" />;
     }
@@ -36,9 +39,9 @@ const StepTwoTranscript = () => {
                 <h3 className="text-[22px] text-secondary capitalize font-bold">
                     your Search Result
                 </h3>
-                <button className="submit_btn px-6 py-2 text-sm font-medium capitalize rounded-md">
+                {/* <button className="submit_btn px-6 py-2 text-sm font-medium capitalize rounded-md">
                     publish
-                </button>
+                </button> */}
                 {/* <button className="back_btn px-6 py-2 text-sm font-medium capitalize rounded-md">
                     back
                 </button> */}
@@ -49,8 +52,8 @@ const StepTwoTranscript = () => {
                         TranscriptData={results}
                         stepOneValue={stepOneValue}
                     /> */}
-                    <SemesterTranscriptPDF
-                        TranscriptData={data}
+                    <PerYearlyTabulation
+                        result={data}
                         stepOneValue={stepOneValue}
                     />
                 </PDFViewer>
@@ -68,4 +71,4 @@ const Wrapper = styled.div`
     }
 `;
 
-export default StepTwoTranscript;
+export default StepTwo;

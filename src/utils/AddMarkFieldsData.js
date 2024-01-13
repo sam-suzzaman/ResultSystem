@@ -9,6 +9,12 @@ export const sessions = [
     { _id: 3, session: "2019-20" },
     { _id: 4, session: "2020-21" },
 ];
+export const years = [
+    { _id: 1, year: 1 },
+    { _id: 2, year: 2 },
+    { _id: 3, year: 3 },
+    { _id: 4, year: 4 },
+];
 export const semesters = [
     { _id: 1, semester: 1 },
     { _id: 2, semester: 2 },

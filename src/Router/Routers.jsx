@@ -41,6 +41,8 @@ import InternalMarkPageStudent from "../Pages/DashboardPages/Student/ResultPage/
 import SemesterMarkPageStudent from "../Pages/DashboardPages/Student/ResultPage/SemesterMarkPage";
 import ImproveMarkPageStudent from "../Pages/DashboardPages/Student/ResultPage/ImproveMarkPage";
 import LabImproveAddMarkPage from "../Pages/DashboardPages/Admin/AddMarkPage/LabImproveAddMarkPage";
+import YearlyTranscriptPage from "../Pages/DashboardPages/Admin/TranscriptPage/YearlyTranscriptPage";
+import { MarkFormStepProvider } from "../context/Admin/MarkFormStepContext";
 
 const Routers = createBrowserRouter([
     {
@@ -167,6 +169,14 @@ const Routers = createBrowserRouter([
                     {
                         path: "/dashboard/admin/transcript/semester",
                         element: <SemesterTranscriptPageAdmin />,
+                    },
+                    {
+                        path: "/dashboard/admin/transcript/yearly-transcript",
+                        element: (
+                            <MarkFormStepProvider>
+                                <YearlyTranscriptPage />
+                            </MarkFormStepProvider>
+                        ),
                     },
                 ],
             },
