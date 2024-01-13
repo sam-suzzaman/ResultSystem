@@ -66,10 +66,10 @@ const StepTwo = () => {
     if (loading) {
         return <LoadingCom />;
     }
-    // if (data) {
-    //     console.log(data);
-    // }
-    if (isError) {
+    if (data) {
+        console.log(data);
+    }
+    if (isError || !data?.result?.length) {
         return <ResultErrorCom homeURL="/dashboard/admin/get-mark" />;
     }
 

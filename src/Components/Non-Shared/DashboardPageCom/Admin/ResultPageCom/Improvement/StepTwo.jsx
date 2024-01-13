@@ -8,7 +8,7 @@ import ImproveResultPDF from "../../../../../../assets/PDF/ImproveResultPDF";
 import { useResultStepContext } from "../../../../../../context/Admin/ResultStepContext";
 
 // todo: fetch data
-import data from "../../../../../../assets/documents/data/ImproveTabulationData";
+import data2 from "../../../../../../assets/documents/data/ImproveTabulationData";
 import ImproveTabulation from "../../../../../../assets/documents/files/ImproveTabulation";
 
 import useFetchData from "../../../../../../utils/fetchDataHook";
@@ -18,18 +18,21 @@ import ResultErrorCom from "../../../../../Shared/ResultErrorCom/ResultErrorCom"
 const StepTwo = () => {
     const { step, setStep, stepOneValue, setStepOneValue } =
         useResultStepContext();
-    // ToDO:fetch data
-    // const { loading, data, isError } = useFetchData("course-final-mark", "url");
 
-    // if (loading) {
-    //     return <LoadingCom />;
-    // }
-    // if (data) {
-    //     console.log(data);
-    // }
-    // if (isError) {
-    //     return <ResultErrorCom homeURL="/dashboard/admin/get-mark" />;
-    // }
+    const { loading, data, isError } = useFetchData(
+        "course-final-mark",
+        `https://student-management-delta.vercel.app/result/${stepOneValue.department}/${stepOneValue.session}/${stepOneValue.courseName}/${stepOneValue.coureCode}`
+    );
+
+    if (loading) {
+        return <LoadingCom />;
+    }
+    if (data) {
+        console.log(data);
+    }
+    if (isError || !data?.result?.length) {
+        return <ResultErrorCom homeURL="/dashboard/admin/get-mark" />;
+    }
 
     return (
         <Wrapper>
@@ -50,7 +53,7 @@ const StepTwo = () => {
                         stepOneValue={stepOneValue}
                     /> */}
                     <ImproveTabulation
-                        results={data}
+                        results={data?.result}
                         stepOneValue={stepOneValue}
                     />
                 </PDFViewer>
