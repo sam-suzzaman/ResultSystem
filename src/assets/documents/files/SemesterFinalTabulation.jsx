@@ -147,6 +147,9 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
             case 7:
                 setPageSize("TABLOID");
                 break;
+            case 8:
+                setPageSize("C2");
+                break;
             default:
         }
     }, [colData]);

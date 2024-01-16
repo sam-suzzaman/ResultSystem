@@ -136,7 +136,7 @@ const SemesterFinalResultPDF = ({ results }) => {
     // console.log(data);
     return (
         <Document>
-            <Page size="A4" orientation="landscape" style={styles.page}>
+            <Page size="LEGAL" orientation="landscape" style={styles.page}>
                 {/* First tableRow : Title */}
                 <DIV isFixed={true} style={{ marginBottom: "20pt" }}>
                     <H3

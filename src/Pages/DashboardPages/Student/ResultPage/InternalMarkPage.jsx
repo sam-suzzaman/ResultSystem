@@ -263,7 +263,7 @@ const InternalMarkPage = () => {
                                         Midterm-II(10)
                                     </th>
                                     <th className="number txt_cntr">
-                                        Assignment <br />
+                                        Assignment/ <br />
                                         Presenetation(10)
                                     </th>
                                     <th className="number txt_cntr">

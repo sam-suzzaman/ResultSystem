@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import styled from "styled-components";
 
@@ -14,15 +14,49 @@ import ImproveTabulation from "../../../../../../assets/documents/files/ImproveT
 import useFetchData from "../../../../../../utils/fetchDataHook";
 import LoadingCom from "../../../../../Shared/LoadingCom/LoadingCom";
 import ResultErrorCom from "../../../../../Shared/ResultErrorCom/ResultErrorCom";
+import axios from "axios";
+import { useQuery } from "react-query";
+
+// const fetchData = async () => {
+//     const res = await axios.get(
+//         `https://student-management-delta.vercel.app/result/${stepOneValue.department}/${stepOneValue.session}/${stepOneValue.courseName}/${stepOneValue.courseCode}`
+//     );
+//     return res;
+// };
 
 const StepTwo = () => {
     const { step, setStep, stepOneValue, setStepOneValue } =
         useResultStepContext();
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
+    const [data, setData] = useState({});
+    console.log(data2);
+    // const { loading, data, isError } = useFetchData(
+    //     "course-final-mark-sheet",
+    //     `https://student-management-delta.vercel.app/result/${stepOneValue.department}/${stepOneValue.session}/${stepOneValue.courseName}/${stepOneValue.coureCode}`
+    // );
+    // const {
+    //     isLoading: loading,
+    //     isError,
+    //     data,
+    //     error,
+    // } = useQuery("course-final-mark-sheet", () => fetchData());
 
-    const { loading, data, isError } = useFetchData(
-        "course-final-mark",
-        `https://student-management-delta.vercel.app/result/${stepOneValue.department}/${stepOneValue.session}/${stepOneValue.courseName}/${stepOneValue.coureCode}`
-    );
+    // console.log(
+    //     `https://student-management-delta.vercel.app/result/${stepOneValue.department}/${stepOneValue.session}/${stepOneValue.courseName}/${stepOneValue.courseCode}`
+    // );
+
+    useEffect(() => {
+        setLoading(true);
+        const fetchData = async () => {
+            const res = await axios.get(
+                `https://student-management-delta.vercel.app/result/${stepOneValue.department}/${stepOneValue.session}/${stepOneValue.courseName}/${stepOneValue.courseCode}`
+            );
+            setData(res.data);
+        };
+        fetchData();
+        setLoading(false);
+    }, []);
 
     if (loading) {
         return <LoadingCom />;
@@ -30,9 +64,9 @@ const StepTwo = () => {
     if (data) {
         console.log(data);
     }
-    if (isError || !data?.result?.length) {
-        return <ResultErrorCom homeURL="/dashboard/admin/get-mark" />;
-    }
+    // if (isError || !data?.result?.length) {
+    //     return <ResultErrorCom homeURL="/dashboard/admin/get-mark" />;
+    // }
 
     return (
         <Wrapper>
@@ -53,6 +87,7 @@ const StepTwo = () => {
                         stepOneValue={stepOneValue}
                     /> */}
                     <ImproveTabulation
+                        resultType={data?.credit}
                         results={data?.result}
                         stepOneValue={stepOneValue}
                     />

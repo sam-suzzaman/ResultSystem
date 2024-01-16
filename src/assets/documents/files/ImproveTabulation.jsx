@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const ImproveTabulation = ({ results, stepOneValue }) => {
+const ImproveTabulation = ({ results, resultType, stepOneValue }) => {
     return (
         <Document>
             <Page size="LEGAL" orientation="landscape" style={styles.page}>
@@ -398,6 +398,7 @@ const ImproveTabulation = ({ results, stepOneValue }) => {
                                         </SPAN>
                                     </H3>
                                 </DIV>
+
                                 <DIV
                                     style={{
                                         ...styles.impSubCol,
@@ -416,6 +417,7 @@ const ImproveTabulation = ({ results, stepOneValue }) => {
                                         </SPAN>
                                     </H3>
                                 </DIV>
+
                                 <DIV
                                     style={{
                                         ...styles.impSubCol,
@@ -434,6 +436,7 @@ const ImproveTabulation = ({ results, stepOneValue }) => {
                                         </SPAN>
                                     </H3>
                                 </DIV>
+
                                 <DIV
                                     style={{
                                         ...styles.impSubCol,
@@ -632,7 +635,7 @@ const ImproveTabulation = ({ results, stepOneValue }) => {
                                             fontWeight: "bold",
                                         }}
                                     >
-                                        {mark?.previousMarks?.TotalMark}
+                                        {mark?.previousMarks?.totalMark}
                                     </SPAN>
                                 </DIV>
                                 <DIV
@@ -665,6 +668,7 @@ const ImproveTabulation = ({ results, stepOneValue }) => {
                                         {mark?.previousMarks?.GP}
                                     </SPAN>
                                 </DIV>
+
                                 <DIV
                                     style={{
                                         ...styles.internalColumn,
@@ -677,9 +681,14 @@ const ImproveTabulation = ({ results, stepOneValue }) => {
                                             fontWeight: "bold",
                                         }}
                                     >
-                                        {mark?.improvedMarks?.examinerOne}
+                                        {/* {mark?.improvedMarks?.firstExaminer} */}
+                                        {resultType === 1.5
+                                            ? "-"
+                                            : mark?.improvedMarks
+                                                  ?.firstExaminer}
                                     </SPAN>
                                 </DIV>
+
                                 <DIV
                                     style={{
                                         ...styles.internalColumn,
@@ -692,9 +701,13 @@ const ImproveTabulation = ({ results, stepOneValue }) => {
                                             fontWeight: "bold",
                                         }}
                                     >
-                                        {mark?.improvedMarks?.examinerTwo}
+                                        {resultType === 1.5
+                                            ? "-"
+                                            : mark?.improvedMarks
+                                                  ?.secondExaminer}
                                     </SPAN>
                                 </DIV>
+
                                 <DIV
                                     style={{
                                         ...styles.internalColumn,
@@ -707,9 +720,14 @@ const ImproveTabulation = ({ results, stepOneValue }) => {
                                             fontWeight: "bold",
                                         }}
                                     >
-                                        {mark?.improvedMarks?.examinerThree}
+                                        {resultType === 1.5
+                                            ? "-"
+                                            : mark?.improvedMarks
+                                                  ?.thirdExaminer}
+                                        {/* {mark?.improvedMarks?.thirdExaminer} */}
                                     </SPAN>
                                 </DIV>
+
                                 <DIV
                                     style={{
                                         ...styles.internalColumn,
@@ -723,6 +741,10 @@ const ImproveTabulation = ({ results, stepOneValue }) => {
                                         }}
                                     >
                                         {mark?.improvedMarks?.finalExamMark}
+                                        {/* {resultType === 1.5
+                                            ? "-"
+                                            : mark?.improvedMarks
+                                                  ?.finalExamMark} */}
                                     </SPAN>
                                 </DIV>
                                 <DIV

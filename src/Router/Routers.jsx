@@ -71,6 +71,7 @@ const Routers = createBrowserRouter([
                     <ProtectAdminRoutes>
                         <AdminDashboardLayout></AdminDashboardLayout>
                     </ProtectAdminRoutes>
+                    // <AdminDashboardLayout></AdminDashboardLayout>
                 ),
                 children: [
                     // {
@@ -186,6 +187,7 @@ const Routers = createBrowserRouter([
                     <ProtectStudentRoute>
                         <StudentDashboardLayout></StudentDashboardLayout>
                     </ProtectStudentRoute>
+                    // <StudentDashboardLayout></StudentDashboardLayout>
                 ),
                 children: [
                     // {
