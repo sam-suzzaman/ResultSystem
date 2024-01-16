@@ -13,12 +13,12 @@ const StepTwo = () => {
         "yearly-transcript",
         `https://student-management-delta.vercel.app/result/tabulation-sheet-per-year/${stepOneValue.year}/${stepOneValue.department}/${stepOneValue.session}/${stepOneValue.roll}`
     );
-
+    // console.log();
     if (loading) {
         return <LoadingCom />;
     }
     if (data) {
-        console.log(data);
+        // console.log(data.yearTabulation);
     }
     if (Object.keys(data?.yearTabulation?.marks)?.length === 0) {
         return (
@@ -53,7 +53,7 @@ const StepTwo = () => {
                         stepOneValue={stepOneValue}
                     /> */}
                     <PerYearlyTabulation
-                        result={data}
+                        result={data.yearTabulation}
                         stepOneValue={stepOneValue}
                     />
                 </PDFViewer>

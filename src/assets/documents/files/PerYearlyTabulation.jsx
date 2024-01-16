@@ -6,11 +6,11 @@ import { DIV, SPAN, H1, H2, H3, H4, H5, H6 } from "../Components";
 import logo from "../../../assets/Jkkniu_logo.png";
 import grade from "../../../assets/grade.png";
 
-import data from "../data/YearlyMark";
+// import data from "../data/YearlyMark";
 
 const styles = StyleSheet.create({
     page: {
-        paddingHorizontal: "40pt",
+        paddingHorizontal: "30pt",
         paddingVertical: "50pt",
     },
     stu_tab_row: {
@@ -817,7 +817,7 @@ const PerYearlyTabulation = ({ result }) => {
                                 </SPAN>
                             </DIV>
                             {/* col-2: for first-semester cols values */}
-                            <DIV style={{ display: "flex",minWidth:"53pt" }}>
+                            <DIV style={{ display: "flex", minWidth: "53pt" }}>
                                 <DIV
                                     style={{
                                         display: "flex",
@@ -1756,7 +1756,10 @@ const PerYearlyTabulation = ({ result }) => {
                                         }}
                                     >
                                         <SPAN style={{ fontSize: "8.5pt" }}>
-                                            {data?.regularPoints?.thisYear?.CGP}
+                                            {
+                                                result?.regularPoints?.thisYear
+                                                    ?.cgp
+                                            }
                                         </SPAN>
                                     </DIV>
                                     <DIV
@@ -1776,7 +1779,10 @@ const PerYearlyTabulation = ({ result }) => {
                                                 fontSize: "8.5pt",
                                             }}
                                         >
-                                            {data?.regularPoints?.thisYear?.EG}
+                                            {
+                                                result?.regularPoints?.thisYear
+                                                    ?.ec
+                                            }
                                         </SPAN>
                                     </DIV>
                                     <DIV
@@ -1796,7 +1802,10 @@ const PerYearlyTabulation = ({ result }) => {
                                                 fontSize: "8.5pt",
                                             }}
                                         >
-                                            {data?.regularPoints?.thisYear?.TC}
+                                            {
+                                                result?.regularPoints?.thisYear
+                                                    ?.tc
+                                            }
                                         </SPAN>
                                     </DIV>
                                     <DIV
@@ -1816,8 +1825,8 @@ const PerYearlyTabulation = ({ result }) => {
                                             }}
                                         >
                                             {
-                                                data?.regularPoints?.thisYear
-                                                    ?.CGPA
+                                                result?.regularPoints?.thisYear
+                                                    ?.cgpa
                                             }
                                         </SPAN>
                                     </DIV>
@@ -1850,8 +1859,8 @@ const PerYearlyTabulation = ({ result }) => {
                                     >
                                         <SPAN style={{ fontSize: "8.5pt" }}>
                                             {
-                                                data?.regularPoints
-                                                    ?.previousYear?.CGP
+                                                result?.regularPoints
+                                                    ?.previousYear?.cgp
                                             }
                                         </SPAN>
                                     </DIV>
@@ -1873,8 +1882,8 @@ const PerYearlyTabulation = ({ result }) => {
                                             }}
                                         >
                                             {
-                                                data?.regularPoints
-                                                    ?.previousYear?.EG
+                                                result?.regularPoints
+                                                    ?.previousYear?.ec
                                             }
                                         </SPAN>
                                     </DIV>
@@ -1896,8 +1905,8 @@ const PerYearlyTabulation = ({ result }) => {
                                             }}
                                         >
                                             {
-                                                data?.regularPoints
-                                                    ?.previousYear?.TC
+                                                result?.regularPoints
+                                                    ?.previousYear?.tc
                                             }
                                         </SPAN>
                                     </DIV>
@@ -1918,8 +1927,8 @@ const PerYearlyTabulation = ({ result }) => {
                                             }}
                                         >
                                             {
-                                                data?.regularPoints
-                                                    ?.previousYear?.CGPA
+                                                result?.regularPoints
+                                                    ?.previousYear?.cgpa
                                             }
                                         </SPAN>
                                     </DIV>
@@ -1951,8 +1960,8 @@ const PerYearlyTabulation = ({ result }) => {
                                     >
                                         <SPAN style={{ fontSize: "8.5pt" }}>
                                             {
-                                                data?.regularPoints
-                                                    ?.uptoThisYear?.CGP
+                                                result?.regularPoints
+                                                    ?.uptoThisYear?.cgp
                                             }
                                         </SPAN>
                                     </DIV>
@@ -1974,8 +1983,8 @@ const PerYearlyTabulation = ({ result }) => {
                                             }}
                                         >
                                             {
-                                                data?.regularPoints
-                                                    ?.uptoThisYear?.EG
+                                                result?.regularPoints
+                                                    ?.uptoThisYear?.ec
                                             }
                                         </SPAN>
                                     </DIV>
@@ -1997,8 +2006,8 @@ const PerYearlyTabulation = ({ result }) => {
                                             }}
                                         >
                                             {
-                                                data?.regularPoints
-                                                    ?.uptoThisYear?.TC
+                                                result?.regularPoints
+                                                    ?.uptoThisYear?.tc
                                             }
                                         </SPAN>
                                     </DIV>
@@ -2019,8 +2028,8 @@ const PerYearlyTabulation = ({ result }) => {
                                             }}
                                         >
                                             {
-                                                data?.regularPoints
-                                                    ?.uptoThisYear?.CGPA
+                                                result?.regularPoints
+                                                    ?.uptoThisYear?.cgpa
                                             }
                                         </SPAN>
                                     </DIV>
@@ -2720,7 +2729,10 @@ const PerYearlyTabulation = ({ result }) => {
                                         }}
                                     >
                                         <SPAN style={{ fontSize: "8.5pt" }}>
-                                            {data?.improvePoints?.thisYear?.CGP}
+                                            {
+                                                result?.improvePoints?.thisYear
+                                                    ?.cgp
+                                            }
                                         </SPAN>
                                     </DIV>
                                     <DIV
@@ -2740,7 +2752,10 @@ const PerYearlyTabulation = ({ result }) => {
                                                 fontSize: "8.5pt",
                                             }}
                                         >
-                                            {data?.improvePoints?.thisYear?.EG}
+                                            {
+                                                result?.improvePoints?.thisYear
+                                                    ?.ec
+                                            }
                                         </SPAN>
                                     </DIV>
                                     <DIV
@@ -2760,7 +2775,10 @@ const PerYearlyTabulation = ({ result }) => {
                                                 fontSize: "8.5pt",
                                             }}
                                         >
-                                            {data?.improvePoints?.thisYear?.TC}
+                                            {
+                                                result?.improvePoints?.thisYear
+                                                    ?.tc
+                                            }
                                         </SPAN>
                                     </DIV>
                                     <DIV
@@ -2780,8 +2798,8 @@ const PerYearlyTabulation = ({ result }) => {
                                             }}
                                         >
                                             {
-                                                data?.improvePoints?.thisYear
-                                                    ?.CGPA
+                                                result?.improvePoints?.thisYear
+                                                    ?.cgpa
                                             }
                                         </SPAN>
                                     </DIV>
@@ -2814,8 +2832,8 @@ const PerYearlyTabulation = ({ result }) => {
                                     >
                                         <SPAN style={{ fontSize: "8.5pt" }}>
                                             {
-                                                data?.improvePoints
-                                                    ?.previousYear?.CGP
+                                                result?.improvePoints
+                                                    ?.previousYear?.cgp
                                             }
                                         </SPAN>
                                     </DIV>
@@ -2837,8 +2855,8 @@ const PerYearlyTabulation = ({ result }) => {
                                             }}
                                         >
                                             {
-                                                data?.improvePoints
-                                                    ?.previousYear?.EG
+                                                result?.improvePoints
+                                                    ?.previousYear?.ec
                                             }
                                         </SPAN>
                                     </DIV>
@@ -2860,8 +2878,8 @@ const PerYearlyTabulation = ({ result }) => {
                                             }}
                                         >
                                             {
-                                                data?.improvePoints
-                                                    ?.previousYear?.TC
+                                                result?.improvePoints
+                                                    ?.previousYear?.tc
                                             }
                                         </SPAN>
                                     </DIV>
@@ -2882,8 +2900,8 @@ const PerYearlyTabulation = ({ result }) => {
                                             }}
                                         >
                                             {
-                                                data?.improvePoints
-                                                    ?.previousYear?.CGPA
+                                                result?.improvePoints
+                                                    ?.previousYear?.cgpa
                                             }
                                         </SPAN>
                                     </DIV>
@@ -2915,8 +2933,8 @@ const PerYearlyTabulation = ({ result }) => {
                                     >
                                         <SPAN style={{ fontSize: "8.5pt" }}>
                                             {
-                                                data?.improvePoints
-                                                    ?.uptoThisYear?.CGP
+                                                result?.improvePoints
+                                                    ?.uptoThisYear?.cgp
                                             }
                                         </SPAN>
                                     </DIV>
@@ -2938,8 +2956,8 @@ const PerYearlyTabulation = ({ result }) => {
                                             }}
                                         >
                                             {
-                                                data?.improvePoints
-                                                    ?.uptoThisYear?.EG
+                                                result?.improvePoints
+                                                    ?.uptoThisYear?.ec
                                             }
                                         </SPAN>
                                     </DIV>
@@ -2961,8 +2979,8 @@ const PerYearlyTabulation = ({ result }) => {
                                             }}
                                         >
                                             {
-                                                data?.improvePoints
-                                                    ?.uptoThisYear?.TC
+                                                result?.improvePoints
+                                                    ?.uptoThisYear?.tc
                                             }
                                         </SPAN>
                                     </DIV>
@@ -2983,8 +3001,8 @@ const PerYearlyTabulation = ({ result }) => {
                                             }}
                                         >
                                             {
-                                                data?.improvePoints
-                                                    ?.uptoThisYear?.CGPA
+                                                result?.improvePoints
+                                                    ?.uptoThisYear?.cgpa
                                             }
                                         </SPAN>
                                     </DIV>
