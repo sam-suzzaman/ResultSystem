@@ -140,16 +140,32 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
 
     // Handle Page Size
     useEffect(() => {
+        // (course = 6), A4, landscape[(595.28, 841.89)];
+        // (course = 7), LEGAL, landscape[(612.0, 1008.0)];
+        // (course = 9), A3, landscape[(841.89, 1190.55)];
+        // (course = 10), C3, landscape[(918.43, 1298.27)];
         switch (colData?.length) {
             case 6:
                 setPageSize("LEGAL");
                 break;
             case 7:
-                setPageSize("TABLOID");
+                setPageSize("LEGAL");
                 break;
             case 8:
-                setPageSize("C2");
+                // setPageSize("TABLOID");
+                setPageSize("A3");
                 break;
+            case 9:
+                // setPageSize("TABLOID");
+                setPageSize("A3");
+                break;
+            case 10:
+                // setPageSize("TABLOID");
+                setPageSize("C3");
+                break;
+            // case 8:
+            //     setPageSize("C2");
+            //     break;
             default:
         }
     }, [colData]);

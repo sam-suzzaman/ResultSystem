@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
 const PerYearlyTabulation = ({ result }) => {
     return (
         <Document>
-            <Page size="LEGAL" orientation="landscape" style={styles.page}>
+            <Page size="A3" orientation="landscape" style={styles.page}>
                 {/* First row :Top-title( Logo and info) */}
                 <DIV
                     style={{
