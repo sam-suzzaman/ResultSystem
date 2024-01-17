@@ -226,7 +226,7 @@ const SemesterTranscriptPDF = ({ TranscriptData, stepOneValue }) => {
                                 Electronic Engineering
                             </H4>
                             <H4 style={{ fontSize: "10pt", marginTop: "7pt" }}>
-                                Name:{"  "} Samsuzzaman
+                                Name:{"  "} Student Name
                             </H4>
                             <DIV
                                 style={{
@@ -237,13 +237,14 @@ const SemesterTranscriptPDF = ({ TranscriptData, stepOneValue }) => {
                                 }}
                             >
                                 <H4 style={{ fontSize: "10pt" }}>
-                                    Roll:{"  "} 18102930
+                                    Roll:{"  "} {stepOneValue?.roll}
                                 </H4>
                                 <H4 style={{ fontSize: "10pt" }}>
-                                    Session:{"  "} 2017-18
+                                    Session:{"  "} 2018-19
+                                    {/* {stepOneValue?.session || "2018 - 19"} */}
                                 </H4>
                                 <H4 style={{ fontSize: "10pt" }}>
-                                    Semester:{"  "} 7th
+                                    Semester:{"  "} {stepOneValue.semester}
                                 </H4>
                             </DIV>
                         </DIV>

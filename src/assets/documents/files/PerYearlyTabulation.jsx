@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
 });
 
 const PerYearlyTabulation = ({ result }) => {
+    // console.log(result);
     return (
         <Document>
             <Page size="A3" orientation="landscape" style={styles.page}>
@@ -382,7 +383,7 @@ const PerYearlyTabulation = ({ result }) => {
                             {/* col3: grade(this year) */}
                             <DIV
                                 style={{
-                                    width: "100pt",
+                                    width: "130pt",
                                     border: 1,
                                     borderRight: 0,
                                     display: "flex",
@@ -397,7 +398,7 @@ const PerYearlyTabulation = ({ result }) => {
                             {/* col4: grade(previous year)*/}
                             <DIV
                                 style={{
-                                    width: "100pt",
+                                    width: "130pt",
                                     border: 1,
                                     borderRight: 0,
                                     display: "flex",
@@ -412,7 +413,7 @@ const PerYearlyTabulation = ({ result }) => {
                             {/* col5: grade(upto this year) */}
                             <DIV
                                 style={{
-                                    width: "100pt",
+                                    width: "130pt",
                                     border: 1,
                                     display: "flex",
                                     alignItems: "center",
@@ -543,7 +544,7 @@ const PerYearlyTabulation = ({ result }) => {
                             {/* col-3: grades(this year) */}
                             <DIV
                                 style={{
-                                    width: "100pt",
+                                    width: "130pt",
                                     height: "32pt",
                                     border: 1,
                                     borderRight: 0,
@@ -556,7 +557,7 @@ const PerYearlyTabulation = ({ result }) => {
                             >
                                 <DIV
                                     style={{
-                                        width: "35%",
+                                        width: "27%",
                                         borderRight: 1,
                                         height: "100%",
                                         display: "flex",
@@ -571,7 +572,7 @@ const PerYearlyTabulation = ({ result }) => {
                                 </DIV>
                                 <DIV
                                     style={{
-                                        width: "19%",
+                                        width: "23%",
                                         borderRight: 1,
                                         height: "100%",
                                         display: "flex",
@@ -590,7 +591,7 @@ const PerYearlyTabulation = ({ result }) => {
                                 </DIV>
                                 <DIV
                                     style={{
-                                        width: "19%",
+                                        width: "23%",
                                         borderRight: 1,
                                         height: "100%",
                                         display: "flex",
@@ -629,7 +630,7 @@ const PerYearlyTabulation = ({ result }) => {
                             {/* col-4: grades(Previous year) */}
                             <DIV
                                 style={{
-                                    width: "100pt",
+                                    width: "130pt",
                                     height: "32pt",
                                     border: 1,
                                     borderRight: 0,
@@ -642,7 +643,7 @@ const PerYearlyTabulation = ({ result }) => {
                             >
                                 <DIV
                                     style={{
-                                        width: "35%",
+                                        width: "27%",
                                         borderRight: 1,
                                         height: "100%",
                                         display: "flex",
@@ -657,7 +658,7 @@ const PerYearlyTabulation = ({ result }) => {
                                 </DIV>
                                 <DIV
                                     style={{
-                                        width: "19%",
+                                        width: "23%",
                                         borderRight: 1,
                                         height: "100%",
                                         display: "flex",
@@ -676,7 +677,7 @@ const PerYearlyTabulation = ({ result }) => {
                                 </DIV>
                                 <DIV
                                     style={{
-                                        width: "19%",
+                                        width: "23%",
                                         borderRight: 1,
                                         height: "100%",
                                         display: "flex",
@@ -715,7 +716,7 @@ const PerYearlyTabulation = ({ result }) => {
                             {/* col-5: grades(upto) */}
                             <DIV
                                 style={{
-                                    width: "100pt",
+                                    width: "130pt",
                                     height: "32pt",
                                     border: 1,
                                     borderTop: 0,
@@ -727,7 +728,7 @@ const PerYearlyTabulation = ({ result }) => {
                             >
                                 <DIV
                                     style={{
-                                        width: "35%",
+                                        width: "27%",
                                         borderRight: 1,
                                         height: "100%",
                                         display: "flex",
@@ -742,7 +743,7 @@ const PerYearlyTabulation = ({ result }) => {
                                 </DIV>
                                 <DIV
                                     style={{
-                                        width: "19%",
+                                        width: "23%",
                                         borderRight: 1,
                                         height: "100%",
                                         display: "flex",
@@ -761,7 +762,7 @@ const PerYearlyTabulation = ({ result }) => {
                                 </DIV>
                                 <DIV
                                     style={{
-                                        width: "19%",
+                                        width: "23%",
                                         borderRight: 1,
                                         height: "100%",
                                         display: "flex",
@@ -1732,7 +1733,7 @@ const PerYearlyTabulation = ({ result }) => {
                                 {/* col-3.1: result grades:this year */}
                                 <DIV
                                     style={{
-                                        width: "100pt",
+                                        width: "130pt",
                                         height: "105pt",
                                         border: 1,
                                         borderRight: 0,
@@ -1745,7 +1746,7 @@ const PerYearlyTabulation = ({ result }) => {
                                 >
                                     <DIV
                                         style={{
-                                            width: "35%",
+                                            width: "27%",
                                             borderRight: 1,
                                             height: "100%",
                                             display: "flex",
@@ -1764,7 +1765,7 @@ const PerYearlyTabulation = ({ result }) => {
                                     </DIV>
                                     <DIV
                                         style={{
-                                            width: "19%",
+                                            width: "23%",
                                             borderRight: 1,
                                             height: "100%",
                                             display: "flex",
@@ -1787,7 +1788,7 @@ const PerYearlyTabulation = ({ result }) => {
                                     </DIV>
                                     <DIV
                                         style={{
-                                            width: "19%",
+                                            width: "23%",
                                             borderRight: 1,
                                             height: "100%",
                                             display: "flex",
@@ -1834,7 +1835,7 @@ const PerYearlyTabulation = ({ result }) => {
                                 {/* col3.2: result grades:Previous */}
                                 <DIV
                                     style={{
-                                        width: "100pt",
+                                        width: "130pt",
                                         height: "105pt",
                                         border: 1,
                                         borderRight: 0,
@@ -1847,7 +1848,7 @@ const PerYearlyTabulation = ({ result }) => {
                                 >
                                     <DIV
                                         style={{
-                                            width: "35%",
+                                            width: "27%",
                                             borderRight: 1,
                                             height: "100%",
                                             display: "flex",
@@ -1866,7 +1867,7 @@ const PerYearlyTabulation = ({ result }) => {
                                     </DIV>
                                     <DIV
                                         style={{
-                                            width: "19%",
+                                            width: "23%",
                                             borderRight: 1,
                                             height: "100%",
                                             display: "flex",
@@ -1889,7 +1890,7 @@ const PerYearlyTabulation = ({ result }) => {
                                     </DIV>
                                     <DIV
                                         style={{
-                                            width: "19%",
+                                            width: "23%",
                                             borderRight: 1,
                                             height: "100%",
                                             display: "flex",
@@ -1936,7 +1937,7 @@ const PerYearlyTabulation = ({ result }) => {
                                 {/* col3.3: result grades:upto */}
                                 <DIV
                                     style={{
-                                        width: "100pt",
+                                        width: "130pt",
                                         height: "105pt",
                                         border: 1,
                                         borderTop: 0,
@@ -1948,7 +1949,7 @@ const PerYearlyTabulation = ({ result }) => {
                                 >
                                     <DIV
                                         style={{
-                                            width: "35%",
+                                            width: "27%",
                                             borderRight: 1,
                                             height: "100%",
                                             display: "flex",
@@ -1967,7 +1968,7 @@ const PerYearlyTabulation = ({ result }) => {
                                     </DIV>
                                     <DIV
                                         style={{
-                                            width: "19%",
+                                            width: "23%",
                                             borderRight: 1,
                                             height: "100%",
                                             display: "flex",
@@ -1990,7 +1991,7 @@ const PerYearlyTabulation = ({ result }) => {
                                     </DIV>
                                     <DIV
                                         style={{
-                                            width: "19%",
+                                            width: "23%",
                                             borderRight: 1,
                                             height: "100%",
                                             display: "flex",
@@ -2705,7 +2706,7 @@ const PerYearlyTabulation = ({ result }) => {
                                 {/* col-3.1: result grades:this year */}
                                 <DIV
                                     style={{
-                                        width: "100pt",
+                                        width: "130pt",
                                         height: "84pt",
                                         border: 1,
                                         borderRight: 0,
@@ -2718,7 +2719,7 @@ const PerYearlyTabulation = ({ result }) => {
                                 >
                                     <DIV
                                         style={{
-                                            width: "35%",
+                                            width: "27%",
                                             borderRight: 1,
                                             height: "100%",
                                             display: "flex",
@@ -2737,7 +2738,7 @@ const PerYearlyTabulation = ({ result }) => {
                                     </DIV>
                                     <DIV
                                         style={{
-                                            width: "19%",
+                                            width: "23%",
                                             borderRight: 1,
                                             height: "100%",
                                             display: "flex",
@@ -2760,7 +2761,7 @@ const PerYearlyTabulation = ({ result }) => {
                                     </DIV>
                                     <DIV
                                         style={{
-                                            width: "19%",
+                                            width: "23%",
                                             borderRight: 1,
                                             height: "100%",
                                             display: "flex",
@@ -2807,7 +2808,7 @@ const PerYearlyTabulation = ({ result }) => {
                                 {/* col3.2: result grades:Previous */}
                                 <DIV
                                     style={{
-                                        width: "100pt",
+                                        width: "130pt",
                                         height: "84pt",
                                         border: 1,
                                         borderRight: 0,
@@ -2820,7 +2821,7 @@ const PerYearlyTabulation = ({ result }) => {
                                 >
                                     <DIV
                                         style={{
-                                            width: "35%",
+                                            width: "27%",
                                             borderRight: 1,
                                             height: "100%",
                                             display: "flex",
@@ -2839,7 +2840,7 @@ const PerYearlyTabulation = ({ result }) => {
                                     </DIV>
                                     <DIV
                                         style={{
-                                            width: "19%",
+                                            width: "23%",
                                             borderRight: 1,
                                             height: "100%",
                                             display: "flex",
@@ -2862,7 +2863,7 @@ const PerYearlyTabulation = ({ result }) => {
                                     </DIV>
                                     <DIV
                                         style={{
-                                            width: "19%",
+                                            width: "23%",
                                             borderRight: 1,
                                             height: "100%",
                                             display: "flex",
@@ -2909,7 +2910,7 @@ const PerYearlyTabulation = ({ result }) => {
                                 {/* col3.3: result grades:upto */}
                                 <DIV
                                     style={{
-                                        width: "100pt",
+                                        width: "130pt",
                                         height: "84pt",
                                         border: 1,
                                         borderTop: 0,
@@ -2921,7 +2922,7 @@ const PerYearlyTabulation = ({ result }) => {
                                 >
                                     <DIV
                                         style={{
-                                            width: "35%",
+                                            width: "27%",
                                             borderRight: 1,
                                             height: "100%",
                                             display: "flex",
@@ -2940,7 +2941,7 @@ const PerYearlyTabulation = ({ result }) => {
                                     </DIV>
                                     <DIV
                                         style={{
-                                            width: "19%",
+                                            width: "23%",
                                             borderRight: 1,
                                             height: "100%",
                                             display: "flex",
@@ -2963,7 +2964,7 @@ const PerYearlyTabulation = ({ result }) => {
                                     </DIV>
                                     <DIV
                                         style={{
-                                            width: "19%",
+                                            width: "23%",
                                             borderRight: 1,
                                             height: "100%",
                                             display: "flex",
