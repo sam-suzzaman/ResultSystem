@@ -25,6 +25,9 @@ const SessionListPage = () => {
         )
     );
 
+    // if (sessions) {
+    //     console.log(sessions);
+    // }
     if (isLoading) {
         return <LoadingCom />;
     }

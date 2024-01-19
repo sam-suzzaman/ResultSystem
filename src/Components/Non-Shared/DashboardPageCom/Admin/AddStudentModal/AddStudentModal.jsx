@@ -1,10 +1,15 @@
 import { AiOutlineClose } from "react-icons/ai";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
-import { postHandler } from "../../../../../utils/fetchHandlers";
+import { getAllHandler, postHandler } from "../../../../../utils/fetchHandlers";
 import { toast } from "react-toastify";
 
+import { departments, sessions } from "../../../../../utils/AddMarkFieldsData";
+import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
+
 const AddStudentModal = ({ session }) => {
+    // hooks
     const {
         register,
         handleSubmit,
@@ -16,19 +21,35 @@ const AddStudentModal = ({ session }) => {
     const createStudentMutation = useMutation({
         mutationFn: postHandler,
         onSuccess: (data, variable, context) => {
-            toast.success("Student Created");
+            // toast.success("Student Created");
+            Swal.fire({
+                icon: "success",
+                title: "Done...",
+                text: "Student Added",
+            });
             reset();
         },
         onError: (error, variables, context) => {
-            toast.warn("Something Wrong");
+            // toast.warn("Something Wrong");
+            console.log(error);
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: error.response.data.errors.message || "Something wrong",
+            });
         },
     });
 
     const addStudentFormHandler = (data) => {
-        const student = { ...data, currentSession: data.session };
+        const student = {
+            ...data,
+            currentSession: data?.session,
+            presentAddress: "Agnibina Hall",
+            permanentAddress: "Sherpur,Bangladesh",
+        };
         createStudentMutation.mutate({
             body: student,
-            url: "https://student-management-delta.vercel.app/user",
+            url: "https://student-management-delta.vercel.app/user/create-student",
         });
     };
     return (
@@ -43,12 +64,12 @@ const AddStudentModal = ({ session }) => {
                     <div className="modal-action mt-0">
                         <label
                             htmlFor="add_student_modal"
-                            className="btn btn-xs text-white text-sm btn-error font-bold rounded-full capitalize"
+                            className="cursor-pointer p-1 text-white text-sm font-extrabold btn-error rounded-full capitalize"
                         >
                             <AiOutlineClose />
                         </label>
                     </div>
-                    <h3 className="font-bold text-lg text-center mb-6">
+                    <h3 className="font-bold text-xl text-primary text-center mb-6">
                         Add Student
                     </h3>
                     <form
@@ -56,129 +77,171 @@ const AddStudentModal = ({ session }) => {
                         noValidate
                         autoComplete="off"
                     >
-                        <div className="form-control w-full">
+                        {/* Department */}
+                        <div className="form-control w-full mb-2">
                             <label className="label">
-                                <span className="label-text text-xs font-medium uppercase">
-                                    department
-                                </span>
+                                <span className="label-text">Department</span>
                             </label>
                             <input
                                 type="text"
                                 placeholder="Type Here"
-                                className="input input-bordered rounded-sm w-full p-4"
-                                {...register("department", {
-                                    required: {
-                                        value: true,
-                                        message: "Department is Required",
-                                    },
-                                })}
+                                className="input input-sm input-bordered rounded-sm w-full p-4 number"
+                                {...register("department")}
                                 defaultValue="EEE"
                                 readOnly
                             />
-                            <label className="label">
-                                <span className="label-text-alt text-xs font-medium text-red-600">
-                                    {errors.department?.message}
-                                </span>
-                            </label>
                         </div>
-                        <div className="form-control w-full">
+                        {/* session */}
+                        <div className="form-control w-full mb-2">
                             <label className="label">
-                                <span className="label-text text-xs font-medium uppercase">
-                                    student session
+                                <span className="label-text">
+                                    Student Session
                                 </span>
                             </label>
                             <input
                                 type="text"
                                 placeholder="Type Here"
-                                className="input input-bordered rounded-sm w-full p-4"
-                                {...register("session", {
-                                    required: {
-                                        value: true,
-                                        message: "Session is Required",
-                                    },
-                                })}
+                                className="input input-sm input-bordered rounded-sm w-full p-4 number"
+                                {...register("session")}
                                 defaultValue={session}
                                 readOnly
                             />
-                            <label className="label">
-                                <span className="label-text-alt text-xs font-medium text-red-600">
-                                    {errors.session?.message}
-                                </span>
-                            </label>
                         </div>
-                        <div className="form-control w-full">
+                        {/* Name */}
+                        <div className="form-control w-full mb-2">
                             <label className="label">
-                                <span className="label-text text-xs font-medium uppercase">
-                                    username
-                                </span>
+                                <span className="label-text">Student Name</span>
                             </label>
                             <input
                                 type="text"
                                 placeholder="Type Here"
-                                className="input input-bordered rounded-sm w-full p-4"
-                                {...register("username", {
+                                className="input input-sm input-bordered rounded-sm w-full p-4 capitalize"
+                                {...register("name", {
                                     required: {
                                         value: true,
-                                        message: "Username is Required",
+                                        message: "Student name is Required",
                                     },
                                 })}
                             />
+                            {errors?.name && (
+                                <span className=" mt-1 label-text-alt text-xs font-normal capitalize text-red-700">
+                                    {errors.name?.message}
+                                </span>
+                            )}
+                        </div>
+                        {/* Email */}
+                        <div className="form-control w-full mb-2">
                             <label className="label">
-                                <span className="label-text-alt text-xs font-normal text-red-600">
-                                    {errors.username?.message}
+                                <span className="label-text">
+                                    Student email
                                 </span>
                             </label>
-                        </div>
-                        <div className="form-control w-full">
-                            <label className="label">
-                                <span className="label-text text-xs font-medium uppercase">
-                                    student id
+                            <input
+                                type="email"
+                                placeholder="Type Here"
+                                className="input input-sm input-bordered rounded-sm w-full p-4"
+                                {...register("email", {
+                                    required: {
+                                        value: true,
+                                        message: "Student email is Required",
+                                    },
+                                })}
+                            />
+                            {errors?.email && (
+                                <span className=" mt-1 label-text-alt text-xs font-normal capitalize text-red-700">
+                                    {errors.email?.message}
                                 </span>
+                            )}
+                        </div>
+                        {/* Roll */}
+                        <div className="form-control w-full mb-2">
+                            <label className="label">
+                                <span className="label-text">Student Roll</span>
                             </label>
                             <input
                                 type="text"
                                 placeholder="Type Here"
-                                className="input input-bordered rounded-sm w-full p-4"
+                                className="input input-sm input-bordered rounded-sm w-full p-4 number"
                                 {...register("roll", {
                                     required: {
                                         value: true,
-                                        message: "Student ID is Required",
+                                        message: "Student Roll is Required",
                                     },
                                 })}
                             />
-                            <label className="label">
-                                <span className="label-text-alt text-xs font-normal text-red-600">
+                            {errors?.roll && (
+                                <span className=" mt-1 label-text-alt text-xs font-normal capitalize text-red-700">
                                     {errors.roll?.message}
                                 </span>
-                            </label>
+                            )}
                         </div>
-                        <div className="form-control w-full">
+                        {/* Registration */}
+                        <div className="form-control w-full mb-2">
                             <label className="label">
-                                <span className="label-text text-xs font-medium uppercase">
-                                    password
+                                <span className="label-text">
+                                    Registration No.
                                 </span>
                             </label>
                             <input
                                 type="text"
                                 placeholder="Type Here"
-                                className="input input-bordered rounded-sm w-full p-4"
+                                className="input input-sm input-bordered rounded-sm w-full p-4 number"
+                                {...register("regNo", {
+                                    required: {
+                                        value: true,
+                                        message:
+                                            "Student registration number is Required",
+                                    },
+                                    minLength: {
+                                        value: 4,
+                                        message: "Too short (min 4 char)",
+                                    },
+                                    maxLength: {
+                                        value: 4,
+                                        message: "Too long (max 4 char)",
+                                    },
+                                })}
+                            />
+                            {errors?.regNo && (
+                                <span className=" mt-1 label-text-alt text-xs font-normal capitalize text-red-700">
+                                    {errors.regNo?.message}
+                                </span>
+                            )}
+                        </div>
+                        {/* Password */}
+                        <div className="form-control w-full mb-2">
+                            <label className="label">
+                                <span className="label-text">Password</span>
+                            </label>
+                            <input
+                                type="text"
+                                placeholder="Type Here"
+                                className="input input-sm input-bordered rounded-sm w-full p-4 number"
                                 {...register("password", {
                                     required: {
                                         value: true,
                                         message: "Password is Required",
                                     },
+                                    minLength: {
+                                        value: 8,
+                                        message: "At least 8 char",
+                                    },
+                                    maxLength: {
+                                        value: 20,
+                                        message: "Max 20 char",
+                                    },
                                 })}
                             />
-                            <label className="label">
-                                <span className="label-text-alt text-xs font-normal text-red-600">
-                                    {errors.password?.message}
+                            {errors?.password && (
+                                <span className=" mt-1 label-text-alt text-xs font-normal capitalize text-red-700">
+                                    {errors.session?.message}
                                 </span>
-                            </label>
+                            )}
                         </div>
-                        <div className="flex justify-center mt-2">
+                        <div className="flex justify-center mt-6">
                             <button
                                 type="submit"
-                                className="btn btn-sm rounded-sm text-white bg-[#3ab16a] hover:bg-[#2e9657] text-xs font-normal  uppercase"
+                                className="btn btn-sm rounded-sm text-white bg-secondary hover:bg-primary text-xs font-normal  uppercase"
                             >
                                 Add student
                             </button>

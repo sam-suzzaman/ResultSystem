@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { AiOutlineClose } from "react-icons/ai";
-import { useMutation, useQueryClient } from "react-query";
-import { postHandler } from "../../../../../utils/fetchHandlers";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { getAllHandler, postHandler } from "../../../../../utils/fetchHandlers";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const sessionOptions = [
     {
@@ -72,7 +73,23 @@ const sessionOptions = [
     },
 ];
 
+import sessionOptions2 from "../../../../../utils//dynamicSessionData.js";
+// console.log(sessionOptions2);
+
 const AddSessionModal = ({ setOpenAddSessionModal }) => {
+    // State
+
+    // hooks
+    const {
+        isLoading,
+        isError,
+        data: teachers,
+        error,
+    } = useQuery("teachers-list", () =>
+        getAllHandler(
+            `https://student-management-delta.vercel.app/user/teachers`
+        )
+    );
     const {
         register,
         handleSubmit,
@@ -87,13 +104,25 @@ const AddSessionModal = ({ setOpenAddSessionModal }) => {
         mutationFn: postHandler,
         onSuccess: (data, variable, context) => {
             queryClient.invalidateQueries("sessionList");
-            setOpenAddSessionModal(false);
-            toast("New Session Added");
+            // setOpenAddSessionModal(false);
+            // toast("New Session Added");
+            Swal.fire({
+                icon: "success",
+                title: "Done...",
+                text: "New Session Created",
+            });
             reset();
         },
         onError: (error, variables, context) => {
-            // An error happened!
-            toast.warn(error.response.data.errors.common);
+            // console.log(error);
+            // toast.warn(error.response.data.errors.common);
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text:
+                    error?.response?.data?.errors?.message ||
+                    "Something went wrong!",
+            });
         },
     });
 
@@ -103,7 +132,9 @@ const AddSessionModal = ({ setOpenAddSessionModal }) => {
             url: "https://student-management-delta.vercel.app/session",
         });
     };
-
+    // if (teachers) {
+    //     console.log(teachers);
+    // }
     return (
         <div>
             <input
@@ -116,17 +147,18 @@ const AddSessionModal = ({ setOpenAddSessionModal }) => {
                     <div className="modal-action mt-0">
                         <label
                             htmlFor="add_session_modal"
-                            className="btn btn-xs text-white btn-error text-sm font-bold rounded-full capitalize"
+                            className="cursor-pointer p-1 text-white btn-error text-sm font-extrabold rounded-full capitalize"
                         >
                             <AiOutlineClose />
                         </label>
                     </div>
-                    <h3 className="font-bold text-lg text-center mb-6">
+                    <h3 className="font-bold text-xl text-primary text-center mb-6">
                         Add Session
                     </h3>
                     <form onSubmit={handleSubmit(sessionFormHandler)}>
+                        {/* department */}
                         <div className="form-control w-full">
-                            <label className="label">
+                            <label className="label ">
                                 <span className="label-text font-medium">
                                     Department Name
                                 </span>
@@ -134,7 +166,7 @@ const AddSessionModal = ({ setOpenAddSessionModal }) => {
                             <input
                                 {...register("department")}
                                 type="text"
-                                className="input input-bordered w-full rounded-sm"
+                                className="input input-bordered input-sm w-full rounded-sm"
                                 defaultValue="EEE"
                                 readOnly
                             />
@@ -144,6 +176,7 @@ const AddSessionModal = ({ setOpenAddSessionModal }) => {
                                 </span>
                             </label> */}
                         </div>
+                        {/* session */}
                         <div className="form-control w-full mt-2">
                             <label className="label">
                                 <span className="label-text font-medium">
@@ -151,7 +184,7 @@ const AddSessionModal = ({ setOpenAddSessionModal }) => {
                                 </span>
                             </label>
                             <select
-                                className="select w-full select-bordered rounded-sm"
+                                className="select w-full select-bordered rounded-sm select-sm"
                                 {...register("session", {
                                     validate: {
                                         isSelectSession: (value) => {
@@ -169,7 +202,10 @@ const AddSessionModal = ({ setOpenAddSessionModal }) => {
                                 </option>
                                 {sessionOptions.map((session) => {
                                     return (
-                                        <option key={session._id}>
+                                        <option
+                                            key={session._id}
+                                            className="number"
+                                        >
                                             {session.session}
                                         </option>
                                     );
@@ -178,6 +214,48 @@ const AddSessionModal = ({ setOpenAddSessionModal }) => {
                             <label className="label">
                                 <span className="label-text-alt text-xs  text-red-600">
                                     {errors?.session?.message}
+                                </span>
+                            </label>
+                        </div>
+                        {/* Teacher */}
+                        <div className="form-control w-full mt-2">
+                            <label className="label">
+                                <span className="label-text font-medium">
+                                    Session President
+                                </span>
+                            </label>
+                            <select
+                                className="select w-full select-bordered rounded-sm select-sm"
+                                {...register("president", {
+                                    validate: {
+                                        isSelectSession: (value) => {
+                                            return (
+                                                value !== "default" ||
+                                                "Session President is Required"
+                                            );
+                                        },
+                                    },
+                                })}
+                                defaultValue="default"
+                            >
+                                <option readOnly value="default">
+                                    Select Session President
+                                </option>
+                                {teachers?.map((teacher) => {
+                                    return (
+                                        <option
+                                            key={teacher._id}
+                                            className="number"
+                                            value={teacher._id}
+                                        >
+                                            {teacher?.name}
+                                        </option>
+                                    );
+                                })}
+                            </select>
+                            <label className="label">
+                                <span className="label-text-alt text-xs  text-red-600">
+                                    {errors?.president?.message}
                                 </span>
                             </label>
                         </div>

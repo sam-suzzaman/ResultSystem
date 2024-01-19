@@ -16,6 +16,7 @@ import LoadingCom from "../../../../../Shared/LoadingCom/LoadingCom";
 import ResultErrorCom from "../../../../../Shared/ResultErrorCom/ResultErrorCom";
 import axios from "axios";
 import { useQuery } from "react-query";
+import useFetchConfig from "../../../../../../utils/useFetchConfig";
 
 // const fetchData = async () => {
 //     const res = await axios.get(
@@ -27,6 +28,7 @@ import { useQuery } from "react-query";
 const StepTwo = () => {
     const { step, setStep, stepOneValue, setStepOneValue } =
         useResultStepContext();
+    const config = useFetchConfig();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [data, setData] = useState({});
@@ -50,7 +52,8 @@ const StepTwo = () => {
         setLoading(true);
         const fetchData = async () => {
             const res = await axios.get(
-                `https://student-management-delta.vercel.app/result/${stepOneValue.department}/${stepOneValue.session}/${stepOneValue.courseName}/${stepOneValue.courseCode}`
+                `https://student-management-delta.vercel.app/result/${stepOneValue.department}/${stepOneValue.session}/${stepOneValue.courseName}/${stepOneValue.courseCode}`,
+                config
             );
             setData(res.data);
         };

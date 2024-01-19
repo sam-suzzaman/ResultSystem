@@ -31,7 +31,8 @@ const LoginPage = () => {
                 "https://student-management-delta.vercel.app/login",
                 data
             );
-            const accessToken = response?.data["token"];
+            console.log(response);
+            const accessToken = response?.data.result.token;
             localStorage.setItem("access-token", accessToken);
             handleLoginToken(accessToken);
             toast.success("Login Done");
@@ -80,23 +81,19 @@ const LoginPage = () => {
                         <input
                             type="text"
                             className="inputField number"
-                            id="username"
-                            placeholder="Student Roll"
-                            {...register("userRoll", {
+                            id="email"
+                            placeholder="User Email"
+                            {...register("email", {
                                 required: {
                                     value: true,
-                                    message: "Student Roll is required",
-                                },
-                                maxLength: {
-                                    value: 8,
-                                    message: "Roll is too long (max 8chars)",
+                                    message: "Email is required",
                                 },
                             })}
                         />
                     </div>
 
                     <span className="label-text-alt capitalize text-red-600 text-[10px] mt-1 font-semibold text-right">
-                        {errors.userRoll?.message}
+                        {errors.email?.message}
                     </span>
                 </div>
 

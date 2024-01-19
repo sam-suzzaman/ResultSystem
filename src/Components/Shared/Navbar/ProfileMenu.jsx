@@ -17,7 +17,7 @@ const ProfileMenu = () => {
                     />
                     <div className="">
                         <h3 className="text-xs font-medium capitalize mb-0 text-slate-700">
-                            {user?.username || "unknown"}
+                            {user?.name || "unknown"}
                         </h3>
                         <p className="text-xs mb-0 text-slate-500 capitalize font-normal">
                             <span className="font-medium">role:</span>{" "}
@@ -54,7 +54,7 @@ const ProfileMenu = () => {
                     )}
                 </li>
                 <li>
-                    {user?.username ? (
+                    {user?.name ? (
                         <button
                             onClick={() => userLogout()}
                             className="flex items-center text-red-600 hover:text-red-700 hover:font-medium rounded-sm"

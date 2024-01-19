@@ -10,7 +10,7 @@ const ProtectAdminRoutes = ({ children }) => {
     if (userLoading) {
         return <LoadingCom />;
     }
-    if (user?.role === "admin") {
+    if (user?.role === "faculty" || user?.role === "admin") {
         return children;
     } else if (user?.role) {
         return <Navigate to="/" />;

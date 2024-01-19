@@ -2,7 +2,7 @@ import React from "react";
 
 const StudentListTable = ({ students, setDeleteStudentID }) => {
     return (
-        <div className="overflow-x-auto flex justify-center">
+        <div className="overflow-x-auto flex justify-center mt-8">
             <table className="table table-zebra  w-full max-w-[75%]">
                 <thead>
                     <tr>
@@ -10,6 +10,7 @@ const StudentListTable = ({ students, setDeleteStudentID }) => {
                         <th>Student Name</th>
                         <th>Student ID</th>
                         <th>Session</th>
+                        <th>Email</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -18,11 +19,12 @@ const StudentListTable = ({ students, setDeleteStudentID }) => {
                         return (
                             <tr key={student._id}>
                                 <th>{index + 1}</th>
-                                <td className="capitalize">
-                                    {student.username}
+                                <td className="capitalize">{student.name}</td>
+                                <td className="number">{student.roll}</td>
+                                <td className="number">
+                                    {student.currentSession}
                                 </td>
-                                <td>{student.roll}</td>
-                                <td>{student.currentSession}</td>
+                                <td className="number">{student.email}</td>
                                 <td>
                                     <label
                                         onClick={() => {

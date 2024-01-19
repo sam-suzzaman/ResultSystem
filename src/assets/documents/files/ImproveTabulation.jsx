@@ -130,6 +130,7 @@ const styles = StyleSheet.create({
 });
 
 const ImproveTabulation = ({ results, resultType, stepOneValue }) => {
+    console.log(stepOneValue);
     return (
         <Document>
             <Page size="LEGAL" orientation="landscape" style={styles.page}>
@@ -184,7 +185,7 @@ const ImproveTabulation = ({ results, resultType, stepOneValue }) => {
                                 marginBottom: "4pt",
                             }}
                         >
-                            Improvement Result - 2018
+                            Improvement Result
                         </H3>
                         <H3
                             style={{
@@ -194,7 +195,7 @@ const ImproveTabulation = ({ results, resultType, stepOneValue }) => {
                                 marginBottom: "4pt",
                             }}
                         >
-                            Course Name: Power Electronics
+                            Course Name: {stepOneValue.courseName}
                         </H3>
                         <H3
                             style={{
@@ -204,7 +205,7 @@ const ImproveTabulation = ({ results, resultType, stepOneValue }) => {
                                 marginBottom: "4pt",
                             }}
                         >
-                            Course Code : EEE-311
+                            Course Code : {stepOneValue.courseCode}
                         </H3>
                         <H3
                             style={{
@@ -213,7 +214,7 @@ const ImproveTabulation = ({ results, resultType, stepOneValue }) => {
                                 textAlign: "center",
                             }}
                         >
-                            Session: 2017-18
+                            Session: {stepOneValue.session}
                         </H3>
                     </DIV>
                 </DIV>
