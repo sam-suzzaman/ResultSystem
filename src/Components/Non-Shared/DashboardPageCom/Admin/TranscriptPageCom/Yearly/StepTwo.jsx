@@ -18,7 +18,7 @@ const StepTwo = () => {
         return <LoadingCom />;
     }
     if (data) {
-        // console.log(data.yearTabulation);
+        console.log(data);
     }
     if (Object.keys(data?.yearTabulation?.marks)?.length === 0) {
         return (
@@ -54,6 +54,7 @@ const StepTwo = () => {
                     /> */}
                     <PerYearlyTabulation
                         result={data.yearTabulation}
+                        student={data?.yearTabulation?.studentData}
                         stepOneValue={stepOneValue}
                     />
                 </PDFViewer>

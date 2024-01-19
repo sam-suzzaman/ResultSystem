@@ -5,6 +5,7 @@ import { DIV, SPAN, H1, H2, H3, H4, H5, H6 } from "../Components";
 
 import logo from "../../../assets/Jkkniu_logo.png";
 import grade from "../../../assets/grade.png";
+import useGetYearSemester from "../../../utils/useGetYearSemester";
 
 const styles = StyleSheet.create({
     page: {
@@ -132,6 +133,43 @@ const styles = StyleSheet.create({
 const SemesterFinalTabulation = ({ results, stepOneValue }) => {
     const [colData, setColData] = useState([]);
     const [pageSize, setPageSize] = useState("A4");
+    const { year, semester } = useGetYearSemester(stepOneValue?.semester * 1);
+
+    const [semesterValue, setSemesterValue] = useState(
+        stepOneValue?.semester * 1
+    );
+
+    // Naming Semesters
+    useEffect(() => {
+        switch (semesterValue) {
+            case 1:
+                setSemesterValue("1st");
+                break;
+            case 2:
+                setSemesterValue("2nd");
+                break;
+            case 3:
+                setSemesterValue("3rd");
+                break;
+            case 4:
+                setSemesterValue("4th");
+                break;
+            case 5:
+                setSemesterValue("5th");
+                break;
+            case 6:
+                setSemesterValue("6th");
+                break;
+            case 7:
+                setSemesterValue("7th");
+                break;
+            case 8:
+                setSemesterValue("8th");
+                break;
+            default:
+                break;
+        }
+    }, [stepOneValue?.semester]);
 
     // Calculate Columns data
     useEffect(() => {
@@ -169,6 +207,9 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
             default:
         }
     }, [colData]);
+
+    // handle Sheet Informations
+    // useEffect(()=>{},[stepOneValue])
     return (
         <Document>
             <Page size={pageSize} orientation="landscape" style={styles.page}>
@@ -223,7 +264,7 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
                                 marginBottom: "4pt",
                             }}
                         >
-                            2nd Year 1st Semester Mark Tabulation
+                            {year} Year {semester} Semester Mark Tabulation
                         </H3>
                         <H3
                             style={{
@@ -232,7 +273,7 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
                                 textAlign: "center",
                             }}
                         >
-                            Session: 2017-18
+                            Session: {stepOneValue?.session}
                         </H3>
                     </DIV>
                 </DIV>
@@ -274,8 +315,8 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
                                                 paddingTop: "2.5pt",
                                             }}
                                         >
-                                            {course.courseCode}(
-                                            {course.courseCredit} Cr)
+                                            {course.courseCode} (
+                                            {course.credit.toFixed(1)} Cr)
                                         </SPAN>
                                     </DIV>
                                     {course.credit === 3.0 && (
@@ -408,12 +449,22 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
                                     style={{
                                         ...styles.text,
                                         textAlign: "center",
+                                        fontSize: "8pt",
+                                        paddingTop: "2pt",
+                                    }}
+                                >
+                                    {semesterValue} Semester
+                                </SPAN>
+                                {/* <SPAN
+                                    style={{
+                                        ...styles.text,
+                                        textAlign: "center",
                                         fontSize: "7pt",
                                         paddingTop: "3pt",
                                     }}
                                 >
-                                    2nd Year 1st Semester
-                                </SPAN>
+                                    {year} Year {semester} Semester
+                                </SPAN> */}
                             </DIV>
                             <DIV style={styles.resultInnerRow}>
                                 <SPAN
@@ -423,8 +474,8 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
                                         transform: "rotate(-180deg)",
                                     }}
                                 >
-                                    CGPA in 2nd Year 1st semester (Total
-                                    Credit=18)
+                                    CGPA in {year} Year {semester} semester
+                                    (Total Credit=18)
                                 </SPAN>
                                 <SPAN
                                     style={{
@@ -434,8 +485,8 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
                                         borderTop: 1,
                                     }}
                                 >
-                                    GPA in 2nd Year 1st semester {"    "}(out of
-                                    4.00)
+                                    GPA in {year} Year {semester} semester
+                                    {"    "}(Out of 4.00)
                                 </SPAN>
                             </DIV>
                         </DIV>

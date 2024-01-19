@@ -43,6 +43,7 @@ import ImproveMarkPageStudent from "../Pages/DashboardPages/Student/ResultPage/I
 import LabImproveAddMarkPage from "../Pages/DashboardPages/Admin/AddMarkPage/LabImproveAddMarkPage";
 import YearlyTranscriptPage from "../Pages/DashboardPages/Admin/TranscriptPage/YearlyTranscriptPage";
 import { MarkFormStepProvider } from "../context/Admin/MarkFormStepContext";
+import ManageTeacherPage from "../Pages/DashboardPages/Admin/ManageTeacherPage/ManageTeacherPage";
 
 const Routers = createBrowserRouter([
     {
@@ -178,6 +179,10 @@ const Routers = createBrowserRouter([
                                 <YearlyTranscriptPage />
                             </MarkFormStepProvider>
                         ),
+                    },
+                    {
+                        path: "/dashboard/admin/manage-teacher",
+                        element: <ManageTeacherPage />,
                     },
                 ],
             },

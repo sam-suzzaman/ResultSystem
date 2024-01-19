@@ -4,6 +4,7 @@ import { AiFillHome, AiOutlineUsergroupAdd } from "react-icons/ai";
 import { GrDocumentPpt } from "react-icons/gr";
 import { BsBookmarks } from "react-icons/bs";
 import { HiDocumentCheck } from "react-icons/hi2";
+import { FaUserTie } from "react-icons/fa6";
 
 import { SessionPageProvider } from "../context/Admin/SessionPageContext";
 import styled from "styled-components";
@@ -22,6 +23,13 @@ const AdminDashboardLayout = () => {
             path: ".",
             // path: "/dashboard/admin/session-list",
             icon: <AiOutlineUsergroupAdd />,
+        },
+        {
+            id: 5,
+            title: "Teachers",
+            path: "/dashboard/admin/manage-teacher",
+            // path: "/dashboard/admin/session-list",
+            icon: <FaUserTie />,
         },
         {
             id: 3,

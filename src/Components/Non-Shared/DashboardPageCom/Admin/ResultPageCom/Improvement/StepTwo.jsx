@@ -67,6 +67,14 @@ const StepTwo = () => {
     // if (isError || !data?.result?.length) {
     //     return <ResultErrorCom homeURL="/dashboard/admin/get-mark" />;
     // }
+    if (!data?.result?.length) {
+        return (
+            <ResultErrorCom
+                msg="Data List Empty"
+                homeURL="/dashboard/admin/get-mark"
+            />
+        );
+    }
 
     return (
         <Wrapper>

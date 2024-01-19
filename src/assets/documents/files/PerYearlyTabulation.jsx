@@ -33,8 +33,29 @@ const styles = StyleSheet.create({
     },
 });
 
-const PerYearlyTabulation = ({ result }) => {
-    // console.log(result);
+const PerYearlyTabulation = ({ result, student, stepOneValue }) => {
+    // console.log(stepOneValue);
+    const [year, setYear] = useState("1st");
+    useEffect(()=>{
+        switch (stepOneValue?.year) {
+            case "1":
+                setYear("1st");
+                break;
+            case "2":
+                setYear("2nd");
+                break;
+            case "3":
+                setYear("3rd");
+                break;
+            case "4":
+                setYear("4th");
+                break;
+
+            default:
+                break;
+        }
+
+    },[stepOneValue?.year])
     return (
         <Document>
             <Page size="A3" orientation="landscape" style={styles.page}>
@@ -78,7 +99,8 @@ const PerYearlyTabulation = ({ result }) => {
                             The Degree of Bachelor of Science in Engineering
                         </H4>
                         <H4 style={{ fontSize: "10pt" }}>
-                            Tabulation Sheet of 4th Year Examination-2020
+                            Tabulation Sheet of {year} Year Examination-
+                            {student?.examYear}
                         </H4>
                         <H4 style={{ fontSize: "10pt" }}>
                             Faculty of Science and Engineering
@@ -106,9 +128,7 @@ const PerYearlyTabulation = ({ result }) => {
                                 borderRight: 0,
                             }}
                         >
-                            <H4 style={{ fontSize: "9pt" }}>
-                                Rizuan kabir akanda
-                            </H4>
+                            <H4 style={{ fontSize: "9pt" }}>{student?.name}</H4>
                         </DIV>
                         <DIV
                             style={{
@@ -125,7 +145,9 @@ const PerYearlyTabulation = ({ result }) => {
                                 width: "50pt",
                             }}
                         >
-                            <H4 style={{ fontSize: "9pt" }}>2017-18</H4>
+                            <H4 style={{ fontSize: "9pt" }}>
+                                {student?.session}
+                            </H4>
                         </DIV>
                     </DIV>
                     {/* row -2 */}
@@ -148,7 +170,7 @@ const PerYearlyTabulation = ({ result }) => {
                                 borderTop: 0,
                             }}
                         >
-                            <H4 style={{ fontSize: "9pt" }}>18102930</H4>
+                            <H4 style={{ fontSize: "9pt" }}>{student?.roll}</H4>
                         </DIV>
                         <DIV
                             style={{
@@ -189,7 +211,7 @@ const PerYearlyTabulation = ({ result }) => {
                                 borderTop: 0,
                             }}
                         >
-                            <H4 style={{ fontSize: "9pt" }}>B. S. M. R Hall</H4>
+                            <H4 style={{ fontSize: "9pt" }}>-</H4>
                         </DIV>
                     </DIV>
                 </DIV>

@@ -25,6 +25,17 @@ export const semesters = [
     { _id: 7, semester: 7 },
     { _id: 8, semester: 8 },
 ];
+
+export const JobPosition = [
+    {
+        _id: 1,
+        name: "Chairman",
+    },
+    {
+        _id: 2,
+        name: "Lecturer",
+    },
+];
 export const courses = [
     { _id: 1, title: "Electrical Circuit" },
     { _id: 2, title: "Power System I" },

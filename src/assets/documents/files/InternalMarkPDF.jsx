@@ -3,6 +3,7 @@ import { Document, Page, StyleSheet, Image, Text } from "@react-pdf/renderer";
 
 import { DIV, SPAN, H6, H3, H4 } from "../Components";
 import logo from "../../Jkkniu_logo.png";
+import useGetYearSemester from "../../../utils/useGetYearSemester";
 
 const styles = StyleSheet.create({
     page: {
@@ -82,6 +83,7 @@ const styles = StyleSheet.create({
 });
 
 const InternlMarkPDF = ({ results, stepOneValue }) => {
+    const { year, semester } = useGetYearSemester(stepOneValue?.semester * 1);
     return (
         <Document>
             <Page size="A4" style={styles.page}>
@@ -137,8 +139,17 @@ const InternlMarkPDF = ({ results, stepOneValue }) => {
                                 marginBottom: "4pt",
                             }}
                         >
-                            Internal Marks,{"  "}Session:{" "}
-                            {stepOneValue?.session}
+                            Internal Marks, {year} year {semester} semester
+                        </H3>
+                        <H3
+                            style={{
+                                fontWeight: "400",
+                                fontSize: "11pt",
+                                textAlign: "center",
+                                marginBottom: "4pt",
+                            }}
+                        >
+                            Session: {stepOneValue?.session}
                         </H3>
                     </DIV>
                 </DIV>
