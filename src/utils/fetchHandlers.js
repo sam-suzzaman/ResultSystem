@@ -31,6 +31,7 @@ export const updateHandler = async ({ url, body }) => {
 };
 
 export const deleteHandler = async ({ url }) => {
-    const response = await axios.delete(url);
+    const config = useFetchConfig();
+    const response = await axios.delete(url, config);
     return response.data.result;
 };

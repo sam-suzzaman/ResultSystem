@@ -10,7 +10,7 @@ const getCurrentYear = () => {
 const createSession = (id, year) => {
     return {
         _id: id,
-        session: `${year}-${year + 1}`,
+        session: `${year}-${(year + 1) % 100}`,
     };
 };
 

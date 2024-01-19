@@ -177,16 +177,7 @@ const ImproveTabulation = ({ results, resultType, stepOneValue }) => {
                         >
                             Department of Electrical and Electronic Engineering
                         </H3>
-                        <H3
-                            style={{
-                                fontWeight: "400",
-                                fontSize: "11pt",
-                                textAlign: "center",
-                                marginBottom: "4pt",
-                            }}
-                        >
-                            Improvement Result
-                        </H3>
+
                         <H3
                             style={{
                                 fontWeight: "400",
@@ -206,6 +197,16 @@ const ImproveTabulation = ({ results, resultType, stepOneValue }) => {
                             }}
                         >
                             Course Code : {stepOneValue.courseCode}
+                        </H3>
+                        <H3
+                            style={{
+                                fontWeight: "400",
+                                fontSize: "11pt",
+                                textAlign: "center",
+                                marginBottom: "4pt",
+                            }}
+                        >
+                            Improvement Result
                         </H3>
                         <H3
                             style={{

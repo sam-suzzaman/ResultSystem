@@ -6,7 +6,7 @@ import { getAllHandler, postHandler } from "../../../../../utils/fetchHandlers";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 
-const sessionOptions = [
+const sessionOptions2 = [
     {
         _id: "1",
         session: "2010-11",
@@ -73,7 +73,7 @@ const sessionOptions = [
     },
 ];
 
-import sessionOptions2 from "../../../../../utils//dynamicSessionData.js";
+import sessionOptions from "../../../../../utils//dynamicSessionData.js";
 // console.log(sessionOptions2);
 
 const AddSessionModal = ({ setOpenAddSessionModal }) => {
