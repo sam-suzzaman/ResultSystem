@@ -31,7 +31,7 @@ const ProfileMenu = () => {
                 className="mt-5 z-[1] p-2 shadow-md menu menu-sm dropdown-content bg-base-100 rounded-sm w-52"
             >
                 <li>
-                    {user?.role === "admin" ? (
+                    {user?.role === "admin" || user?.role === "faculty" ? (
                         <NavLink
                             to="/dashboard/admin/"
                             className="capitalize rounded-sm"

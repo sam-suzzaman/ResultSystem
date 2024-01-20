@@ -14,6 +14,16 @@ const UserContextProviderWrapper = ({ children }) => {
 
     const handleLoginToken = (tokenValue) => {
         setToken(tokenValue);
+
+        // // Clear the previous timeout, if any
+        // if (tokenTimeOut) {
+        //     clearTimeout(tokenTimeOut);
+        // }
+
+        // // Set a new timer to remove the token after expirationTime milliseconds
+        // let tokenTimeOut = setTimeout(function () {
+        //     localStorage.removeItem("access-token");
+        // }, 3600000); //1hour
     };
 
     const getMeHandler = async () => {
@@ -31,6 +41,7 @@ const UserContextProviderWrapper = ({ children }) => {
                 setUser(response?.data?.result);
                 setUserLoading(false);
                 setUserError(false);
+
                 return;
             } else {
                 setUser({ status: false });
