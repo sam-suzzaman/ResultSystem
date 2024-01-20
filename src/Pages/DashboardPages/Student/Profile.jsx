@@ -8,9 +8,13 @@ import { GrPowerReset } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import BasicInfoTable from "./ProfilePage/BasicInfoTable";
 import UpdateForm from "./ProfilePage/UpdateForm";
+import { useUserContext } from "../../../context/Admin/UserContext";
 
 const Profile = () => {
     const [isShowUpdateForm, setIsShowUpdateForm] = useState(false);
+
+    // Contexts
+    const { user } = useUserContext();
 
     const id = "10101";
     return (
@@ -59,7 +63,11 @@ const Profile = () => {
                                 </span>
                             </div>
                         </div>
-                        {isShowUpdateForm ? <UpdateForm /> : <BasicInfoTable />}
+                        {isShowUpdateForm ? (
+                            <UpdateForm />
+                        ) : (
+                            <BasicInfoTable data={user} />
+                        )}
                     </div>
                 </div>
             </div>
