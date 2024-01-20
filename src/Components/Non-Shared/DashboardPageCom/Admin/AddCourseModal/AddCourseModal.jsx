@@ -61,23 +61,23 @@ const AddCourseModal = ({ setIsShowAddCourseModal }) => {
                     <div className="modal-action mt-0">
                         <label
                             htmlFor="add_course_modal"
-                            className="btn btn-xs text-white btn-error text-sm font-bold rounded-full capitalize"
+                            className="cursor-pointer p-1 text-white btn-error text-sm font-bold rounded-full capitalize"
                         >
                             <AiOutlineClose />
                         </label>
                     </div>
                     <div className="mb-4">
-                        <h3 className="font-bold  text-sm text-center uppercase">
+                        <h3 className="font-bold  text-xl text-primary text-center uppercase">
                             Add course
                         </h3>
                         {/* <h3 className="font-medium text-base text-center uppercase mt-1 mb-1">
                             Dept. of EEE
                         </h3> */}
                         <div className="flex justify-center gap-x-4 mt-1">
-                            <h3 className="font-bold  text-xs text-center uppercase">
+                            <h3 className="font-bold  text-xs text-center uppercase number">
                                 Session:{session}
                             </h3>{" "}
-                            <h3 className="font-bold  text-xs text-center uppercase">
+                            <h3 className="font-bold  text-xs text-center uppercase number">
                                 Semester: {semester}
                             </h3>
                         </div>
@@ -139,7 +139,7 @@ const AddCourseModal = ({ setIsShowAddCourseModal }) => {
                                     },
                                 })}
                                 type="text"
-                                className="input input-bordered input-sm  w-full rounded-sm uppercase"
+                                className="input input-bordered input-sm  w-full rounded-sm uppercase number"
                             />
                             <label className="label">
                                 <span className="label-text-alt text-xs  text-red-700">
@@ -183,7 +183,7 @@ const AddCourseModal = ({ setIsShowAddCourseModal }) => {
                                     },
                                 })}
                                 type="text"
-                                className="input input-bordered input-sm w-full rounded-sm"
+                                className="input input-bordered input-sm w-full rounded-sm number"
                             />
                             <label className="label">
                                 <span className="label-text-alt text-xs  text-red-700">

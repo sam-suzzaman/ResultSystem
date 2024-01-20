@@ -44,6 +44,7 @@ import LabImproveAddMarkPage from "../Pages/DashboardPages/Admin/AddMarkPage/Lab
 import YearlyTranscriptPage from "../Pages/DashboardPages/Admin/TranscriptPage/YearlyTranscriptPage";
 import { MarkFormStepProvider } from "../context/Admin/MarkFormStepContext";
 import ManageTeacherPage from "../Pages/DashboardPages/Admin/ManageTeacherPage/ManageTeacherPage";
+import SearchPage from "../Pages/DashboardPages/Admin/SearchPage/SearchPage";
 
 const Routers = createBrowserRouter([
     {
@@ -183,6 +184,10 @@ const Routers = createBrowserRouter([
                     {
                         path: "/dashboard/admin/manage-teacher",
                         element: <ManageTeacherPage />,
+                    },
+                    {
+                        path: "/dashboard/admin/search",
+                        element: <SearchPage />,
                     },
                 ],
             },

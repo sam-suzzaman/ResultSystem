@@ -22,7 +22,7 @@ const AddTeacherModal = ({ setIsShowAddTeacherModal }) => {
     const createTeacherMutation = useMutation({
         mutationFn: postHandler,
         onSuccess: (data, variable, context) => {
-            queryClient.invalidateQueries("teachersList");
+            queryClient.invalidateQueries("teachers-List");
             // toast.success("Teacher add Successfylly");
             Swal.fire({
                 icon: "success",

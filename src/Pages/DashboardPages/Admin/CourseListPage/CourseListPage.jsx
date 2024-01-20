@@ -61,6 +61,7 @@ const CourseListPage = () => {
             toast.warn("Something Wrong");
         },
     });
+
     const handleDeleteProcess = (response) => {
         if (response) {
             deleteMutation.mutate({
@@ -91,11 +92,11 @@ const CourseListPage = () => {
                     {/* <h3 className="text-center font-bold uppercase text-lg">
                         semester:{semester}
                     </h3> */}
-                    <h4 className="text-center text-lg font-medium capitalize">
+                    <h4 className="text-center text-lg font-medium capitalize number">
                         session: {session}
                     </h4>
                     <div className="text-lg">|</div>
-                    <h4 className="text-center text-lg font-medium capitalize">
+                    <h4 className="text-center text-lg font-medium capitalize number">
                         semester: {semester}
                     </h4>
                 </div>

@@ -5,6 +5,7 @@ import { GrDocumentPpt } from "react-icons/gr";
 import { BsBookmarks } from "react-icons/bs";
 import { HiDocumentCheck } from "react-icons/hi2";
 import { FaUserTie } from "react-icons/fa6";
+import { CiSearch } from "react-icons/ci";
 
 import { SessionPageProvider } from "../context/Admin/SessionPageContext";
 import styled from "styled-components";
@@ -17,6 +18,12 @@ const AdminDashboardLayout = () => {
         //     path: "/dashboard/admin/",
         //     icon: <AiFillHome />,
         // },
+        {
+            id: 7,
+            title: "search",
+            path: "/dashboard/admin/search",
+            icon: <CiSearch />,
+        },
         {
             id: 2,
             title: "sessions",
@@ -44,7 +51,7 @@ const AdminDashboardLayout = () => {
             icon: <GrDocumentPpt />,
         },
         {
-            id: 4,
+            id: 6,
             title: "Transcripts",
             path: "/dashboard/admin/transcript",
             icon: <HiDocumentCheck />,

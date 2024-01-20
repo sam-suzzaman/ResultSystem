@@ -24,7 +24,9 @@ const ResultErrorCom = ({ homeURL, msg }) => {
                             <span className="capitalize">data not found</span>
                         </h2>
                     )}
-                    <button onClick={() => navigate(homeURL)}>back</button>
+                    {homeURL && (
+                        <button onClick={() => navigate(homeURL)}>back</button>
+                    )}
                 </div>
             </div>
         </Wrapper>
@@ -38,7 +40,7 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center; */
-    padding-top: 7vh;
+    padding-top: 6vh;
 
     .img-container {
         width: 100%;

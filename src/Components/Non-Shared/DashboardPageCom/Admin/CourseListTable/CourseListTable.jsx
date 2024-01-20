@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import empty from "../../../../../assets/empty.png";
+import ResultErrorCom from "../../../../Shared/ResultErrorCom/ResultErrorCom";
 
 const CourseListTable = ({
     courseList,
@@ -64,12 +65,13 @@ const CourseListTable = ({
 
     if (courseList.length === 0) {
         return (
-            <div className="flex justify-center items-center flex-col">
-                <img src={empty} alt="" className="w-full max-w-[250px]" />
-                <h2 className="font-semibold text-center text-2xl opacity-80 capitalize">
-                    !!!Opps, no courses assigned yet.
-                </h2>
-            </div>
+            // <div className="flex justify-center items-center flex-col">
+            //     <img src={empty} alt="" className="w-full max-w-[250px]" />
+            //     <h2 className="font-semibold text-center text-2xl opacity-80 capitalize">
+            //         Opps, no courses assigned yet.
+            //     </h2>
+            // </div>
+            <ResultErrorCom msg="No courses assigned yet" />
         );
     }
     return (
@@ -89,14 +91,14 @@ const CourseListTable = ({
                     {courseList?.map((course, index) => {
                         return (
                             <tr key={course.courseCode}>
-                                <th>{index + 1}</th>
-                                <td className="uppercase">
+                                <th className="number">{index + 1}</th>
+                                <td className="uppercase number">
                                     {course.courseCode}
                                 </td>
                                 <td className="capitalize">
                                     {course.courseName}
                                 </td>
-                                <td>{course.credit}</td>
+                                <td className="number">{course.credit}</td>
                                 <td>
                                     <label
                                         onClick={() => {
