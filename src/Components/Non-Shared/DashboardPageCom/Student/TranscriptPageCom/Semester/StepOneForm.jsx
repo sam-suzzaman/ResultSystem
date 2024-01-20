@@ -26,36 +26,36 @@ const StepOneForm = () => {
         formState: { errors },
     } = useForm();
 
-    const [isDeptSelected, setIsDeptSelected] = useState(false);
-    const [isSessionSelected, setIsSessionSelected] = useState(false);
-    const [isSemesterSelect, setIsSemesterSelect] = useState(false);
-    const [sessionData, setSessionData] = useState([]);
+    // const [isDeptSelected, setIsDeptSelected] = useState(false);
+    // const [isSessionSelected, setIsSessionSelected] = useState(false);
+    // const [isSemesterSelect, setIsSemesterSelect] = useState(false);
+    // const [sessionData, setSessionData] = useState([]);
 
-    const deptWatch = watch("department");
-    const sessionWatch = watch("session");
-    const semesterWatch = watch("semester");
+    // const deptWatch = watch("department");
+    // const sessionWatch = watch("session");
+    // const semesterWatch = watch("semester");
 
     // fetch session data
-    useEffect(() => {
-        if (deptWatch && deptWatch !== "default") {
-            setIsDeptSelected(true);
-            const url = `https://student-management-delta.vercel.app/session/department/${deptWatch}`;
-            getAllHandler(url)
-                .then((res) => setSessionData(res))
-                .catch((err) => console.log(err));
-        } else {
-            setIsDeptSelected(false);
-        }
-    }, [deptWatch]);
+    // useEffect(() => {
+    //     if (deptWatch && deptWatch !== "default") {
+    //         setIsDeptSelected(true);
+    //         const url = `https://student-management-delta.vercel.app/session/department/${deptWatch}`;
+    //         getAllHandler(url)
+    //             .then((res) => setSessionData(res))
+    //             .catch((err) => console.log(err));
+    //     } else {
+    //         setIsDeptSelected(false);
+    //     }
+    // }, [deptWatch]);
 
     // checking is session selected
-    useEffect(() => {
-        if (sessionWatch) {
-            setIsSessionSelected(true);
-        } else {
-            setIsSessionSelected(false);
-        }
-    }, [sessionWatch]);
+    // useEffect(() => {
+    //     if (sessionWatch) {
+    //         setIsSessionSelected(true);
+    //     } else {
+    //         setIsSessionSelected(false);
+    //     }
+    // }, [sessionWatch]);
 
     // form handler
     const onSubmit = async (data) => {
@@ -230,9 +230,13 @@ const StepOneForm = () => {
                             defaultValue={user?.roll}
                             readOnly
                         />
-                        {errors?.roll && (
+                        {errors?.roll ? (
                             <span className=" mt-1 label-text-alt text-xs font-normal capitalize text-red-700">
                                 {errors.roll?.message}
+                            </span>
+                        ) : (
+                            <span className=" mt-2 label-text-alt text-xs font-semibold text-red-700 text-right">
+                                This is read only field
                             </span>
                         )}
                     </div>

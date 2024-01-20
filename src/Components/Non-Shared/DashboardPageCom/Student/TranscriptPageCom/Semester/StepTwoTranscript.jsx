@@ -19,7 +19,7 @@ const StepTwoTranscript = () => {
 
     const { loading, data, isError, error } = useFetchData(
         "student-semester-transcript-mark",
-        `https://student-management-delta.vercel.app/result/semester-transcript/${user?.department}/${user?.session}/${stepOneValue?.semester}/${user?.roll}`
+        `https://student-management-delta.vercel.app/result/semester-transcript/${user?.department}/${user?.currentSession}/${stepOneValue?.semester}/${user?.roll}`
     );
 
     if (loading) {

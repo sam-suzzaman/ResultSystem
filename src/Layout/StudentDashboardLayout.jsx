@@ -52,7 +52,7 @@ const StudentDashboardLayout = () => {
                             {/* <div className="brand">
                                 <img src={deptLogo} alt="eee" />
                             </div> */}
-                            <ul className="menu pl-2 pr-3 p-8 w-[250px] text-base-content overflow-y-auto flex-nowrap flex-1">
+                            <ul className="menu pl-2 pr-3 p-8 w-[250px] text-base-content overflow-y-auto flex-nowrap flex-1 bg-base-300">
                                 {/* Sidebar content here */}
                                 {menu_items?.map((item) => {
                                     return (

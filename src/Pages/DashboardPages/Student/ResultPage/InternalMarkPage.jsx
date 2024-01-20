@@ -7,6 +7,7 @@ import { useUserContext } from "../../../../context/Admin/UserContext";
 import axios from "axios";
 import styled from "styled-components";
 import { Result } from "postcss";
+import useFetchConfig from "../../../../utils/useFetchConfig";
 
 const InternalMarkPage = () => {
     // States
@@ -20,6 +21,7 @@ const InternalMarkPage = () => {
     const { user } = useUserContext();
 
     // Hooks
+    const config = useFetchConfig();
     const {
         register,
         handleSubmit,
@@ -34,7 +36,8 @@ const InternalMarkPage = () => {
     useEffect(() => {
         if (semesterWatch) {
             setIsSemesterSelect(true);
-            const url = `https://student-management-delta.vercel.app/course/${user?.session}/${user?.department}/${semesterWatch}`;
+            const url = `https://student-management-delta.vercel.app/course/${user?.currentSession}/${user?.department}/${semesterWatch}`;
+
             getAllHandler(url)
                 .then((res) => setCourseData(res))
                 .catch((err) => console.log(err));
@@ -49,12 +52,25 @@ const InternalMarkPage = () => {
         const selectedCourse = courseData.find(
             (course) => course?._id === data.course
         );
-
+        console.log(selectedCourse);
         // Fetch Result Data
         try {
-            const url = `https://student-management-delta.vercel.app/mark/theory-mark/${user?.department}/${user?.session}/${data.semester}/${selectedCourse.courseName}/${selectedCourse.courseCode}/${data.roll}`;
-            const response = await axios.get(url);
-            setResult(response?.data?.result);
+            // const url2 = `https://student-management-delta.vercel.app/mark/theory-mark/${user?.department}/${user?.session}/${data.semester}/${selectedCourse.courseName}/${selectedCourse.courseCode}/${data.roll}`;
+            const url = `https://student-management-delta.vercel.app/user-info/marks/internal-marks/${semesterWatch}`;
+            const response = await axios.get(url, config);
+            const result = response?.data?.result;
+            console.log(result);
+            if (!result?.length) {
+                setResult([]);
+            } else {
+                // filter courseData
+                const temp = result?.find(
+                    (res) => res?.courseCode == selectedCourse?.courseCode
+                );
+                console.log(temp);
+                setResult(temp);
+            }
+
             setLoading(false);
 
             // handling errors
@@ -67,7 +83,6 @@ const InternalMarkPage = () => {
             setResult(null);
             setError({ status: true, message: error?.message });
             setLoading(false);
-            // console.log(error);
         }
     };
 
@@ -200,7 +215,7 @@ const InternalMarkPage = () => {
                                 </div>
 
                                 {/* Roll */}
-                                <div className="form-control w-full col-span-1">
+                                {/* <div className="form-control w-full col-span-1">
                                     <label className="label">
                                         <span className="text-[13px] text-black font-medium">
                                             Roll
@@ -214,18 +229,18 @@ const InternalMarkPage = () => {
                                         defaultValue={user?.roll}
                                         readOnly
                                     />
-                                </div>
-                            </div>
+                                </div> */}
 
-                            {/* submit */}
-                            <div className="flex justify-center mt-1">
-                                <button
-                                    type="submit"
-                                    className="result-btn disabled:cursor-not-allowed"
-                                    disabled={loading}
-                                >
-                                    {loading ? "loading..." : "search"}
-                                </button>
+                                {/* submit */}
+                                <div className="flex items-end mt-1 col-span-1">
+                                    <button
+                                        type="submit"
+                                        className="result-btn disabled:cursor-not-allowed"
+                                        disabled={loading}
+                                    >
+                                        {loading ? "loading..." : "search"}
+                                    </button>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -271,7 +286,7 @@ const InternalMarkPage = () => {
                                     </th>
                                 </tr>
                                 <tr>
-                                    <td className="number">{result?.roll}</td>
+                                    <td className="number">{user?.roll}</td>
                                     <td className="number">
                                         {result?.courseCode}
                                     </td>
@@ -291,7 +306,10 @@ const InternalMarkPage = () => {
                                         {result?.presentationOrAssignment}
                                     </td>
                                     <td className="text-center number">
-                                        {result?.totalInternal}
+                                        {result?.attendance +
+                                            result?.midOne +
+                                            result?.midTwo +
+                                            result?.presentationOrAssignment}
                                     </td>
                                 </tr>
                             </table>

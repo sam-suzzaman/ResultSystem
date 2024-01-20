@@ -38,11 +38,19 @@ const ImproveMarkPage = () => {
                 console.log(response.data.result);
                 setError({ status: false, message: "" });
             } else {
-                setError({ status: true, message: "--- No Result Found ---" });
+                setError({
+                    status: true,
+                    message: "--- No Result Found(Result not Published) ---",
+                });
             }
         } catch (error) {
             setResult(null);
-            setError({ status: true, message: "--- No Result Found ---" });
+            setError({
+                status: true,
+                message:
+                    error?.response?.data?.errors?.message ||
+                    "--- No Result Found ---",
+            });
             setLoading(false);
             console.log(error);
         }
@@ -146,7 +154,7 @@ const ImproveMarkPage = () => {
                         </h3>
                     )}
                     {result && (
-                        <div className="overflow-x-auto mt-4">
+                        <div className="overflow-x-auto mt-4 mb-8">
                             <table className="result-table number">
                                 <tr>
                                     <th>Course Code</th>

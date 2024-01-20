@@ -30,7 +30,7 @@ const SemesterMarkPage = () => {
 
         // Fetch Result Data
         try {
-            const url = `https://student-management-delta.vercel.app/user-info/marks/${data?.semester}`;
+            const url = `https://student-management-delta.vercel.app/user-info/marks/internal-marks/1`;
             const response = await axios.get(url, config);
             setResult(response?.data?.result);
             setLoading(false);
@@ -44,7 +44,12 @@ const SemesterMarkPage = () => {
             }
         } catch (error) {
             setResult(null);
-            setError({ status: true, message: "--- No Result Found ---" });
+            setError({
+                status: true,
+                message:
+                    error?.response?.data?.errors?.message ||
+                    "--- No Result Found ---",
+            });
             setLoading(false);
             console.log(error);
         }
@@ -148,7 +153,7 @@ const SemesterMarkPage = () => {
                         </h3>
                     )}
                     {result && (
-                        <div className="overflow-x-auto mt-4">
+                        <div className="overflow-x-auto mt-4 mb-8">
                             <table className="result-table number">
                                 <tr>
                                     <th>Course Code</th>
