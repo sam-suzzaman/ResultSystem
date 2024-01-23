@@ -52,14 +52,14 @@ const InternalMarkPage = () => {
         const selectedCourse = courseData.find(
             (course) => course?._id === data.course
         );
-        console.log(selectedCourse);
+        // console.log(selectedCourse);
         // Fetch Result Data
         try {
             // const url2 = `https://student-management-delta.vercel.app/mark/theory-mark/${user?.department}/${user?.session}/${data.semester}/${selectedCourse.courseName}/${selectedCourse.courseCode}/${data.roll}`;
             const url = `https://student-management-delta.vercel.app/user-info/marks/internal-marks/${semesterWatch}`;
             const response = await axios.get(url, config);
             const result = response?.data?.result;
-            console.log(result);
+
             if (!result?.length) {
                 setResult([]);
             } else {
@@ -67,7 +67,17 @@ const InternalMarkPage = () => {
                 const temp = result?.find(
                     (res) => res?.courseCode == selectedCourse?.courseCode
                 );
-                console.log(temp);
+                // console.log(temp);
+
+                // if (!temp) {
+                //     // setResult([]);
+                //     setError({
+                //         status: true,
+                //         message: "--- No Result Found ---",
+                //     });
+                // } else {
+                //     setResult(temp);
+                // }
                 setResult(temp);
             }
 

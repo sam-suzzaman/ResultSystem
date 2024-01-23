@@ -56,7 +56,7 @@ const StepTwoTranscript = () => {
                 </button> */}
             </div>
             <div className="w-full">
-                <PDFViewer width={1250} height={540}>
+                <PDFViewer width={1250} height={740}>
                     {/* <SemesterTranscriptPDF
                         TranscriptData={results}
                         stepOneValue={stepOneValue}

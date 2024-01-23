@@ -7,8 +7,8 @@ const Footer = () => {
         <Wrapper>
             <div className="footer footer-center p-4 bg-base-100 text-primary shadow-sm shadw">
                 <div>
-                    <p className="font-roboto font-medium">
-                        Copyright © {currentYear} - All right reserved by JKKNIU
+                    <p className="font-roboto font-light number">
+                        Copyright © {currentYear} - All right reserved by EEE
                     </p>
                 </div>
             </div>

@@ -6,6 +6,7 @@ import { BsBookmarks } from "react-icons/bs";
 import { HiDocumentCheck } from "react-icons/hi2";
 import { FaUserTie } from "react-icons/fa6";
 import { CiSearch } from "react-icons/ci";
+import { FaAngleDoubleDown } from "react-icons/fa";
 
 import { SessionPageProvider } from "../context/Admin/SessionPageContext";
 import styled from "styled-components";
@@ -56,6 +57,12 @@ const AdminDashboardLayout = () => {
             path: "/dashboard/admin/transcript",
             icon: <HiDocumentCheck />,
         },
+        {
+            id: 8,
+            title: "Re-add",
+            path: "/dashboard/admin/re-add",
+            icon: <FaAngleDoubleDown />,
+        },
     ];
     return (
         <Wrapper>
@@ -89,7 +96,7 @@ const AdminDashboardLayout = () => {
                                                     className="capitalize font-semibold rms-link"
                                                     end
                                                 >
-                                                    <span className="text-xl mr-1 inline-flex items-center ">
+                                                    <span className="text-xl mr-3 inline-flex items-center ">
                                                         {item?.icon}
                                                     </span>
                                                     {item.title}
@@ -115,8 +122,9 @@ const Wrapper = styled.aside`
         margin-bottom: 6px;
     }
     .menu .rms-link.active {
-        background-color: rgba(0, 0, 0, 0.06);
-        color: var(--primary-clr);
+        background-color: var(--primary-clr);
+        /* background-color: rgba(0, 0, 0, 0.06); */
+        color: var(--white-clr);
         font-weight: 600;
         letter-spacing: 1px;
     }

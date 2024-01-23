@@ -6,10 +6,14 @@ import ResultTable from "../../../../Components/Non-Shared/DashboardPageCom/Admi
 import { useQuery } from "react-query";
 import { getAllHandler } from "../../../../utils/fetchHandlers";
 
+
 const SearchPage = () => {
     // States
     const [student, setStudent] = useState(true);
     const [roll, setRoll] = useState("");
+
+
+    // Hooks
     const {
         isLoading,
         isError,

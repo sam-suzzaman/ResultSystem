@@ -7,7 +7,7 @@ import { useUserContext } from "../../../context/Admin/UserContext";
 const ProfileMenu = () => {
     const { user, userLogout } = useUserContext();
     return (
-        <div className="dropdown dropdown-end">
+        <div className="dropdown dropdown-end ">
             <label tabIndex={0} className="">
                 <div className="flex justify-end items-center mr-6 cursor-pointer">
                     <img
@@ -28,7 +28,7 @@ const ProfileMenu = () => {
             </label>
             <ul
                 tabIndex={0}
-                className="mt-5 z-[1] p-2 shadow-md menu menu-sm dropdown-content bg-base-100 rounded-sm w-52"
+                className="mt-5 z-100 p-2 shadow-md menu menu-sm dropdown-content bg-base-200 rounded-sm w-52"
             >
                 <li>
                     {user?.role === "admin" || user?.role === "faculty" ? (

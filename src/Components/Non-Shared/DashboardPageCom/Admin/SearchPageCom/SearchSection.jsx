@@ -66,7 +66,7 @@ const Wrapper = styled.div`
     position: sticky;
     top: -15px;
     background-color: #fff;
-    z-index: 10;
+    z-index: 1;
     padding: 10px 0 16px;
     .search-sec-container {
         width: 100%;

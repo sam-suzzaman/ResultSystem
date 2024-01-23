@@ -45,6 +45,7 @@ import YearlyTranscriptPage from "../Pages/DashboardPages/Admin/TranscriptPage/Y
 import { MarkFormStepProvider } from "../context/Admin/MarkFormStepContext";
 import ManageTeacherPage from "../Pages/DashboardPages/Admin/ManageTeacherPage/ManageTeacherPage";
 import SearchPage from "../Pages/DashboardPages/Admin/SearchPage/SearchPage";
+import ReAddPage from "../Pages/DashboardPages/Admin/ReAddPage/ReAddPage";
 
 const Routers = createBrowserRouter([
     {
@@ -188,6 +189,10 @@ const Routers = createBrowserRouter([
                     {
                         path: "/dashboard/admin/search",
                         element: <SearchPage />,
+                    },
+                    {
+                        path: "/dashboard/admin/re-add",
+                        element: <ReAddPage />,
                     },
                 ],
             },
