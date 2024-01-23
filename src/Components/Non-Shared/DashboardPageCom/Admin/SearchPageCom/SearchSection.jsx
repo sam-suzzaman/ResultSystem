@@ -1,9 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { CiSearch } from "react-icons/ci";
 import styled from "styled-components";
 
-const SearchSection = ({ setRoll }) => {
+// Semester Data
+const semesters = [
+    {
+        _id: 1,
+        value: 1,
+        name: "First Semester",
+    },
+    {
+        _id: 2,
+        value: 2,
+        name: "Second Semester",
+    },
+    {
+        _id: 3,
+        value: 3,
+        name: "Third Semester",
+    },
+    {
+        _id: 4,
+        value: 4,
+        name: "Fourth Semester",
+    },
+    {
+        _id: 5,
+        value: 5,
+        name: "Fifth Semester",
+    },
+    {
+        _id: 6,
+        value: 6,
+        name: "Sixth Semester",
+    },
+    {
+        _id: 7,
+        value: 7,
+        name: "Seventh Semester",
+    },
+    {
+        _id: 8,
+        value: 8,
+        name: "Eighth Semester",
+    },
+];
+
+const SearchSection = ({ setRoll, setSearchQuery }) => {
+    // States
+    const [filter, setFilter] = useState([]);
+
     // hooks
     const {
         register,
@@ -12,6 +59,28 @@ const SearchSection = ({ setRoll }) => {
         formState: { errors },
     } = useForm();
 
+    useEffect(() => {
+        const query = `semester=${filter.join(",")}`;
+        setSearchQuery(query);
+    }, [filter]);
+
+    // handle checked or unchecked
+    const checkUncheckHandler = (data, isChecked) => {
+        if (isChecked) {
+            if (!filter.includes(data.value)) {
+                setFilter([...filter, data.value]);
+            } else {
+                return;
+            }
+        } else {
+            if (filter.includes(data.value)) {
+                const temp = filter.filter((value) => value !== data.value);
+                setFilter(temp);
+            } else {
+                return;
+            }
+        }
+    };
     //  form submit handler
     const onSubmit = (data) => {
         setRoll(data.roll);
@@ -35,7 +104,7 @@ const SearchSection = ({ setRoll }) => {
                         <input
                             type="text"
                             placeholder="Enter Roll Number"
-                            className="number"
+                            className="number roll-field"
                             {...register("roll", {
                                 required: {
                                     value: true,
@@ -52,6 +121,42 @@ const SearchSection = ({ setRoll }) => {
                         <button type="submit" class="button">
                             Search
                         </button>
+
+                        <div className="dropdown dropdown-end filter">
+                            <div
+                                tabIndex={0}
+                                role="button"
+                                className=" button2"
+                            >
+                                Filter
+                            </div>
+                            <ul
+                                tabIndex={0}
+                                className="dropdown-content z-[1] menu p-2 mt-4 rounded-sm shadow bg-base-200 w-[180px]"
+                            >
+                                {semesters?.map((data) => {
+                                    return (
+                                        <div key={data._id}>
+                                            <label className="label justify-start cursor-pointer py-[4px]">
+                                                <input
+                                                    type="checkbox"
+                                                    className="checkbox checkbox-primary checkbox-xs w-[12px] h-[12px] rounded-sm mr-2"
+                                                    onChange={(e) =>
+                                                        checkUncheckHandler(
+                                                            data,
+                                                            e.target.checked
+                                                        )
+                                                    }
+                                                />
+                                                <span className="label-text number text-primary text-[13px]">
+                                                    {data.name}
+                                                </span>
+                                            </label>
+                                        </div>
+                                    );
+                                })}
+                            </ul>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -83,7 +188,8 @@ const Wrapper = styled.div`
         border: 1px solid rgba(0, 0, 0, 0.1);
     }
     .input-box .icon,
-    .input-box .button {
+    .input-box .button,
+    .filter {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
@@ -93,7 +199,7 @@ const Wrapper = styled.div`
         font-size: 25px;
         color: #707070;
     }
-    .input-box input {
+    .input-box .roll-field {
         height: 100%;
         width: 100%;
         outline: none;
@@ -103,7 +209,7 @@ const Wrapper = styled.div`
         padding: 0 155px 0 65px;
         background-color: transparent;
     }
-    .input-box input::placeholder {
+    .input-box .roll-field::placeholder {
         font-size: 15px;
         font-weight: 400;
     }
@@ -118,6 +224,20 @@ const Wrapper = styled.div`
         border-radius: 4px;
         background-color: var(--primary-clr);
         cursor: pointer;
+    }
+    .input-box .button2 {
+        font-size: 15px;
+        letter-spacing: 1px;
+        font-weight: 500;
+        color: #fff;
+        border: none;
+        padding: 7px 30px;
+        border-radius: 4px;
+        background-color: #404040;
+        cursor: pointer;
+    }
+    .input-box .filter {
+        right: 130px;
     }
     .input-box .button:hover {
         background-color: var(--secondary-clr);

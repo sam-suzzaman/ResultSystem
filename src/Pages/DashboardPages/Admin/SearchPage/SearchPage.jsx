@@ -6,12 +6,11 @@ import ResultTable from "../../../../Components/Non-Shared/DashboardPageCom/Admi
 import { useQuery } from "react-query";
 import { getAllHandler } from "../../../../utils/fetchHandlers";
 
-
 const SearchPage = () => {
     // States
     const [student, setStudent] = useState(true);
     const [roll, setRoll] = useState("");
-
+    const [searchQuery, setSearchQuery] = useState("");
 
     // Hooks
     const {
@@ -20,13 +19,13 @@ const SearchPage = () => {
         data: studentData,
         error,
     } = useQuery(
-        ["search-result", roll],
+        ["search-result", roll, searchQuery],
         () =>
             getAllHandler(
-                `https://student-management-delta.vercel.app/result/specific-student/${roll}`
+                `https://student-management-delta.vercel.app/result/specific-student/${roll}?${searchQuery}`
             ),
         {
-            enabled: !!roll,
+            enabled: !!roll && !!searchQuery,
         }
     );
 
@@ -37,7 +36,7 @@ const SearchPage = () => {
     return (
         <Wrapper>
             {/* search form row */}
-            <SearchSection setRoll={setRoll} />
+            <SearchSection setRoll={setRoll} setSearchQuery={setSearchQuery} />
 
             {/* Without Result */}
             {!studentData && <BeforeSearch />}
