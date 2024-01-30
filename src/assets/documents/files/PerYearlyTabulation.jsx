@@ -10,7 +10,7 @@ import grade from "../../../assets/grade.png";
 
 const styles = StyleSheet.create({
     page: {
-        paddingHorizontal: "30pt",
+        paddingHorizontal: "15pt",
         paddingVertical: "50pt",
     },
     stu_tab_row: {
@@ -36,7 +36,9 @@ const styles = StyleSheet.create({
 const PerYearlyTabulation = ({ result, student, stepOneValue }) => {
     // console.log(stepOneValue);
     const [year, setYear] = useState("1st");
-    useEffect(()=>{
+
+    // calculate year values
+    useEffect(() => {
         switch (stepOneValue?.year) {
             case "1":
                 setYear("1st");
@@ -54,11 +56,11 @@ const PerYearlyTabulation = ({ result, student, stepOneValue }) => {
             default:
                 break;
         }
+    }, [stepOneValue?.year]);
 
-    },[stepOneValue?.year])
     return (
         <Document>
-            <Page size="A3" orientation="landscape" style={styles.page}>
+            <Page size="LEGAL" orientation="landscape" style={styles.page}>
                 {/* First row :Top-title( Logo and info) */}
                 <DIV
                     style={{
@@ -295,7 +297,7 @@ const PerYearlyTabulation = ({ result, student, stepOneValue }) => {
                                             return (
                                                 <DIV
                                                     style={{
-                                                        width: "32pt",
+                                                        width: "25pt",
                                                         borderRight:
                                                             isBorderRight,
                                                         borderBottom: 1,
@@ -372,7 +374,7 @@ const PerYearlyTabulation = ({ result, student, stepOneValue }) => {
                                             return (
                                                 <DIV
                                                     style={{
-                                                        width: "32pt",
+                                                        width: "25pt",
                                                         borderRight: isBorder,
                                                         borderBottom: 1,
                                                         paddingTop: "2pt",
@@ -484,7 +486,7 @@ const PerYearlyTabulation = ({ result, student, stepOneValue }) => {
                                             return (
                                                 <DIV
                                                     style={{
-                                                        width: "32pt",
+                                                        width: "25pt",
                                                         height: "16pt",
                                                         borderRight:
                                                             isBorderRight,
@@ -537,7 +539,7 @@ const PerYearlyTabulation = ({ result, student, stepOneValue }) => {
                                             return (
                                                 <DIV
                                                     style={{
-                                                        width: "32pt",
+                                                        width: "25pt",
                                                         height: "16pt",
                                                         borderRight:
                                                             isBorderRight,
@@ -859,7 +861,7 @@ const PerYearlyTabulation = ({ result, student, stepOneValue }) => {
                                             return (
                                                 <DIV
                                                     style={{
-                                                        width: "32pt",
+                                                        width: "25pt",
                                                         height: "16pt",
                                                         borderRight:
                                                             isBorderRight,
@@ -906,7 +908,7 @@ const PerYearlyTabulation = ({ result, student, stepOneValue }) => {
                                             return (
                                                 <DIV
                                                     style={{
-                                                        width: "32pt",
+                                                        width: "25pt",
                                                         height: "16pt",
                                                         borderRight:
                                                             isBorderRight,
@@ -1146,7 +1148,7 @@ const PerYearlyTabulation = ({ result, student, stepOneValue }) => {
                                                     return (
                                                         <DIV
                                                             style={{
-                                                                width: "32pt",
+                                                                width: "25pt",
                                                                 height: "21pt",
                                                                 borderRight:
                                                                     isBorderRight,
@@ -1207,7 +1209,7 @@ const PerYearlyTabulation = ({ result, student, stepOneValue }) => {
                                                     return (
                                                         <DIV
                                                             style={{
-                                                                width: "32pt",
+                                                                width: "25pt",
                                                                 height: "21pt",
                                                                 borderRight:
                                                                     isBorderRight,
@@ -1271,7 +1273,7 @@ const PerYearlyTabulation = ({ result, student, stepOneValue }) => {
                                                     return (
                                                         <DIV
                                                             style={{
-                                                                width: "32pt",
+                                                                width: "25pt",
                                                                 height: "21pt",
                                                                 borderRight:
                                                                     isBorderRight,
@@ -1333,7 +1335,7 @@ const PerYearlyTabulation = ({ result, student, stepOneValue }) => {
                                                     return (
                                                         <DIV
                                                             style={{
-                                                                width: "32pt",
+                                                                width: "25pt",
                                                                 height: "21pt",
                                                                 borderRight:
                                                                     isBorderRight,
@@ -1397,7 +1399,7 @@ const PerYearlyTabulation = ({ result, student, stepOneValue }) => {
                                                     return (
                                                         <DIV
                                                             style={{
-                                                                width: "32pt",
+                                                                width: "25pt",
                                                                 height: "21pt",
                                                                 borderRight:
                                                                     isBorderRight,
@@ -1458,7 +1460,7 @@ const PerYearlyTabulation = ({ result, student, stepOneValue }) => {
                                                     return (
                                                         <DIV
                                                             style={{
-                                                                width: "32pt",
+                                                                width: "25pt",
                                                                 height: "21pt",
                                                                 borderRight:
                                                                     isBorderRight,
@@ -1522,7 +1524,7 @@ const PerYearlyTabulation = ({ result, student, stepOneValue }) => {
                                                     return (
                                                         <DIV
                                                             style={{
-                                                                width: "32pt",
+                                                                width: "25pt",
                                                                 height: "21pt",
                                                                 borderRight:
                                                                     isBorderRight,
@@ -1583,7 +1585,7 @@ const PerYearlyTabulation = ({ result, student, stepOneValue }) => {
                                                     return (
                                                         <DIV
                                                             style={{
-                                                                width: "32pt",
+                                                                width: "25pt",
                                                                 height: "21pt",
                                                                 borderRight:
                                                                     isBorderRight,
@@ -1647,7 +1649,7 @@ const PerYearlyTabulation = ({ result, student, stepOneValue }) => {
                                                     return (
                                                         <DIV
                                                             style={{
-                                                                width: "32pt",
+                                                                width: "25pt",
                                                                 height: "21pt",
                                                                 borderRight:
                                                                     isBorderRight,
@@ -1708,7 +1710,7 @@ const PerYearlyTabulation = ({ result, student, stepOneValue }) => {
                                                     return (
                                                         <DIV
                                                             style={{
-                                                                width: "32pt",
+                                                                width: "25pt",
                                                                 height: "21pt",
                                                                 borderRight:
                                                                     isBorderRight,
@@ -2245,7 +2247,7 @@ const PerYearlyTabulation = ({ result, student, stepOneValue }) => {
                                                     return (
                                                         <DIV
                                                             style={{
-                                                                width: "32pt",
+                                                                width: "25pt",
                                                                 height: "21pt",
                                                                 borderRight:
                                                                     isBorderRight,
@@ -2306,7 +2308,7 @@ const PerYearlyTabulation = ({ result, student, stepOneValue }) => {
                                                     return (
                                                         <DIV
                                                             style={{
-                                                                width: "32pt",
+                                                                width: "25pt",
                                                                 height: "21pt",
                                                                 borderRight:
                                                                     isBorderRight,
@@ -2370,7 +2372,7 @@ const PerYearlyTabulation = ({ result, student, stepOneValue }) => {
                                                     return (
                                                         <DIV
                                                             style={{
-                                                                width: "32pt",
+                                                                width: "25pt",
                                                                 height: "21pt",
                                                                 borderRight:
                                                                     isBorderRight,
@@ -2431,7 +2433,7 @@ const PerYearlyTabulation = ({ result, student, stepOneValue }) => {
                                                     return (
                                                         <DIV
                                                             style={{
-                                                                width: "32pt",
+                                                                width: "25pt",
                                                                 height: "21pt",
                                                                 borderRight:
                                                                     isBorderRight,
@@ -2495,7 +2497,7 @@ const PerYearlyTabulation = ({ result, student, stepOneValue }) => {
                                                     return (
                                                         <DIV
                                                             style={{
-                                                                width: "32pt",
+                                                                width: "25pt",
                                                                 height: "21pt",
                                                                 borderRight:
                                                                     isBorderRight,
@@ -2556,7 +2558,7 @@ const PerYearlyTabulation = ({ result, student, stepOneValue }) => {
                                                     return (
                                                         <DIV
                                                             style={{
-                                                                width: "32pt",
+                                                                width: "25pt",
                                                                 height: "21pt",
                                                                 borderRight:
                                                                     isBorderRight,
@@ -2620,7 +2622,7 @@ const PerYearlyTabulation = ({ result, student, stepOneValue }) => {
                                                     return (
                                                         <DIV
                                                             style={{
-                                                                width: "32pt",
+                                                                width: "25pt",
                                                                 height: "21pt",
                                                                 borderRight:
                                                                     isBorderRight,
@@ -2681,7 +2683,7 @@ const PerYearlyTabulation = ({ result, student, stepOneValue }) => {
                                                     return (
                                                         <DIV
                                                             style={{
-                                                                width: "32pt",
+                                                                width: "25pt",
                                                                 height: "21pt",
                                                                 borderRight:
                                                                     isBorderRight,
