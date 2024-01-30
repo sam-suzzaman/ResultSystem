@@ -9,12 +9,13 @@ import useGetYearSemester from "../../../utils/useGetYearSemester";
 
 const styles = StyleSheet.create({
     page: {
-        paddingHorizontal: "8pt",
-        paddingVertical: "10pt",
+        paddingHorizontal: "15pt",
+        paddingVertical: "30pt",
+        paddingBottom: "40pt",
     },
     text: {
-        fontSize: "6.5pt",
-        fontWeight: "bold",
+        fontSize: "8pt",
+        fontWeight: "extrabold",
     },
     tableContainer: {
         // marginTop: "17pt",
@@ -24,10 +25,10 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         flexWrap: "wrap",
         justifyContent: "center",
-        height: "96pt", //130pt
+        height: "130pt",
     },
     rollColumn: {
-        width: "43pt", //60pt
+        width: "60pt",
         border: 1,
         display: "flex",
         justifyContent: "center",
@@ -35,39 +36,38 @@ const styles = StyleSheet.create({
     },
     resultColumn: {
         width: "70pt",
+        // width: "70pt",
         border: 1,
         borderLeft: 0,
     },
     courseColumn: {
-        height: "100%", //height:100%
-        width: "80pt", //width:110pt--80
+        height: "100%", //height
+        width: "110pt", //width:140pt
         display: "flex",
         flexDirection: "column",
-        // justifyContent: "space-between",
-        justifyContent: "flex-start",
+        justifyContent: "space-between",
         border: 1,
         borderLeft: 0,
-        // backgroundColor: "purple",
     },
     courseInnerRow: {
-        height: "80pt", //width: 110--80
-        width: "80pt", //height:90pt--115--80
-        transform: "rotate(-270deg) translate(3.5%,1%)", //-2,3.5
+        minHeight: "110pt", //width: 140
+        width: "115pt", //height:90pt
+        transform: "rotate(-270deg) translate(-2%,3.5%)",
         display: "flex",
         flexDirection: "column-reverse",
         justifyContent: "center",
         textAlign: "right",
         borderLeft: 1,
-        // backgroundColor: "red",
     },
     innerRowCol: {
         width: "100%", //height:100%
-        height: "16pt", //width: 28
+        height: "22pt", //width: 28
         borderTop: 1,
-        paddingHorizontal: "3pt",
+        paddingHorizontal: "2.5pt",
         fontWeight: "extrabold",
+        fontSize: "7.5pt",
         textTransform: "capitalize",
-        paddingTop: "4pt", //7.5
+        paddingTop: "7.5pt",
         textAlign: "left",
     },
     valueRow: {
@@ -77,8 +77,8 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     valueRollCell: {
-        width: "43pt", //60pt
-        height: "12pt",
+        width: "60pt",
+        height: "18pt",
         border: 1,
         borderTop: 0,
         // textAlign: "center",
@@ -88,12 +88,12 @@ const styles = StyleSheet.create({
     },
     valueResultCell: {
         width: "70pt",
+        borderColor: "purple",
         borderRight: 1,
         borderBottom: 1,
     },
     valueCellSize: {
-        width: "16.244pt", //22pt
-        // padding:"3.5pt",
+        width: "22pt",
         borderRight: 1,
         borderBottom: 1,
         display: "flex",
@@ -102,14 +102,13 @@ const styles = StyleSheet.create({
     },
     resultInnerRow: {
         minHeight: "70pt", //width: 140
-        width: "80pt", //height:90pt -- 115
-        transform: "rotate(-270deg) translate(8%,5%)", //25.5 23.5
+        width: "115pt", //height:90pt
+        transform: "rotate(-270deg) translate(25.5%,23.5%)",
         display: "flex",
         flexDirection: "column-reverse",
         justifyContent: "center",
         textAlign: "right",
         borderLeft: 1,
-        // backgroundColor: "green",
     },
     resultInnerRowCol: {
         width: "100%", //height:100%
@@ -117,13 +116,13 @@ const styles = StyleSheet.create({
         paddingHorizontal: "2.5pt",
         fontSize: "7pt",
         textTransform: "capitalize",
-        paddingTop: "5pt",
+        paddingTop: "10pt",
         textAlign: "left",
     },
     pageNumber: {
         position: "absolute",
-        fontSize: "8pt",
-        bottom: "4pt",
+        fontSize: "10pt",
+        bottom: "20pt",
         left: 0,
         right: 0,
         textAlign: "center",
@@ -133,14 +132,12 @@ const styles = StyleSheet.create({
 
 const SemesterFinalTabulation = ({ results, stepOneValue }) => {
     const [colData, setColData] = useState([]);
+    const [pageSize, setPageSize] = useState("A4");
     const { year, semester } = useGetYearSemester(stepOneValue?.semester * 1);
+
     const [semesterValue, setSemesterValue] = useState(
         stepOneValue?.semester * 1
     );
-    const [pageSize, setPageSize] = useState({
-        size: "A4",
-        orientation: "portrait",
-    });
 
     // Naming Semesters
     useEffect(() => {
@@ -181,12 +178,33 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
 
     // Handle Page Size
     useEffect(() => {
-        if (colData?.length == 6) {
-            setPageSize({ size: "LEGAL", orientation: "portrait" });
-        } else if (colData?.length >= 7) {
-            setPageSize({ size: "LEGAL", orientation: "landscape" });
-        } else {
-            return;
+        // (course = 6), A4, landscape[(595.28, 841.89)];
+        // (course = 7), LEGAL, landscape[(612.0, 1008.0)];
+        // (course = 9), A3, landscape[(841.89, 1190.55)];
+        // (course = 10), C3, landscape[(918.43, 1298.27)];
+        switch (colData?.length) {
+            case 6:
+                setPageSize("LEGAL");
+                break;
+            case 7:
+                setPageSize("LEGAL");
+                break;
+            case 8:
+                // setPageSize("TABLOID");
+                setPageSize("A3");
+                break;
+            case 9:
+                // setPageSize("TABLOID");
+                setPageSize("A3");
+                break;
+            case 10:
+                // setPageSize("TABLOID");
+                setPageSize("C3");
+                break;
+            // case 8:
+            //     setPageSize("C2");
+            //     break;
+            default:
         }
     }, [colData]);
 
@@ -194,11 +212,7 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
     // useEffect(()=>{},[stepOneValue])
     return (
         <Document>
-            <Page
-                size={pageSize.size}
-                orientation={pageSize.orientation}
-                style={styles.page}
-            >
+            <Page size={pageSize} orientation="landscape" style={styles.page}>
                 {/* First row : header */}
                 <DIV isFixed={true}>
                     <DIV
@@ -206,28 +220,28 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
                             display: "flex",
                             flexDirection: "row",
                             justifyContent: "center",
-                            marginBottom: "5pt",
+                            marginBottom: "10pt",
                         }}
                     >
-                        <Image style={{ width: "40pt" }} src={logo} />
+                        <Image style={{ width: "50pt" }} src={logo} />
                         <Image
                             style={{
-                                width: "150pt",
-                                height: "90pt",
+                                width: "200pt",
+                                height: "120pt",
                                 position: "absolute",
                                 top: "0pt",
-                                right: "0pt",
+                                right: "40pt",
                             }}
                             src={grade}
                         />
                     </DIV>
-                    <DIV style={{ marginBottom: "7pt" }}>
+                    <DIV style={{ marginBottom: "10pt" }}>
                         <H3
                             style={{
                                 fontWeight: "700",
-                                fontSize: "12pt",
+                                fontSize: "15pt",
                                 textAlign: "center",
-                                marginBottom: "3pt",
+                                marginBottom: "4pt",
                             }}
                         >
                             Jatiya Kabi Kazi Nazrul Islam University
@@ -235,9 +249,9 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
                         <H3
                             style={{
                                 fontWeight: "400",
-                                fontSize: "9.5pt",
+                                fontSize: "11pt",
                                 textAlign: "center",
-                                marginBottom: "3pt",
+                                marginBottom: "4pt",
                             }}
                         >
                             Department of Electrical and Electronic Engineering
@@ -245,9 +259,9 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
                         <H3
                             style={{
                                 fontWeight: "400",
-                                fontSize: "9.5pt",
+                                fontSize: "11pt",
                                 textAlign: "center",
-                                marginBottom: "3pt",
+                                marginBottom: "4pt",
                             }}
                         >
                             {year} Year {semester} Semester Mark Tabulation
@@ -255,7 +269,7 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
                         <H3
                             style={{
                                 fontWeight: "400",
-                                fontSize: "9.5pt",
+                                fontSize: "11pt",
                                 textAlign: "center",
                             }}
                         >
@@ -267,7 +281,7 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
                 <DIV style={styles.tableContainer}>
                     {/* Second Row */}
                     <DIV
-                        style={{ ...styles.headerRow, marginTop: "8pt" }}
+                        style={{ ...styles.headerRow, marginTop: "10pt" }}
                         isFixed={true}
                     >
                         <DIV style={styles.rollColumn}>
@@ -277,6 +291,18 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
                                 Roll
                             </SPAN>
                         </DIV>
+                        {/* <DIV style={styles.courseColumn}>
+                        <DIV>
+                            <SPAN style={{ textAlign: "center" }}>row 1</SPAN>
+                        </DIV>
+                        <DIV style={styles.courseInnerRow}>
+                            <SPAN style={styles.innerRowCol}>row 2</SPAN>
+                            <SPAN style={styles.innerRowCol}>row 2</SPAN>
+                            <SPAN style={styles.innerRowCol}>row 2</SPAN>
+                            <SPAN style={styles.innerRowCol}>row 2</SPAN>
+                            <SPAN style={styles.innerRowCol}>row 2</SPAN>
+                        </DIV>
+                    </DIV> */}
                         {colData?.map((course) => {
                             return (
                                 <DIV style={styles.courseColumn}>
@@ -284,7 +310,7 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
                                         <SPAN
                                             style={{
                                                 textAlign: "center",
-                                                fontSize: "7pt",
+                                                fontSize: "7.5pt",
                                                 fontWeight: "extrabold",
                                                 paddingTop: "2.5pt",
                                             }}
@@ -301,8 +327,6 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
                                                     borderTop: 0,
                                                     transform:
                                                         "rotate(-180deg)",
-                                                    fontSize: "6.5pt",
-                                                    fontWeight: "bold",
                                                 }}
                                             >
                                                 theory Continuous (40%)
@@ -310,7 +334,7 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
                                             <SPAN
                                                 style={{
                                                     ...styles.innerRowCol,
-                                                    fontSize: "6.5pt",
+                                                    fontSize: "7pt",
                                                     fontWeight: "extrabold",
                                                     transform:
                                                         "rotate(-180deg)",
@@ -321,7 +345,7 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
                                             <SPAN
                                                 style={{
                                                     ...styles.innerRowCol,
-                                                    fontSize: "6.5pt",
+                                                    fontSize: "7pt",
                                                     transform:
                                                         "rotate(-180deg)",
                                                 }}
@@ -331,7 +355,7 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
                                             <SPAN
                                                 style={{
                                                     ...styles.innerRowCol,
-                                                    fontSize: "6.5pt",
+                                                    fontSize: "7pt",
                                                     transform:
                                                         "rotate(-180deg)",
                                                 }}
@@ -341,7 +365,7 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
                                             <SPAN
                                                 style={{
                                                     ...styles.innerRowCol,
-                                                    fontSize: "6.5pt",
+                                                    fontSize: "7pt",
                                                     transform:
                                                         "rotate(-180deg)",
                                                 }}
@@ -368,7 +392,6 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
                                                     borderTop: 0,
                                                     transform:
                                                         "rotate(-180deg)",
-                                                    fontSize: "6.5pt",
                                                 }}
                                             >
                                                 lab Continuous (20%)
@@ -379,7 +402,6 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
                                                     ...styles.text,
                                                     transform:
                                                         "rotate(-180deg)",
-                                                    fontSize: "6.5pt",
                                                 }}
                                             >
                                                 lab final exam (80%)
@@ -390,7 +412,6 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
                                                     fontSize: "7pt",
                                                     transform:
                                                         "rotate(-180deg)",
-                                                    fontSize: "6.5pt",
                                                 }}
                                             >
                                                 total (100%)
@@ -401,7 +422,6 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
                                                     fontSize: "7pt",
                                                     transform:
                                                         "rotate(-180deg)",
-                                                    fontSize: "6.5pt",
                                                 }}
                                             >
                                                 LG
@@ -413,7 +433,6 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
                                                     fontSize: "7pt",
                                                     transform:
                                                         "rotate(-180deg)",
-                                                    fontSize: "6.5pt",
                                                 }}
                                             >
                                                 GP
@@ -519,11 +538,10 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
                                                 </SPAN>
                                             </DIV>
                                             <DIV
-                                                style={{
-                                                    ...styles.valueCell,
-                                                    ...styles.valueCellSize,
-                                                    width: "15pt",
-                                                }}
+                                                style={
+                                                    (styles.valueCell,
+                                                    styles.valueCellSize)
+                                                }
                                             >
                                                 <SPAN style={styles.text}>
                                                     {mark?.LG}
@@ -571,6 +589,23 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
                         );
                     })}
                 </DIV>
+                {/* <DIV style={styles.valueRow}>
+                    <DIV style={(styles.valueCell, styles.valueRollCell)}>
+                        <SPAN>18102930</SPAN>
+                    </DIV>
+                    {cellArray.map((cell) => {
+                        return (
+                            <DIV
+                                style={(styles.valueCell, styles.valueCellSize)}
+                            >
+                                <SPAN>10</SPAN>
+                            </DIV>
+                        );
+                    })}
+                    <DIV style={(styles.valueCell, styles.valueResultCell)}>
+                        <SPAN>value is</SPAN>
+                    </DIV>
+                </DIV> */}
                 <Text
                     style={styles.pageNumber}
                     render={({ pageNumber, totalPages }) =>
