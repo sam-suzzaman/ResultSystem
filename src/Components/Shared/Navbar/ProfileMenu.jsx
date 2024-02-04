@@ -15,12 +15,12 @@ const ProfileMenu = () => {
                         alt="avatar_photo"
                         className="w-10 rounded-full"
                     />
-                    <div className="">
-                        <h3 className="text-xs font-medium capitalize mb-0 text-slate-700">
+                    <div className="ml-2">
+                        <h3 className="text-[12px] font-normal number capitalize mb-0 text-primary">
                             {user?.name || "unknown"}
                         </h3>
-                        <p className="text-xs mb-0 text-slate-500 capitalize font-normal">
-                            <span className="font-medium">role:</span>{" "}
+                        <p className="text-[10px] mb-0 text-slate-700 capitalize font-semibold tracking-wide">
+                            {/* <span className="font-medium">role:</span>{" "} */}
                             <span className="">{user?.role || "..."}</span>
                         </p>
                     </div>

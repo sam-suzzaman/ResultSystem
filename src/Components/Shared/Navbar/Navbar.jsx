@@ -8,7 +8,7 @@ const Navbar = () => {
     const { pathname } = useLocation();
 
     return (
-        <nav className="shadow-md bg-base-100 sticky top-0 z-10">
+        <nav className="shadow-md bg-white sticky top-0 z-10">
             <div className="navbar w-full max-w-7xl mx-auto justify-between">
                 <div className="navbar-start">
                     <div className="mr-3">
@@ -43,29 +43,13 @@ const Navbar = () => {
                 <div className="navbar-center">
                     <Link
                         to="/"
-                        className="font-bold hidden md:block text-xl uppercas text-primary"
+                        className="font-bold hidden md:block text-xl xl:text-2xl uppercas text-primary tracking-wide"
                     >
-                        Dept. of Electrical and Electronic Engineering
+                        Department of Electrical and Electronic Engineering
                     </Link>
                 </div>
                 <div className="navbar-end">
                     <ProfileMenu />
-                    {/* <Link
-                        to="/login"
-                        className="btn btn-sm rounded-sm bg-[#ff9645] hover:bg-[#fa9455] text-xs font-medium text-white"
-                    >
-                        <span className="font-bold text-base">
-                            <FiLogIn />
-                        </span>
-                        login
-                    </Link> */}
-
-                    {/* <button className="flex justify-end items-center text-red-600 hover:text-red-700 hover:font-medium">
-                            <span className="text-[10px] uppercase font-medium mr-1">
-                                logout
-                            </span>
-                            <FiLogOut />
-                        </button> */}
                 </div>
             </div>
         </nav>
