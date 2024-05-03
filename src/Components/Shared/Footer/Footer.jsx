@@ -25,8 +25,10 @@ const Footer = () => {
                                 Fronted:
                             </span>
                             <Link
-                                to="/"
+                                to="https://sam-suzzaman.github.io/me/"
                                 className="font-medium tracking-wider text-primary text-[13px] number"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
                             >
                                 Samsuzzaman
                             </Link>
