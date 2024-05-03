@@ -92,7 +92,7 @@ const PerYearlyTabulation = ({ result, student, stepOneValue }) => {
                         }}
                     >
                         <H4 style={{ fontSize: "10pt" }}>
-                            Jatiya Kabi Kazi Nazrul Islam University
+                            Nexus Institute of Sciences and Engineering
                         </H4>
                         <H4 style={{ fontSize: "10pt" }}>
                             Department of Electrical and Electronic Engineering

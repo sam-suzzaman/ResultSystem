@@ -98,7 +98,7 @@ const StepTwo = () => {
         <Wrapper>
             <div className="mb-6 form-header">
                 <h3 className="capitalize text-center text-sm font-normal number">
-                    Jaitya kabi kazi nazrul islam university
+                    Nexus Institute of Sciences and Engineering
                 </h3>
                 <h3 className=" text-center text-sm font-normal number">
                     Department of Electrical and Electronic Engineering

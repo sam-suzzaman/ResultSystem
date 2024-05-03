@@ -88,7 +88,7 @@ const CourseFinalResultPDF = ({ results, stepOneValue, selectedCourse }) => {
                             marginBottom: "2pt",
                         }}
                     >
-                        Jatiya Kabi Kazi Nazrul Islam University
+                        Nexus Institute of Sciences and Engineering
                     </H3>
                     <H3
                         style={{

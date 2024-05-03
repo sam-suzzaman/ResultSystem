@@ -230,7 +230,7 @@ const SemesterFinalTabulation = ({ results, stepOneValue }) => {
                                 marginBottom: "3pt",
                             }}
                         >
-                            Jatiya Kabi Kazi Nazrul Islam University
+                            Nexus Institute of Sciences and Engineering
                         </H3>
                         <H3
                             style={{

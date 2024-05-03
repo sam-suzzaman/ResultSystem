@@ -108,7 +108,7 @@ const InternlMarkPDF = ({ results, stepOneValue }) => {
                                 marginBottom: "4pt",
                             }}
                         >
-                            Jatiya Kabi Kazi Nazrul Islam University
+                            Nexus Institute of Sciences and Engineering
                         </H3>
                         <H3
                             style={{

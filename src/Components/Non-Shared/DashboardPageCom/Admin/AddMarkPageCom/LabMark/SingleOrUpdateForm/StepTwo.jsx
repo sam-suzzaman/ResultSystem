@@ -156,7 +156,7 @@ const StepTwo = () => {
         <Wrapper>
             <div className="mb-6 ">
                 <h3 className="capitalize text-center text-sm font-normal f-roboto">
-                    Jaitya kabi kazi nazrul islam university
+                    Nexus Institute of Sciences and Engineering
                 </h3>
                 <h3 className=" text-center text-sm font-normal f-roboto">
                     {/* Department of {stepOneValue?.department} */}

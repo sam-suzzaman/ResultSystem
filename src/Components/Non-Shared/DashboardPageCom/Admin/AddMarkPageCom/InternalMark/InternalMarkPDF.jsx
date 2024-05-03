@@ -81,7 +81,7 @@ const InternalMarkPDF = ({ results, stepOneValue, selectedCourse }) => {
             <Page size="A4" style={styles.page}>
                 <DIV isFixed={true}>
                     <H6>
-                        <Text>Jaitya Kabi Kazi Nazrul Islam University</Text>
+                        <Text>Nexus Institute of Sciences and Engineering</Text>
                     </H6>
                     <H6>
                         <Text>

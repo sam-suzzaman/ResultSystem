@@ -191,7 +191,7 @@ const SemesterTranscriptPDF = ({ TranscriptData, stepOneValue }) => {
                                 fontWeight: "700",
                             }}
                         >
-                            jatiya kabi kazi nazrul islam univeristy
+                            Nexus Institute of Sciences and Engineering
                         </H1>
                         <H3
                             style={{
