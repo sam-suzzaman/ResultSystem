@@ -20,8 +20,7 @@ const Hero = () => {
                         </h1>
                         <p>
                             Lorem ipsum dolor, sit amet consectetur adipisicing
-                            elit. Illo perferendis dignissimos eligendi voluptas
-                            exercitationem
+                            elit. Praesentium, illo.
                         </p>
                         <div className="btn-grp">
                             {user?.role === "admin" ||
